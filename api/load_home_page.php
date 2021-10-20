@@ -10,7 +10,7 @@ if ($_GET["action"] == "get_list_of_cities") {
 		$events = array();
 		 
 		$sql = "SELECT * FROM obo_city_config 
-				ORDER BY ID";
+				ORDER BY city_name asc";
 
 		$result = mysqli_query($conn, $sql);
 		
