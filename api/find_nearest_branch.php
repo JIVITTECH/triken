@@ -26,7 +26,7 @@ $sql_dis = "SELECT db.* FROM (SELECT branch_id,name,description,
 	   as distance FROM kot_branch_details 
 	   WHERE withdraw_branch = '0'
 	   GROUP BY branch_id
-	   ORDER BY branch_id ASC )db";
+	   ORDER BY distance ASC )db";
 
 
 $result_dis = mysqli_query($conn, $sql_dis);
@@ -49,6 +49,7 @@ while ($rows_dis = mysqli_fetch_array($result_dis)) {
 
 			$res = json_encode($output);
 		}
+		$cnt = $cnt + 1;
 	}
 }
 
