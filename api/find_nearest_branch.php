@@ -48,8 +48,9 @@ while ($rows_dis = mysqli_fetch_array($result_dis)) {
 			$output[] = $events;
 
 			$res = json_encode($output);
+			
+			$cnt = $cnt + 1;
 		}
-		$cnt = $cnt + 1;
 	}
 }
 
