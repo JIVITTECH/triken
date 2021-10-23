@@ -5,18 +5,18 @@ include("../database.php");
 if ($_GET["action"] == "add_item_to_cart") {
 	
 	$item_id = $_GET['menu_id'];
+	$branch = $_GET['branch'];
 	$customer_id = $_GET['customer_id'];
 	$quantity = $_GET['quantity'];
 	$price = $_GET['price'];
 	$cus_cart_id = $_GET['cus_cart_id'];
 	$cart_id = 0;
 	$cal_price = $quantity * $price;
-	$cat_id = $_GET['cat_id'];
+	$obo_order_type = $sel_obo_order_type;
 	$pkg_charge = $_GET['pkg_charge'];
 	$packing_charge = (double)$pkg_charge;
-
 	$name = mysqli_real_escape_string($conn,$_GET['name']);
-
+	
 	$sql_sel = "SELECT * from
 			obo_cart_item_details
 			WHERE (TRIM('$item_id') = '' OR predef_menu_id = '$item_id') AND cart_id = $cus_cart_id";
@@ -31,13 +31,14 @@ if ($_GET["action"] == "add_item_to_cart") {
 	}
 	
 	if ($count == 0) {
-		$sql = "insert into obo_cart_item_details(cart_id,predef_menu_id,quantity,price,cat_id,replace_name,packing_charge)values($cus_cart_id,$item_id,$quantity,$cal_price,$cat_id,'$name',$packing_charge)";
+		$sql = "insert into obo_cart_item_details(cart_id,predef_menu_id,quantity,price,replace_name,packing_charge,branch_id)values($cus_cart_id,$item_id,$quantity,$cal_price,'$name',$packing_charge,$branch)";
 		$result = mysqli_query($conn, $sql);
 	} else {
 		$sql = "update obo_cart_item_details set quantity = quantity + $quantity ,price = price + $cal_price,packing_charge = $packing_charge  WHERE cart_id = $cus_cart_id AND  predef_menu_id = $item_id AND cart_item_id = $cart_item_id";
 		$result = mysqli_query($conn, $sql);
 	}
 }
+
 if ($_GET["action"] == "remove_item_from_cart") {
 	
 	$item_id = $_GET['menu_id'];
@@ -48,6 +49,8 @@ if ($_GET["action"] == "remove_item_from_cart") {
 	$cal_price = $quantity * $price;
 	$cart_item_id = $_GET['cart_item_id'];
 	$qty_in_cart = 0;
+	$branch = $_GET['branch'];
+	
 
 	$sql = "UPDATE obo_cart_item_details
 				   SET quantity = $quantity ,
