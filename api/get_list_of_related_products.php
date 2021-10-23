@@ -53,7 +53,7 @@ and kmz.zone = zt.zone_id
 left join packing_charges pk_chg
 on pk_chg.predef_menu_id = pm.predef_menu_id AND pk_chg.branch_id = pm.branch
 and pmc.branch_id = pk_chg.branch_id 
-WHERE zt.zone_id = "' . $sel_obo_order_type . '" AND pm.branch = ' . $branch . '
+WHERE zt.zone_id = "' . $sel_obo_order_type . '" AND pm.branch = ' . $branch . ' AND find_in_set("'. $category . '", pm.menu_id)
 ' . $qry . '
 group by pm.predef_menu_id)db';
 
