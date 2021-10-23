@@ -75,8 +75,6 @@ while ($rows = mysqli_fetch_array($result)) {
 
     $res = json_encode($output);
 
-
-//echo ($temp_str);  // final output for the bookings info
 }
 
 if ($res == "") {
