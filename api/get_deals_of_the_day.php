@@ -7,6 +7,7 @@ header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, X-Token-
 include("../database.php");
 
 $show_limited_products = $_GET['show_limited_products'];
+$branch = $_GET['branch'];
 
 $query = 'select db.* , (SELECT COUNT(*) FROM  kot_item_stock_details isd
     WHERE isd.predef_menu_id = db.predef_menu_id)as stock_chk
@@ -32,7 +33,7 @@ $query = 'select db.* , (SELECT COUNT(*) FROM  kot_item_stock_details isd
     left join packing_charges pk_chg
     on pk_chg.predef_menu_id = pm.predef_menu_id AND pk_chg.branch_id = pm.branch
     and pmc.branch_id = pk_chg.branch_id 
-    WHERE zt.zone_id = "' . $sel_obo_order_type . '" AND pm.deals_of_the_day = "Y"
+    WHERE zt.zone_id = "' . $sel_obo_order_type . '" AND pm.deals_of_the_day = "Y" AND pm.branch = ' . $branch . '
     group by pm.predef_menu_id)db';
 
 if($show_limited_products == 'Y') {
