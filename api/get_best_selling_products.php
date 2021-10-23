@@ -6,6 +6,7 @@ include("../database.php");
 
 $limit = $_GET['show_limited_products'];
 $branch = $_GET['branch'];
+
 $number = "";
 
 if($limit == "Y"){
