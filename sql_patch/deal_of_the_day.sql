@@ -1,0 +1,1 @@
+alter table predefined_menu add (deals_of_the_day VARCHAR(1), disc_per DECIMAL(20,2));
