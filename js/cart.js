@@ -187,7 +187,7 @@
     function IncreaseItemQuantity(menu_id, price, quantity, cart_item_id, packing_charge) {
 		var arr1 = getAllUrlParams((window.location).toString());
 		var cart_id = cus_cart_id;
-		var qty = +quantity;
+		var qty = +quantity + 1;
 		document.getElementById("qty_" + menu_id + "").value = qty;
 		var xmlhttp = new XMLHttpRequest();
 		var url = "api/IncreaseItemQuantity.php?menu_id=" + menu_id + "&customer_id=" + customer_id + "&quantity=" + qty + "&branch_id=" + branch_id + "&price=" + price + "&cus_cart_id=" + cart_id + "&cart_item_id=" + cart_item_id + "&packing_charge=" + packing_charge;
@@ -361,122 +361,6 @@
 			}
 		};
 	}
-
-    function loadFinalizedCart() {
-		grand_sub_total = 0;
-		$('#final_cart').empty();
-		var information = "";
-		var arr1 = getAllUrlParams((window.location).toString());
-		var branch_id = 1;
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function () {
-			if (this.readyState === 4 && this.status === 200)
-			{
-				var myObj = JSON.parse(this.responseText);
-				if (myObj.length > 0) {
-					if (+myObj !== -1) {
-						grand_sub_total = 0;
-						pkg_price = 0;
-						var cart_count = myObj.length;
-						for (var i = 0; i < myObj.length; i++) {
-							var cover_photo = myObj[i].image;
-							var image_path = "";
-							var stock_chk = "";
-							if (myObj[i].stock_chk === "0") {
-								stock_chk = "";
-							} else {
-								stock_chk = "<p style='color:red;'>(Not Available)</p>";
-								stock_chk_array.push(myObj[i].menu_id);
-							}
-							if (cover_photo !== "")
-							{
-								image_path = '../ecaterweb/Catering/' + cover_photo;
-								;
-							} else
-							{
-								image_path = 'images/default.jpg';
-							}
-							var total_price = "";
-							var tax_tag = "";
-							if (+myObj[i].tax !== 0) {
-								tax_tag = "(Inclusive Item Tax)";
-								total_price = (+myObj[i].quantity * +myObj[i].mod_price) + +myObj[i].tot_price + (+myObj[i].tot_price / 100 * +myObj[i].tax);
-								grand_sub_total = +grand_sub_total + +total_price;
-							} else {
-								tax_tag = "";
-								total_price = (+myObj[i].quantity * +myObj[i].mod_price) + +myObj[i].tot_price;
-								grand_sub_total = +grand_sub_total + +total_price;
-							}
-							var modifiers = "";
-							var mod_title = "";
-							var mod_items = "";
-							var replace_name = "";
-							var replace_title = "";
-							var replace_display = "";
-							if (myObj[i].selectedMods === "")
-							{
-								mod_title = "none";
-								mod_items = "none";
-								modifiers = " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-----&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ";
-							} else {
-								modifiers = myObj[i].selectedMods;
-								mod_title = "inline-block";
-								mod_items = "block";
-							}
-
-
-							if (myObj[i].name !== myObj[i].replace_name) {
-								replace_name = " (" + myObj[i].replace_name + ")";
-							} else {
-								replace_name = "";
-							}
-							var tot_pkg_price = "";
-							if (myObj[i].packing_charge !== "" || myObj[i].packing_charge !== null) {
-								tot_pkg_price = parseFloat(myObj[i].packing_charge) * parseInt(myObj[i].quantity);
-								pkg_price = +pkg_price + +tot_pkg_price;
-							}
-		
-                            information = information + "<tr id = 'div_id_" + myObj[i].cart_item_id  + "'>" +
-											"<td class='product-thumbnail  col-xs-2 text-right'>" +
-											"<div class='p-relative'>" +
-											"<a href='#'>" +
-											"<figure>" +
-											"<img src='" + image_path + "' onerror='imgError(this);' alt='product'>" +
-											"</figure>" +
-											"</a>" +
-											"</div>" +
-											"</td>" +
-											"<td class='product-name'>" +
-								  			"<a href='#'>" + myObj[i].name + "</a>" +
-											"<span class='cross'>x" + myObj[i].quantity + "</span>" +
-											"<div  class='product-price'>" +
-	                                        "<ins class='new-price'>" + total_price.toFixed(2) + "</ins>" +
-											"<span class='gms'>" + myObj[i].net_weight + " " + myObj[i].measure + "</span>" +
-											"</div>" +
-                                            "</td>" +
-                                            "</tr>";
-
-
-						}
-						$('#final_cart').empty();
-						$('#final_cart').append(information);
-                        document.getElementById("final_sub_total").innerHTML = "";
-						document.getElementById("final_sub_total").innerHTML = (+grand_sub_total).toFixed(2);
-                        document.getElementById("grand_total").innerHTML = (+grand_sub_total - +discount_amt + +delivery_cost).toFixed(2);
-                     	} else {
-					}
-				} else
-				{
-				    document.getElementById("cart_container").style.display = "none";
-					$('#no_data').append("<div class='row' style='height: 100%; text-align: left; border: 1px solid #e6e6e6; padding-left: 0px; padding-right: 0px; border-radius: 10px; margin-bottom: 10px;'><div class='col-lg-12'><p style='padding: 20px; text-align: center;'>Your cart is empty. Add something from the <a onclick='exploreMenu()' style='text-decoration: underline;'> Menu</a></p></div></div>");
-                }
-			}
-		};
-        var url = "api/loadCustomerSelectedItems.php?cart_id=" + cus_cart_id + "&branch=" + branch_id + "&order_type=" + sel_obo_order_type;
-		xhttp.open("GET", url, true);
-		xhttp.send();
-	}
-
 
     function saveOffers() {
 		var arr1 = getAllUrlParams((window.location).toString());
