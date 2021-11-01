@@ -90,40 +90,7 @@ include ('main.php');
                         }
                     }
                 }">
-							<div class="swiper-wrapper row ">
-									<div class="swiper-slide post text-center overlay-zoom">
-										<figure class="post-media">
-											<a href="#">
-												<img src="assets/images/garlic.jpg" alt="Recipes" />
-											</a>
-										</figure>
-										<div class="post-details">
-											<h4 class="post-title"><a href="#">Garlic Prawns</a></h4>
-											<a href="#" class="btn btn-link btn-dark btn-underline"> View Recipe  <i class="w-icon-long-arrow-right"></i> </a>
-										</div>
-									</div>
-									<div class="swiper-slide post text-center overlay-zoom">
-										<figure class="post-media">
-											<a href="#">
-												<img src="assets/images/karahi.jpg" alt="Recipes" />
-											</a>
-										</figure>
-										<div class="post-details">
-											<h4 class="post-title"><a href="#">Chicken Karahi</a></h4>
-											<a href="#" class="btn btn-link btn-dark btn-underline"> View Recipe  <i class="w-icon-long-arrow-right"></i> </a>
-										</div>
-									</div>
-									<div class="swiper-slide post text-center overlay-zoom">
-										<figure class="post-media">
-											<a href="#">
-												<img src="assets/images/pepperfry.jpg" alt="Recipes" />
-											</a>
-										</figure>
-										<div class="post-details">
-											<h4 class="post-title"><a href="#">Naatu Kozhi Pepperfry</a></h4>
-											<a href="#" class="btn btn-link btn-dark btn-underline"> View Recipe  <i class="w-icon-long-arrow-right"></i> </a>
-										</div>
-									</div>
+							<div class="swiper-wrapper row " id="recipe_container">
 							</div>
 						</div>
 						
@@ -134,3 +101,55 @@ include ('main.php');
 			</div>
 
 <?php include('footer.php'); ?>
+
+<script type='text/javascript'>
+
+$(document).ready(function () {
+	loadAllRecipes();
+});
+
+var branch_id = 1;
+var recipe_name = "PURI";
+
+function loadAllRecipes() {
+	var information = "";
+	var xmlhttp = new XMLHttpRequest();
+	var url = "api/get_list_of_related_recipes.php?branch=" + branch_id + "&recipe_name=" + recipe_name + "&show_limited_recipes=Y";
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+	xmlhttp.onreadystatechange = function () {
+		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+			var myObj = JSON.parse(this.responseText);
+			if (myObj.length !== 0) {
+				for (var i = 0; i < myObj.length; i++) {
+					var cover_photo = myObj[i].image;
+					var image_path = "";
+					if (cover_photo !== "")
+					{
+						image_path = '../ecaterweb/Catering/' + cover_photo;
+					} else
+					{
+						image_path = 'images/default.jpg';
+					}
+							
+					information = information + "<div class='swiper-slide post text-center overlay-zoom'>" +
+										"<figure class='post-media'>" +
+											"<a href='recipe-detail.php?recipe_id='" + myObj[i].recipe_id + ">" +
+												"<img src='" + image_path + "' alt='Recipes' />" +
+											"</a>" +
+										"</figure>" +
+										"<div class='post-details'>" +
+											"<h4 class='post-title'><a href='#'>" + myObj[i].recipe_name + "</a></h4>" +
+											"<a href='recipe-detail.php?recipe_id='" + myObj[i].recipe_id + " class='btn btn-link btn-dark btn-underline'> View Recipe  <i class='w-icon-long-arrow-right'></i> </a>" +
+										"</div>" +
+									"</div>";
+				}
+				$('#recipe_container').empty();
+				$('#recipe_container').append(information);
+            } else {
+				$('#recipe_container').append("<center>No recipe found<\center>");
+            }
+		}
+	};
+}
+</script>
