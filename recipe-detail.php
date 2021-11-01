@@ -14,61 +14,29 @@ include ('main.php');
 			
 			<div class="page-content">
                 <div class="container">
-					<section class="recipe_banner">
-							<img src="assets/images/recipe-detail-banner.jpg" alt="">
+					<section class="recipe_banner" id="recipe_banner">
 					</section>
                     <section class="recipe_cont">
 						<div class="row">
-								<h2 class="title title-center">Amritsari Chicken Masala</h2>
-								<p class="mx-auto text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Volutpat sed bibendum in proin enim. At etiam vitae morbi viverra nisl faucibus aliquet. Sed velit hendrerit pellentesque nunc. A cras amet, ultricies volutpat et ultrices. Ornare lectus eleifend consectetur ipsum aliquam nibh vitae dui. Nisl in nunc platea nec lectus lacus ultricies.</p>
+								<h2 class="title title-center" id="recipe_name"></h2>
+								<p class="mx-auto text-center" id="recipe_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Volutpat sed bibendum in proin enim. At etiam vitae morbi viverra nisl faucibus aliquet. Sed velit hendrerit pellentesque nunc. A cras amet, ultricies volutpat et ultrices. Ornare lectus eleifend consectetur ipsum aliquam nibh vitae dui. Nisl in nunc platea nec lectus lacus ultricies.</p>
 						</div>
                     </section>
 					<section class="ingredients">
 						<div class="row">
-								<h4 class="ingredient_title">Ingredients of Masala Chicken <span class="serving">Serving 2</span></h4>
+								<h4 class="ingredient_title">Ingredients of <span id="name_rec"></span><span class="serving">Serving 2</span></h4>
 								<hr>
-								<div class="col-md-6">
-								<ul>
-								<li>750 grams chicken</li>
-								<li>2 cup onion</li>
-								<li>salt As required</li>
-								<li>2 inches cinnamon stick</li>
-								<li>2 green cardamom</li>
-								<li>1 teaspoon ginger paste</li>
-								<li>2 teaspoon coriander powder</li>
-								<li>1 cup water</li>
-								<li>2 teaspoon cumin powder</li>
-								<li>1 tablespoon garam masala powder</li>
-								<li>1 tablespoon ghee</li>
-								</ul>
-								</div>
-								<div class="col-md-6">
-								<ul>
-								<li>4 tablespoon mustard oil</li>
-								<li>1/2 cup tomato</li>
-								<li>3 teaspoon coriander leaves</li>
-								<li>2 bay leaf</li>
-								<li>1 black cardamom</li>
-								<li>2 teaspoon garlic paste</li>
-								<li>1 teaspoon turmeric</li>
-								<li>2 teaspoon red chilli powder</li>
-								<li>2 green chillies</li>
-								<li>2 teaspoon kasoori methi powder</li>
-								</ul>
+								<div id="ingredients_div">
 								</div>
 						</div>
                     </section>
 					
 					<section class="making">
 						<div class="row">
-								<h4 class="ingredient_title">How to make Masala Chicken</h4>
+								<h4 class="ingredient_title">How to make <span id="name_rec2"></span></h4>
 								<hr>
-								<h3><b>Step 1:</b>  Wash and clean the chicken</h3>
-								<p>To make Masala Chicken, first thoroughly wash the chicken under running water. Now put it in some warm salted water and allow it to rest for 10 minutes and throw the water away and wash again. This helps to remove the smell of the chicken.</p>
-								<h3><b>Step 2:</b>  Saute whole spices</h3>
-								<p>Add oil and ghee in pan and heat over medium flame. When the oil is hot enough, add bay leaves and both the cardamom and cinnamon. Saute for a minute and then add finely chopped onion into it. Cook till onions turn pink. Then add the ginger-garlic paste. Fry for a minute and then add chicken pieces in it. Cook chicken for 2-3 minutes until it turns white.</p>
-								<h3><b>Step 3:</b>  Add spices in frying chicken</h3>
-								<p>Add oil and ghee in pan and heat over medium flame. When the oil is hot enough, add bay leaves and both the cardamom and cinnamon. Saute for a minute and then add finely chopped onion into it. Cook till onions turn pink. Then add the ginger-garlic paste. Fry for a minute and then add chicken pieces in it. Cook chicken for 2-3 minutes until it turns white.</p>
+								<div id="procedure">
+								</div>
 						</div>
                     </section>
 					
@@ -105,11 +73,11 @@ include ('main.php');
 <script type='text/javascript'>
 
 $(document).ready(function () {
-	loadAllRecipes();
+	loadAllRecipesDetail();
 });
 
 var branch_id = 1;
-var recipe_name = "PURI";
+var recipe_name = "";
 
 function loadAllRecipes() {
 	var information = "";
@@ -152,4 +120,121 @@ function loadAllRecipes() {
 		}
 	};
 }
+
+function getAllUrlParams(url) {
+		// get query string from url (optional) or window
+		var queryString = url ? url.split('?')[1] : window.location.search.slice(1); // we'll store the parameters here
+		var obj = {}; // if query string exists
+		if (queryString) {
+
+			// stuff after # is not part of query string, so get rid of it                                                 queryString = queryString.split('#')[0];
+
+			// split our query string into its component parts
+			var arr = queryString.split('&');
+			for (var i = 0; i < arr.length; i++) {
+				// separate the keys and the values
+				var a = arr[i].split('=');
+				// in case params look like: list[]=thing1&list[]=thing2
+				var paramNum = undefined;
+				var paramName = a[0].replace(/\[\d*\]/, function (v) {
+					paramNum = v.slice(1, -1);
+					return '';
+				});
+				// set parameter value (use 'true' if empty)
+				var paramValue = typeof (a[1]) === 'undefined' ? true : a[1];
+				// (optional) keep case consistent
+				paramName = paramName.toLowerCase();
+				paramValue = paramValue.toLowerCase();
+				// if parameter name already exists
+				if (obj[paramName]) {                                 // convert value to array (if still string)
+					if (typeof obj[paramName] === 'string') {
+						obj[paramName] = [obj[paramName]];
+					}
+					// if no array index number specified...
+					if (typeof paramNum === 'undefined') {
+						// put the value on the end of the array                                                             obj[paramName].push(paramValue);
+					}
+					// if array index number specified...
+					else {
+						// put the value at that index number                                     obj[paramName][paramNum] = paramValue;
+					}
+				}
+				// if param name doesn't exist yet, set it
+				else {
+					obj[paramName] = paramValue;
+				}
+			}
+		}
+
+		return obj;
+	}
+
+function loadAllRecipesDetail() {
+	var information = "";
+	var image_path = "";
+	var arr1 = getAllUrlParams((window.location).toString());
+	var recipe_id = arr1.recipe_id;
+	var xmlhttp = new XMLHttpRequest();
+	var url = "api/get_detail_recipe_details.php?branch=" + branch_id + "&recipe_id=" + recipe_id;
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+	xmlhttp.onreadystatechange = function () {
+		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+			var myObj = JSON.parse(this.responseText);
+			loadAllRecipes();
+			if (myObj.length !== 0) {
+				for (var i = 0; i < myObj.length; i++) {
+					var cover_photo = myObj[i].image;
+					var procedure = myObj[i].procedure;
+					if (cover_photo !== "")
+					{
+						image_path = '../ecaterweb/Catering/' + cover_photo;
+					} else
+					{
+						image_path = 'images/default.jpg';
+					}
+					$('#recipe_banner').empty();
+				    $('#recipe_banner').append('<img src=' + image_path + '>');
+					recipe_name = myObj[i].recipe_name; 
+					document.getElementById("recipe_name").innerHTML = myObj[i].recipe_name; 
+					document.getElementById("recipe_desc").innerHTML = myObj[i].description;
+					document.getElementById("name_rec2").innerHTML = myObj[i].recipe_name; 
+					document.getElementById("name_rec").innerHTML = myObj[i].recipe_name; 
+					
+					var ing_div = "";
+					var inv_list = "";
+					var ing_list = myObj[i].ingredient_list;
+					var ing_length = ing_list.length/2;
+					var start_index = 0;
+					var end_index = ing_length;
+					var k = 0;
+					for ( k = 0; k < 2; k++){
+						inv_list = "";
+						for (var l = start_index; l < end_index; l++) {
+						      ing_div = ing_div + "<li>" + ing_list[l].ingredient_name + "</li>";
+						}     
+                         inv_list = inv_list + "<div class='col-md-6'>" +
+								   "<ul>" + ing_div +
+                                   "</ul>" +
+								   "</div>" ;		
+						start_index = end_index;
+						end_index = end_index + ing_length;
+				    }
+					$('#ingredients_div').empty();
+					$('#ingredients_div').append(inv_list);
+					
+					var procedure_div = "";
+				    for (var j = 0; j < procedure.length; j++) {
+						procedure_div = procedure_div + "<h3><b>Step " + procedure[j].instruction_id + ":</b> " + procedure[j].recipe_notes + " </h3>" +
+                                        "<p>" + procedure[j].detail_steps + "</p>";
+				    }
+					$('#procedure').empty();
+					$('#procedure').append(procedure_div);
+				}
+	        }
+		}
+	};
+}
+
+
 </script>
