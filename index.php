@@ -166,7 +166,7 @@
 
 <!-- recipes start -->
 <div class="recipe">
-						<h1 class="title text-center appear-animate mb-6"> Related Recipes </h1>
+						<h1 class="title text-center appear-animate mb-6">Recipes for dishes</h1>
 					<div class="swiper-container swiper-theme post-wrapper appear-animate" data-swiper-options="{
                     'slidesPerView': 1.1,
                     'spaceBetween': 20,
