@@ -166,7 +166,7 @@
 
 <!-- recipes start -->
 <div class="recipe">
-						<h1 class="title text-center appear-animate mb-6"> Related Recipes </h1>
+						<h1 class="title text-center appear-animate mb-6">Recipes for dishes</h1>
 					<div class="swiper-container swiper-theme post-wrapper appear-animate" data-swiper-options="{
                     'slidesPerView': 1.1,
                     'spaceBetween': 20,
@@ -183,40 +183,8 @@
                         }
                     }
                 }">
-							<div class="swiper-wrapper row cols-2">
-									<div class="swiper-slide post text-center overlay-zoom">
-										<figure class="post-media">
-											<a href="recipe-detail.php">
-												<img src="assets/images/garlic.jpg" alt="Recipes" />
-											</a>
-										</figure>
-										<div class="post-details">
-											<h4 class="post-title"><a href="#">Garlic Prawns</a></h4>
-											<a href="#" class="btn btn-link btn-dark btn-underline"> View Recipe  <i class="w-icon-long-arrow-right"></i> </a>
-										</div>
-									</div>
-									<div class="swiper-slide post text-center overlay-zoom">
-										<figure class="post-media">
-											<a href="recipe-detail.php">
-												<img src="assets/images/karahi.jpg" alt="Recipes" />
-											</a>
-										</figure>
-										<div class="post-details">
-											<h4 class="post-title"><a href="#">Chicken Karahi</a></h4>
-											<a href="#" class="btn btn-link btn-dark btn-underline"> View Recipe  <i class="w-icon-long-arrow-right"></i> </a>
-										</div>
-									</div>
-									<div class="swiper-slide post text-center overlay-zoom">
-										<figure class="post-media">
-											<a href="recipe-detail.php">
-												<img src="assets/images/pepperfry.jpg" alt="Recipes" />
-											</a>
-										</figure>
-										<div class="post-details">
-											<h4 class="post-title"><a href="#">Naatu Kozhi Pepperfry</a></h4>
-											<a href="#" class="btn btn-link btn-dark btn-underline"> View Recipe  <i class="w-icon-long-arrow-right"></i> </a>
-										</div>
-									</div>
+							<div class="swiper-wrapper row cols-2" id="recipe_container">
+									
 							</div>
 						</div>
 
@@ -251,22 +219,27 @@
 
 <?php include('footer.php'); ?>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.8.2.js"></script>
+<script src="js/index.js"></script>
 <script type='text/javascript'>
 $(function(){
-var overlay = $('<div id="overlay"></div>');
-overlay.show();
-overlay.appendTo(document.body);
-$('.lpopup').show();
-$('.close').click(function(){
-$('.lpopup').hide();
-overlay.appendTo(document.body).remove();
-return false;
+	var overlay = $('<div id="overlay"></div>');
+	overlay.show();
+	overlay.appendTo(document.body);
+	$('.lpopup').show();
+	$('.close').click(function(){
+	$('.lpopup').hide();
+	overlay.appendTo(document.body).remove();
+	return false;
+	});
+
+	$('.x').click(function(){
+	$('.lpopup').hide();
+	overlay.appendTo(document.body).remove();
+	return false;
+	});
 });
 
-$('.x').click(function(){
-$('.lpopup').hide();
-overlay.appendTo(document.body).remove();
-return false;
-});
+$(document).ready(function () {
+	loadAllRecipes();
 });
 </script>
