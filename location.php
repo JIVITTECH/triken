@@ -1,4 +1,4 @@
-
+    
        <!-- <div class="content">
             <h2>Select your city</h2>
 
@@ -51,9 +51,13 @@ geography is underway.</p>
         </form>
             <div id="detect" style="display: none">
                 <form action="#" method="get" class="input-wrapper input-wrapper-inline input-wrapper-round">
-                    <input type="text" class="form-control" name="text" id="text"
-                        placeholder="Enter your area" required="">
-                    <button class="btn btn-dark" type="submit"> <img src="assets/images/detect.svg"> Detect my location</button>
+             
+                <input type="text" name="location" id="location" onclick="getLatAndLong();" class="form-control" placeholder="Enter your area" required="">
+                <input type="hidden" id="latitude" name="latitude"  style="width:100%;height: 25px;" value="">
+                <script src="js/GeoLocationMapping.js"></script>
+                      <?php include "./geo-location-map.php"; ?> 
+                <input type="hidden" id="longitude" name="longitude"  style="width:100%;height: 25px;" value=""> 
+                    <button class="btn btn-dark" onclick="getLocation();" type="submit"> <img src="assets/images/detect.svg"> Detect my location</button>
                 </form>  
                 <p> Expansion of our delivery service into a wider
     geography is underway.</p>
