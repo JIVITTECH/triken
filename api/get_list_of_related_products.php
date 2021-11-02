@@ -8,7 +8,6 @@ include("../database.php");
 
 $branch = $_GET['branch'];
 $item_name = $_GET['item_name'];
-$category = $_GET['category'];
 
 $item_arr = explode(" ", $item_name);
 $qry = "";
@@ -38,7 +37,13 @@ pm.veg_non,
 IF(pk_chg.price IS NULL,0,pk_chg.price) AS packing_charge,
 pm.item_notes,
 pm.deals_of_the_day,
-pm.disc_per
+pm.disc_per,
+pma.net_weight,
+pma.gross_weight,
+pma.delivery_time,
+pm.best_seller,
+pm.measure,
+pm.new_arrival
 from predefined_menu pm
 join predefined_menu_categories pmc 
 on find_in_set(pmc.pre_menu_id, pm.menu_id)
@@ -53,9 +58,11 @@ and kmz.zone = zt.zone_id
 left join packing_charges pk_chg
 on pk_chg.predef_menu_id = pm.predef_menu_id AND pk_chg.branch_id = pm.branch
 and pmc.branch_id = pk_chg.branch_id 
-WHERE zt.zone_id = "' . $sel_obo_order_type . '" AND pm.branch = ' . $branch . ' AND find_in_set("'. $category . '", pm.menu_id)
+left join predefined_menu_additional pma
+on pma.mapped_id = pm.id
+WHERE zt.zone_id = "' . $sel_obo_order_type . '" AND pm.branch = ' . $branch . '
 ' . $qry . '
-group by pm.predef_menu_id)db';
+group by pm.predef_menu_id)db WHERE db.item_name <> "' . $item_name . '"';
 
 $result = mysqli_query($conn, $query);
 
@@ -75,8 +82,15 @@ while ($rows = mysqli_fetch_array($result)) {
             "stock_chk" => "$rows[stock_chk]",
             "veg_non" => "$rows[veg_non]",
             "packing_charge" => "$rows[packing_charge]",
-			"item_notes" => "$rows[item_notes]"
-           );
+			"item_notes" => "$rows[item_notes]",
+			"delivery_time" => "$rows[delivery_time]",
+			"gross_weight" => "$rows[gross_weight]",
+			"net_weight" => "$rows[net_weight]",
+			"measure" => "$rows[measure]",
+		    "best_seller" => "$rows[best_seller]",
+			"new_arrival" => "$rows[new_arrival]",
+			"disc_per" => "$rows[disc_per]",
+		   );
     }
     $output[] = $events;
 
