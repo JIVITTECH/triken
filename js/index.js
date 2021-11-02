@@ -41,3 +41,49 @@ function loadAllRecipes() {
 		}
 	};
 }
+
+function loadAllCategories() { 
+    var information = "";
+	var xmlhttp = new XMLHttpRequest();
+	var url = "api/load_home_page.php?action=get_list_of_categories";
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+	xmlhttp.onreadystatechange = function () {
+		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+			var myObj = JSON.parse(this.responseText);
+			if (myObj.length !== 0) {
+			    information = "<div class='row cols-2'>";
+				for (var i = 0; i < myObj.length; i++) {
+					var cover_photo = myObj[i].image_path;
+					var image_path = "";
+					if (cover_photo !== "")
+					{
+						image_path = '../ecaterweb/Catering/' + cover_photo;
+					} else
+					{
+						image_path = 'images/default.jpg';
+					}
+							
+					information = information + "<div class='col-lg-3 col-sm-6'>" +
+											         "<a href='products.php?category_id=" + myObj[i].id + "'>" +
+												          "<div class='swiper-slide slide-animate' data-animation-options='{'name': 'fadeInDownShorter', 'duration': '.8s', 'delay': '.4s'}' >" +  
+													           "<figure class='category-media'>" +
+													                "<img src='" + image_path + "' alt='Categroy' />" +
+														       "</figure>" +
+															   "<div class='category-content'>" +
+																   "<h4 class='category-name'> <a href='products.php?category_id=" + myObj[i].id + "'>" + myObj[i].name + "</a> </h4>" +
+															   "</div>" + 
+														  "</div>" +
+													 "</a>" +
+									            "</div>";
+									            
+				}
+				information = information + "</div>";
+				$('#categories_container').empty();
+				$('#categories_container').append(information);
+            } else {
+				$('#categories_container').append("<center>No Categories found<\center>");
+            }
+		}
+	};
+}
