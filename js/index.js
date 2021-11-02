@@ -23,7 +23,7 @@ function loadAllRecipes() {
 							
 					information = information + "<div class='swiper-slide post text-center overlay-zoom'>" +
 										"<figure class='post-media'>" +
-											"<a href='recipe-detail.php?recipe_id='" + myObj[i].recipe_id + ">" +
+											"<a href='recipe-detail.php?recipe_id=" + myObj[i].recipe_id + "'>" +
 												"<img src='" + image_path + "' alt='Recipes' />" +
 											"</a>" +
 										"</figure>" +
