@@ -2,6 +2,9 @@ alter table predefined_menu add (deals_of_the_day VARCHAR(1), disc_per DECIMAL(2
 
 alter table predefined_menu add (best_seller VARCHAR(1));
 
+alter table predefined_menu add (new_arrival VARCHAR(1));
+
+
 CREATE TABLE predefined_menu_additional
 (id INT, 
 BRANCH_ID INT,

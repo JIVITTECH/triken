@@ -44,7 +44,8 @@ pm.best_seller,
 pm.measure,
 pma.net_weight,
 pma.gross_weight,
-pma.delivery_time
+pma.delivery_time,
+pm.new_arrival
 from predefined_menu pm
 join predefined_menu_categories pmc 
 on find_in_set(pmc.pre_menu_id, pm.menu_id)
@@ -90,7 +91,8 @@ while ($rows = mysqli_fetch_array($result)) {
 			"measure" => "$rows[measure]",
 			"best_seller" => "$rows[best_seller]",
 			"disc_per" => "$rows[disc_per]",
-			"deals_of_the_day" => "$rows[deals_of_the_day]"
+			"deals_of_the_day" => "$rows[deals_of_the_day]",
+			"new_arrival" => "$rows[new_arrival]"
            );
     }
     $output[] = $events;
