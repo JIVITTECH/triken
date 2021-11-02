@@ -13,6 +13,7 @@
 <?php include('main.php'); ?>
 
 <?php include('product_breadcrumb.php'); ?>
+<script src="js/items_description.js"></script>
 
 <div class="page-content">
     <div class="product product-single">
@@ -27,33 +28,8 @@
 		                                        'prevEl': '.swiper-button-prev'
 		                                    }
 		                                }">
-		                        <div class="swiper-wrapper row cols-1 gutter-no">
-		                            <div class="swiper-slide">
-		                                <figure class="product-image">
-		                                    <img src="assets/images/products/detail/varuval.jpg" data-zoom-image="assets/images/products/detail/varuval.jpg" alt="Country Chicken Curry cuts Small (varuval) with skin"  >
-		                                </figure>
-		                            </div>
-		                            <div class="swiper-slide">
-		                                <figure class="product-image">
-		                                    <img src="assets/images/products/detail/varuval.jpg" data-zoom-image="assets/images/products/detail/varuval.jpg" alt="Country Chicken Curry cuts Small (varuval) with skin"  >
-		                                </figure>
-		                            </div>
-		                            <div class="swiper-slide">
-		                                <figure class="product-image">
-		                                    <img src="assets/images/products/detail/varuval.jpg" data-zoom-image="assets/images/products/detail/varuval.jpg" alt="Country Chicken Curry cuts Small (varuval) with skin"  >
-		                                </figure>
-		                            </div>
-		                            <div class="swiper-slide">
-		                                <figure class="product-image">
-		                                    <img src="assets/images/products/detail/varuval.jpg" data-zoom-image="assets/images/products/detail/varuval.jpg" alt="Country Chicken Curry cuts Small (varuval) with skin"  >
-		                                </figure>
-		                            </div>
-		                            <div class="swiper-slide">
-		                                <figure class="product-image">
-		                                    <img src="assets/images/products/detail/varuval.jpg" data-zoom-image="assets/images/products/detail/varuval.jpg" alt="Country Chicken Curry cuts Small (varuval) with skin">
-		                                </figure>
-		                            </div>
-
+		                        <div class="swiper-wrapper row cols-1 gutter-no" id="images_tag">
+		                            
 		                        </div>
 		                            <button class="swiper-button-next"></button>
 		                            <button class="swiper-button-prev"></button>
@@ -62,31 +38,21 @@
 		            </div>
 		            <div class="col-md-6 mb-4 mb-md-6">
 		                <div class="product-details">
-		                    <label class="product-label label-discount best">Best Seller</label>
+		                    <label class="product-label label-discount best" id="best_seller_tag" style="margin-right:10px;">Best Seller</label><span class="product-cat" id="item_name"></span>
 		                    <h1 class="product-title"> <?php echo "$page"; ?> </h1>
 		 						<div class="row prod_quant">
 									<ul class="product-cat">
-										<li> Net wt: <b> 550 gms </b> </li>
-										<li> Gross wt: <b> 550 gms </b></li>
+										<li> Net wt: <b> <span id="net_weight"></span> </b> </li>
+										<li> Gross wt: <b> <span id="gross_weight"></span> </b></li>
 									</ul>
 								</div>
 		                     <hr class="product-divider">
 		                    <div class="product-short-desc lh-2">
-		                    	<div class="row">
-		                    		<div class="col-lg-6 col-sm-12">
-		                    			<ul class="list-type-check">
-				                            <li>Free-Range Country Chicken</li>
-				                            <li>No. of Pieces 13-17</li>
-				                            <li>Halal cut</li>
-				                        </ul>
-		                    		</div>
-		                    		<div class="col-lg-6 col-sm-12">
-		                    			<ul class="list-type-check">
-				                            <li> Serves 2-4 </li>
-				                            <li> Farm-raised superior breed </li>
-				                            <li> No added preservatives </li>
-				                        </ul>
-		                    		</div>
+		                    	<div class="row" id="specs_div">
+									<div class='col-md-6 col-sm-12' id="specifications_div_1">
+									</div>
+									<div class='col-md-6 col-sm-12' id="specifications_div_2">
+									</div>
 		                    	</div>	
 		                    </div> 
 		                    <hr class="product-divider">
@@ -97,10 +63,8 @@
 				                            <div class="product-qty-form with-label">
 				                            	<div class="row">
 				                            		<div class="col-lg-8">
-							                            <div class="product-price">
-															<ins class="new-price">750</ins>
-															<del class="old-price">900</del>
-															<ins class="offer">45% OFF</ins>
+							                            <div class="product-price" id="product_price">
+															
 														</div> 
 													</div>
 													<div class="col-lg-4">
@@ -119,20 +83,20 @@
 			                        </div>
 		                        </div>
 		                    </div> 
-		                    <hr class="product-divider">
-		                    <p> Taste the chicken of our nativity that is as meaty as mutton, yet tender enough to make your bites juicy. An excellent source of protein and minerals, our free-range country chickens are raised in farms and grooves. See more </p>
+		                    <hr class="product-divider" >
+		                    <p id="product_des"> Taste the chicken of our nativity that is as meaty as mutton, yet tender enough to make your bites juicy. An excellent source of protein and minerals, our free-range country chickens are raised in farms and grooves. See more </p>
 		                    <hr class="product-divider">
 
 		                    <div class="banner-video product-video br-xs">
 		                    	<div class="row">
 		                    		<div class="col-lg-6 col-sm-6">
 		                    			<figure class="media">
-		                                	<a class="btn-play-video btn-iframe" href="#"> <img src="assets/images/products/detail/play.svg"> See our hygienic process </a>
+		                                	<a class="btn-play-video btn-iframe" href="#"> <span id="video_link"></span>See our hygienic process </a>
 		                        		</figure>
 		                    		</div>
 		                    		<div class="col-lg-6 col-sm-6">
 		                    			<figure class="delivered">
-		                                	 <img src="assets/images/products/detail/delivery.svg"> Delivered in <b> 120 mins </b>
+		                                	 <img src="assets/images/products/detail/delivery.svg"> Delivered in <b> <span id="delivery_time"></span> </b> mins </b>
 		                        		</figure>
 		                    		</div>
 		                    	</div>
@@ -379,3 +343,61 @@
 
 
 <?php include('footer.php'); ?>
+
+
+<script type='text/javascript'>
+
+$(document).ready(function () {
+	loadItemsDescription();
+});
+
+var branch_id = 1;
+
+function getAllUrlParams(url) {
+	// get query string from url (optional) or window
+	var queryString = url ? url.split('?')[1] : window.location.search.slice(1); // we'll store the parameters here
+	var obj = {}; // if query string exists
+	if (queryString) {
+
+		// stuff after # is not part of query string, so get rid of it                                                 queryString = queryString.split('#')[0];
+
+		// split our query string into its component parts
+		var arr = queryString.split('&');
+		for (var i = 0; i < arr.length; i++) {
+			// separate the keys and the values
+			var a = arr[i].split('=');
+			// in case params look like: list[]=thing1&list[]=thing2
+			var paramNum = undefined;
+			var paramName = a[0].replace(/\[\d*\]/, function (v) {
+				paramNum = v.slice(1, -1);
+				return '';
+			});
+			// set parameter value (use 'true' if empty)
+			var paramValue = typeof (a[1]) === 'undefined' ? true : a[1];
+			// (optional) keep case consistent
+			paramName = paramName.toLowerCase();
+			paramValue = paramValue.toLowerCase();
+			// if parameter name already exists
+			if (obj[paramName]) {                                 // convert value to array (if still string)
+				if (typeof obj[paramName] === 'string') {
+					obj[paramName] = [obj[paramName]];
+				}
+				// if no array index number specified...
+				if (typeof paramNum === 'undefined') {
+					// put the value on the end of the array                                                             obj[paramName].push(paramValue);
+				}
+				// if array index number specified...
+				else {
+					// put the value at that index number                                     obj[paramName][paramNum] = paramValue;
+				}
+			}
+			// if param name doesn't exist yet, set it
+			else {
+				obj[paramName] = paramValue;
+			}
+		}
+	}
+
+	return obj;
+}	
+</script>
