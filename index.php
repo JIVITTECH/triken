@@ -72,129 +72,38 @@
 
 <section class="explore appear-animate">
 	<div class="container">
-		<h1 class="title text-center appear-animate"> Explore by Categories </h1>
-		<div class="row cols-2">
-			<div class="col-lg-3 col-sm-6">
-				<a href="country_chicken.php">
-					<div class="swiper-slide slide-animate" data-animation-options="{'name': 'fadeInDownShorter', 'duration': '.8s', 'delay': '.4s'}" >
-	                    <figure class="category-media">
-	                            <img src="assets/images/countrychicken.jpg" alt="Categroy" />
-	                    </figure>
-	                    <div class="category-content">
-	                        <h4 class="category-name"> <a href="#">Country Chicken</a> </h4>
-	                    </div>
-	                </div>
-                </a>
-			</div>
-			<div class="col-lg-3 col-sm-6">
-				<a href="#">
-					<div class="swiper-slide">
-	                    <figure class="category-media">
-	                            <img src="assets/images/chicken.jpg" alt="Categroy" />
-	                    </figure>
-	                    <div class="category-content">
-	                        <h4 class="category-name"> <a href="#">Chicken</a> </h4>
-	                    </div>
-	                </div>
-                </a>
-			</div>
-			<div class="col-lg-3 col-sm-6">
-				<a href="#">
-					<div class="swiper-slide">
-	                    <figure class="category-media">
-	                            <img src="assets/images/mutton.jpg" alt="Categroy" />
-	                    </figure>
-	                    <div class="category-content">
-	                        <h4 class="category-name"> <a href="#">Mutton</a> </h4>
-	                    </div>
-	                </div>
-                </a>
-			</div>
-			<div class="col-lg-3 col-sm-6">
-				<a href="#">
-					<div class="swiper-slide">
-	                    <figure class="category-media">
-	                            <img src="assets/images/fish.jpg" alt="Categroy" />
-	                    </figure>
-	                    <div class="category-content">
-	                        <h4 class="category-name"> <a href="#">Fish/Sea Food</a> </h4>
-	                    </div>
-	                </div>
-                </a>
-			</div>
-		</div>
-		<div class="row cols-2">
-			<div class="col-lg-3 col-sm-6">
-				<a href="#">
-					<div class="swiper-slide">
-	                    <figure class="category-media">
-	                            <img src="assets/images/egg.jpg" alt="Categroy" />
-	                    </figure>
-	                    <div class="category-content">
-	                        <h4 class="category-name"> <a href="#">Eggs</a> </h4>
-	                    </div>
-	                </div>
-                </a>
-			</div>
-			<div class="col-lg-3 col-sm-6">
-				<a href="#">
-					<div class="swiper-slide">
-	                    <figure class="category-media">
-	                            <img src="assets/images/combo.jpg" alt="Categroy" />
-	                    </figure>
-	                    <div class="category-content">
-	                        <h4 class="category-name"> <a href="#">Combos</a> </h4>
-	                    </div>
-	                </div>
-                </a>
-			</div>
-			<div class="col-lg-3 col-sm-6">
-				<a href="#">
-					<div class="swiper-slide">
-	                    <figure class="category-media">
-	                            <img src="assets/images/party.jpg" alt="Categroy" />
-	                    </figure>
-	                    <div class="category-content">
-	                        <h4 class="category-name"> <a href="#">Party Packs</a> </h4>
-	                    </div>
-	                </div>
-                </a>
-			</div>
-			<div class="col-lg-3 col-sm-6">
-			</div>
-		</div>
+		 <h1 class="title text-center appear-animate"> Explore by Categories </h1>
+		 <div class="row cols-2" id="categories_container">
+         </div>
 
 <!-- recipes start -->
-<div class="recipe">
-						<h1 class="title text-center appear-animate mb-6">Recipes for dishes</h1>
-					<div class="swiper-container swiper-theme post-wrapper appear-animate" data-swiper-options="{
-                    'slidesPerView': 1.1,
-                    'spaceBetween': 20,
-                    'breakpoints': {
-                        '576': {
-                            'slidesPerView': 1
-                        },
-                        '768': {
-                            'slidesPerView': 3
-                        },
-                        '992': {
-                            'slidesPerView': 3,
-                            'dots': false
+    <div class="recipe">
+	     <h1 class="title text-center appear-animate mb-6">Recipes for dishes</h1>
+	     <div class="swiper-container swiper-theme post-wrapper appear-animate" data-swiper-options="{
+                        'slidesPerView': 1.1,
+                        'spaceBetween': 20,
+                        'breakpoints': {
+                            '576': {
+                                'slidesPerView': 1
+                            },
+                            '768': {
+                                'slidesPerView': 3
+                            },
+                            '992': {
+                                'slidesPerView': 3,
+                                'dots': false
+                            }
                         }
-                    }
-                }">
-							<div class="swiper-wrapper row cols-2" id="recipe_container">
-									
-							</div>
-						</div>
+                    }">
+		      <div class="swiper-wrapper row cols-2" id="recipe_container">
+			  </div>
+		 </div>
 
-						<div class="viewall">
-				        	<a href="recipes.php" class="btn btn-dark"> View All Recipes </a>
-				        </div>
+         <div class="viewall">
+	          <a href="recipes.php" class="btn btn-dark"> View All Recipes </a>
+	     </div>
 
-
-						</div>
-				</div>
+    </div>
 </section>
 
  <?php include('review.php'); ?>
@@ -241,5 +150,7 @@ $(function(){
 
 $(document).ready(function () {
 	loadAllRecipes();
+    loadAllCategories();
 });
 </script>
+        </div>

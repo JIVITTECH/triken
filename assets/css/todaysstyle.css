@@ -936,8 +936,8 @@ text-decoration: none;
     width: 100%;
     margin: 0 auto;
     display: none;
-    position: fixed;
-    z-index: 99999;
+    position: absolute;
+    z-index: 1000;
     height: 100vh;  
     background-color: #00000057;
     max-width: 100%; text-align:center;}
