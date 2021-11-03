@@ -1,6 +1,6 @@
 var branch_id = 1;
     
-function loadAllRecipes() {
+function loadAllRecipes() { 
 	var information = "";
 	var xmlhttp = new XMLHttpRequest();
 	var url = "api/get_recipe_details.php?branch=" + branch_id + "&show_limited_recipes=Y";
@@ -120,7 +120,8 @@ function loadTopCategories(branch_id) {
             }
         }
     };
-	
+}
+
 function loadLtdDealsOfTheDay() {
 	var information = "";
 	var xmlhttp = new XMLHttpRequest();
@@ -150,11 +151,14 @@ function loadLtdDealsOfTheDay() {
 					}
 					
 					var discount_price = 0;
+					var act_price = 0;
 					if(myObj[i].disc_per !== ""){
 						var reduced_price = +myObj[i].price - (+myObj[i].disc_per / +myObj[i].price) * 100; 
 						discount_price = "<ins class='new-price'>" + reduced_price.toFixed(2) + "</ins><del class='old-price'>" + myObj[i].price + "</del>";
+						act_price = reduced_price.toFixed(2);
 					}else{
 						discount_price = "<ins class='new-price'>" + myObj[i].price + "</ins>";
+						act_price = +myObj[i].price;
 					}
 					
 					information = information + "<div class='swiper-slide product-widget-wrap'>" +
@@ -170,13 +174,13 @@ function loadLtdDealsOfTheDay() {
 															"<div class='row prod_quant'>" +
 																"<div class='product-cat col-md-6'>Net wt: " + myObj[i].net_weight + "  " + myObj[i].measure + "</div>" +
 																"<div class='product-cat col-md-6'>Delivery: " + myObj[i].delivery_time + "</div>" +
-															"</div>"
-															"<div class='row'>"
+															"</div>" +
+															"<div class='row'>" +
 																"<div class='col-md-8 product-price'>" +
 																	discount_price +
 																"</div>" +
-																"<div class='col-md-4'><a href='#' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
-															"</div>"
+																"<div class='col-md-4'><a href='#' onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ")' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
+															"</div>" +
 														"</div>" +
 													"</div>" +
 												"</div>";
@@ -219,11 +223,15 @@ function loadAllDealsOfTheDay() {
 					}
 					
 					var discount_price = 0;
+					var act_price = 0;
+					
 					if(myObj[i].disc_per !== ""){
 						var reduced_price = +myObj[i].price - (+myObj[i].disc_per / +myObj[i].price) * 100; 
 						discount_price = "<ins class='new-price'>" + reduced_price.toFixed(2) + "</ins><del class='old-price'>" + myObj[i].price + "</del>";
+						act_price = reduced_price.toFixed(2);
 					}else{
 						discount_price = "<ins class='new-price'>" + myObj[i].price + "</ins>";
+						act_price = +myObj[i].price;
 					}
 					
 					information = information + "<div class='product-wrap'>" +
@@ -239,13 +247,13 @@ function loadAllDealsOfTheDay() {
 															"<div class='row prod_quant'>" +
 																"<div class='product-cat col-md-6'>Net wt: " + myObj[i].net_weight + "  " + myObj[i].measure + "</div>" +
 																"<div class='product-cat col-md-6'>Delivery: " + myObj[i].delivery_time + "</div>" +
-															"</div>"
-															"<div class='row'>"
+															"</div>" +
+															"<div class='row'>" +
 																"<div class='col-md-8 product-price'>" +
 																	discount_price +
 																"</div>" +
-																"<div class='col-md-4'><a href='#' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
-															"</div>"
+																"<div class='col-md-4'><a href='#' onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ")' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
+															"</div>" +
 														"</div>" +
 													"</div>" +
 												"</div>";

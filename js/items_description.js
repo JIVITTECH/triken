@@ -53,7 +53,17 @@ function loadItemsDescription() {
 					} 
 					specifications_div_2 = specifications_div_2 + "<ul  class='list-type-check'>" + specifications_tag_2 +
 										"</ul>";
+					var discount_price = 0;
+					var act_price = 0;
 					
+					if(myObj[i].disc_per !== ""){
+						var reduced_price = +myObj[i].price - (+myObj[i].disc_per / +myObj[i].price) * 100; 
+						discount_price = "<ins class='new-price'>" + reduced_price.toFixed(2) + "</ins><del class='old-price'>" + myObj[i].price + "</del>";
+						act_price = reduced_price.toFixed(2);
+					}else{
+						discount_price = "<ins class='new-price'>" + myObj[i].price + "</ins>";
+						act_price = +myObj[i].price;
+					}
 					document.getElementById("specifications_div_2").innerHTML = specifications_div_2;
 					document.getElementById("specifications_div_1").innerHTML = specifications_div_1;
 					document.getElementById("images_tag").innerHTML = related_images_tag;
@@ -63,7 +73,9 @@ function loadItemsDescription() {
 					document.getElementById("product_des").innerHTML = myObj[i].description;
 					document.getElementById("delivery_time").innerHTML = myObj[i].delivery_time;
                     $('#video_link').append("<img src=" + myObj[i].video_path + ">");	
-					
+					$('#add_sub').append("<button onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ")' class='quantity-plus w-icon-plus'></button>");
+					$('#add_sub').append("<button class='quantity-minus w-icon-minus'></button>"); 
+					$('#add_to_cart').append("<button onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ")' class='btn btn-primary btn-cart'> <span>Add to Cart</span> </button>");
 					var discount_price = "";
 					if(myObj[i].disc_per !== ""){
 						var reduced_price = +myObj[i].price - (+myObj[i].disc_per / +myObj[i].price) * 100; 
@@ -112,11 +124,14 @@ function loadAllRelatedItems() {
 					}
 					
 					var discount_price = 0;
+					var act_price = 0;
 					if(myObj[i].disc_per !== ""){
 						var reduced_price = +myObj[i].price - (+myObj[i].disc_per / +myObj[i].price) * 100; 
 						discount_price = reduced_price;
+						act_price = reduced_price.toFixed(2);
 					}else{
 						discount_price = myObj[i].price;
+						act_price = +myObj[i].price;
 					}
 					information = information + "<div class='swiper-slide product-widget-wrap'>" +
 													"<div class='product'>" +
@@ -136,7 +151,7 @@ function loadAllRelatedItems() {
 																"<div class='col-md-8 product-price'>" +
 																	"<ins class='new-price'>" + discount_price + "</ins>" +
 																"</div>" +
-																"<div class='col-md-4'><a href='#' class='add_cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
+																"<div class='col-md-4'><a onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ")' href='#' class='add_cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
 															"</div>" +
 														"</div>" +
 													"</div>" +

@@ -22,6 +22,7 @@
 
 <?php include('footer.php'); ?>
 
+<script src="js/common.js"></script>
 <script type='text/javascript'>
 
 $(document).ready(function () {
@@ -75,17 +76,20 @@ function loadAllItemDetails() {
 					}
 					
 					var discount_price = 0;
+					var act_price = 0;
 					if(myObj[i].disc_per !== ""){
 						var reduced_price = +myObj[i].price - (+myObj[i].disc_per / +myObj[i].price) * 100; 
 						discount_price = "<ins class='new-price'>" + reduced_price.toFixed(2) + "</ins><del class='old-price'>" + myObj[i].price + "</del>";
+						act_price = reduced_price.toFixed(2);
 					}else{
 						discount_price = "<ins class='new-price'>" + myObj[i].price + "</ins>";
+						act_price = +myObj[i].price;
 					}
 					
 					information = information + "<div class='product-wrap'>" +
 													"<div class='product text-center'>" +
 														"<figure class='product-media'>" +
-															"<a href='country_chicken_curry_cut_small_with_skin.php'><img src=" + image_path + " alt='Product'/> </a>" +
+															"<a href='items_description.php?item_id=" + myObj[i].menu_id + "'><img src=" + image_path + " alt='Product'/> </a>" +
 															    "<div class='product-label-group'>" +
 																		narrival_tag +
 																		bseller_tag +
@@ -100,9 +104,9 @@ function loadAllItemDetails() {
 																"</div>" +
 																"<div class='row'>" +
 																	"<div class='col-md-8 product-price'>" +
-																		discount_price +
-																	"</div>" +
-																	"<div class='col-md-4'><a href='#' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
+																		discount_price +  
+																	"</div>" + 
+																	"<div class='col-md-4'><a onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ")' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
 																"</div>" +
 															"</div>" +
 														"</div>" +
@@ -165,3 +169,4 @@ function getAllUrlParams(url) {
 	return obj;
 }	
 </script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
