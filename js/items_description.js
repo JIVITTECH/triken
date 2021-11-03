@@ -87,6 +87,7 @@ function loadItemsDescription() {
 					
 					document.getElementById("product_price").innerHTML = discount_price;
 				}
+				loadItemsFromCart();
 			} else {
 				$('#item_container').append("<center>No Items found</center>");
             }
