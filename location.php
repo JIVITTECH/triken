@@ -1,5 +1,4 @@
-    
-       <!-- <div class="content">
+<!-- <div class="content">
             <h2>Select your city</h2>
 
             <div class="city">
@@ -26,8 +25,9 @@ geography is underway.</p>
         
  <div class="content">      
     <h2>Select your city</h2>
-    <form class="findlocation">
-        <div>
+    <form class="findlocation" id='cities'>
+    </form>    
+<!--        <div>
             <label for="chkYes" class="location">
                 <input type="radio" id="chkYes" class="loc" name="chkPassPort" onclick="ShowHideDiv()" />
                 Coimbatore
@@ -47,8 +47,9 @@ geography is underway.</p>
                 Tiruppur
             </label> <br>
             <span class="soon"> Coming Soon! </span>
-        </div>
-        </form>
+
+        </div>-->
+
             <div id="detect" style="display: none">
                 <form action="#" method="get" class="input-wrapper input-wrapper-inline input-wrapper-round">
              
@@ -62,6 +63,7 @@ geography is underway.</p>
                 <p> Expansion of our delivery service into a wider
     geography is underway.</p>
             </div>
+			
 </div>
 
 <script type="text/javascript">
