@@ -68,8 +68,8 @@
 														</div> 
 													</div>
 													<div class="col-lg-4">
-							                            <div class="input-group">
-							                                    <input class="quantity form-control" type="number" disabled min="1" max="10000000">
+							                            <div class="input-group" id="button_grp">
+							                                    <input class="quantity form-control" id="qty_in_cart" type="number" disabled min="0" max="10000000">
 							                                    <div id="add_sub"></div>
 													    </div>
 							                        </div>
@@ -156,6 +156,8 @@
 
 $(document).ready(function () {
 	loadItemsDescription();
+	document.getElementById("qty_in_cart").value = 0;
+	loadItemsFromCart();
 });
 
 var branch_id = 1;
