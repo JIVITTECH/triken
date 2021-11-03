@@ -47,7 +47,7 @@
    		<link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
 
    		<link rel="stylesheet" type="text/css" href="assets/font/font-awesome/css/font-awesome.min">
-
+		
 </head>
 
 
