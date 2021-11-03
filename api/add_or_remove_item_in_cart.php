@@ -35,8 +35,9 @@ if ($_GET["action"] == "add_item_to_cart") {
 		$result = mysqli_query($conn, $sql);
 	} else {
 		$sql = "update obo_cart_item_details set quantity = quantity + $quantity ,price = price + $cal_price,packing_charge = $packing_charge  WHERE cart_id = $cus_cart_id AND  predef_menu_id = $item_id AND cart_item_id = $cart_item_id";
-		$result = mysqli_query($conn, $sql);
+		$result = mysqli_query($conn, $sql);		
 	}
+	echo $sql ;
 }
 
 if ($_GET["action"] == "remove_item_from_cart") {

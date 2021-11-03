@@ -129,6 +129,7 @@
 <?php include('footer.php'); ?>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.8.2.js"></script>
 <script src="js/index.js"></script>
+<script src="js/common.js"></script>
 <script type='text/javascript'>
 $(function(){
 	var overlay = $('<div id="overlay"></div>');
@@ -149,11 +150,16 @@ $(function(){
 });
 
 $(document).ready(function () {
-    loadAllRecipes();
     loadAllCategories();
     loadTopCategories('1');
     loadLtdDealsOfTheDay();
+	loadAllRecipes();
 });
+
+var branch_id = 1;
+var customer_id = 45;
+var cus_cart_id = 404;
+         
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
@@ -176,3 +182,5 @@ $(document).ready(function () {
 </script>
 
 </div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+

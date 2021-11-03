@@ -69,16 +69,15 @@
 													</div>
 													<div class="col-lg-4">
 							                            <div class="input-group">
-							                                    <input class="quantity form-control" type="number" min="1" max="10000000">
-							                                    <button class="quantity-plus w-icon-plus"></button>
-							                                    <button class="quantity-minus w-icon-minus"></button>
-							                            </div>
+							                                    <input class="quantity form-control" type="number" disabled min="1" max="10000000">
+							                                    <div id="add_sub"></div>
+													    </div>
 							                        </div>
 						                        </div>
 				                            </div>
 				                        </div>
-				                        <div class="col-lg-3 col-sm-12">
-				                            <button class="btn btn-primary btn-cart"> <span>Add to Cart</span> </button>
+				                        <div class="col-lg-3 col-sm-12" id="add_to_cart">
+				                            
 				                        </div>
 			                        </div>
 		                        </div>
@@ -151,14 +150,17 @@
 
 <?php include('footer.php'); ?>
 
-
+<script src="js/common.js"></script>
 <script type='text/javascript'>
+
 
 $(document).ready(function () {
 	loadItemsDescription();
 });
 
 var branch_id = 1;
+var customer_id = 45;
+var cus_cart_id = 404;
 
 function getAllUrlParams(url) {
 	// get query string from url (optional) or window
