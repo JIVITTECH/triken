@@ -2,7 +2,7 @@
 
 include("../database.php");
 //session_start();
-
+//error_log($_GET["action"]);
 if ($_GET["action"] == "get_list_of_cities") {
 	
 		$res = "";
@@ -55,7 +55,7 @@ if ($_GET["action"] == "get_list_of_categories") {
 		$events = array(
 				"id" => "$rows[pre_menu_id]",
 				"name" => "$rows[name]",
-				"image_path" => "$rows[image_path]",
+				"image_path" => "$rows[image_path]"
 			);
 	  
 		$output[] = $events;

@@ -149,8 +149,9 @@ $(function(){
 });
 
 $(document).ready(function () {
-	loadAllRecipes();
+    loadAllRecipes();
     loadAllCategories();
+    loadTopCategories('1');
     loadLtdDealsOfTheDay();
 });
 </script>
