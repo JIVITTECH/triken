@@ -87,3 +87,141 @@ function loadAllCategories() {
 		}
 	};
 }
+
+function loadLtdDealsOfTheDay() {
+	var information = "";
+	var xmlhttp = new XMLHttpRequest();
+	var url = "api/get_deals_of_the_day.php?branch=" + branch_id + "&show_limited_products=Y";
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+	xmlhttp.onreadystatechange = function () {
+		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+			var myObj = JSON.parse(this.responseText);
+			if (myObj.length !== 0) {
+				for (var i = 0; i < myObj.length; i++) {
+					var cover_photo = myObj[i].image;
+					var image_path = "";
+					if (cover_photo !== "")
+					{
+						image_path = '../ecaterweb/Catering/' + cover_photo;
+					} else
+					{
+						image_path = 'images/default.jpg';
+					}
+					
+					var discount_tag = "";
+					if(myObj[i].disc_per !== ""){
+						discount_tag = "<label class='product-label label-discount'>" + myObj[i].disc_per + " % Off</label>";
+					}else{
+						discount_tag = "";
+					}
+					
+					var discount_price = 0;
+					if(myObj[i].disc_per !== ""){
+						var reduced_price = +myObj[i].price - (+myObj[i].disc_per / +myObj[i].price) * 100; 
+						discount_price = "<ins class='new-price'>" + reduced_price.toFixed(2) + "</ins><del class='old-price'>" + myObj[i].price + "</del>";
+					}else{
+						discount_price = "<ins class='new-price'>" + myObj[i].price + "</ins>";
+					}
+					
+					information = information + "<div class='swiper-slide product-widget-wrap'>" +
+													"<div class='product'>" +
+														"<figure class='product-media'>" +
+															"<a href='#'><img src=" + image_path + " alt='Product'/> </a>" +
+															"<div class='product-label-group'>" +
+                                								discount_tag +
+															"</div>" +
+														"</figure>" +
+														"<div class='product-details'>" +
+															"<h3 class='product-name'> <a href='#'>" + myObj[i].name  + "</a> </h3>" +
+															"<div class='row prod_quant'>" +
+																"<div class='product-cat col-md-6'>Net wt: " + myObj[i].net_weight + "  " + myObj[i].measure + "</div>" +
+																"<div class='product-cat col-md-6'>Delivery: " + myObj[i].delivery_time + "</div>" +
+															"</div>"
+															"<div class='row'>"
+																"<div class='col-md-8 product-price'>" +
+																	discount_price +
+																"</div>" +
+																"<div class='col-md-4'><a href='#' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
+															"</div>"
+														"</div>" +
+													"</div>" +
+												"</div>";
+				}
+				$('#ltd_deals_of_the_day_container').empty();
+				$('#ltd_deals_of_the_day_container').append(information);
+            } else {
+				$('#ltd_deals_of_the_day_container').append("<center>No Items found</center>");
+            }
+		}
+	};
+}
+
+function loadAllDealsOfTheDay() {
+	var information = "";
+	var xmlhttp = new XMLHttpRequest();
+	var url = "api/get_deals_of_the_day.php?branch=" + branch_id + "&show_limited_products=N";
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+	xmlhttp.onreadystatechange = function () {
+		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+			var myObj = JSON.parse(this.responseText);
+			if (myObj.length !== 0) {
+				for (var i = 0; i < myObj.length; i++) {
+					var cover_photo = myObj[i].image;
+					var image_path = "";
+					if (cover_photo !== "")
+					{
+						image_path = '../ecaterweb/Catering/' + cover_photo;
+					} else
+					{
+						image_path = 'images/default.jpg';
+					}
+					
+					var discount_tag = "";
+					if(myObj[i].disc_per !== ""){
+						discount_tag = "<label class='product-label label-discount'>" + myObj[i].disc_per + " % Off</label>";
+					}else{
+						discount_tag = "";
+					}
+					
+					var discount_price = 0;
+					if(myObj[i].disc_per !== ""){
+						var reduced_price = +myObj[i].price - (+myObj[i].disc_per / +myObj[i].price) * 100; 
+						discount_price = "<ins class='new-price'>" + reduced_price.toFixed(2) + "</ins><del class='old-price'>" + myObj[i].price + "</del>";
+					}else{
+						discount_price = "<ins class='new-price'>" + myObj[i].price + "</ins>";
+					}
+					
+					information = information + "<div class='product-wrap'>" +
+													"<div class='product text-center'>" +
+														"<figure class='product-media'>" +
+															"<a href='#'><img src=" + image_path + " alt='Product'/> </a>" +
+															"<div class='product-label-group'>" +
+                                								discount_tag +
+															"</div>" +
+														"</figure>" +
+														"<div class='product-details'>" +
+															"<h3 class='product-name'> <a href='#'>" + myObj[i].name  + "</a> </h3>" +
+															"<div class='row prod_quant'>" +
+																"<div class='product-cat col-md-6'>Net wt: " + myObj[i].net_weight + "  " + myObj[i].measure + "</div>" +
+																"<div class='product-cat col-md-6'>Delivery: " + myObj[i].delivery_time + "</div>" +
+															"</div>"
+															"<div class='row'>"
+																"<div class='col-md-8 product-price'>" +
+																	discount_price +
+																"</div>" +
+																"<div class='col-md-4'><a href='#' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
+															"</div>"
+														"</div>" +
+													"</div>" +
+												"</div>";
+				}
+				$('#all_deals_of_the_day_container').empty();
+				$('#all_deals_of_the_day_container').append(information);
+            } else {
+				$('#all_deals_of_the_day_container').append("<center>No Items found</center>");
+            }
+		}
+	};
+}

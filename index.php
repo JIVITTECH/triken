@@ -151,6 +151,7 @@ $(function(){
 $(document).ready(function () {
 	loadAllRecipes();
     loadAllCategories();
+    loadLtdDealsOfTheDay();
 });
 </script>
         </div>
