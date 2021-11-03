@@ -1,20 +1,4 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-    $.get("api/load_home_page?action=get_list_of_cities", function(data, status){
-//        for (var i in data) {
-               var jsonStr = JSON.parse(data);
-               for (var i =0; i< jsonStr.length ;i++) {
-                   jsonStr[i].city_name;    
-               }
-
-               
-//        }
-//      alert("Data: " + data + "\nStatus: " + status);
-    });
-});
-</script>
-       <!-- <div class="content">
+<!-- <div class="content">
             <h2>Select your city</h2>
 
             <div class="city">
@@ -42,7 +26,7 @@ geography is underway.</p>
  <div class="content">      
     <h2>Select your city</h2>
     <form class="findlocation" id='cities'>
-        
+    </form>    
 <!--        <div>
             <label for="chkYes" class="location">
                 <input type="radio" id="chkYes" class="loc" name="chkPassPort" onclick="ShowHideDiv()" />
@@ -63,17 +47,23 @@ geography is underway.</p>
                 Tiruppur
             </label> <br>
             <span class="soon"> Coming Soon! </span>
+
         </div>-->
-    </form>
-    <div id="detect" style="display: none">
-        <form action="#" method="get" class="input-wrapper input-wrapper-inline input-wrapper-round">
-            <input type="text" class="form-control" name="text" id="text"
-                   placeholder="Enter your area" required="">
-            <button class="btn btn-dark" type="submit"> <img src="assets/images/detect.svg"> Detect my location</button>
-        </form>  
-        <p> Expansion of our delivery service into a wider
-            geography is underway.</p>
-    </div>
+
+            <div id="detect" style="display: none">
+                <form action="#" method="get" class="input-wrapper input-wrapper-inline input-wrapper-round">
+             
+                <input type="text" name="location" id="location" onclick="getLatAndLong();" class="form-control" placeholder="Enter your area" required="">
+                <input type="hidden" id="latitude" name="latitude"  style="width:100%;height: 25px;" value="">
+                <script src="js/GeoLocationMapping.js"></script>
+                      <?php include "./geo-location-map.php"; ?> 
+                <input type="hidden" id="longitude" name="longitude"  style="width:100%;height: 25px;" value=""> 
+                    <button class="btn btn-dark" onclick="getLocation();" type="submit"> <img src="assets/images/detect.svg"> Detect my location</button>
+                </form>  
+                <p> Expansion of our delivery service into a wider
+    geography is underway.</p>
+            </div>
+			
 </div>
 
 <script type="text/javascript">

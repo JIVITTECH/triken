@@ -54,6 +54,7 @@ if ($_GET["action"] == "get_cart_id") {
 	if ($rowscount_res_sql > 0) {
 		if ($rows = mysqli_fetch_array($res_sql)) {
 			$_SESSION['customer_id'] = $rows['user_id'];
+			$_SESSION['customer_branch_id'] = $rows['branch_id'];
 			$_SESSION['customer_contact_no'] = $rows['contact_no'];
 			$_SESSION['customer_name'] = $rows['customer_name'];
 			$_SESSION['customer_addr'] = $rows['email_addr'];

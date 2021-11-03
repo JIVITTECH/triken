@@ -1,0 +1,167 @@
+<?php
+    $title = 'Country Chicken - Triken ';
+    $description = 'The only thing we stock is the packages we use to deliver the meat.';
+    $pageRobots = 'index,nofollow';
+    $image = ' '; 
+    $pageCanonical = '';
+    $url = ' '; 
+    $page ="Country Chicken";
+    include('header.php');
+    include('main.php');
+?> 
+
+<?php include('breadcrumb.php'); ?>
+
+<section class="productcat">
+	<div class="container">
+		<div class="row cols-xl-4 cols-md-3 cols-sm-3" id="item_container">
+           
+		</div>
+	</div>
+</section>
+
+<?php include('footer.php'); ?>
+
+<script type='text/javascript'>
+
+$(document).ready(function () {
+	loadAllItemDetails();
+});
+
+var branch_id = 1;
+
+function loadAllItemDetails() {
+	var information = "";
+	var arr1 = getAllUrlParams((window.location).toString());
+    var category_id = arr1.category_id;
+	var xmlhttp = new XMLHttpRequest();
+	var url = "api/get_list_of_products.php?branch=" + branch_id + "&search_by_category=" + category_id + "&search_by_product=";
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+	xmlhttp.onreadystatechange = function () {
+		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+			var myObj = JSON.parse(this.responseText);
+			if (myObj.length !== 0) {
+				for (var i = 0; i < myObj.length; i++) {
+					var cover_photo = myObj[i].image;
+					var image_path = "";
+					if (cover_photo !== "")
+					{
+						image_path = '../ecaterweb/Catering/' + cover_photo;
+					} else
+					{
+						image_path = 'images/default.jpg';
+					}
+					
+					var discount_tag = "";
+					if(myObj[i].disc_per !== ""){
+						discount_tag = "<label class='product-label label-discount'>" + myObj[i].disc_per + " % Off</label>";
+					}else{
+						discount_tag = "";
+					}
+					
+					var bseller_tag = "";
+					if(myObj[i].best_seller === "1"){
+						bseller_tag = "<label class='product-label label-discount best'>Best Seller</label>";
+					}else{
+						bseller_tag = "";
+					}
+					
+					var narrival_tag = "";
+					if(myObj[i].new_arrival === "1"){
+						narrival_tag = "<label class='product-label newarrival'>New Arrival</label>";
+					}else{
+						narrival_tag = "";
+					}
+					
+					var discount_price = 0;
+					if(myObj[i].disc_per !== ""){
+						var reduced_price = +myObj[i].price - (+myObj[i].disc_per / +myObj[i].price) * 100; 
+						discount_price = "<ins class='new-price'>" + reduced_price.toFixed(2) + "</ins><del class='old-price'>" + myObj[i].price + "</del>";
+					}else{
+						discount_price = "<ins class='new-price'>" + myObj[i].price + "</ins>";
+					}
+					
+					information = information + "<div class='product-wrap'>" +
+													"<div class='product text-center'>" +
+														"<figure class='product-media'>" +
+															"<a href='country_chicken_curry_cut_small_with_skin.php'><img src=" + image_path + " alt='Product'/> </a>" +
+															    "<div class='product-label-group'>" +
+																		narrival_tag +
+																		bseller_tag +
+																		discount_tag +
+																"</div>" +
+															"</figure>" +
+															"<div class='product-details'>" +
+																"<h3 class='product-name'> <a href='#'>" + myObj[i].name + "</a> </h3>" +
+																"<div class='row prod_quant'>" +
+																	"<div class='product-cat col-md-6'>Net wt: " + myObj[i].net_weight + "  " + myObj[i].measure + "</div>" +
+																	"<div class='product-cat col-md-6'>Delivery: " + myObj[i].delivery_time + " mins</div>" +
+																"</div>" +
+																"<div class='row'>" +
+																	"<div class='col-md-8 product-price'>" +
+																		discount_price +
+																	"</div>" +
+																	"<div class='col-md-4'><a href='#' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
+																"</div>" +
+															"</div>" +
+														"</div>" +
+													"</div>";
+				}
+				$('#item_container').empty();
+				$('#item_container').append(information);
+            } else {
+				$('#item_container').append("<center>No Items found</center>");
+            }
+		}
+	};
+}
+
+function getAllUrlParams(url) {
+	// get query string from url (optional) or window
+	var queryString = url ? url.split('?')[1] : window.location.search.slice(1); // we'll store the parameters here
+	var obj = {}; // if query string exists
+	if (queryString) {
+
+		// stuff after # is not part of query string, so get rid of it                                                 queryString = queryString.split('#')[0];
+
+		// split our query string into its component parts
+		var arr = queryString.split('&');
+		for (var i = 0; i < arr.length; i++) {
+			// separate the keys and the values
+			var a = arr[i].split('=');
+			// in case params look like: list[]=thing1&list[]=thing2
+			var paramNum = undefined;
+			var paramName = a[0].replace(/\[\d*\]/, function (v) {
+				paramNum = v.slice(1, -1);
+				return '';
+			});
+			// set parameter value (use 'true' if empty)
+			var paramValue = typeof (a[1]) === 'undefined' ? true : a[1];
+			// (optional) keep case consistent
+			paramName = paramName.toLowerCase();
+			paramValue = paramValue.toLowerCase();
+			// if parameter name already exists
+			if (obj[paramName]) {                                 // convert value to array (if still string)
+				if (typeof obj[paramName] === 'string') {
+					obj[paramName] = [obj[paramName]];
+				}
+				// if no array index number specified...
+				if (typeof paramNum === 'undefined') {
+					// put the value on the end of the array                                                             obj[paramName].push(paramValue);
+				}
+				// if array index number specified...
+				else {
+					// put the value at that index number                                     obj[paramName][paramNum] = paramValue;
+				}
+			}
+			// if param name doesn't exist yet, set it
+			else {
+				obj[paramName] = paramValue;
+			}
+		}
+	}
+
+	return obj;
+}	
+</script>
