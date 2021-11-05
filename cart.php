@@ -234,7 +234,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
                                         calculated at checkout </p>
                                 </div>
 
-                                <button  class="btn btn-block btn-checkout"> Checkout </button> 
+                                <button type="button" class="btn btn-block btn-checkout"> Checkout </button> 
                             </td>
                         </tr>
                     </tbody>
