@@ -17,8 +17,8 @@ $branch_id = $_GET['branch'];
 $delivery = $_GET['del_cost'];
 $package_chg = $_GET['package_chg'];
 $tt_amount = $_GET['gt_total'];
-$schema = $_COOKIE['cookie_res_name'];
-$user_id  =  $_SESSION['obo_user_id'];
+$schema = "654402a8f29dd23a";
+$user_id  =  1;
 
 $customer_id = "";
 $customer_name = "";
@@ -55,7 +55,12 @@ while ($rows_cus = mysqli_fetch_array($res_cus_details)) {
     $email_addr =  'electronic.cater@gmail.com';
 }
 
-include_once('../easebuzz-lib/easebuzz_payment_gateway.php');
+//Need to comment once signin process is ready
+$customer_name = "Sara Ruth John";
+$contact_no = "8610530271";
+$address = "";
+	
+include_once('easebuzz-lib/easebuzz_payment_gateway.php');
 
 $MERCHANT_KEY = $eass_buzz_key;
 $SALT = $eass_buzz_salt;

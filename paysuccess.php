@@ -2,7 +2,13 @@
 ob_start();
 
 session_start();
-
+$title = 'Country Chicken - Triken ';
+$description = 'The only thing we stock is the packages we use to deliver the meat.';
+$pageRobots = 'index,nofollow';
+$image = ' '; 
+$pageCanonical = '';
+$url = ' '; 
+$page ="Personal Details";
 header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length');
 header('Access-Control-Allow-Origin: *');
@@ -369,7 +375,7 @@ if ($_POST || $_GET) {
         $_SESSION['obo_cart_id'] = $cus_last_cart_id;
 
          
-        /* sendPlaceOrderRequestToClient($ord, $_SERVER['HTTP_HOST'], $config_url_pos, $restaurant_id);  - *** ENABLE THIS IF THEY PURCHASE POS**** */
+        sendPlaceOrderRequestToClient($ord, $_SERVER['HTTP_HOST'], $config_url_pos, $restaurant_id); /* - *** ENABLE THIS IF THEY PURCHASE POS**** */
     } else {
         header("location:index.php?rest_key=" . $restaurant_id);
     }
