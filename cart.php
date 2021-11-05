@@ -209,8 +209,8 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
                                                     <select name="state" class="form-control form-control-md">
                                                         <option value="default" selected="selected">Select your delivery time
                                                         </option>
-                                                        <option value="slot1">7-9 AM</option>
-                                                        <option value="slot2">9-11 AM</option>
+                                                        <option value="1">7-9 AM</option>
+                                                        <option value="2">9-11 AM</option>
                                                         <option value="slot3">11-01 PM</option>
                                                         <option value="slot4">1-3 PM</option>
                                                     </select>
