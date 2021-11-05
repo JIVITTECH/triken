@@ -190,14 +190,14 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
                                             <div class="accordion payment-accordion">
                                                 <div class="card">
                                                     <div class="card-header">
-                                                        <a href="#payment" class="collapse">Deliver Now (120 mins)</a>
+                                                        <a href="#payment" id="default" onclick ="setCookie('del_slot',365,1)" class="">Deliver Now (120 mins)</a>
                                                     </div>
                                                     <div id="payment" class="card-body expanded">
                                                     </div>
                                                 </div>
                                                 <div class="card">
                                                     <div class="card-header">
-                                                        <a href="#cash-on-delivery" class="expand">Pickup Date & Time</a>
+                                                        <a href="#cash-on-delivery" id="date_time" class="">Pickup Date & Time</a>
                                                     </div>
                                                     <div id="cash-on-delivery" class="card-body collapsed">
                                                         <form>
@@ -205,14 +205,14 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
                                 
                                 
                                 <div class="form-group">
-                                                <div class="select-box">
-                                                    <select name="state" class="form-control form-control-md">
+                                                <div id = "sel_date_time" class="select-box">
+                                                    <select id="delivery_time" onchange ="setCookie('del_slot',365,2)" class="form-control form-control-md">
                                                         <option value="default" selected="selected">Select your delivery time
                                                         </option>
                                                         <option value="1">7-9 AM</option>
                                                         <option value="2">9-11 AM</option>
-                                                        <option value="slot3">11-01 PM</option>
-                                                        <option value="slot4">1-3 PM</option>
+                                                        <option value="3">11-01 PM</option>
+                                                        <option value="4">1-3 PM</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -385,7 +385,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 					</div>
 					<div class="col-lg-6">
 					<h4>Delivery Slot</h4>
-					<p>01/10/2021	<br>7-9 AM slot</p>
+					<p id="expected_date"></p>
 					</div>
 				</div>
 				
@@ -513,12 +513,59 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 <div class="cspace"></div>
 
 <script>
+    function getCookie(key) {
+		  let value = '';
+		  document.cookie.split(';').forEach((e)=>{
+			 if(e.includes(key)) {
+				value = e.split('=')[1]
+			 }
+		  })
+		return value
+	}
+
+
 	$(document).ready(function () {
 	    var arr1 = getAllUrlParams((window.location).toString());
         var discount_amt = "<?php echo $disc_amount; ?>";
 	    payementMethod = 1;
         loadCustomerSelectedItems();
         loadCartCount(cus_cart_id);
+		let date = new Date();
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth()+1; 
+		var yyyy = today.getFullYear();
+		if(dd<10) 
+		{
+			dd='0'+dd;
+		} 
+
+		if(mm<10) 
+		{
+			mm='0'+mm;
+		} 
+		
+		var del_type = getCookie("selected_date");
+		
+		var selected_date = yyyy + '-' + mm + '-'+ dd;
+		var cookie_name = "selected_date";
+		var del_slot =  getCookie("del_slot");
+		var sel_text = getCookie("del_type");
+		if(del_slot === "-1" || del_slot === "" || del_slot === "undefined"){
+			date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000)); 
+			const expires = "expires=" + date.toUTCString();
+			document.cookie = cookie_name + "=" + selected_date + "; " + expires + "; path=/";
+			document.cookie = "del_slot" + "=" + -1 + "; " + expires + "; path=/";
+			document.getElementById("expected_date").innerHTML = "Deliver Now";
+			$("#date_time").removeClass("expand");
+			$("#default").addClass("collapse");
+		}else{
+			$("#default").removeClass("expand");
+			$("#date_time").addClass("collapse");
+			document.getElementById("date").value = getCookie("selected_date");
+			document.getElementById("delivery_time").value = getCookie("del_slot");
+			document.getElementById("expected_date").innerHTML = getCookie("selected_date") + "<br>" + sel_text + " slot";
+		}
     });
        
     function loadFinalizedCart() {
@@ -644,6 +691,46 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 		xhttp.send();
 	}
 
+
+	function setCookie(cName, expDays,flag) {
+			let date = new Date();
+			var today = new Date();
+			today.setHours(today.getHours() + 4);
+			var selected_slot = "";
+			var selected_date = "";
+			var cookie_name = "";
+			var sel_text = "Deliver Now";
+			if(flag === 1){
+				selected_slot = -1;
+				var today = new Date();
+				var dd = today.getDate();
+				var mm = today.getMonth()+1; 
+				var yyyy = today.getFullYear();
+				if(dd<10) 
+				{
+					dd='0'+dd;
+				} 
+
+				if(mm<10) 
+				{
+					mm='0'+mm;
+				} 
+				selected_date = yyyy + '-' + mm + '-'+ dd;
+				document.getElementById("expected_date").innerHTML = sel_text;
+			}else{
+			    selected_slot = document.getElementById("delivery_time").value;
+				selected_date = document.getElementById("date").value;
+				sel_text = $("#delivery_time option:selected").text();
+				document.getElementById("expected_date").innerHTML = selected_date + "<br>" + sel_text + " slot";
+			}
+			cookie_name = "selected_date";
+			date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
+			const expires = "expires=" + date.toUTCString();
+			document.cookie = cName + "=" + selected_slot + "; " + expires + "; path=/";
+			document.cookie = cookie_name + "=" + selected_date + "; " + expires + "; path=/";
+			document.cookie = "del_type" + "=" + sel_text + "; " + expires + "; path=/";
+			
+	}
 
 </script>
 <script  src="assets/js/script.js"></script>
