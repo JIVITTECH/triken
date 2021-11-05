@@ -153,6 +153,7 @@ $(document).ready(function () {
     loadAllCategories();
     loadTopCategories('1');
     loadLtdDealsOfTheDay();
+    loadLtdBestSellingProducts();
 	loadAllRecipes();
 });
 
