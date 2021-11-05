@@ -144,7 +144,6 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 <link rel="stylesheet" href="assets/css/style.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="js/cart.js"></script>
-       
 <div class="cartpage">
     <div class="container" id="cart_container">
 			
@@ -431,18 +430,35 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 										</tbody>
 									</table>
 									<hr class="mt-2">
-									<div class="payment-methods" id="payment_method">
+									<div class="payment-methods" id="">
                                         <div class="radio-item">
-											<input type="radio" id="payment1" name="payment" value="payment1" checked>
+											<input type="radio" id="payment1" name="payment" value="payment1" checked onclick="paymentMode('1')">
 											<label for="payment1">CC Avenue</label>
 											<img src="assets/images/ccavenue.png" alt="">
 										</div> 
 										<div class="radio-item">	
-											<input type="radio" id="payment2" name="payment" value="payment2">
+											<input type="radio" id="payment2" name="payment" value="payment2" onclick="paymentMode('2')">
 											<label for="payment2">Cash on Delivery</label>
 										</div> 
                                         
-										<button class="submit_btn btn btn-dark btn-rounded mb-4 orange_btn">Place Order</button>
+										<button  id="ebz-checkout-btn"  class="btn btn-dark btn-rounded mb-4 orange_btn">Place Order</button>
+										<script>
+
+											document.getElementById('ebz-checkout-btn').onclick = function (e) {
+												if (stock_chk_array.length === 0) {
+													if (payementMethod !== "") {
+														document.getElementById('id02').style.display = 'block';
+														if (+payementMethod === 1) {
+															saveDetails();
+														} else {
+															saveDetails();
+															setTimeout(saveDeliveryDetails, 1000);
+														}
+													}
+												} 
+											};
+
+										</script>
                                     </div>
 								</div>
                             </td>
@@ -458,7 +474,28 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 				<button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
 				<button class="btn btn-success ml-auto" type="button" title="Send">Send</button>
 			  </div>  
-				  
+			   <div id="id02" class="model_myaddress" style="display:none;">
+
+					<form class="modal-content_123 animate" id="form_id1">
+						<div>
+							<img src="images/loader.gif" style="width: 50px;height: 50px;">
+						</div>
+					</form>
+				</div>    
+				<style>
+					.modal-content_123 {
+						/*/background-color: #fefefe;*/
+						margin: 20% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+						border: 1px solid #888;
+						width: 50px;
+						height: 50px;
+						border:0px solid;
+					}
+				</style>
+				<input type="hidden" id="gt_hidden" name="gt_hidden" value="000">
+				<input type="hidden" id="gt_total" name="gt_total" value="">
+			    <input type="hidden" id="payment_method" name="payment_method" value="1" checked>
+                                                          
 				  
                 </div>
               </div>
@@ -479,10 +516,11 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 	$(document).ready(function () {
 	    var arr1 = getAllUrlParams((window.location).toString());
         var discount_amt = "<?php echo $disc_amount; ?>";
-		loadCustomerSelectedItems();
+	    payementMethod = 1;
+        loadCustomerSelectedItems();
         loadCartCount(cus_cart_id);
     });
-
+       
     function loadFinalizedCart() {
 		grand_sub_total = 0;
 		$('#final_cart').empty();
@@ -609,5 +647,4 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 
 </script>
 <script  src="assets/js/script.js"></script>
-
 <?php include('footer.php'); ?>

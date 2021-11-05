@@ -2,12 +2,15 @@
 	var delivery_cost = 0;
 	var stock_chk_array = [];
 	var pkg_price = 0;
+	var payementMethod = "";
+    var discount_amt = 0;
+
+//To be replaced by dynamic values from session
     var cus_cart_id = 404;
 	var sel_obo_order_type = 3;
 	var branch_id = 1;
     var customer_id = 1;
-    var discount_amt = 0;
-
+    
 	function loadCustomerSelectedItems() {
 		grand_sub_total = 0;
 		$('#selected_items').empty();
@@ -358,5 +361,71 @@
 		};
 
 	}
+	
+	function paymentMode(mode) {
+		if (mode === "1") {
+			payementMethod = 1;
+		} else {
+			payementMethod = 2;
+		}
+	}
+	
+	function saveDetails() {
+		var arr1 = getAllUrlParams((window.location).toString());
+		var grand_total = document.getElementById("grand_total").innerHTML;
+		var sub_total = document.getElementById("final_sub_total").innerHTML;
+		var total = (+grand_total).toFixed(2);
+		var gstotal = (+grand_sub_total).toFixed(2);
+		var discount_id = document.getElementById("discount-id").innerHTML;
+		var discount = (+discount_id).toFixed(2);
+		var xmlhttp = new XMLHttpRequest();
+		var url = "api/savePriceDetails.php?cart_id=" + cus_cart_id + "&grand_total=" + total + "&grand_sub_total=" + gstotal + "&branch_id=" + branch_id + "&user_id=" + customer_id + "&discount=" + discount + "&sub_total=" + sub_total;
+		xmlhttp.open("GET", url, true);
+		xmlhttp.send();
+		xmlhttp.onreadystatechange = function () {
+			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+				var myObj = xmlhttp.responseText;
+				if (myObj !== "") {
+					if (+payementMethod === 1) {
+						var tmp_gt = document.getElementById("grand_total").innerHTML;
+						var amount = tmp_gt;
+						document.getElementById("gt_hidden").value = amount;
+						document.getElementById("gt_total").value = amount;
+						var pm = document.getElementById("payment_method").value;
+						var delivery = document.getElementById("delivery_cost").innerHTML;
+						var package_chg = document.getElementById("package-id").innerHTML;
+						window.location = "../api/ease_buzz_php_controller.php?payment_method=" + pm + "&cart_id=" + cus_cart_id + "&branch=" + branch_id + "&del_cost=" + delivery + "&package_chg=" + package_chg + "&gt_total=" + tmp_gt;
+					}
+				}
+			}
+		};
+	}
+	
+	function saveDeliveryDetails() {
+                    
+		var tmp_gt = document.getElementById("grand_total").innerHTML;
+		var tot_Amt = (+tmp_gt) * 100;
+		var amount = Math.round(tot_Amt);
+		document.getElementById("gt_hidden").value = amount;
+		var pm = document.getElementById("payment_method").value;
+		var delivery = document.getElementById("delivery_cost").innerHTML;
+		var package_chg = document.getElementById("package-id").innerHTML;
+		var del_cost = document.getElementById("del_cost").value;
+		var gt = document.getElementById("gt_hidden").value;
+		var xmlhttp = new XMLHttpRequest();
+		var url = "paysuccess.php?pm=" + pm + "&cart_id=" + cus_cart_id + "&branch_id="
+				+ branch_id + "&user_id=" + customer_id + "&delivery=" + delivery + "&mode=" + 2 + "&package_chg=" + package_chg;
+		xmlhttp.open("GET", url, true);
+		xmlhttp.send();
+		xmlhttp.onreadystatechange = function () {
+			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+				var myObj = xmlhttp.responseText;
+				if (myObj !== "") {
+					location.href = 'myorders.php';
+				}
+			}
+		};
+	}
+
 
 

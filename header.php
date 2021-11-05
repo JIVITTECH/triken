@@ -30,6 +30,7 @@
 			echo '<meta name="robots" content="' . $pageRobots . '">';
 			}
 		?>
+		
 
 		<link rel="icon" type="image/png" href="assets/images/fav.png">
 
@@ -48,6 +49,7 @@
 
    		<link rel="stylesheet" type="text/css" href="assets/font/font-awesome/css/font-awesome.min">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		
 		<script>
 		    
 			$(document).ready(function () {
@@ -199,6 +201,7 @@
                 };
             }
 		</script>
+		
 </head>
 
 
