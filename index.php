@@ -158,7 +158,7 @@ $(document).ready(function () {
 });
 
 var branch_id = 1;
-var customer_id = 45;
+var customer_id = -1;
 var cus_cart_id = 404;
          
 </script>
