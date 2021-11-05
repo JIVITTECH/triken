@@ -77,6 +77,7 @@ $category_load_flag = 0;
 $item_load_flag = 0;
 $cart_page_flag = 0;
 $razorpay_payment_id = "";
+$completed_cart_id = 0;
 
 if ($_POST || $_GET) {
 
@@ -93,6 +94,7 @@ if ($_POST || $_GET) {
     }
     $branch_id = $_GET['branch_id'];
     $cart_id = $_GET['cart_id'];
+	$completed_cart_id = $cart_id;
     $delivery = $_GET['delivery'];
     $package_chg = $_GET['package_chg'];
     $user_id = $_GET['user_id'];
@@ -389,6 +391,7 @@ function sendPlaceOrderRequestToClient($js, $hostname,$config_url_pos,$restauran
     global $db_name;
     global $db_pass;
     global $db_uname;
+	global $completed_cart_id;
     $request_headers = array();
     $request_headers[] = "Content-Type:" . "application/json";
     $request_headers[] = "Accept:" . "application/json";
@@ -430,7 +433,7 @@ function sendPlaceOrderRequestToClient($js, $hostname,$config_url_pos,$restauran
         }
     }
 
-    header("location:myorders.php");
+    header("location:order_summary.php?cart_id=".$completed_cart_id);
 }
 ob_end_flush();
 ?>
