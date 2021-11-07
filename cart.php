@@ -144,6 +144,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 <link rel="stylesheet" href="assets/css/style.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="js/cart.js"></script>
+<script src="js/loadDeliveryAddress.js"></script>
 <div class="cartpage">
     <div class="container" id="cart_container">
 			
@@ -262,24 +263,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
                     <tbody>
                         <tr>
                            <td> 
-                                <div class="ecommerce-address billing-address saved-address">
-									<div class="radio-item address">
-										<input type="radio" id="address1" name="address" value="address1" checked>
-										<label for="address1">41/2,SRC Sunrise,2nd Floor, Post, Vivekanandha Nagar, Singanallur, Tamil Nadu 641005</label>
-										<br>
-										<a href="#" class="btn btn-link btn-underline btn-icon-right" style="color: #E0522D;text-transform: inherit;">Edit</a>
-									</div>
-										<hr>
-									<div class="radio-item address">
-										<input type="radio" id="address2" name="address" value="address2">
-										<label for="address2">358 Pudur Coimbatore Coimbatore Tamil Nadu 641015 India</label>
-										<br>
-									</div>
-									<div class="radio-item address">
-										<input type="radio" id="address3" name="address" value="address3">
-										<label for="address3">358 Pudur Coimbatore Coimbatore Tamil Nadu 641015 India</label>
-										<br>
-									</div>
+                                <div class="ecommerce-address billing-address saved-address" id="loadalldeliveryaddress">
                                 </div>
                             </td>
                         </tr>
@@ -529,6 +513,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
         var discount_amt = "<?php echo $disc_amount; ?>";
 	    payementMethod = 1;
         loadCustomerSelectedItems();
+		loadAllDeliveryAddress();
         loadCartCount(cus_cart_id);
 		let date = new Date();
 		var today = new Date();
