@@ -6,7 +6,7 @@ include("../database.php");
 
 $user_id = $_SESSION['user_id'];
 
-$query = "select customer_name, contact_no, email_addr from kot_customer_details where id = $user_id;
+$query = "select id, customer_name, contact_no, email_addr from kot_customer_details where id = $user_id";
 
 $result = mysqli_query($conn, $query);
 
