@@ -24,6 +24,7 @@ include('main.php');
 .address:before	{	content: "";    background: url(assets/images/location_icon.png) no-repeat;    width: 20px;    height: 20px;    position: absolute;    display: inline-block;    left: -30px;	}
 #popup2 .popup {    background-color: #fff;    padding: 3% 3% 3%;    border-radius: 0;	}
 </style>
+<script src="js/loadProfileDetails.js"></script>
 <div class="page-content account_sec">
                 <div class="container">
 					<h2 class="title title-center">My Account</h2>
@@ -36,7 +37,7 @@ include('main.php');
                                 <a href="#address-book" class="nav-link">Address Book</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#profile" class="nav-link">Profile</a>
+                                <a href="#profile" class="nav-link" onclick="load_profile_details();">Profile</a>
                             </li>
                         </ul>
 
@@ -144,7 +145,7 @@ include('main.php');
                             </div>
 
                             <div class="tab-pane" id="profile">
-                                <form class="form account-details-form" action="#" method="post">
+                                <form class="form account-details-form" action="api/update_profile_details.php" method="post">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
