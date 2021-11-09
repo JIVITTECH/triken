@@ -1,4 +1,9 @@
 <?php
+
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, DELETE');
+header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, X-Token-Auth, Authorization');
+
 include("../database.php");
 if ($_GET["action"] == "get_top_categories") {
     $branch_id = $_GET["branch_id"];
