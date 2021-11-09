@@ -1,0 +1,1 @@
+alter table kot_customer_details add (last_name VARCHAR(255) default NULL);
