@@ -145,6 +145,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="js/cart.js"></script>
 <script src="js/loadDeliveryAddress.js"></script>
+<script src="js/saveDeliveryAddress.js"></script>
 <div class="cartpage">
     <div class="container" id="cart_container">
 			
@@ -319,7 +320,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
                                             </div>
                                         </div>
                                     </div>
-                                  <input type="checkbox" class="filled-in" id="filled-in-box" name="" checked>
+                                  <input type="checkbox" class="filled-in" id="filled-in-box" name="" onclick="saveNewDeliveryAddress()">
 								<label for="filled-in-box">Save Address</label>
                                 </form>
                             </td>
@@ -363,9 +364,8 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 				<div class="row delivery_at">
 					<div class="col-lg-6">
 					<h4>Delivery at</h4>
-					<p>41/2,SRC Sunrise,2nd Floor, Post, 
-					Vivekanandha Nagar, Singanallur, 
-					Tamil Nadu 641005</p>
+					<p id="load_current_del_address">
+					</p>
 					</div>
 					<div class="col-lg-6">
 					<h4>Delivery Slot</h4>
@@ -514,6 +514,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 	    payementMethod = 1;
         loadCustomerSelectedItems();
 		loadAllDeliveryAddress();
+		getCurrentDeliveryAddress();
         loadCartCount(cus_cart_id);
 		let date = new Date();
 		var today = new Date();
