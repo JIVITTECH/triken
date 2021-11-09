@@ -113,8 +113,8 @@
                 </div>
                 <div class="submenu">
                     <div class="container">
-                <div class="category-wrapper row cols-12">
-                    <div class="category <?php if ($page=='Country Chicken'|| $category=='Country Chicken') {echo "active";}?>"  >
+                <div class="category-wrapper row cols-12" id="top_container">
+<!--                    <div class="category <?php // if ($page=='Country Chicken'|| $category=='Country Chicken') {echo "active";}?>"  >
                             <figure class="category-media">
                                 <a href="country_chicken.php">
                                     <img src="assets/images/countrychicken.svg" alt="Country Chicken" >
@@ -169,7 +169,7 @@
                                     <h4 class="category-name"> Party Packages </h4>
                             </a>
                         </figure>
-                    </div>
+                    </div>-->
                 </div> 
             </div>
                 </div>
