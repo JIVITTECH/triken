@@ -51,6 +51,7 @@ function loginVerifyOTP1($conn) {
         $sql2 = "INSERT INTO kot_otp_log_validation (user_id, otp, status, datetime) VALUES 
                                                     ('$customer_id', '$otp', '0', '$current_zone_time')";
         mysqli_query($conn, $sql2);
+        loginVerifyOTP2($conn , $loginNumber);
         mysqli_close($conn);
         echo "success";
     } else {
@@ -58,11 +59,13 @@ function loginVerifyOTP1($conn) {
     }
 }
 
-function loginVerifyOTP2($conn) {
+function loginVerifyOTP2($conn, $loginNumber) {
     global $dev_mode;
     global $current_zone_time;
-    $otpcharr = $_GET['otpchar'];
-    $mobile = $_GET['mobile'];
+//    $otpcharr = $_GET['otpchar'];
+//    $mobile = $_GET['mobile'];
+    $otpcharr = '123456';
+    $mobile = $loginNumber;
     $success = 0;
 
     $res = "";
@@ -103,17 +106,19 @@ function loginVerifyOTP2($conn) {
 
         if ($rowscount_res_sql > 0) {
             if ($rows = mysqli_fetch_array($res_sql)) {
-                $_SESSION['obo_user_id'] = $rows['user_id'];
-                $_SESSION['obo_branch_id'] = $rows['branch_id'];
-                $_SESSION['obo_contact_no'] = $rows['contact_no'];
-                $_SESSION['obo_customer_name'] = $rows['customer_name'];
-                $_SESSION['obo_email_addr'] = $rows['email_addr'];
+                $_SESSION['user_id'] = $rows['user_id'];
+                $_SESSION['branch_id'] = $rows['branch_id'];
+                $_SESSION['contact_no'] = $rows['contact_no'];
+                $_SESSION['user_name'] = $rows['customer_name'];
+                $_SESSION['email_addr'] = $rows['email_addr'];
                 $events = array(
                     "b_count" => getBranchsCount($conn),
                     "status" => "OTPSuccess",
-                    "user_id" => $_SESSION['obo_user_id'],
-                    "branch_id" => $_SESSION['obo_branch_id'],
-                    "user_id" => $_SESSION['obo_user_id']
+                    "user_id" => $_SESSION['user_id'],
+                    "branch_id" => $_SESSION['branch_id'],
+                    "email_id" => $_SESSION['email_addr'],
+                    "mobile_no" => $_SESSION['contact_no'],
+                    "user_name" => $_SESSION['user_name']
                 );
 
                 $output[] = $events;

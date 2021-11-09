@@ -182,7 +182,7 @@
     <!--<section class="submenu sticky-content fix-top sticky-header border-no">
             <div class="container">
                 <div class="category-wrapper row cols-12">
-                    <div class="category <?php if ($page=='Country Chicken'|| $category=='Country Chicken') {echo "active";}?>"  >
+                    <div class="category <?php // if ($page=='Country Chicken'|| $category=='Country Chicken') {echo "active";}?>"  >
                             <figure class="category-media">
                                 <a href="country_chicken.php">
                                     <img src="assets/images/countrychicken.svg" alt="Country Chicken" >
@@ -241,7 +241,7 @@
                 </div> 
             </div>
     </section> -->
-
+</main>
 <div id="popup1" class="overlay">
     <div class="popup">
          <a class="close" href="#">&times;</a>
