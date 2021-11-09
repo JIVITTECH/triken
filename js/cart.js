@@ -105,8 +105,8 @@
                                             "<td class='product-quantity'>" +
                                             "<div class='input-group'>" +
                                             "<input id = 'qty_" + myObj[i].menu_id  + "' class='quantity form-control' type='number'  value = '" + myObj[i].quantity + "' readonly>"  +
-                                            "<button class='quantity-plus w-icon-plus' href='#' onclick='IncreaseItemQuantity(" + myObj[i].menu_id + "," + myObj[i].per_unit_price + "," + myObj[i].quantity + "," + myObj[i].cart_item_id + "," + myObj[i].packing_charge + ")' ></button>" +
-                                            "<button class='quantity-minus w-icon-minus' href='#' onclick='redQty(" + myObj[i].menu_id + "," + myObj[i].per_unit_price + "," + myObj[i].quantity + "," + myObj[i].cart_item_id + "," + myObj[i].packing_charge + ")' ></button>" +
+                                            "<button type='button' class='quantity-plus w-icon-plus' href='#' onclick='IncreaseItemQuantity(" + myObj[i].menu_id + "," + myObj[i].per_unit_price + "," + myObj[i].quantity + "," + myObj[i].cart_item_id + "," + myObj[i].packing_charge + ")' ></button>" +
+                                            "<button type='button' class='quantity-minus w-icon-minus' href='#' onclick='redQty(" + myObj[i].menu_id + "," + myObj[i].per_unit_price + "," + myObj[i].quantity + "," + myObj[i].cart_item_id + "," + myObj[i].packing_charge + ")' ></button>" +
                                             "</div>" +
                                             "<span class='remove' onclick='redQty(" + myObj[i].menu_id + "," + myObj[i].per_unit_price + ",1," + myObj[i].cart_item_id + "," + myObj[i].packing_charge + ")'> <a href=''> Remove </a> </span>" +
                                             "</td>" +
