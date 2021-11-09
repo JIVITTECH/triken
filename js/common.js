@@ -1,5 +1,5 @@
 var branch_id = 1;
-var customer_id = "-1";
+var customer_id = 1;
 var cus_cart_id = 404;
          
 var item_list_array = []; // Global item list array
@@ -57,6 +57,7 @@ function saveItemDetails(menu_id, customer_id, amount, item_name, pkg_charge) {
 			//document.getElementById("cart_count").innerHTML = "(" + item_array_length + ")";
 		}
 		loadItemsFromCart();
+		loadCartData();
 	}
 }
 
@@ -76,6 +77,7 @@ function addToCart(menu_id, customer_id, price, name, pkg_charge) {
 				if(+menu_id === +arr1.item_id){
 					loadItemsFromCart();
 				}
+				loadCartData();
 				//loadCartCount(cart_id);
 			}
 		}
@@ -120,8 +122,8 @@ function loadItemsFromCart() {
 	}
 }
 
-function redQty(menu_id, price, name, pkg_charge,flag) {
-	if (customer_id !== -1) {
+function redQty(menu_id, customer_id,price, name, pkg_charge,flag) {
+	if (customer_id === -1) {
 		removeFromCart(menu_id, customer_id, price, name, pkg_charge,flag);// remove the items from cart directly 
 	} else {
 		for (var i = 0; i < item_list_array.length; i++) {
@@ -139,6 +141,7 @@ function redQty(menu_id, price, name, pkg_charge,flag) {
 				}
 				$.cookie("item_list", JSON.stringify(item_list_array));
 				loadItemsFromCart();
+				loadCartData();
 				break;
 			}
 		}		
@@ -163,6 +166,58 @@ function removeFromCart(menu_id, customer_id, price, name, pkg_charge,flag) {
 				if(+menu_id === +arr1.item_id){
 					loadItemsFromCart();
 				}
+				loadCartData();
+				//loadCartCount(cart_id);
+			}
+		}
+	};
+}
+
+function redQtyFromCart(menu_id, customer_id,price, name, pkg_charge,flag,quanity) {
+	if (customer_id === -1) {
+		removeFromCartIcon(menu_id, customer_id, price, name, pkg_charge,flag,quanity);// remove the items from cart directly 
+	} else {
+		for (var i = 0; i < item_list_array.length; i++) {
+
+			if (item_list_array[i].menu_id === menu_id) {
+				if(flag === 1){
+					item_list_array[i].quantity = 0;
+					if(item_list_array[i].quantity === 0){
+						item_list_array.pop(item_list_array[i]);
+					}
+				}
+				item_list_array[i].quantity = +total_qty - 1;
+				if(item_list_array[i].quantity === 0){
+					item_list_array.pop(item_list_array[i]);
+				}
+				$.cookie("item_list", JSON.stringify(item_list_array));
+				loadItemsFromCart();
+				loadCartData();
+				break;
+			}
+		}		
+	}
+}
+	
+function removeFromCartIcon(menu_id, customer_id, price, name, pkg_charge,flag,quanity) {
+	var qty = quanity - 1;
+	if(flag === 1){
+	   qty = 0;
+	}
+	var xmlhttp = new XMLHttpRequest();
+	var url = "api/add_or_remove_item_in_cart.php?menu_id=" + menu_id + "&customer_id=" + customer_id + "&quantity=" + qty + "&branch=" + branch_id + "&price=" + price + "&cus_cart_id=" + cus_cart_id + "&name=" + encodeURIComponent(name) + "&pkg_charge=" + pkg_charge + "&action=remove_item_from_cart";
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+	xmlhttp.onreadystatechange = function () {
+		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+			var myObj = xmlhttp.responseText;
+			if (myObj !== "") {
+				var arr1 = getAllUrlParams((window.location).toString());
+	            var menu_id = arr1.item_id;
+				if(+menu_id === +arr1.item_id){
+					loadItemsFromCart();
+				}
+				loadCartData();
 				//loadCartCount(cart_id);
 			}
 		}

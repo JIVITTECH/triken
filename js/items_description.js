@@ -67,7 +67,8 @@ function loadItemsDescription() {
 					document.getElementById("specifications_div_2").innerHTML = specifications_div_2;
 					document.getElementById("specifications_div_1").innerHTML = specifications_div_1;
 					document.getElementById("images_tag").innerHTML = related_images_tag;
-					document.getElementById("item_name").innerHTML = myObj[i].name;
+					//document.getElementById("item_name").innerHTML = myObj[i].name;
+					document.getElementById("sel_name").innerHTML = myObj[i].name;
 					document.getElementById("gross_weight").innerHTML = myObj[i].gross_weight + " " + myObj[i].measure;
 					document.getElementById("net_weight").innerHTML = myObj[i].net_weight + " " +  myObj[i].measure ;
 					document.getElementById("product_des").innerHTML = myObj[i].description;
@@ -88,6 +89,7 @@ function loadItemsDescription() {
 					document.getElementById("product_price").innerHTML = discount_price;
 				}
 				loadItemsFromCart();
+				loadCartData();
 			} else {
 				$('#item_container').append("<center>No Items found</center>");
             }
@@ -144,7 +146,7 @@ function loadAllRelatedItems() {
 															"</div>" +
 														"</figure>" +
 														"<div class='product-details'>" +
-															"<h3 class='single-product-name'> <a href='#'>" + myObj[i].name + "</h3>" +
+															"<h3 class='product-name'> <a href='#'>" + myObj[i].name + "</h3>" +
 															"<div class='row prod_quant'>" +
 																"<div class='product-cat col-md-6'>Net wt: " + myObj[i].net_weight + " " + myObj[i].measure + " </div>" +
 																"<div class='product-cat col-md-6'>Delivery: " + myObj[i].delivery_time + " mins</div>" +
@@ -153,7 +155,7 @@ function loadAllRelatedItems() {
 																"<div class='col-md-8 product-price'>" +
 																	"<ins class='new-price'>" + discount_price + "</ins>" +
 																"</div>" +
-																"<div class='col-md-4'><a onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ")' href='#' class='add_cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
+																"<div class='col-md-4'><a onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ")' href='#' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
 															"</div>" +
 														"</div>" +
 													"</div>" +

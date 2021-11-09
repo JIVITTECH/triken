@@ -36,6 +36,7 @@
 
 	    <!-- Vendor CSS -->
 	    <link rel="stylesheet" type="text/css" href="assets/vendor/fontawesome-free/css/all.min.css">
+		<script src="js/header.js"></script>
 
 	    <!-- Plugins CSS -->
 	    <link rel="stylesheet" type="text/css" href="assets/vendor/swiper/swiper-bundle.min.css">
