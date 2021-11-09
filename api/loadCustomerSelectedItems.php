@@ -148,7 +148,8 @@ if ($distance <= $radius) {
        pma.net_weight,
        pma.gross_weight,
        pma.delivery_time,
-       pm.measure
+       pm.measure,
+       pm.disc_per
        FROM 
        obo_cart_details ocd
        LEFT JOIN obo_cart_item_details ocid
@@ -189,7 +190,8 @@ if ($distance <= $radius) {
             "delivery_time" => "$rows[delivery_time]",
             "gross_weight" => "$rows[gross_weight]",
             "net_weight" => "$rows[net_weight]",
-			"measure" => "$rows[measure]"
+	    "measure" => "$rows[measure]",
+            "disc_per" => "$rows[disc_per]"
         );
         $output[] = $events;
 
