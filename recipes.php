@@ -5,9 +5,9 @@ $pageRobots = 'index,nofollow';
 $image = ' ';
 $pageCanonical = '';
 $url = ' ';
-$page ="Recipes & Tips";
 include('header.php');
 include('main.php');
+$page ="Recipes & Tips";
 ?>
 
 <?php include('breadcrumb.php'); ?>

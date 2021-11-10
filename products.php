@@ -5,9 +5,9 @@
     $image = ' '; 
     $pageCanonical = '';
     $url = ' '; 
-    $page ="Country Chicken";
     include('header.php');
     include('main.php');
+	$page ="Products";
 ?> 
 
 <?php include('breadcrumb.php'); ?>

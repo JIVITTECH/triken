@@ -5,9 +5,9 @@
     $image = ' '; 
     $pageCanonical = '';
     $url = ' '; 
-    $page ="Best Seller";
     include('header.php');
     include('main.php');
+    $page ="Best Seller";
 ?> 
 
 <?php include('breadcrumb.php'); ?>

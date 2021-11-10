@@ -5,9 +5,9 @@
     $image = ' '; 
     $pageCanonical = '';
     $url = ' '; 
-    $page ="Search";
     include('header.php');
     include('menu.php');
+    $page ="Search";
 ?> 
 
 <style>
