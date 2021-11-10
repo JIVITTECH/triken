@@ -21,6 +21,8 @@
 							grand_sub_total = 0;
 							pkg_price = 0;
 							var cart_count = myObj.length;
+							document.getElementById("cart_count").innerHTML = cart_count;
+			
 							for (var i = 0; i < myObj.length; i++) {
 								var cover_photo = myObj[i].image;
 								var image_path = "";
@@ -116,6 +118,7 @@
 		if ($.cookie("item_list") !== undefined) {
 			var item_list = $.parseJSON($.cookie("item_list"));
 			$.cookie("item_list", JSON.stringify(item_list));
+			document.getElementById("cart_count").innerHTML = item_list.length;
 			for (var i = 0; i < item_list.length; i++) {
 				var items = "";
 				var menu_id = item_list[i].menu_id;

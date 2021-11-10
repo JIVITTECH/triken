@@ -36,7 +36,7 @@
                                 <div class="cart-overlay"></div>
                                 <a href="#" class="cart-toggle label-down link">
                                     <i class="fa fa-shopping-cart" aria-hidden="true">
-                                        <span class="cart-count" id="cart_count">0</span>
+                                        <span class="cart-count" id="cart_count"></span>
                                     </i>
                                     <span class="cart-label">Cart</span>
                                 </a>
