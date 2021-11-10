@@ -1,5 +1,5 @@
 <?php
-include_once '../config/database.php';
+include_once '../database.php';
 
 function getOtp($conn, $code, $mobile, $sender_id, $branch_id, $customer_id, $section, $orderId) {
     $n = 6;

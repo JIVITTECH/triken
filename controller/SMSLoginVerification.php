@@ -6,7 +6,7 @@
 $dev_mode = 1;
 
 /* Login Verification */
-include("../config/database.php");
+include("../database.php");
 include("./SMSSend.php");
 
 if ($_GET["action"] == "loginValid1") {
@@ -51,6 +51,7 @@ function loginVerifyOTP1($conn) {
         $sql2 = "INSERT INTO kot_otp_log_validation (user_id, otp, status, datetime) VALUES 
                                                     ('$customer_id', '$otp', '0', '$current_zone_time')";
         mysqli_query($conn, $sql2);
+        error_log($sql2);
         loginVerifyOTP2($conn , $loginNumber);
         mysqli_close($conn);
         echo "success";
@@ -112,7 +113,6 @@ function loginVerifyOTP2($conn, $loginNumber) {
                 $_SESSION['user_name'] = $rows['customer_name'];
                 $_SESSION['email_addr'] = $rows['email_addr'];
                 $events = array(
-                    "b_count" => getBranchsCount($conn),
                     "status" => "OTPSuccess",
                     "user_id" => $_SESSION['user_id'],
                     "branch_id" => $_SESSION['branch_id'],
@@ -125,12 +125,10 @@ function loginVerifyOTP2($conn, $loginNumber) {
 
                 $res = json_encode($output);
                 echo $res;
-                getUserCartDetails($conn, $_SESSION['obo_user_id']);
             }
         }
     } else if ($success == 1) {
         $events = array(
-            "b_count" => getBranchsCount($conn),
             "status" => "OTPExpired"
         );
 
@@ -142,41 +140,6 @@ function loginVerifyOTP2($conn, $loginNumber) {
         }
         echo $res;
     }
-}
-
-function getBranchsCount($conn) {
-    $sql_branch_count = "SELECT count(1) as count FROM kot_branch_details";
-    $qry_branch_count = mysqli_query($conn, $sql_branch_count);
-
-    while ($rows = mysqli_fetch_array($qry_branch_count)) {
-        $events = array("count" => "$rows[count]");
-    }
-
-    $rows = $events["count"];
-
-    return $rows;
-}
-
-function getUserCartDetails($conn, $userid) {
-    $cus_cart_id = 0;
-    $sql_cart_id = "SELECT * FROM obo_cart_details "
-            . "WHERE customer_id = $userid "
-            . "AND order_placed= 'N' ORDER BY cart_id DESC LIMIT 1";
-    $res_cart_id = mysqli_query($conn, $sql_cart_id);
-
-    $cart_count = mysqli_num_rows($res_cart_id);
-
-    if ($cart_count > 0) {
-        if ($rows_cart_id = mysqli_fetch_array($res_cart_id)) {
-            $cus_cart_id = $rows_cart_id['cart_id'];
-        }
-    } else {
-        $sqlfs = "INSERT into obo_cart_details(customer_id) VALUES($userid)";
-        $result = mysqli_query($conn, $sqlfs);
-        $cart_id = mysqli_insert_id($conn);
-        $cus_cart_id = $cart_id;
-    }
-    $_SESSION['obo_cart_id'] = $cus_cart_id;
 }
 
 ?>

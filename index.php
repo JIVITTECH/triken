@@ -209,6 +209,7 @@ var cus_cart_id = 404;
 //                    timerId = setInterval(countdown, 1000);
                 } else {
                     console.log(this.responseText);
+                    alert(this.responseText);
                     document.getElementById('login_dialog').style.display = 'none';
 //                    document.getElementById('idConfigDialog_sign1').style.display = 'none';
 //                    document.getElementById('idConfigDialog_signup').style.display = 'block';

@@ -5,7 +5,7 @@
 //$dev_mode = 1;
 
 /* User Registraion */
-include("../config/database.php");
+include("../database.php");
 include("./SMSSend.php");
 
 if ($_GET["action"] == "register") {
