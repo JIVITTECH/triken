@@ -7,7 +7,13 @@
     $url = ' '; 
     include('header.php');
 ?> 
+<!--Customize CSS-->
+    <script src="js/sendSMSToCustomer.js" type="text/javascript"></script>
 
+        <!-- jquery js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="js/GeoLocationMapping.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <body>
     <div class="page-wrapper">
     	<div class="main">
@@ -154,7 +160,7 @@ $(document).ready(function () {
     loadTopCategories('1');
     loadLtdDealsOfTheDay();
     loadLtdBestSellingProducts();
-	loadAllRecipes();
+    loadAllRecipes();
 });
 
 var branch_id = 1;
@@ -179,6 +185,47 @@ var cus_cart_id = 404;
         });
 
     });
+    
+        function loginValid() {
+        var loginNumber = "";
+        loginNumber = document.getElementById('phone').value;
+        if (loginNumber === "") {
+            loginNumber = document.getElementById('phone').value;
+        }
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                
+                if (this.responseText === "success") {
+                    document.getElementById('login_dialog').style.display = 'none';
+//                    document.getElementById('otp').focus();
+//                    document.getElementById('phone_number').innerHTML = loginNumber;
+//                    mobile = loginNumber;
+//                    timeLeft = 60;
+//                    document.getElementById('timer').style.display = 'block';
+//                    document.getElementById('resetotp').style.display = 'none';
+//                    elem = document.getElementById('timer');
+//                    timerId = setInterval(countdown, 1000);
+                } else {
+                    console.log(this.responseText);
+                    alert(this.responseText);
+                    document.getElementById('login_dialog').style.display = 'none';
+//                    document.getElementById('idConfigDialog_sign1').style.display = 'none';
+//                    document.getElementById('idConfigDialog_signup').style.display = 'block';
+//                    document.getElementById('phone').value = loginNumber;
+//                    if ($.cookie("item_list") !== undefined) {
+//                        document.getElementById('skip_button_signup').style.display = 'none';
+//                    }
+                }
+            }
+        };
+
+        var url = "controller/SMSLoginVerification.php?action=loginValid1&loginNumber=" + loginNumber;
+        xhttp.open("GET", url, true);
+        xhttp.send();
+    }
+
 
 </script>
 

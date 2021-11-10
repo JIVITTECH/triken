@@ -16,6 +16,9 @@ if ($conn->connect_error) {
 }
 mysqli_set_charset($conn, "utf8");
 
+//current date/time
+date_default_timezone_set("Asia/Kolkata");
+$current_zone_time = date("Y-m-d H:i:s");
 
 
 ?>
