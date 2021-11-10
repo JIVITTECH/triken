@@ -27,15 +27,24 @@ function loginVerifyOTP1($conn) {
     $orderId = 0;
     $rows = [];
     $events = [];
-    //Verify the user already exists or not
-    $sql1 = "SELECT id as cus_id FROM kot_customer_details WHERE contact_no='$loginNumber'";
+    
+	$sql1 = "SELECT id as cus_id FROM kot_customer_details WHERE contact_no='$loginNumber'";
     $qry_result1 = mysqli_query($conn, $sql1);
-    while ($rows = mysqli_fetch_array($qry_result1)) {
-        $events = array("cus_id" => "$rows[cus_id]");
-    }
-    $customer_id = $events["cus_id"];
-
-    $getBranchid = "SELECT branchId FROM kot_customer_details WHERE contact_no='$loginNumber'";
+	$cnt = mysqli_num_rows($qry_result1);
+	
+	if($cnt > 0){ 
+		while ($rows = mysqli_fetch_array($qry_result1)) {
+			$events = array("cus_id" => "$rows[cus_id]");
+		}
+		$customer_id = $events["cus_id"];
+    }else{
+		 $sql2 = "INSERT INTO kot_customer_details (contact_no,branchId) VALUES 
+                                         ('$loginNumber',1)";
+        $qry_result2 = mysqli_query($conn, $sql2);
+        $customer_id = mysqli_insert_id($conn);
+	}
+    
+	$getBranchid = "SELECT branchId FROM kot_customer_details WHERE contact_no='$loginNumber'";
     $resBranch = mysqli_query($conn, $getBranchid);
     while ($rows_qry = mysqli_fetch_array($resBranch)) {
         $branch_id = $rows_qry['branchId'];
@@ -47,12 +56,10 @@ function loginVerifyOTP1($conn) {
         } else {
             $otp = "123456";
         }
-        //kot_otp_log_validation
         $sql2 = "INSERT INTO kot_otp_log_validation (user_id, otp, status, datetime) VALUES 
                                                     ('$customer_id', '$otp', '0', '$current_zone_time')";
         mysqli_query($conn, $sql2);
-        error_log($sql2);
-        loginVerifyOTP2($conn , $loginNumber);
+       // loginVerifyOTP2($conn , $loginNumber);
         mysqli_close($conn);
         echo "success";
     } else {

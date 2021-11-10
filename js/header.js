@@ -174,4 +174,27 @@
 	}
 }
 
-        
+
+	function loginValid() {
+        var loginNumber = "";
+        loginNumber = document.getElementById('phone').value;
+        if (loginNumber === "") {
+            loginNumber = document.getElementById('phone').value;
+        }
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                
+                if (this.responseText === "success") {
+                    document.getElementById('login_dialog').style.display = 'none';
+                } else {
+                    document.getElementById('login_dialog').style.display = 'none';
+                }
+            }
+        };
+
+        var url = "api/SMSLoginVerification.php?action=loginValid1&loginNumber=" + loginNumber;
+        xhttp.open("GET", url, true);
+        xhttp.send();
+    }
