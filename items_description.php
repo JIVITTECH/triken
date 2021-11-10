@@ -39,7 +39,7 @@
 		            <div class="col-md-6 mb-4 mb-md-6">
 		                <div class="product-details">
 		                    <label class="product-label label-discount best" id="best_seller_tag" style="margin-right:10px;">Best Seller</label><span class="product-cat" id="item_name"></span>
-		                    <h1 class="product-title"> <?php echo "$page"; ?> </h1>
+		                    <h1 class="product-title"><span class="sel_name" id="sel_name"></span> </h1>
 		 						<div class="row prod_quant">
 									<ul class="product-cat">
 										<li> Net wt: <b> <span id="net_weight"></span> </b> </li>

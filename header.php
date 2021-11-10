@@ -36,6 +36,7 @@
 
 	    <!-- Vendor CSS -->
 	    <link rel="stylesheet" type="text/css" href="assets/vendor/fontawesome-free/css/all.min.css">
+		<script src="js/header.js"></script>
 
 	    <!-- Plugins CSS -->
 	    <link rel="stylesheet" type="text/css" href="assets/vendor/swiper/swiper-bundle.min.css">
@@ -61,6 +62,12 @@
 					loadCookieData();
 				}
 			});
+			
+			function imgError(image) {
+				image.onerror = "";
+				image.src = "images/default.jpg";
+				return true;
+			}
 
 		    function loadCookieData(){
 				item_list_array = [];

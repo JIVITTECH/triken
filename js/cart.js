@@ -130,14 +130,7 @@
 		xhttp.send();
 	}
 
-
-	function imgError(image) {
-		image.onerror = "";
-		image.src = "images/default.jpg";
-		return true;
-	}
-
-   		
+	
     function IncreaseItemQuantity(menu_id, price, quantity, cart_item_id, packing_charge) {
 		var arr1 = getAllUrlParams((window.location).toString());
 		var cart_id = cus_cart_id;

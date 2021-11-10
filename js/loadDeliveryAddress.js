@@ -12,13 +12,13 @@ function loadAllDeliveryAddress() {
 			 	for (var i = 0; i < myObj.length; i++) {
 					if (myObj[i].current_address == "Y") {
 					   information = information + "<div class='radio-item address'>" +
-					                                   "<input type='radio' id='address" + i + "'" + "name='address' value='address" + i + "'" + " checked>" +
+					                                   "<input type='radio' id='address" + i + "'" + "name='address' value='address" + i + "'" + "onclick = updateCurrentDeliveryAddress(" + myObj[i].delivery_add_id + ") checked>" +
 												       "<label for='address" + i + "'>" + myObj[i].delivery_address + "</label>" +
 													   "<br>"+
 												   "</div>";
 					} else {
 					   information = information + "<div class='radio-item address'>" +
-					                                   "<input type='radio' id='address" + i + "'" + "name='address' value='address" + i + "'>" +
+					                                   "<input type='radio' id='address" + i + "'" + "name='address' value='address" + i + "'" + "onclick = updateCurrentDeliveryAddress(" + myObj[i].delivery_add_id + ") >" +
 												       "<label for='address" + i + "'>" + myObj[i].delivery_address + "</label>" +
 													   "<br>" +
 												   "</div>";
@@ -48,8 +48,8 @@ function getCurrentDeliveryAddress() {
 					information = myObj[i].delivery_address; 	
 				}
 	        }
+			$('#load_current_del_address').empty();
+			$('#load_current_del_address').append(information);
 		}
 	};
-
-	return information;
 }
