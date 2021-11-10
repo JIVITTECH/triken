@@ -31,7 +31,6 @@
                             </div>
                             <a href="login.php" id="login" class="login sign-in"> <i class="fa fa-user-circle" aria-hidden="true"></i>
      <span class="htext">Log In/Sign Up</span></a>
-                            <!--<a href="otp.php" class="login sign-in hidden-sm">OTP</a>-->
                             <div class="dropdown cart-dropdown mr-0 mr-lg-2">
                                 <div class="cart-overlay"></div>
                                 <a href="#" class="cart-toggle label-down link">
@@ -55,8 +54,10 @@
                                         <a onclick ="checkUserSession()" class="btn btn-primary  btn-rounded">Checkout</a>
                                     </div>
                                 </div>
+								<input type="hidden" id="contact_no">
                                 <!-- End of Dropdown Box -->
                             </div>
+						 <a href="otp.php" id="otp_btn" class="login sign-in hidden-sm"></a>
                         </div>
                     </div>
                 </div>

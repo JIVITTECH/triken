@@ -176,12 +176,112 @@
 	}
 }
 
+var mobile = "";
+
+function loginValid() {
+	var loginNumber = "";
+	loginNumber = document.getElementById('phone').value;
+	if (loginNumber === "") {
+		loginNumber = document.getElementById('phone').value;
+		mobile = loginNumber;
+	}
+	document.getElementById('contact_no').value = loginNumber;	
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function () {
+		if (this.readyState === 4 && this.status === 200) {
+			
+			if (this.responseText === "success") {
+				document.getElementById('login_dialog').style.display = 'none';
+				document.getElementById('otp_btn').click();
+			} else {
+				document.getElementById('login_dialog').style.display = 'none';
+			}
+		}
+	};
+
+	var url = "api/SMSLoginVerification.php?action=loginValid1&loginNumber=" + loginNumber;
+	xhttp.open("GET", url, true);
+	xhttp.send();
+}
 
 function checkUserSession(){
 	if (customer_id !== -1) {
 		window.location.href = "cart.php?branch_id=" + branch_id;
 	} else { 
-	    document.getElementById('login').click();	
+		document.getElementById('login').click();	
 	}
 }
+
+function verifyOTP() {
+	if (!OTPVerification()) {
+		return;
+	}
+	var arr1 = getAllUrlParams((window.location).toString());
+	var otpchar = document.getElementById('otp').value;
+	var mobile = document.getElementById('contact_no').value;
+	var bcount = "";
+	var status = "";
+	var customer_id =  "";
+	if (otpchar.trim().length === 0) {
+		document.getElementById('otp').style.backgroundColor = '#efefc1';
+		document.getElementById('otp').title = 'Enter the Valid OTP';
+		return;
+	} else {
+		document.getElementById('otp').style.backgroundColor = '#f2f2f2';
+		document.getElementById('otp').title = '';
+	}
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function () {
+		if (this.readyState === 4 && this.status === 200) {
+			var myObj = JSON.parse(this.responseText);
+			if (myObj.length > 0) {
+				bcount = myObj[0].b_count;
+				status = myObj[0].status;
+				customer_id = myObj[0].user_id;
+			}
+			if (status === "OTPSuccess") {
+				document.getElementById('otp_dialog').style.display = 'none';
+				window.location.href = "my-account.php";
+			} 
+		}
+	};
+
+	var url = "api/SMSLoginVerification.php?action=loginValid2&otpchar=" + otpchar + "&mobile=" + mobile;
+	xhttp.open("GET", url, true);
+	xhttp.send();
+}
+
+function OTPVerification() {
+	var valid = true;
+	var otp = document.getElementById('otp').value;
+
+	if (otp.trim().length === 0) {
+		document.getElementById('otp').style.backgroundColor = '#efefc1';
+		document.getElementById('otp').title = 'Enter the Valid OTP';
+		valid = false;
+	} else {
+		document.getElementById('otp').style.backgroundColor = '#f2f2f2';
+		document.getElementById('otp').title = '';
+	}
+
+	return valid;
+
+}
+
         
+function resendOTP() {
+	document.getElementById('otp').value = '';
+	var mobile = document.getElementById('contact_no').value;
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function () {
+		if (this.readyState === 4 && this.status === 200) {
+			if (this.responseText === "success") {
+				
+			}
+		}
+	};
+
+	var url = "api/SMSLoginVerification.php?action=loginValid1&loginNumber=" + mobile;
+	xhttp.open("GET", url, true);
+	xhttp.send();
+}
