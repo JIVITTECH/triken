@@ -269,3 +269,19 @@ function OTPVerification() {
 }
 
         
+function resendOTP() {
+	document.getElementById('otp').value = '';
+	var mobile = document.getElementById('contact_no').value;
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function () {
+		if (this.readyState === 4 && this.status === 200) {
+			if (this.responseText === "success") {
+				
+			}
+		}
+	};
+
+	var url = "api/SMSLoginVerification.php?action=loginValid1&loginNumber=" + mobile;
+	xhttp.open("GET", url, true);
+	xhttp.send();
+}
