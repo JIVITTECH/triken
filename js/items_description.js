@@ -74,9 +74,9 @@ function loadItemsDescription() {
 					document.getElementById("product_des").innerHTML = myObj[i].description;
 					document.getElementById("delivery_time").innerHTML = myObj[i].delivery_time;
                     $('#video_link').append("<img src=" + myObj[i].video_path + ">");	
-					$('#add_sub').append("<button onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ")' class='quantity-plus w-icon-plus'></button>");
+					$('#add_sub').append("<button onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ",\"" + image_path + "\")' class='quantity-plus w-icon-plus'></button>");
 					$('#add_sub').append("<button onclick='redQty(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ",0)' class='quantity-minus w-icon-minus'></button>"); 
-					$('#add_to_cart').append("<button id='add_button' onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ")' class='btn btn-primary btn-cart'> <span>Add to Cart</span> </button>");
+					$('#add_to_cart').append("<button id='add_button' onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ",\"" + image_path + "\")' class='btn btn-primary btn-cart'> <span>Add to Cart</span> </button>");
 					$('#add_to_cart').append("<button id='remove_button' onclick='redQty(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ",1)' class='btn btn-primary btn-cart'> <span>Remove</span> </button>");
 					var discount_price = "";
 					if(myObj[i].disc_per !== ""){
@@ -155,7 +155,7 @@ function loadAllRelatedItems() {
 																"<div class='col-md-8 product-price'>" +
 																	"<ins class='new-price'>" + discount_price + "</ins>" +
 																"</div>" +
-																"<div class='col-md-4'><a onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ")' href='#' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
+																"<div class='col-md-4'><a onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ",\"" + image_path + "\")' href='#' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
 															"</div>" +
 														"</div>" +
 													"</div>" +

@@ -76,7 +76,7 @@
 														"<div class='product-qty-form mb-2 mr-2'>" +
 															"<div class='input-group'>" +
 																"<input class='quantity form-control' value =  " + myObj[i].quantity + " type='number' min='1' max='10000000'>" +
-																"<button onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ")'  class='quantity-plus w-icon-plus'></button>" +
+																"<button onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ",\"" + image_path + "\")'  class='quantity-plus w-icon-plus'></button>" +
 																"<button onclick='redQtyFromCart(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ",0," + myObj[i].quantity + ")'  class='quantity-minus w-icon-minus'></button>" +
 															"</div>" +
 															"<div class='price-box'>" +
@@ -95,7 +95,8 @@
 							}
 					} else
 					{
-						document.getElementById("cart_items_container").style.display = "none";
+						$('#cart_items_container').empty();
+						$('#cart_items_container').append("No Items Added");
 					}
 				}
 			};
@@ -103,4 +104,71 @@
 			xhttp.open("GET", url, true);
 			xhttp.send();
 		}
+		
+		
+	function loadCartDataFromCookie() {
+		$('#cart_items_container').empty();
+		item_list_array = [];
+		var information = "";
+		var grand_sub_total = 0;
+		var arr1 = getAllUrlParams((window.location).toString());
+		var branch_id = 1;
+		if ($.cookie("item_list") !== undefined) {
+			var item_list = $.parseJSON($.cookie("item_list"));
+			$.cookie("item_list", JSON.stringify(item_list));
+			for (var i = 0; i < item_list.length; i++) {
+				var items = "";
+				var menu_id = item_list[i].menu_id;
+				var sel_qty = item_list[i].quantity;
+				var price = item_list[i].price;
+				var item_name = item_list[i].item_name;
+				var pkg_charge = item_list[i].pkg_charge;
+				var image_path = item_list[i].image_path;
+				items = {
+					'menu_id': menu_id,
+					'price': price,
+					'quantity': sel_qty,
+					'item_name': item_name,
+					'pkg_charge' : pkg_charge,
+					'image_path' : image_path,
+				};
+				
+				var total_price = +sel_qty * +price;
+			    grand_sub_total = grand_sub_total + +total_price;
+				item_list_array.push(items);
+				information = information +  "<div class='product product-cart'>" +
+										"<figure class='product-media'>" +
+											"<a href='#'>" +
+												 "<a href='#'><img src = '" + image_path + "' onerror='imgError(this);' alt='Product'/> </a>" +
+											"</a>" +
+										"</figure>" +
+										"<div class='product-detail'>" +
+											"<a href='#' class='product-name'>" + item_name + "</a>" +
+											"<div class='product-qty-form mb-2 mr-2'>" +
+												"<div class='input-group'>" +
+													"<input class='quantity form-control' value =  " + sel_qty + " type='number' min='1' max='10000000'>" +
+													"<button onclick='saveItemDetails(" + menu_id + ", "  + customer_id +  "," + price +  ",\"" + item_name + "\", "  + pkg_charge +  ",\"" + image_path + "\")'  class='quantity-plus w-icon-plus'></button>" +
+													"<button onclick='redQtyFromCart(" + menu_id + ", "  + customer_id +  "," + price +  ",\"" + item_name + "\", "  + pkg_charge +  ",0," + sel_qty + ")'  class='quantity-minus w-icon-minus'></button>" +
+												"</div>" +
+												"<div class='price-box'>" +
+													"<span class='product-price'><ins class='new-price'>" + total_price + "</ins></span>" +
+												"</div>" +
+											"</div>" +
+										"</div>" +
+										"<button class='btn btn-link btn-close' aria-label='button'>" +
+											"<i class='fas fa-times'></i>" +
+										"</button>" +
+									"</div><hr class='product-divider'>";
+				$('#cart_items_container').empty();
+				$('#cart_items_container').append(information);
+				document.getElementById("subtotal_cart_container").innerHTML = "";
+				document.getElementById("subtotal_cart_container").innerHTML = (+grand_sub_total).toFixed(2);
+		}
+	}else
+	{
+		$('#cart_items_container').empty();
+		$('#cart_items_container').append("No Items Added");
+	}
+}
 
+        

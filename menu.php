@@ -42,11 +42,12 @@
                                 </a>
                                 <div class="dropdown-box">
                                     <div class="products" id="cart_items_container" style="height: 100% !important;">
+									  No Items Added
                                     </div>
     
                                     <div class="cart-total">
                                         <label>Subtotal:</label>
-                                        <span id="subtotal_cart_container" class="subtotal_cart_container">58.67</span>
+                                        <span id="subtotal_cart_container" class="subtotal_cart_container">0.00</span>
                                     </div>
     
                                     <div class="cart-action">
@@ -201,7 +202,11 @@
 		    
 			$(document).ready(function () {
 				var sel_elemt = document.getElementById("button_grp");
-				loadCartData();
+				if(customer_id !== -1){
+					loadCartData();
+				}else{
+					loadCartDataFromCookie();
+				}
 				if(sel_elemt){
 					loadItemsDescription();
 					document.getElementById("qty_in_cart").value = 0;

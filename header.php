@@ -62,6 +62,12 @@
 					loadCookieData();
 				}
 			});
+			
+			function imgError(image) {
+				image.onerror = "";
+				image.src = "images/default.jpg";
+				return true;
+			}
 
 		    function loadCookieData(){
 				item_list_array = [];
