@@ -36,17 +36,18 @@
                                 <div class="cart-overlay"></div>
                                 <a href="#" class="cart-toggle label-down link">
                                     <i class="fa fa-shopping-cart" aria-hidden="true">
-                                        <span class="cart-count" id="cart_count">0</span>
+                                        <span class="cart-count" id="cart_count"></span>
                                     </i>
                                     <span class="cart-label">Cart</span>
                                 </a>
                                 <div class="dropdown-box">
                                     <div class="products" id="cart_items_container" style="height: 100% !important;">
+									  No Items Added
                                     </div>
     
                                     <div class="cart-total">
                                         <label>Subtotal:</label>
-                                        <span id="subtotal_cart_container" class="subtotal_cart_container">58.67</span>
+                                        <span id="subtotal_cart_container" class="subtotal_cart_container">0.00</span>
                                     </div>
     
                                     <div class="cart-action">
@@ -201,7 +202,11 @@
 		    
 			$(document).ready(function () {
 				var sel_elemt = document.getElementById("button_grp");
-				loadCartData();
+				if(customer_id !== -1){
+					loadCartData();
+				}else{
+					loadCartDataFromCookie();
+				}
 				if(sel_elemt){
 					loadItemsDescription();
 					document.getElementById("qty_in_cart").value = 0;

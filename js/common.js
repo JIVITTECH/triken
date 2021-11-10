@@ -7,7 +7,7 @@ var quantity = 0; // Total item quanity selected by the user
 var replace_name = "";// selected replace name
             
 
-function saveItemDetails(menu_id, customer_id, amount, item_name, pkg_charge) {
+function saveItemDetails(menu_id, customer_id, amount, item_name, pkg_charge,image_path) {
     if (customer_id !== -1) {
 		addToCart(menu_id, customer_id, amount, item_name, pkg_charge);
 	} else {
@@ -32,7 +32,8 @@ function saveItemDetails(menu_id, customer_id, amount, item_name, pkg_charge) {
 						'price': amount,
 						'quantity': 1,
 						'item_name': item_name,
-						'pkg_charge': pkg_charge
+						'pkg_charge': pkg_charge,
+						'image_path' : image_path
 					};
 					item_list_array.push(items_list);
 					$.cookie("item_list", JSON.stringify(item_list_array));
@@ -48,7 +49,8 @@ function saveItemDetails(menu_id, customer_id, amount, item_name, pkg_charge) {
 				'price': amount,
 				'quantity': 1,
 				'item_name': item_name,
-				'pkg_charge': pkg_charge
+				'pkg_charge': pkg_charge,
+				'image_path' : image_path
 			};
 			item_list_array.push(items_list);
 			$.cookie("item_list", JSON.stringify(item_list_array));
@@ -57,7 +59,7 @@ function saveItemDetails(menu_id, customer_id, amount, item_name, pkg_charge) {
 			//document.getElementById("cart_count").innerHTML = "(" + item_array_length + ")";
 		}
 		loadItemsFromCart();
-		loadCartData();
+		loadCartDataFromCookie();
 	}
 }
 
@@ -123,7 +125,7 @@ function loadItemsFromCart() {
 }
 
 function redQty(menu_id, customer_id,price, name, pkg_charge,flag) {
-	if (customer_id === -1) {
+	if (customer_id !== -1) {
 		removeFromCart(menu_id, customer_id, price, name, pkg_charge,flag);// remove the items from cart directly 
 	} else {
 		for (var i = 0; i < item_list_array.length; i++) {
@@ -141,7 +143,7 @@ function redQty(menu_id, customer_id,price, name, pkg_charge,flag) {
 				}
 				$.cookie("item_list", JSON.stringify(item_list_array));
 				loadItemsFromCart();
-				loadCartData();
+				loadCartDataFromCookie();
 				break;
 			}
 		}		
@@ -174,7 +176,7 @@ function removeFromCart(menu_id, customer_id, price, name, pkg_charge,flag) {
 }
 
 function redQtyFromCart(menu_id, customer_id,price, name, pkg_charge,flag,quanity) {
-	if (customer_id === -1) {
+	if (customer_id !== -1) {
 		removeFromCartIcon(menu_id, customer_id, price, name, pkg_charge,flag,quanity);// remove the items from cart directly 
 	} else {
 		for (var i = 0; i < item_list_array.length; i++) {
@@ -182,17 +184,17 @@ function redQtyFromCart(menu_id, customer_id,price, name, pkg_charge,flag,quanit
 			if (item_list_array[i].menu_id === menu_id) {
 				if(flag === 1){
 					item_list_array[i].quantity = 0;
-					if(item_list_array[i].quantity === 0){
+					if(item_list_array[i].quantity <= 0){
 						item_list_array.pop(item_list_array[i]);
 					}
 				}
-				item_list_array[i].quantity = +total_qty - 1;
-				if(item_list_array[i].quantity === 0){
+				item_list_array[i].quantity = +quanity - 1;
+				if(item_list_array[i].quantity <= 0){
 					item_list_array.pop(item_list_array[i]);
 				}
 				$.cookie("item_list", JSON.stringify(item_list_array));
 				loadItemsFromCart();
-				loadCartData();
+				loadCartDataFromCookie();
 				break;
 			}
 		}		
