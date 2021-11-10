@@ -7,7 +7,7 @@
     $url = ' '; 
     include('header.php');
     include('main.php');
-	$page ="Country Chicken";
+	$page ="Products";
 ?> 
 
 <?php include('breadcrumb.php'); ?>

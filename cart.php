@@ -7,7 +7,7 @@ $pageCanonical = '';
 $url = ' '; 
 include('header.php');
 include('main.php');
-$page ="Personal Details";
+$page ="View Cart";
 
 include("database.php");
 
