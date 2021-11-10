@@ -107,11 +107,14 @@ function loginVerifyOTP2($conn, $loginNumber) {
 
         if ($rowscount_res_sql > 0) {
             if ($rows = mysqli_fetch_array($res_sql)) {
+//              Login process session value sets
                 $_SESSION['user_id'] = $rows['user_id'];
                 $_SESSION['branch_id'] = $rows['branch_id'];
                 $_SESSION['contact_no'] = $rows['contact_no'];
                 $_SESSION['user_name'] = $rows['customer_name'];
                 $_SESSION['email_addr'] = $rows['email_addr'];
+                
+//              Login success Response returns to index.php file loginValid()
                 $events = array(
                     "status" => "OTPSuccess",
                     "user_id" => $_SESSION['user_id'],
