@@ -5,9 +5,9 @@
     $image = ' '; 
     $pageCanonical = '';
     $url = ' '; 
-    $page ="Deal of the Day";
     include('header.php');
     include('main.php');
+    $page ="Deal of the Day";
 ?> 
 
 <?php include('breadcrumb.php'); ?>

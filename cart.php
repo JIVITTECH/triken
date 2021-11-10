@@ -5,9 +5,9 @@ $pageRobots = 'index,nofollow';
 $image = ' '; 
 $pageCanonical = '';
 $url = ' '; 
-$page ="Personal Details";
 include('header.php');
 include('main.php');
+$page ="Personal Details";
 
 include("database.php");
 

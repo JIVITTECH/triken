@@ -5,9 +5,9 @@ $pageRobots = 'index,nofollow';
 $image = ' ';
 $pageCanonical = '';
 $url = ' ';
-$page ="About Todays’ Cut";
 include('header.php');
 include('main.php');
+$page ="About Todays’ Cut";
 ?>
 
 <?php include('breadcrumb.php'); ?>

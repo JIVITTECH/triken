@@ -5,9 +5,9 @@ $pageRobots = 'index,nofollow';
 $image = ' ';
 $pageCanonical = '';
 $url = ' ';
-$page ="My Account";
 include('header.php');
 include('main.php');
+$page ="My Account";
 ?>
 <style type="text/css"> 
 .order-detail	{	font-size: 16px;    color: #333;	}

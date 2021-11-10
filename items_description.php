@@ -6,8 +6,8 @@
     $pageCanonical = '';
     $url = ' '; 
     $category ="Country Chicken";
-    $page ="Country Chicken Curry Cut Small with Skin";
     include('header.php');
+	$page ="Country Chicken Curry Cut Small with Skin";
 ?> 
 
 <?php include('main.php'); ?>
