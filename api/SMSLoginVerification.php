@@ -54,7 +54,7 @@ function loginVerifyOTP1($conn) {
         if ($dev_mode == 0) {
             $otp = getOtp($conn, $code, $loginNumber, $sender_id, $branch_id, $customer_id, $section, $orderId);
         } else {
-            $otp = "123456";
+            $otp = "1234";
         }
         $sql2 = "INSERT INTO kot_otp_log_validation (user_id, otp, status, datetime) VALUES 
                                                     ('$customer_id', '$otp', '0', '$current_zone_time')";
@@ -67,13 +67,11 @@ function loginVerifyOTP1($conn) {
     }
 }
 
-function loginVerifyOTP2($conn, $loginNumber) {
+function loginVerifyOTP2($conn) {
     global $dev_mode;
     global $current_zone_time;
-//    $otpcharr = $_GET['otpchar'];
-//    $mobile = $_GET['mobile'];
-    $otpcharr = '123456';
-    $mobile = $loginNumber;
+	$mobile = $_GET['mobile'];
+    $otpcharr =  $_GET['otpchar'];
     $success = 0;
 
     $res = "";
@@ -109,7 +107,8 @@ function loginVerifyOTP2($conn, $loginNumber) {
                 LEFT JOIN kot_otp_log_validation kolv
                        ON kolv.user_id = kcd.id 
                 WHERE kolv.otp = '$otpcharr' AND kcd.contact_no='$mobile' AND '$current_zone_time' <= DATE_ADD(kolv.datetime, INTERVAL 60 second)";
-        $res_sql = mysqli_query($conn, $sql1);
+				
+		$res_sql = mysqli_query($conn, $sql1);
         $rowscount_res_sql = mysqli_num_rows($res_sql);        
 
         if ($rowscount_res_sql > 0) {

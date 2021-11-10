@@ -7,7 +7,7 @@
                 <input type="text" class="form-control" id="otp" name="otp"   maxlength="4">
                 <p class="text-left"><span class="resend"> <a href="#"> Click here </a> </span> to generate new OTP.</p>
             </div>
-            <button class="btn btn-primary"> <span> Confirm </span> </button>
+            <button class="btn btn-primary" onclick="verifyOTP()"> <span> Confirm </span> </button>
         <!--</form>-->
     </div>
 </div>
