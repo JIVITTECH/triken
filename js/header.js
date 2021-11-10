@@ -9,6 +9,7 @@
     
 	function loadCartData() {
 		$('#cart_items_container').empty();
+		document.getElementById("cart_count").innerHTML = "0";
 		var information = "";
 		var arr1 = getAllUrlParams((window.location).toString());
 		var branch_id = 1;
@@ -110,6 +111,7 @@
 		
 	function loadCartDataFromCookie() {
 		$('#cart_items_container').empty();
+		document.getElementById("cart_count").innerHTML = "0";
 		item_list_array = [];
 		var information = "";
 		var grand_sub_total = 0;
@@ -174,4 +176,12 @@
 	}
 }
 
+
+function checkUserSession(){
+	if (customer_id !== -1) {
+		window.location.href = "cart.php?branch_id=" + branch_id;
+	} else { 
+	    document.getElementById('login').click();	
+	}
+}
         
