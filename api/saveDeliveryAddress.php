@@ -98,4 +98,19 @@ if ($_GET["action"] == "update_current_delivery_address") {
    }  
 }
 
+if ($_GET["action"] == "remove_delivery_address") {
+   
+   $delAddressID = $_GET['del_address_id'];
+
+   $query = "DELETE FROM obo_customer_addresses " .
+            "WHERE customer_id = " . "'" . $user_id . "'" . 
+              "AND delivery_add_id = " . $delAddressID . ";";
+
+   if ($conn->query($query) === TRUE) {
+      echo "200";
+   } else {
+      echo "Error Deleting record: " . $conn->error;
+   }  
+}
+
 ?>

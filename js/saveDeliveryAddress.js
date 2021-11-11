@@ -42,3 +42,15 @@ function updateCurrentDeliveryAddress(del_address_id) {
                "&action=update_current_delivery_address", true);
     xhttp.send();
 }
+
+function removeDeliveryAddress(del_address_id) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            //no action
+        }
+    };
+    xhttp.open("GET", "api/saveDeliveryAddress.php?" + "del_address_id=" + del_address_id + 
+               "&action=remove_delivery_address", true);
+    xhttp.send();
+}
