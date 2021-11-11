@@ -6,6 +6,12 @@ function saveNewDeliveryAddress() {
     var pincode = document.getElementById("pincode").value;
     var landmark = document.getElementById("landmark").value;
 
+    if (flatNo.trim().length == 0 || street.trim().length == 0 || area.trim().length == 0 || city.trim().length == 0 || pincode.trim().length == 0) {
+        alert('Please enter all address fields');
+        document.getElementById("filled-in-box").checked = false;
+        return;
+    } 
+
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
