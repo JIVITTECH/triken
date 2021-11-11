@@ -103,44 +103,11 @@ include('main.php');
                             
 
                             <div class="tab-pane" id="address-book">
-                                <div class="row">
+                                <div class="row" id="address-book-row">
 								
-									<div class="ecommerce-address billing-address pr-lg-8">
-										<div class="address">
-										41/2,SRC Sunrise,2nd Floor, Post,<br> Vivekanandha Nagar, Singanallur,<br> Tamil Nadu 641005
-										</div>
-										<a href="#" class="btn btn-link btn-underline btn-icon-right" style="color: #E0522D;text-transform: inherit;">Edit</a>
-										<a href="#" class="btn btn-link btn-underline btn-icon-right pl-5" style="color: #E0522D;text-transform: inherit;">Delete</a>
-									</div>
-									
-									<div class="ecommerce-address billing-address pr-lg-8">
-										<div class="address">
-										41/2,SRC Sunrise,2nd Floor, Post,<br> Vivekanandha Nagar, Singanallur,<br> Tamil Nadu 641005
-										</div>
-										<a href="#" class="btn btn-link btn-underline btn-icon-right" style="color: #E0522D;text-transform: inherit;">Edit</a>
-										<a href="#" class="btn btn-link btn-underline btn-icon-right pl-5" style="color: #E0522D;text-transform: inherit;">Delete</a>
-									</div>
-								
-									<div class="ecommerce-address billing-address pr-lg-8">
-										<div class="address">
-										41/2,SRC Sunrise,2nd Floor, Post,<br> Vivekanandha Nagar, Singanallur,<br> Tamil Nadu 641005
-										</div>
-										<a href="#" class="btn btn-link btn-underline btn-icon-right" style="color: #E0522D;text-transform: inherit;">Edit</a>
-										<a href="#" class="btn btn-link btn-underline btn-icon-right pl-5" style="color: #E0522D;text-transform: inherit;">Delete</a>
-									</div>
-									
-									<div class="ecommerce-address billing-address pr-lg-8">
-										<div class="address">
-										41/2,SRC Sunrise,2nd Floor, Post,<br> Vivekanandha Nagar, Singanallur,<br> Tamil Nadu 641005
-										</div>
-										<a href="#" class="btn btn-link btn-underline btn-icon-right" style="color: #E0522D;text-transform: inherit;">Edit</a>
-										<a href="#" class="btn btn-link btn-underline btn-icon-right pl-5" style="color: #E0522D;text-transform: inherit;">Delete</a>
-									</div>
-									
-
                                 </div>
 								<div class="row">
-									<a href="#popup2" class="button btn acc_btn btn-outline btn-default btn-block btn-sm btn-rounded ml-3 mt-2">Add New Address</a>
+									<a href="#popup2" id="add-new-addr-btn" class="button btn acc_btn btn-outline btn-default btn-block btn-sm btn-rounded ml-3 mt-2">Add New Address</a>
 									</div>
                             </div>
 
