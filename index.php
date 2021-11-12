@@ -141,7 +141,11 @@ $(function(){
 	var overlay = $('<div id="overlay"></div>');
 	overlay.show();
 	overlay.appendTo(document.body);
-	$('.lpopup').show();
+    
+    if ($.cookie("user_loc_latitude").trim().length == 0 || $.cookie("user_loc_latitude").trim().length == 0) {
+       	$('.lpopup').show();
+    }
+
 	$('.close').click(function(){
 	$('.lpopup').hide();
 	overlay.appendTo(document.body).remove();
