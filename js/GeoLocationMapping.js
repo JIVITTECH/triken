@@ -52,6 +52,7 @@ function findNearestBranch (latitude, longitude) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
+            branch_id = "<?php echo $_SESSION['branch_id']; ?>";
             loadAllCategories();
             loadTopCategories();
             loadLtdDealsOfTheDay();
