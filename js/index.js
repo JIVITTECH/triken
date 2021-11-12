@@ -13,7 +13,7 @@ function loadAllRecipes() {
 					var image_path = "";
 					if (cover_photo !== "")
 					{
-						image_path = '../ecaterweb/Catering/' + cover_photo;
+						image_path = dirname + cover_photo;
 					} else
 					{
 						image_path = 'images/default.jpg';
@@ -56,7 +56,7 @@ function loadAllCategories() {
 					var image_path = "";
 					if (cover_photo !== "")
 					{
-						image_path = '../ecaterweb/Catering/' + cover_photo;
+						image_path = dirname + cover_photo;
 					} else
 					{
 						image_path = 'images/default.jpg';
@@ -135,7 +135,7 @@ function loadLtdDealsOfTheDay() {
 					var image_path = "";
 					if (cover_photo !== "")
 					{
-						image_path = '../ecaterweb/Catering/' + cover_photo;
+						image_path = dirname + cover_photo;
 					} else
 					{
 						image_path = 'images/default.jpg';
@@ -207,7 +207,7 @@ function loadAllDealsOfTheDay() {
 					var image_path = "";
 					if (cover_photo !== "")
 					{
-						image_path = '../ecaterweb/Catering/' + cover_photo;
+						image_path = dirname + cover_photo;
 					} else
 					{
 						image_path = 'images/default.jpg';
@@ -280,7 +280,7 @@ function loadLtdBestSellingProducts() {
 					var image_path = "";
 					if (cover_photo !== "")
 					{
-						image_path = '../ecaterweb/Catering/' + cover_photo;
+						image_path = dirname + cover_photo;
 					} else
 					{
 						image_path = 'images/default.jpg';
@@ -352,7 +352,7 @@ function loadAllBestSellingProducts() {
 					var image_path = "";
 					if (cover_photo !== "")
 					{
-						image_path = '../ecaterweb/Catering/' + cover_photo;
+						image_path = dirname + cover_photo;
 					} else
 					{
 						image_path = 'images/default.jpg';

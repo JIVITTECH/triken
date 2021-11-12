@@ -23,7 +23,7 @@ function loadItemsDescription() {
 					var related_images = myObj[i].related_images;
 					var related_images_tag = "";
 					for (var j = 0; j < related_images.length; j++) {
-						var full_path = "../ecaterweb/Catering/" + related_images[j].image_path;
+						var full_path = dirname + related_images[j].image_path;
 						related_images_tag = related_images_tag + "<div class='swiper-slide'>" +
 		                                "<figure class='product-image'>" +
 		                                    "<img src='" + full_path + "' data-zoom-image='" + full_path + "' alt=''>" +
@@ -122,7 +122,7 @@ function loadAllRelatedItems() {
 					var image_path = "";
 					if (cover_photo !== "")
 					{
-						image_path = '../ecaterweb/Catering/' + cover_photo;
+						image_path = dirname + cover_photo;
 					} else
 					{
 						image_path = 'images/default.jpg';
