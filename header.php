@@ -50,11 +50,21 @@
 
    		<link rel="stylesheet" type="text/css" href="assets/font/font-awesome/css/font-awesome.min">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		
+		<?php
+			include_once './session.php';
+		?>
 		<script>
 		    
 			var dirname = "../../app/Catering/";
-		    
+		 
+			var sel_obo_order_type = 3;
+	        var customer_id = "<?php echo $_SESSION['user_id']; ?>";
+			customer_id = +customer_id;
+            var branch_id = "<?php echo $_SESSION['branch_id']; ?>";
+			branch_id = +branch_id;
+            var cus_cart_id = "<?php echo $_SESSION['cart_id']; ?>";
+            cus_cart_id= +cus_cart_id;
+			
 			$(document).ready(function () {
 				var sel_elemt = document.getElementById("button_grp");
 				if(sel_elemt){
@@ -197,8 +207,6 @@
 			
 			function saveCookieData() {
                 var arr1 = getAllUrlParams((window.location).toString());
-                var branch_id = 1;
-				var customer_id= 45;
                 var xmlhttp = new XMLHttpRequest();
                 var url = "controller/saveCookieData.php?customer_id=" + customer_id + "&branch_id=" + branch_id;
                 xmlhttp.open("GET", url, true);

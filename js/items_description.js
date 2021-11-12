@@ -30,7 +30,15 @@ function loadItemsDescription() {
 		                                "</figure>" +
 		                            "</div>";
 					}
-					
+					var cover_photo = myObj[i].image;
+					var image_path = "";
+					if (cover_photo !== "")
+					{
+						image_path = '../ecaterweb/Catering/' + cover_photo;
+					} else
+					{
+						image_path = 'images/default.jpg';
+					}
 					var specifications = myObj[i].specification;
 					var specifications_length = specifications.length/2;
 					var specifications_div_1 = "";
