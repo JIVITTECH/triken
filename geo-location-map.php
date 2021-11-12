@@ -84,6 +84,7 @@
             
             document.getElementById('latitude').value = latitude;
             document.getElementById('longitude').value = longitude;
+            findNearestBranch(latitude, longitude);
 
             console.log("tripazo --- latitude --- " + latitude);
             console.log("tripazo --- longitude --- " + longitude);
