@@ -13,6 +13,7 @@ function getLatAndLong() {
         document.getElementById('delCity').value = city;
         document.getElementById('delState').value = state;
         document.getElementById('delPinCode').value = pinCode;
+        findNearestBranch(latitude, longitude);
     } else {
         document.getElementById('latitude').value = "";
         document.getElementById('longitude').value = "";
@@ -55,3 +56,14 @@ function getCurrentAddress(location) {
     });
 }
 
+function findNearestBranch (latitude, longitude) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            //no action
+        }
+    };
+    xhttp.open("GET", "api/find_nearest_branch.php?" + "latitude=" + latitude + 
+               "&longitude=" + longitude, true);
+    xhttp.send();
+}

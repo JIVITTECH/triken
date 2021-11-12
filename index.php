@@ -141,7 +141,13 @@ $(function(){
 	var overlay = $('<div id="overlay"></div>');
 	overlay.show();
 	overlay.appendTo(document.body);
-	$('.lpopup').show();
+    var latitude = "<?php echo isset($_SESSION['user_loc_latitude']) ? $_SESSION['user_loc_latitude'] : ""; ?>";  
+    var longitude = "<?php echo isset($_SESSION['user_loc_longitude']) ? $_SESSION['user_loc_longitude'] : ""; ?>";  
+    
+    if (latitude.trim().length == 0 || longitude.trim().length == 0) {
+       	$('.lpopup').show();
+    }
+
 	$('.close').click(function(){
 	$('.lpopup').hide();
 	overlay.appendTo(document.body).remove();
