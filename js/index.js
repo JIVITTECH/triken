@@ -86,13 +86,13 @@ function loadAllCategories() {
 	};
 }
 
-function loadTopCategories(branch_id) {
+function loadTopCategories() {
     var name = "";
     var image_path ="";
     var icon ="";
     var information = "";
     var xmlhttp = new XMLHttpRequest();
-    var url = "api/getTopCategories.php?action=get_top_categories&branch_id="+branch_id;
+    var url = "api/getTopCategories.php?action=get_top_categories&branch_id=" + branch_id;
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function () {

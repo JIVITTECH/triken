@@ -9,18 +9,10 @@ function getLatAndLong() {
     if (geoLocation.trim().length != 0) {
         document.getElementById('latitude').value = latitude;
         document.getElementById('longitude').value = longitude;
-        document.getElementById('delArea').value = area;
-        document.getElementById('delCity').value = city;
-        document.getElementById('delState').value = state;
-        document.getElementById('delPinCode').value = pinCode;
         findNearestBranch(latitude, longitude);
     } else {
         document.getElementById('latitude').value = "";
         document.getElementById('longitude').value = "";
-        document.getElementById('delArea').value = "";
-        document.getElementById('delCity').value = "";
-        document.getElementById('delState').value = "";
-        document.getElementById('delPinCode').value = "";
     }
 }
 
@@ -60,7 +52,17 @@ function findNearestBranch (latitude, longitude) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            //no action
+            var myObj = JSON.parse(this.responseText);
+			if (myObj.length !== 0) {
+				for (var i = 0; i < myObj.length; i++) {
+                    branch_id = myObj[i].branch_id;
+                }
+            } 
+            loadAllCategories();
+            loadTopCategories();
+            loadLtdDealsOfTheDay();
+            loadLtdBestSellingProducts();
+            loadAllRecipes();
         }
     };
     xhttp.open("GET", "api/find_nearest_branch.php?" + "latitude=" + latitude + 
