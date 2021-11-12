@@ -15,7 +15,7 @@
                             <form method="get" action="#"
                                 class="input-wrapper header-search hs-expanded hs-round d-md-flex">
                                 <div class="select-box">
-                                    <a class="button" href="#popup1"><i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    <a class="button" href=""><i class="fa fa-map-marker" aria-hidden="true"></i>
      VOC Colony, Peelamedu</a>
                                 </div>
                                 <button class="btn btn-search productsearch hidden-sm" type="submit">
