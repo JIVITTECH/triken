@@ -13,8 +13,6 @@ function getLatAndLong() {
         document.getElementById('delCity').value = city;
         document.getElementById('delState').value = state;
         document.getElementById('delPinCode').value = pinCode;
-        $.cookie("user_loc_latitude", latitude);
-        $.cookie("user_loc_longitude", longitude);
         findNearestBranch(latitude, longitude);
     } else {
         document.getElementById('latitude').value = "";

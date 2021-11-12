@@ -141,8 +141,10 @@ $(function(){
 	var overlay = $('<div id="overlay"></div>');
 	overlay.show();
 	overlay.appendTo(document.body);
+    var latitude = "<?php echo isset($_SESSION['user_loc_latitude']) ? $_SESSION['user_loc_latitude'] : ""; ?>";  
+    var longitude = "<?php echo isset($_SESSION['user_loc_longitude']) ? $_SESSION['user_loc_longitude'] : ""; ?>";  
     
-    if ($.cookie("user_loc_latitude").trim().length == 0 || $.cookie("user_loc_latitude").trim().length == 0) {
+    if (latitude.trim().length == 0 || longitude.trim().length == 0) {
        	$('.lpopup').show();
     }
 

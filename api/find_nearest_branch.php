@@ -8,6 +8,9 @@ include("../database.php");
 $latitude = $_GET['latitude'];
 $longitude = $_GET['longitude'];
 
+$_SESSION['user_loc_latitude'] = $latitude;
+$_SESSION['user_loc_longitude'] = $longitude;
+
 $res = "";
 
 $sql_dis = "SELECT db.* FROM (SELECT branch_id,name,description,
