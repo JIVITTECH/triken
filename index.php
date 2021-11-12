@@ -163,7 +163,7 @@ $(function(){
 
 $(document).ready(function () {
     loadAllCategories();
-    loadTopCategories('1');
+    loadTopCategories();
     loadLtdDealsOfTheDay();
     loadLtdBestSellingProducts();
     loadAllRecipes();
