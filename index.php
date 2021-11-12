@@ -178,7 +178,7 @@ var cus_cart_id = 404;
 <script>
     $(document).ready(function () {
         var loadDynamicData = "";
-        $.get("api/load_home_page?action=get_list_of_cities", function (data, status) {
+        $.get("api/load_home_page.php?action=get_list_of_cities", function (data, status) {
             var jsonStr = JSON.parse(data);
             for (var i = 0; i < jsonStr.length; i++) {
                 if (jsonStr[i].branch_exists === 'Y') {

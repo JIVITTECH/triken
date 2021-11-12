@@ -1,8 +1,10 @@
 <?php
 
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, DELETE');
-header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, X-Token-Auth, Authorization');
+
+header('Access-Control-Allow-Methods: GET, POST');
+
+header("Access-Control-Allow-Headers: X-Requested-With");
 
 include("../database.php");
 //session_start();
@@ -47,7 +49,7 @@ if ($_GET["action"] == "get_list_of_categories") {
 		$events = array();
 		 
 		$sql = "SELECT * FROM predefined_menu_categories 
-		        WHERE withdraw ='N'
+		        WHERE withdraw ='N'and (name <> 'ALL' or name <> 'All')
 				ORDER BY pre_menu_id";
 
 		$result = mysqli_query($conn, $sql);

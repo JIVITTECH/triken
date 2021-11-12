@@ -53,6 +53,8 @@
 		
 		<script>
 		    
+			var dirname = "../../app/Catering/";
+		    
 			$(document).ready(function () {
 				var sel_elemt = document.getElementById("button_grp");
 				if(sel_elemt){

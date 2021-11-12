@@ -582,7 +582,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 							}
 							if (cover_photo !== "")
 							{
-								image_path = '../ecaterweb/Catering/' + cover_photo;
+								image_path = dirname + cover_photo;
 								;
 							} else
 							{
