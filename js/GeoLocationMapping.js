@@ -9,18 +9,10 @@ function getLatAndLong() {
     if (geoLocation.trim().length != 0) {
         document.getElementById('latitude').value = latitude;
         document.getElementById('longitude').value = longitude;
-        document.getElementById('delArea').value = area;
-        document.getElementById('delCity').value = city;
-        document.getElementById('delState').value = state;
-        document.getElementById('delPinCode').value = pinCode;
         findNearestBranch(latitude, longitude);
     } else {
         document.getElementById('latitude').value = "";
         document.getElementById('longitude').value = "";
-        document.getElementById('delArea').value = "";
-        document.getElementById('delCity').value = "";
-        document.getElementById('delState').value = "";
-        document.getElementById('delPinCode').value = "";
     }
 }
 

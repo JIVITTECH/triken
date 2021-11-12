@@ -84,10 +84,6 @@
             
             document.getElementById('latitude').value = latitude;
             document.getElementById('longitude').value = longitude;
-            document.getElementById('delArea').value = area;
-            document.getElementById('delCity').value = city;
-            document.getElementById('delState').value = state;
-            document.getElementById('delPinCode').value = pinCode;
 
             console.log("tripazo --- latitude --- " + latitude);
             console.log("tripazo --- longitude --- " + longitude);
