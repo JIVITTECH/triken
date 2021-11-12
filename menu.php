@@ -227,8 +227,6 @@
 			
 			function saveCookieData() {
                 var arr1 = getAllUrlParams((window.location).toString());
-                var branch_id = 1;
-				var customer_id= 1;
                 var xmlhttp = new XMLHttpRequest();
                 var url = "controller/saveCookieData.php?customer_id=" + customer_id + "&branch_id=" + branch_id;
                 xmlhttp.open("GET", url, true);

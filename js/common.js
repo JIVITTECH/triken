@@ -1,7 +1,3 @@
-var branch_id = 1;
-var customer_id = 1;
-var cus_cart_id = 404;
-         
 var item_list_array = []; // Global item list array
 var quantity = 0; // Total item quanity selected by the user
 var replace_name = "";// selected replace name
