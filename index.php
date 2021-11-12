@@ -20,7 +20,7 @@
 
         <div class='lpopup popup'>
                 <?php include('location.php'); ?>
-               
+                <a href='' class='close'>Close</a>               
         </div>  
 
 
