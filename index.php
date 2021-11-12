@@ -20,7 +20,7 @@
 
         <div class='lpopup popup'>
                 <?php include('location.php'); ?>
-                <a href='' class='close'>Close</a>
+               
         </div>  
 
 
@@ -178,7 +178,7 @@ var cus_cart_id = 404;
                 if (jsonStr[i].branch_exists === 'Y') {
                     loadDynamicData = loadDynamicData+ "<div><label for='chkYes' class='location'><input type='radio' id='chkYes' class='loc' name='chkPassPort' onclick='ShowHideDiv()'/>" + jsonStr[i].city_name + "</label> <br><span class='soon hide'> Coming Soon!</span></div>";
                 } else {
-                    loadDynamicData = loadDynamicData+"<div><label for='chkNo' class='no location'><input type='radio' id='chkYes' class='loc' name='chkPassPort' onclick='ShowHideDiv()'/> " + jsonStr[i].city_name + "</label> <br><span class='soon'> Coming Soon!</span></div>";
+                    loadDynamicData = loadDynamicData+"<div><label for='chkNo' class='no location'><input type='radio' id='chkNo' class='loc' name='chkPassPort' onclick='ShowHideDiv()'/> " + jsonStr[i].city_name + "</label> <br><span class='soon'> Coming Soon!</span></div>";
                 }
             }
             $('#cities').append(loadDynamicData);
