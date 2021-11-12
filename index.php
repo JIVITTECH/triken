@@ -169,10 +169,7 @@ $(document).ready(function () {
     loadAllRecipes();
 });
 
-var branch_id = 1;
-var customer_id = -1;
-var cus_cart_id = 404;
-         
+
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>

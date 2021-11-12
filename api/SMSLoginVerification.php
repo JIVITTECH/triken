@@ -148,7 +148,30 @@ function loginVerifyOTP2($conn) {
             $res = json_encode([]);
         }
         echo $res;
+		getUserCartDetails($conn, $_SESSION['user_id']);
     }
+}
+
+function getUserCartDetails($conn, $userid) {
+    $cus_cart_id = 0;
+    $sql_cart_id = "SELECT * FROM obo_cart_details "
+            . "WHERE customer_id = $userid "
+            . "AND order_placed= 'N' ORDER BY cart_id DESC LIMIT 1";
+    $res_cart_id = mysqli_query($conn, $sql_cart_id);
+
+    $cart_count = mysqli_num_rows($res_cart_id);
+
+    if ($cart_count > 0) {
+        if ($rows_cart_id = mysqli_fetch_array($res_cart_id)) {
+            $cus_cart_id = $rows_cart_id['cart_id'];
+        }
+    } else {
+        $sqlfs = "INSERT into obo_cart_details(customer_id) VALUES($userid)";
+        $result = mysqli_query($conn, $sqlfs);
+        $cart_id = mysqli_insert_id($conn);
+        $cus_cart_id = $cart_id;
+    }
+    $_SESSION['cart_id'] = $cus_cart_id;
 }
 
 ?>

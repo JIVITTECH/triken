@@ -29,8 +29,6 @@ $(document).ready(function () {
 	loadAllItemDetails();
 });
 
-var branch_id = 1;
-
 function loadAllItemDetails() {
 	var information = "";
 	var arr1 = getAllUrlParams((window.location).toString());

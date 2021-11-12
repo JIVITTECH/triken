@@ -2,17 +2,11 @@
 	var pkg_price = 0;
 
 //To be replaced by dynamic values from session
-    var cus_cart_id = 404;
-	var sel_obo_order_type = 3;
-	var branch_id = 1;
-    var customer_id = 1;
-    
-	function loadCartData() {
+   function loadCartData() {
 		$('#cart_items_container').empty();
 		document.getElementById("cart_count").innerHTML = "0";
 		var information = "";
 		var arr1 = getAllUrlParams((window.location).toString());
-		var branch_id = 1;
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function () {
 				if (this.readyState === 4 && this.status === 200)

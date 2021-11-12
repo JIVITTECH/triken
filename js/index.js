@@ -1,5 +1,3 @@
-var branch_id = 1;
-    
 function loadAllRecipes() { 
 	var information = "";
 	var xmlhttp = new XMLHttpRequest();
