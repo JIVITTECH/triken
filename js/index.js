@@ -312,7 +312,7 @@ function loadLtdBestSellingProducts() {
 					information = information + "<div class='swiper-slide product-widget-wrap'>" +
 													"<div class='product'>" +
 														"<figure class='product-media'>" +
-															"<a href='#'><img src=" + image_path + " alt='Product'/> </a>" +
+															"<a href='#'><img onerror='onImgError(this)' src=" + image_path + " alt='Product'/> </a>" +
 															"<div class='product-label-group'>" +
 		                                						discount_tag +
 															"</div>" +
@@ -384,7 +384,7 @@ function loadAllBestSellingProducts() {
 					information = information + "<div class='product-wrap'>" +
 													"<div class='product text-center'>" +
                    										"<figure class='product-media'>" +
-															"<a href='#'><img src=" + image_path + " alt='Product'/> </a>" +
+															"<a href='#'><img onerror='onImgError(this)' src=" + image_path + " alt='Product'/> </a>" +
 															"<div class='product-label-group'>" +
 		                                						discount_tag +
 															"</div>" +
