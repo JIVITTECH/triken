@@ -63,6 +63,7 @@ function findNearestBranch (latitude, longitude) {
             loadLtdDealsOfTheDay();
             loadLtdBestSellingProducts();
             loadAllRecipes();
+            $('.lpopup').hide();
         }
     };
     xhttp.open("GET", "api/find_nearest_branch.php?" + "latitude=" + latitude + 
