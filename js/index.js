@@ -1,5 +1,8 @@
 function loadAllRecipes() { 
 	var information = "";
+        if(typeof branch_id === "undefined") {
+            branch_id ="-1";
+        }
 	var xmlhttp = new XMLHttpRequest();
 	var url = "api/get_recipe_details.php?branch=" + branch_id + "&show_limited_recipes=Y";
 	xmlhttp.open("GET", url, true);
@@ -41,6 +44,9 @@ function loadAllRecipes() {
 }
 
 function loadAllCategories() { 
+    if(typeof branch_id === "undefined") {
+         branch_id ="-1";
+     }
     var information = "";
 	var xmlhttp = new XMLHttpRequest();
 	var url = "api/load_home_page.php?action=get_list_of_categories&branch_id=" + branch_id;
