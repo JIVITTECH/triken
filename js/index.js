@@ -27,7 +27,7 @@ function loadAllRecipes() {
 										"</figure>" +
 										"<div class='post-details'>" +
 											"<h4 class='post-title'><a href='#'>" + myObj[i].recipe_name + "</a></h4>" +
-											"<a href='recipe-detail.php?recipe_id='" + myObj[i].recipe_id + " class='btn btn-link btn-dark btn-underline'> View Recipe  <i class='w-icon-long-arrow-right'></i> </a>" +
+											"<a href='recipe-detail.php?recipe_id=" + myObj[i].recipe_id + "' class='btn btn-link btn-dark btn-underline'> View Recipe  <i class='w-icon-long-arrow-right'></i> </a>" +
 										"</div>" +
 									"</div>";
 				}
