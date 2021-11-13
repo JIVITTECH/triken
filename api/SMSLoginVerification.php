@@ -4,7 +4,7 @@
 //Set 1 for Developmer Mode & Set 0 for Normal Mode
 
 $dev_mode = 1;
-
+session_start();
 /* Login Verification */
 include("../database.php");
 include("./SMSSend.php");
@@ -114,6 +114,7 @@ function loginVerifyOTP2($conn) {
         if ($rowscount_res_sql > 0) {
             if ($rows = mysqli_fetch_array($res_sql)) {
 //              Login process session value sets
+                $user_id = $rows['user_id'];
                 $_SESSION['user_id'] = $rows['user_id'];
                 $_SESSION['branch_id'] = $rows['branch_id'];
                 $_SESSION['contact_no'] = $rows['contact_no'];
@@ -127,7 +128,8 @@ function loginVerifyOTP2($conn) {
                     "branch_id" => $_SESSION['branch_id'],
                     "email_id" => $_SESSION['email_addr'],
                     "mobile_no" => $_SESSION['contact_no'],
-                    "user_name" => $_SESSION['user_name']
+                    "user_name" => $_SESSION['user_name'],
+					"cart_id" => getUserCartDetails($conn, $user_id)
                 );
 
                 $output[] = $events;
@@ -148,7 +150,7 @@ function loginVerifyOTP2($conn) {
             $res = json_encode([]);
         }
         echo $res;
-		getUserCartDetails($conn, $_SESSION['user_id']);
+		
     }
 }
 
@@ -158,7 +160,7 @@ function getUserCartDetails($conn, $userid) {
             . "WHERE customer_id = $userid "
             . "AND order_placed= 'N' ORDER BY cart_id DESC LIMIT 1";
     $res_cart_id = mysqli_query($conn, $sql_cart_id);
-
+    //echo $sql_cart_id;
     $cart_count = mysqli_num_rows($res_cart_id);
 
     if ($cart_count > 0) {
@@ -172,6 +174,7 @@ function getUserCartDetails($conn, $userid) {
         $cus_cart_id = $cart_id;
     }
     $_SESSION['cart_id'] = $cus_cart_id;
+	return $cus_cart_id;
 }
 
 ?>
