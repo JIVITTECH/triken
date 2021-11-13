@@ -329,7 +329,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
                     </tbody>
                 </table>
 				
-				<button  class="submit_btn btn btn-dark btn-rounded btn-sm mb-4 orange_btn">Proceed to Payment</button>
+				<button  class="submit_btn btn btn-dark btn-rounded btn-sm mb-4 orange_btn" type="button">Proceed to Payment</button>
 				
             </div>
             
@@ -383,7 +383,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 								<div class="coupon-content">
 								<div class="input-wrapper-inline">
 									<input type="text" name="coupon_code" id = "coupon_code" class="coupon_code form-control form-control-md mb-2" placeholder="Gift card or discount code" id="coupon_code">
-									<button  class="apply_coupon btn button btn-rounded btn-coupon mb-2" name="apply_coupon" value="Apply" onclick="saveOffers()">Apply</button>
+									<button  class="apply_coupon btn button btn-rounded btn-coupon mb-2" type="button" name="apply_coupon" value="Apply" onclick="saveOffers()">Apply</button>
 								</div>
 								</div>
 								<hr class="mt-2 mb-2">
@@ -425,7 +425,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 											<label for="payment2">Cash on Delivery</label>
 										</div> 
                                         
-										<button  id="ebz-checkout-btn"  class="btn btn-dark btn-rounded mb-4 orange_btn">Place Order</button>
+										<button  id="ebz-checkout-btn"  class="btn btn-dark btn-rounded mb-4 orange_btn" type="button">Place Order</button>
 										<script>
 
 											document.getElementById('ebz-checkout-btn').onclick = function (e) {
