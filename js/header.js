@@ -1,8 +1,9 @@
-    var grand_sub_total = 0;
-	var pkg_price = 0;
+var grand_sub_total = 0;
+var pkg_price = 0;
+var mobile = "";
 
 //To be replaced by dynamic values from session
-   function loadCartData() {
+function loadCartData() {
 		$('#cart_items_container').empty();
 		document.getElementById("cart_count").innerHTML = "0";
 		var information = "";
@@ -101,9 +102,8 @@
 			xhttp.open("GET", url, true);
 			xhttp.send();
 		}
-		
-		
-	function loadCartDataFromCookie() {
+                
+function loadCartDataFromCookie() {
 		$('#cart_items_container').empty();
 		document.getElementById("cart_count").innerHTML = "0";
 		item_list_array = [];
@@ -111,6 +111,7 @@
 		var grand_sub_total = 0;
 		var arr1 = getAllUrlParams((window.location).toString());
 		var branch_id = 1;
+                setCookie('branch_id',branch_id,1);
 		if ($.cookie("item_list") !== undefined) {
 			var item_list = $.parseJSON($.cookie("item_list"));
 			$.cookie("item_list", JSON.stringify(item_list));
@@ -169,8 +170,6 @@
 		$('#cart_items_container').append("No Items Added");
 	}
 }
-
-var mobile = "";
 
 function loginValid() {
 	var loginNumber = "";
@@ -261,8 +260,7 @@ function OTPVerification() {
 	return valid;
 
 }
-
-        
+      
 function resendOTP() {
 	document.getElementById('otp').value = '';
 	var mobile = document.getElementById('contact_no').value;
