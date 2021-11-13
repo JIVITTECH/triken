@@ -133,8 +133,7 @@ function loadLtdDealsOfTheDay() {
 				for (var i = 0; i < myObj.length; i++) {
 					var cover_photo = myObj[i].image;
 					var image_path = "";
-					if (cover_photo !== "")
-					{
+					if (cover_photo !== "") {
 						image_path = dirname + cover_photo;
 					} else
 					{
@@ -162,7 +161,7 @@ function loadLtdDealsOfTheDay() {
 					information = information + "<div class='swiper-slide product-widget-wrap'>" +
 													"<div class='product'>" +
 														"<figure class='product-media'>" +
-															"<a href='#'><img src=" + image_path + " alt='Product'/> </a>" +
+															"<a href='#'><img onerror='onImgError(this)' src=" + image_path + " alt='Product' /> </a>" +
 															"<div class='product-label-group'>" +
                                 								discount_tag +
 															"</div>" +
@@ -190,6 +189,10 @@ function loadLtdDealsOfTheDay() {
             }
 		}
 	};
+}
+
+function onImgError(e) {
+ e.src = 'images/default.jpg';
 }
 
 function loadAllDealsOfTheDay() {
