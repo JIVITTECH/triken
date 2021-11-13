@@ -43,7 +43,7 @@ function loadAllRecipes() {
 function loadAllCategories() { 
     var information = "";
 	var xmlhttp = new XMLHttpRequest();
-	var url = "api/load_home_page.php?action=get_list_of_categories";
+	var url = "api/load_home_page.php?action=get_list_of_categories&branch_id=" + branch_id;
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send();
 	xmlhttp.onreadystatechange = function () {
