@@ -57,8 +57,8 @@
 		?>
 		<script>
 		    
-			var dirname = "../../app/Catering/";
-		 
+			// var dirname = "../../app/Catering/"; --- live
+			var dirname = "../ecaterweb/Catering/";
 			var sel_obo_order_type = 3;
 	        var customer_id = "<?php echo $_SESSION['user_id']; ?>";
 			customer_id = +customer_id;
@@ -66,16 +66,6 @@
 			branch_id = branch_id;
             var cus_cart_id = "<?php echo $_SESSION['cart_id']; ?>";
             cus_cart_id= +cus_cart_id;
-			
-			$(document).ready(function () {
-				var sel_elemt = document.getElementById("button_grp");
-				if(sel_elemt){
-					loadItemsDescription();
-					document.getElementById("qty_in_cart").value = 0;
-				}else{
-					loadCookieData();
-				}
-			});
 			
 			function imgError(image) {
 				image.onerror = "";
