@@ -25,11 +25,13 @@
                                             }
                                         }
                                     }">
-                <div class="swiper-wrapper">
-                    <div class="row">
-                       <div id="ltd_deals_of_the_day_container"  class="row cols-xl-4 cols-md-3 cols-sm-3"> </div>
-                    </div>
-		</div>	
+                    <div class="swiper-wrapper">
+                        <div class="container">
+                            <div class="row">
+                                <div id="ltd_deals_of_the_day_container"  class="row cols-xl-4 cols-md-3 cols-sm-3"> </div>
+                            </div>
+                        </div>
+                    </div>	
                 <button class="swiper-button-next"></button>
                 <button class="swiper-button-prev"></button>
         		</div>
