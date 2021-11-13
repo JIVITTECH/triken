@@ -55,7 +55,7 @@
 		?>
 		<script>
 		    
-			var dirname = "../../app/Catering/";
+			var dirname = '../ecaterweb/Catering/';
 		 
 			var sel_obo_order_type = 3;
 	        var customer_id = "<?php echo $_SESSION['user_id']; ?>";
