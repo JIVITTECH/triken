@@ -29,7 +29,7 @@ function loadAllRecipes() {
 											"</a>" +
 										"</figure>" +
 										"<div class='post-details'>" +
-											"<h4 class='post-title'><a href='#'>" + myObj[i].recipe_name + "</a></h4>" +
+											"<h4 class='post-title'><a>" + myObj[i].recipe_name + "</a></h4>" +
 											"<a href='recipe-detail.php?recipe_id=" + myObj[i].recipe_id + "' class='btn btn-link btn-dark btn-underline'> View Recipe  <i class='w-icon-long-arrow-right'></i> </a>" +
 										"</div>" +
 									"</div>";
@@ -180,13 +180,15 @@ function loadLtdDealsOfTheDay() {
 					information = information + "<div class='swiper-slide product-widget-wrap'>" +
 													"<div class='product'>" +
 														"<figure class='product-media'>" +
-															"<a href='#'><img onerror='onImgError(this)' src=" + image_path + " alt='Product' /> </a>" +
+															"<a href='items_description.php?item_id=" + myObj[i].menu_id + "'>" +
+															    "<img onerror='onImgError(this)' src=" + image_path + " alt='Product' />" +
+															 "</a>" +
 															"<div class='product-label-group'>" +
                                 								discount_tag +
 															"</div>" +
 														"</figure>" +
 														"<div class='product-details'>" +
-															"<h3 class='product-name'> <a href='#'>" + myObj[i].name  + "</a> </h3>" +
+															"<h3 class='product-name'> <a href='items_description.php?item_id=" + myObj[i].menu_id + "'>" + myObj[i].name  + "</a> </h3>" +
 															"<div class='row prod_quant'>" +
 																"<div class='product-cat col-md-6'>Net wt: " + myObj[i].net_weight + "  " + myObj[i].measure + "</div>" +
 																"<div class='product-cat col-md-6'>Delivery: " + myObj[i].delivery_time + "</div>" +
@@ -257,13 +259,15 @@ function loadAllDealsOfTheDay() {
 					information = information + "<div class='product-wrap'>" +
 													"<div class='product text-center'>" +
 														"<figure class='product-media'>" +
-															"<a href='#'><img onerror='onImgError(this)' src=" + image_path + " alt='Product'/> </a>" +
+															"<a href='items_description.php?item_id=" + myObj[i].menu_id + "'>" +
+															    "<img onerror='onImgError(this)' src=" + image_path + " alt='Product'/>" +
+															"</a>" +
 															"<div class='product-label-group'>" +
                                 								discount_tag +
 															"</div>" +
 														"</figure>" +
 														"<div class='product-details'>" +
-															"<h3 class='product-name'> <a href='#'>" + myObj[i].name  + "</a> </h3>" +
+															"<h3 class='product-name'> <a href='items_description.php?item_id=" + myObj[i].menu_id + "'>" + myObj[i].name  + "</a> </h3>" +
 															"<div class='row prod_quant'>" +
 																"<div class='product-cat col-md-6'>Net wt: " + myObj[i].net_weight + "  " + myObj[i].measure + "</div>" +
 																"<div class='product-cat col-md-6'>Delivery: " + myObj[i].delivery_time + "</div>" +
@@ -334,13 +338,15 @@ function loadLtdBestSellingProducts() {
 					information = information + "<div class='swiper-slide product-widget-wrap'>" +
 													"<div class='product'>" +
 														"<figure class='product-media'>" +
-															"<a href='#'><img onerror='onImgError(this)' src=" + image_path + " alt='Product'/> </a>" +
+															"<a href='items_description.php?item_id=" + myObj[i].menu_id + "'>" +
+															    "<img onerror='onImgError(this)' src=" + image_path + " alt='Product'/>" + 
+															"</a>" +
 															"<div class='product-label-group'>" +
 		                                						discount_tag +
 															"</div>" +
 														"</figure>" +
 														"<div class='product-details'>" +
-															"<h3 class='product-name'> <a href='#'>" + myObj[i].name  + "</a> </h3>" +
+															"<h3 class='product-name'> <a href='items_description.php?item_id=" + myObj[i].menu_id + "'>" + myObj[i].name  + "</a> </h3>" +
 															"<div class='row prod_quant'>" +
 																"<div class='product-cat col-md-6'>Net wt: " + myObj[i].net_weight + "  " + myObj[i].measure + "</div>" +
 																"<div class='product-cat col-md-6'>Delivery: " + myObj[i].delivery_time + "</div>" +
@@ -410,13 +416,15 @@ function loadAllBestSellingProducts() {
 					information = information + "<div class='product-wrap'>" +
 													"<div class='product text-center'>" +
                    										"<figure class='product-media'>" +
-															"<a href='#'><img onerror='onImgError(this)' src=" + image_path + " alt='Product'/> </a>" +
+															"<a href='items_description.php?item_id=" + myObj[i].menu_id + "'>" +
+															    "<img onerror='onImgError(this)' src=" + image_path + " alt='Product'/>" + 
+															"</a>" +
 															"<div class='product-label-group'>" +
 		                                						discount_tag +
 															"</div>" +
 														"</figure>" +
 														"<div class='product-details'>" +
-															"<h3 class='product-name'> <a href='#'>" + myObj[i].name  + "</a> </h3>" +
+															"<h3 class='product-name'> <a href='items_description.php?item_id=" + myObj[i].menu_id + "'>" + myObj[i].name  + "</a> </h3>" +
 															"<div class='row prod_quant'>" +
 																"<div class='product-cat col-md-6'>Net wt: " + myObj[i].net_weight + "  " + myObj[i].measure + "</div>" +
 																"<div class='product-cat col-md-6'>Delivery: " + myObj[i].delivery_time + "</div>" +
