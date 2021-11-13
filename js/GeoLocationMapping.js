@@ -53,11 +53,12 @@ function findNearestBranch (latitude, longitude) {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var myObj = JSON.parse(this.responseText);
-			if (myObj.length !== 0) {
-				for (var i = 0; i < myObj.length; i++) {
-                    branch_id = myObj[i].branch_id;
-                }
-            } 
+		if (myObj.length !== 0) {
+		    for (var i = 0; i < myObj.length; i++) {
+                        branch_id = myObj[i].branch_id;
+                        location.reload();
+                    }
+                } 
             loadAllCategories();
             loadTopCategories();
             loadLtdDealsOfTheDay();
