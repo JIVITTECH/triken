@@ -52,9 +52,9 @@ $query = 'select db.* ,
               group by pm.predef_menu_id)db
           WHERE db.deals_of_the_day = "Y"';
 
-if($show_limited_products == 'Y') {
+/*if($show_limited_products == 'Y') {
     $query = $query . ' LIMIT 4';
-}
+}*/
 
 $result = mysqli_query($conn, $query);
 

@@ -12,11 +12,11 @@ $branch = $_GET['branch'];
 
 $number = "";
 
-if($limit == "Y"){
+/*if($limit == "Y"){
 	$number = "limit 4";
 }else{
 	$number = "";
-}
+}*/
 
 $query = 'select db.* , (SELECT COUNT(*) FROM  kot_item_stock_details isd
             WHERE isd.branch_id = "'.$branch.'" AND isd.predef_menu_id = db.predef_menu_id) as stock_chk
