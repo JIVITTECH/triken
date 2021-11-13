@@ -111,7 +111,7 @@ function loadTopCategories() {
                     name = myObj[i].name;
                     if (icon !== "")
                     {
-                        image_path = icon;
+                        image_path = dirname + icon;
                     } else
                     {
                         image_path = 'images/default.jpg';
