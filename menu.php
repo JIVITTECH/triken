@@ -29,7 +29,7 @@
                             <div class="header-call d-xs-show d-lg-flex align-items-center">
                                         <a href="about.php">About</a>
                             </div>
-                            <a href="login.php" class="login sign-in"> <i class="fa fa-user-circle" aria-hidden="true"></i>
+                            <a href="#" onclick="signin()" class="login sign-in"> <i class="fa fa-user-circle" aria-hidden="true"></i>
      <span class="htext">Log In/Sign Up</span></a>
                             <!--<a href="otp.php" class="login sign-in hidden-sm">OTP</a>-->
                             <div class="dropdown cart-dropdown mr-0 mr-lg-2">
@@ -197,7 +197,7 @@
              <?php include('location.php'); ?>
     </div>
 </div>
-
+<?php include('login.php'); ?>
 <script>
 		    
 			$(document).ready(function () {
@@ -356,4 +356,8 @@
                     }
                 };
             }
+            
+    function signin(){
+        document.getElementById('login_dialog').style.display = 'block';
+    }
 		</script>
