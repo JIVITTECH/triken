@@ -25,7 +25,7 @@ function loadAllRecipes() {
 					information = information + "<div class='swiper-slide post text-center overlay-zoom'>" +
 										"<figure class='post-media'>" +
 											"<a href='recipe-detail.php?recipe_id=" + myObj[i].recipe_id + "'>" +
-												"<img src='" + image_path + "' alt='Recipes' />" +
+												"<img onerror='onImgError(this)' src='" + image_path + "' alt='Recipes' />" +
 											"</a>" +
 										"</figure>" +
 										"<div class='post-details'>" +
@@ -72,7 +72,7 @@ function loadAllCategories() {
 											         "<a href='products.php?category_id=" + myObj[i].id + "'>" +
 												          "<div class='swiper-slide slide-animate' data-animation-options='{'name': 'fadeInDownShorter', 'duration': '.8s', 'delay': '.4s'}' >" +  
 													           "<figure class='category-media'>" +
-													                "<img src='" + image_path + "' alt='Categroy' />" +
+													                "<img onerror='onImgError(this)' src='" + image_path + "' alt='Categroy' />" +
 														       "</figure>" +
 															   "<div class='category-content'>" +
 																   "<h4 class='category-name'> <a href='products.php?category_id=" + myObj[i].id + "'>" + myObj[i].name + "</a> </h4>" +
@@ -118,7 +118,7 @@ function loadTopCategories() {
                     {
                         image_path = 'images/default.jpg';
                     }
-                    information = information + "<div class='category'><figure class='category-media'><a href='#'><img src="+image_path+" alt="+name+"><h4 class='category-name'>"+name+"</h4></a></figure></div>";
+                    information = information + "<div class='category'><figure class='category-media'><a href='#'><img onerror='onImgError(this)' src="+image_path+" alt="+name+"><h4 class='category-name'>"+name+"</h4></a></figure></div>";
                 }
                 $('#top_container').empty();
                 $('#top_container').append(information);
