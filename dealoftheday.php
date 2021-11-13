@@ -9,28 +9,8 @@
                     </div>
                 </div>
             </div>
-            <div class="swiper slider_sec">
-                <div class="swiper-container swiper-theme nav-top" data-swiper-options="{
-                     'slidesPerView': 1.1,
-                     'spaceBetween': 10,
-                     'breakpoints': {
-                     '576': {
-                     'slidesPerView': 2
-                     },
-                     '768': {
-                     'slidesPerView': 3
-                     },
-                     '992': {
-                     'slidesPerView': 4
-                     }
-                     }
-                     }">
-                    <div class="swiper-wrapper row cols-lg-1 cols-md-3" id="ltd_deals_of_the_day_container" >
-
-                    </div>	
-                    <button class="swiper-button-next"></button>
-                    <button class="swiper-button-prev"></button>
-                </div>
+            <div id="ltd_deals_of_the_day_container">
+                
             </div>
         </div>
     </div>

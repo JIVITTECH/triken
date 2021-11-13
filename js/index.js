@@ -1,5 +1,8 @@
 function loadAllRecipes() { 
 	var information = "";
+        if(typeof branch_id ==="undefined") {
+           branch_id = '-1';
+        }
 	var xmlhttp = new XMLHttpRequest();
 	var url = "api/get_recipe_details.php?branch=" + branch_id + "&show_limited_recipes=Y";
 	xmlhttp.open("GET", url, true);
@@ -22,7 +25,7 @@ function loadAllRecipes() {
 					information = information + "<div class='swiper-slide post text-center overlay-zoom'>" +
 										"<figure class='post-media'>" +
 											"<a href='recipe-detail.php?recipe_id=" + myObj[i].recipe_id + "'>" +
-												"<img src='" + image_path + "' alt='Recipes' />" +
+												"<img onerror='onImgError(this)' src='" + image_path + "' alt='Recipes' />" +
 											"</a>" +
 										"</figure>" +
 										"<div class='post-details'>" +
@@ -41,6 +44,9 @@ function loadAllRecipes() {
 }
 
 function loadAllCategories() { 
+    if(typeof branch_id ==="undefined") {
+        branch_id = '-1';
+    }
     var information = "";
 	var xmlhttp = new XMLHttpRequest();
 	var url = "api/load_home_page.php?action=get_list_of_categories&branch_id=" + branch_id;
@@ -66,7 +72,7 @@ function loadAllCategories() {
 											         "<a href='products.php?category_id=" + myObj[i].id + "'>" +
 												          "<div class='swiper-slide slide-animate' data-animation-options='{'name': 'fadeInDownShorter', 'duration': '.8s', 'delay': '.4s'}' >" +  
 													           "<figure class='category-media'>" +
-													                "<img src='" + image_path + "' alt='Categroy' />" +
+													                "<img onerror='onImgError(this)' src='" + image_path + "' alt='Categroy' />" +
 														       "</figure>" +
 															   "<div class='category-content'>" +
 																   "<h4 class='category-name'> <a href='products.php?category_id=" + myObj[i].id + "'>" + myObj[i].name + "</a> </h4>" +
@@ -92,6 +98,9 @@ function loadTopCategories() {
     var icon ="";
     var information = "";
     var xmlhttp = new XMLHttpRequest();
+    if(typeof branch_id ==="undefined") {
+        branch_id = '-1';
+    }
     var url = "api/getTopCategories.php?action=get_top_categories&branch_id=" + branch_id;
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
@@ -109,7 +118,7 @@ function loadTopCategories() {
                     {
                         image_path = 'images/default.jpg';
                     }
-                    information = information + "<div class='category'><figure class='category-media'><a href='#'><img src="+image_path+" alt="+name+"><h4 class='category-name'>"+name+"</h4></a></figure></div>";
+                    information = information + "<div class='category'><figure class='category-media'><a href='#'><img onerror='onImgError(this)' src="+image_path+" alt="+name+"><h4 class='category-name'>"+name+"</h4></a></figure></div>";
                 }
                 $('#top_container').empty();
                 $('#top_container').append(information);
@@ -121,18 +130,20 @@ function loadTopCategories() {
 }
 
 function loadLtdDealsOfTheDay() {
+    if(typeof branch_id ==="undefined") {
+        branch_id = '-1';
+    }
+        $('#ltd_deals_of_the_day_container').empty();
 	var information = "";
 	var xmlhttp = new XMLHttpRequest();
-        if(typeof branchId==="undefined"){
-            branchId = -1;
-        } 
-	var url = "api/get_deals_of_the_day.php?branch=" + branchId + "&show_limited_products=Y";
+	var url = "api/get_deals_of_the_day.php?branch=" + branch_id + "&show_limited_products=Y";
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send();
 	xmlhttp.onreadystatechange = function () {
 		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 			var myObj = JSON.parse(this.responseText);
 			if (myObj.length !== 0) {
+                            information = information + "<div class='swiper slider_sec'> <div class='swiper-container swiper-theme nav-top' data-swiper-options={'slidesPerView':1.1,'spaceBetween':10,'breakpoints':{'576':{'slidesPerView':2},'768':{'slidesPerView':3},'992':{'slidesPerView':4}}}> <div class='swiper-wrapper row cols-lg-1 cols-md-3' >";
 				for (var i = 0; i < myObj.length; i++) {
 					var cover_photo = myObj[i].image;
 					var image_path = "";
@@ -185,10 +196,10 @@ function loadLtdDealsOfTheDay() {
 													"</div>" +
 												"</div>";
 				}
-				$('#ltd_deals_of_the_day_container').empty();
+                                information = information + "</div><button class='swiper-button-next'></button><button class='swiper-button-prev'></button></div></div>" ;
+		
 				$('#ltd_deals_of_the_day_container').append(information);
             } else {
-                $('#ltd_deals_of_the_day_container').empty();
 		$('#ltd_deals_of_the_day_container').append("<center>No Items found</center>");
             }
 		}
@@ -196,10 +207,12 @@ function loadLtdDealsOfTheDay() {
 }
 
 function loadAllDealsOfTheDay() {
-        var branchId = getCookie('branch_id');
+    if(typeof branch_id ==="undefined") {
+        branch_id = '-1';
+    }
 	var information = "";
 	var xmlhttp = new XMLHttpRequest();
-	var url = "api/get_deals_of_the_day.php?branch=" + branchId + "&show_limited_products=N";
+	var url = "api/get_deals_of_the_day.php?branch=" + branch_id + "&show_limited_products=N";
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send();
 	xmlhttp.onreadystatechange = function () {
@@ -270,6 +283,9 @@ function loadAllDealsOfTheDay() {
 }
 
 function loadLtdBestSellingProducts() {
+    if(typeof branch_id ==="undefined") {
+        branch_id = '-1';
+    }
 	var information = "";
 	var xmlhttp = new XMLHttpRequest();
 	var url = "api/get_best_selling_products.php?branch=" + branch_id + "&show_limited_products=Y";
@@ -311,7 +327,7 @@ function loadLtdBestSellingProducts() {
 					information = information + "<div class='swiper-slide product-widget-wrap'>" +
 													"<div class='product'>" +
 														"<figure class='product-media'>" +
-															"<a href='#'><img src=" + image_path + " alt='Product'/> </a>" +
+															"<a href='#'><img onerror='onImgError(this)' src=" + image_path + " alt='Product'/> </a>" +
 															"<div class='product-label-group'>" +
 		                                						discount_tag +
 															"</div>" +
@@ -342,6 +358,9 @@ function loadLtdBestSellingProducts() {
 }
 
 function loadAllBestSellingProducts() {
+    if(typeof branch_id ==="undefined") {
+        branch_id = '-1';
+    }
 	var information = "";
 	var xmlhttp = new XMLHttpRequest();
 	var url = "api/get_best_selling_products.php?branch=" + branch_id + "&show_limited_products=N";
@@ -383,7 +402,7 @@ function loadAllBestSellingProducts() {
 					information = information + "<div class='product-wrap'>" +
 													"<div class='product text-center'>" +
                    										"<figure class='product-media'>" +
-															"<a href='#'><img src=" + image_path + " alt='Product'/> </a>" +
+															"<a href='#'><img onerror='onImgError(this)' src=" + image_path + " alt='Product'/> </a>" +
 															"<div class='product-label-group'>" +
 		                                						discount_tag +
 															"</div>" +

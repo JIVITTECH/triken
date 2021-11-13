@@ -39,13 +39,15 @@ if (isset($_SESSION['user_id']) != NULL || isset($_SESSION['contact_no']) != NUL
     }
 } else if (isset($_SESSION['user_id']) == NULL || isset($_SESSION['contact_no']) == NULL) {
     $_SESSION['user_id'] = '-1';
-    if ($_SESSION['branch_id'] == "" || $_SESSION['branch_id'] == NULL) {
-        $_SESSION['branch_id'] = '-1';
+    if(isset($_SESSION['branch_id'])){
+        if ($_SESSION['branch_id'] == "" || $_SESSION['branch_id'] == NULL) {
+            $_SESSION['branch_id'] = '-1';
+        }
     }
     $_SESSION['contact_no'] = '-1';
     $_SESSION['cart_id'] = '-1';
     $customer_id = $_SESSION['user_id'];
     $contact_no = $_SESSION['contact_no'];
-    $branch_id = $_SESSION['branch_id'];
+    $branch_id = isset($_SESSION['branch_id'])?$_SESSION['branch_id']:"";
     $cus_cart_id = $_SESSION['cart_id'];
 }
