@@ -1,7 +1,7 @@
 function loadAllRecipes() { 
 	var information = "";
-        if(typeof branch_id === "undefined") {
-            branch_id ="-1";
+        if(typeof branch_id ==="undefined") {
+           branch_id = '-1';
         }
 	var xmlhttp = new XMLHttpRequest();
 	var url = "api/get_recipe_details.php?branch=" + branch_id + "&show_limited_recipes=Y";
@@ -44,9 +44,9 @@ function loadAllRecipes() {
 }
 
 function loadAllCategories() { 
-    if(typeof branch_id === "undefined") {
-         branch_id ="-1";
-     }
+    if(typeof branch_id ==="undefined") {
+        branch_id = '-1';
+    }
     var information = "";
 	var xmlhttp = new XMLHttpRequest();
 	var url = "api/load_home_page.php?action=get_list_of_categories&branch_id=" + branch_id;
@@ -130,6 +130,9 @@ function loadTopCategories() {
 }
 
 function loadLtdDealsOfTheDay() {
+    if(typeof branch_id ==="undefined") {
+        branch_id = '-1';
+    }
         $('#ltd_deals_of_the_day_container').empty();
 	var information = "";
 	var xmlhttp = new XMLHttpRequest();
@@ -204,6 +207,9 @@ function loadLtdDealsOfTheDay() {
 }
 
 function loadAllDealsOfTheDay() {
+    if(typeof branch_id ==="undefined") {
+        branch_id = '-1';
+    }
 	var information = "";
 	var xmlhttp = new XMLHttpRequest();
 	var url = "api/get_deals_of_the_day.php?branch=" + branch_id + "&show_limited_products=N";
@@ -277,6 +283,9 @@ function loadAllDealsOfTheDay() {
 }
 
 function loadLtdBestSellingProducts() {
+    if(typeof branch_id ==="undefined") {
+        branch_id = '-1';
+    }
 	var information = "";
 	var xmlhttp = new XMLHttpRequest();
 	var url = "api/get_best_selling_products.php?branch=" + branch_id + "&show_limited_products=Y";
@@ -349,6 +358,9 @@ function loadLtdBestSellingProducts() {
 }
 
 function loadAllBestSellingProducts() {
+    if(typeof branch_id ==="undefined") {
+        branch_id = '-1';
+    }
 	var information = "";
 	var xmlhttp = new XMLHttpRequest();
 	var url = "api/get_best_selling_products.php?branch=" + branch_id + "&show_limited_products=N";
