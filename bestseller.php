@@ -25,8 +25,9 @@
                                             }
                                         }
                                     }">
-	                    <div class="swiper-wrapper row cols-lg-1 cols-md-3" id="ltd_best_selling_products_container">
-                        
+	                    <div class="swiper-wrapper row cols-lg-1 cols-md-3">
+                            <div id="ltd_best_selling_products_container">
+                            </div>                        
 	                    </div>
 	                    <button class="swiper-button-next"></button>
 	                    <button class="swiper-button-prev"></button>
