@@ -11,14 +11,13 @@
 ?> 
 
 <?php include('breadcrumb.php'); ?>
-<script src="js/basics.js"></script>
 <script src="js/index.js"></script>
 
 <section class="productcat">
-	<div class="container">
-		<div id="all_deals_of_the_day_container" class="row cols-xl-4 cols-md-3 cols-sm-3">
+    <div class="container">
+        <div id="all_deals_of_the_day_container" class="row cols-xl-4 cols-md-3 cols-sm-3">
         </div>
-	</div>
+    </div>    
 </section>
 
 <?php include('footer.php'); ?>

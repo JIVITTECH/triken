@@ -123,7 +123,10 @@ function loadTopCategories() {
 function loadLtdDealsOfTheDay() {
 	var information = "";
 	var xmlhttp = new XMLHttpRequest();
-	var url = "api/get_deals_of_the_day.php?branch=" + branch_id + "&show_limited_products=Y";
+        if(typeof branchId==="undefined"){
+            branchId = -1;
+        } 
+	var url = "api/get_deals_of_the_day.php?branch=" + branchId + "&show_limited_products=Y";
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send();
 	xmlhttp.onreadystatechange = function () {
@@ -185,7 +188,8 @@ function loadLtdDealsOfTheDay() {
 				$('#ltd_deals_of_the_day_container').empty();
 				$('#ltd_deals_of_the_day_container').append(information);
             } else {
-				$('#ltd_deals_of_the_day_container').append("<center>No Items found</center>");
+                $('#ltd_deals_of_the_day_container').empty();
+		$('#ltd_deals_of_the_day_container').append("<center>No Items found</center>");
             }
 		}
 	};
