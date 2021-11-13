@@ -86,7 +86,7 @@ function loadAllItemDetails() {
 					information = information + "<div class='product-wrap'>" +
 													"<div class='product text-center'>" +
 														"<figure class='product-media'>" +
-															"<a href='items_description.php?item_id=" + myObj[i].menu_id + "'><img src=" + image_path + " alt='Product'/> </a>" +
+															"<a href='items_description.php?item_id=" + myObj[i].menu_id + "'><img onerror='onImgError(this)' src=" + image_path + " alt='Product'/> </a>" +
 															    "<div class='product-label-group'>" +
 																		narrival_tag +
 																		bseller_tag +
