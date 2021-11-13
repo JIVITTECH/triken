@@ -17,62 +17,10 @@ include_once 'configure.php';
 
 include("database.php");
 
-$establist_connection = getSchemas($conn);
-
-$restaurant_id = $_GET['rest_key'];
-
-function getSchemas($conn) {
-	
-    $id = $_GET['rest_key'];
-    $res = "";
-    $events = array();
-
-
-    $sql_query = "SELECT * FROM masterdb WHERE restaurant_key='$id'";
-	
-    $qry_result = mysqli_query($conn, $sql_query);
-
-    $rowscount_res_sql = mysqli_num_rows($qry_result);
-
-    if ($rowscount_res_sql > 0) {
-        if ($rows = mysqli_fetch_array($qry_result)) {
-            $sel_db = $rows['schema_name'];
-            $db_user ="";
-            $db_pass ="";
-            $sql_user = "SELECT * FROM ecap_cloud_login_details WHERE db_name = '$sel_db'";
-            $qry_user = mysqli_query($conn, $sql_user);
-
-            $rowscount = mysqli_num_rows($qry_user);
-            if ($rowscount > 0) {
-                if ($rows1 = mysqli_fetch_array($qry_user)) {
-                      $db_user = $rows1['db_uname'];
-                      $db_pass = $rows1['db_pwd'];
-                }
-            }
-    
-            $_SESSION["obo_selected_schema"] = $rows['schema_name'];
-            $_SESSION["obo_db_user"] = $db_user;
-            $_SESSION["obo_db_pass"] = $db_pass;
-            }
-    }
-}
-
 date_default_timezone_set("Asia/Kolkata");
 
 $current_zone_time = date("Y-m-d H:i:s");
 
-$db = $_SESSION["obo_selected_schema"];
-$dbpass = $_SESSION["obo_db_pass"];
-$dbuser = $_SESSION["obo_db_user"];
-$dbhost = "localhost";
-$conn1 = mysqli_connect($dbhost, $dbuser, $dbpass, $db, "3306");
-if (!$conn1) {
-    die("ERROR: Could not connect. " . mysqli_connect_error());
-}
-
-$db_name = $_SESSION["obo_selected_schema"];
-$db_uname =  $_SESSION["obo_db_user"];
-$db_pass = $_SESSION["obo_db_pass"];
 $category_load_flag = 0;
 $item_load_flag = 0;
 $cart_page_flag = 0;
@@ -89,7 +37,7 @@ if ($_POST || $_GET) {
         $razorpay_payment_id = $_POST['easepayid'];
         $is_cod = "";
         $sel_pay = "select * from invoice_details where razor_pay_id = '$razorpay_payment_id'";
-        $res_sel_pay = mysqli_query($conn1, $sel_pay);
+        $res_sel_pay = mysqli_query($conn, $sel_pay);
         $rows_cnt_sel_pay = mysqli_num_rows($res_sel_pay);
     }
     $branch_id = $_GET['branch_id'];
@@ -116,22 +64,19 @@ if ($_POST || $_GET) {
             FROM kot_customer_details kcd
             WHERE id = $user_id";
 
-    $res_sql = mysqli_query($conn1, $sql1);
+    $res_sql = mysqli_query($conn, $sql1);
     $rowscount_res_sql = mysqli_num_rows($res_sql);
 
     if ($rowscount_res_sql > 0) {
         if ($rows = mysqli_fetch_array($res_sql)) {
-            $_SESSION['customer_id'] = $rows['user_id'];
-            $_SESSION['customer_branch_id'] = $rows['branch_id'];
-            $_SESSION['customer_contact_no'] = $rows['contact_no'];
-            $_SESSION['customer_name'] = $rows['customer_name'];
-            $_SESSION['customer_addr'] = $rows['email_addr'];
-
+            $_SESSION['user_id'] = $rows['user_id'];
+            $_SESSION['branch_id'] = $rows['branch_id'];
+            $_SESSION['contact_no'] = $rows['contact_no'];
         }
     }
         
     $sql_component_color = "SELECT * FROM obo_customization_details";
-    $qry_component_color = mysqli_query($conn1, $sql_component_color);
+    $qry_component_color = mysqli_query($conn, $sql_component_color);
     $rowscount1 = mysqli_num_rows($qry_component_color);
     if ($rowscount1 > 0) {
         while($rows2 = mysqli_fetch_array($qry_component_color)){
@@ -156,7 +101,7 @@ if ($_POST || $_GET) {
     $branch_ad = "SELECT *     
                       FROM kot_branch_details
                       WHERE branch_id = $branch_id ";
-    $branch_res = mysqli_query($conn1, $branch_ad);
+    $branch_res = mysqli_query($conn, $branch_ad);
     $count = mysqli_num_rows($branch_res);
     if ($count !== 0) {
         while ($qry1 = mysqli_fetch_array($branch_res)) {
@@ -166,8 +111,8 @@ if ($_POST || $_GET) {
     
 	if ($rows_cnt_sel_pay == 0) {
         $invoice_insert = "INSERT INTO invoice_details (invoice_date, razor_pay_id, others) values ('$current_zone_time', '" . $razorpay_payment_id . "', '" . $is_cod . "')";
-        $res_invoice_insert = mysqli_query($conn1, $invoice_insert);
-        $invoice_id = mysqli_insert_id($conn1);
+        $res_invoice_insert = mysqli_query($conn, $invoice_insert);
+        $invoice_id = mysqli_insert_id($conn);
         $order_id = $invoice_id;
         $upd_cus_pkgs = "update obo_cart_details set
                     invoice_no = '$invoice_id' , del_charge = '$delivery',order_placed = 'Y',ordered_date_time = '$current_zone_time',temp_order_id = '$order_id',branch_address ='$branch_address',packing_charge = '$package_chg' 
@@ -175,10 +120,10 @@ if ($_POST || $_GET) {
         if ($upd_cus_pkgs) {
 
         }
-        $update_cart = mysqli_query($conn1, $upd_cus_pkgs);
+        $update_cart = mysqli_query($conn, $upd_cus_pkgs);
 
         $sql_brnch = "select * from obo_cart_details  where cart_id  = $cart_id";
-        $res_brnch = mysqli_query($conn1, $sql_brnch);
+        $res_brnch = mysqli_query($conn, $sql_brnch);
         while ($rows = mysqli_fetch_array($res_brnch)) {
             $total_price = $rows['total_price'];
             $sub_total = $rows['sub_total'];
@@ -188,10 +133,10 @@ if ($_POST || $_GET) {
         }
 
         $sql_tax = "select * from tax_name where find_in_set($order_type,zone) and branchId = $branch_id and tax_flag = 1 group by id order by tax_name";
-        $result_tax = mysqli_query($conn1, $sql_tax);
+        $result_tax = mysqli_query($conn, $sql_tax);
 
         $del_tax = "delete from obo_order_tax where cart_id = $cart_id";
-        $result_del = mysqli_query($conn1, $del_tax);
+        $result_del = mysqli_query($conn, $del_tax);
 
         while ($rows = mysqli_fetch_array($result_tax)) {
             $tax_name = $rows['tax_name'];
@@ -199,12 +144,12 @@ if ($_POST || $_GET) {
             $tax_amount = ($sub_total / 100) * $tax_percentage;
 
             $sql = "insert into obo_order_tax(cart_id,tax_name,tax_per, tax_cost)values($cart_id,'$tax_name','$tax_percentage' , '$tax_amount')";
-            $result = mysqli_query($conn1, $sql);
+            $result = mysqli_query($conn, $sql);
         }
 
         $rest_id = "";
         $db_name_qry = "select * from masterdb";
-        $db_name_res = mysqli_query($conn1, $db_name_qry);
+        $db_name_res = mysqli_query($conn, $db_name_qry);
         while ($row_db = mysqli_fetch_array($db_name_res)) {
             $rest_id = $row_db['restaurant_key'];
         }
@@ -212,7 +157,7 @@ if ($_POST || $_GET) {
         $pos_merchant_id = "";
 
         $brnch_name = "select * from kot_branch_details  where branch_id  = $branch_id";
-        $res_brnch_name = mysqli_query($conn1, $brnch_name);
+        $res_brnch_name = mysqli_query($conn, $brnch_name);
         while ($row = mysqli_fetch_array($res_brnch_name)) {
             $branch_name = $row['name'];
             $pos_merchant_id = $row['pos_merchant_id'];
@@ -226,7 +171,7 @@ if ($_POST || $_GET) {
 
 
         $cus_details = "select * from kot_customer_details where id = $customer_id";
-        $res_cus_details = mysqli_query($conn1, $cus_details);
+        $res_cus_details = mysqli_query($conn, $cus_details);
         while ($rows_cus = mysqli_fetch_array($res_cus_details)) {
             $customer_name = $rows_cus['customer_name'];
             $contact_no = $rows_cus['contact_no'];
@@ -235,7 +180,7 @@ if ($_POST || $_GET) {
         }
 
         $del = "select * from obo_cart_coupon where cart_id = $cart_id";
-        $result_off = mysqli_query($conn1, $del);
+        $result_off = mysqli_query($conn, $del);
         while ($rows_dis = mysqli_fetch_array($result_off)) {
             $discount_amount = $rows_dis['amount'];
         }
@@ -264,7 +209,7 @@ if ($_POST || $_GET) {
         $mod_list = "";
 
         $del_res = "delete from obo_cart_item_details where cart_id = $cart_id and quantity = 0";
-        $del_list = mysqli_query($conn1, $del_res);
+        $del_list = mysqli_query($conn, $del_res);
 
         $items_res = "select DISTINCT oboi.cart_item_id AS cart_item_id_1, oboi.*, 
                         pm.name, pm.image,pm.tax, COALESCE(GROUP_CONCAT(sm.name), '') AS sub_mod_name,
@@ -281,7 +226,7 @@ if ($_POST || $_GET) {
                         group by oboi.cart_item_id
                         order by oboi.cart_item_id";
 
-        $res_items = mysqli_query($conn1, $items_res);
+        $res_items = mysqli_query($conn, $items_res);
 
         $count = mysqli_num_rows($res_items);
         while ($rows_items = mysqli_fetch_array($res_items)) {
@@ -296,7 +241,7 @@ if ($_POST || $_GET) {
 
 
             $item_details = "select * from predefined_menu  where predef_menu_id = $item_id and branch = $branch_id ";
-            $res_details = mysqli_query($conn1, $item_details);
+            $res_details = mysqli_query($conn, $item_details);
             while ($rows_details = mysqli_fetch_array($res_details)) {
                 $item_name = $rows_details['name'];
             }
@@ -361,7 +306,7 @@ if ($_POST || $_GET) {
         // echo $response;
 
         $sql_cart_id = "select * from obo_cart_details where customer_id = $user_id and order_placed= 'N' order by cart_id desc limit 1";
-        $res_cart_id = mysqli_query($conn1, $sql_cart_id);
+        $res_cart_id = mysqli_query($conn, $sql_cart_id);
         $cart_count = mysqli_num_rows($res_cart_id);
 
         if ($cart_count > 0) {
@@ -370,22 +315,22 @@ if ($_POST || $_GET) {
             }
         } else {
             $sql = "insert into obo_cart_details(customer_id,delivery)values($user_id,$order_type)";
-            $result = mysqli_query($conn1, $sql);
-            $cart_id = mysqli_insert_id($conn1);
+            $result = mysqli_query($conn, $sql);
+            $cart_id = mysqli_insert_id($conn);
             $cus_last_cart_id = $cart_id;
         }
-        $_SESSION['obo_cart_id'] = $cus_last_cart_id;
+        $_SESSION['cart_id'] = $cus_last_cart_id;
 
          
-        sendPlaceOrderRequestToClient($ord, $_SERVER['HTTP_HOST'], $config_url_pos, $restaurant_id); /* - *** ENABLE THIS IF THEY PURCHASE POS**** */
+        sendPlaceOrderRequestToClient($ord, $_SERVER['HTTP_HOST'], $config_url_pos); /* - *** ENABLE THIS IF THEY PURCHASE POS**** */
     } else {
-        header("location:index.php?rest_key=" . $restaurant_id);
+        header("location:index.php");
     }
 } else {
-    header("location:index.php?rest_key=" . $restaurant_id);
+    header("location:index.php");
 }
 
-function sendPlaceOrderRequestToClient($js, $hostname,$config_url_pos,$restaurant_id) {
+function sendPlaceOrderRequestToClient($js, $hostname,$config_url_pos) {
 
     global $branch_id;
     global $db_name;

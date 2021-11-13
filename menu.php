@@ -231,19 +231,7 @@
 				return obj;
 			}	
 			
-			function saveCookieData() {
-                var arr1 = getAllUrlParams((window.location).toString());
-                var xmlhttp = new XMLHttpRequest();
-                var url = "controller/saveCookieData.php?customer_id=" + customer_id + "&branch_id=" + branch_id;
-                xmlhttp.open("GET", url, true);
-                xmlhttp.send();
-                xmlhttp.onreadystatechange = function () {
-                    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-                        $.removeCookie("item_list");
-                    }
-                };
-            }
-			
+		
 			function logout() {
                 var arr1 = getAllUrlParams((window.location).toString());
                 var xmlhttp = new XMLHttpRequest();

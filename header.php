@@ -50,6 +50,8 @@
 
    		<link rel="stylesheet" type="text/css" href="assets/font/font-awesome/css/font-awesome.min">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="js/common.js"></script>
+
 		<?php
 			include_once './session.php';
 		?>
@@ -205,15 +207,15 @@
 				return obj;
 			}	
 			
-			function saveCookieData() {
+			function saveCookieData(customer_id,branch_id) {
                 var arr1 = getAllUrlParams((window.location).toString());
                 var xmlhttp = new XMLHttpRequest();
-                var url = "controller/saveCookieData.php?customer_id=" + customer_id + "&branch_id=" + branch_id;
+                var url = "api/saveCookieData.php?customer_id=" + customer_id + "&branch_id=" + branch_id;
                 xmlhttp.open("GET", url, true);
                 xmlhttp.send();
                 xmlhttp.onreadystatechange = function () {
                     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-                        $.removeCookie("item_list");
+                        document.cookie = "item_list=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
                     }
                 };
             }

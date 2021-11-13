@@ -74,4 +74,9 @@ for ($i = 0; $i < sizeOf($item_list_array); $i++) {
 	}
         
 }
+
+if (isset($_COOKIE['item_list'])) {
+    unset($_COOKIE['item_list']);
+    setcookie('item_list', '', time() - 3600, '/'); // empty value and old timestamp
+}
 ?>

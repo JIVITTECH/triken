@@ -150,7 +150,6 @@
 
 <?php include('footer.php'); ?>
 
-<script src="js/common.js"></script>
 <script type='text/javascript'>
 
 

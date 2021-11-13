@@ -213,6 +213,7 @@ function verifyOTP() {
 	var bcount = "";
 	var status = "";
 	var customer_id =  "";
+	var branch_id = "";
 	if (otpchar.trim().length === 0) {
 		document.getElementById('otp').style.backgroundColor = '#efefc1';
 		document.getElementById('otp').title = 'Enter the Valid OTP';
@@ -229,9 +230,13 @@ function verifyOTP() {
 				bcount = myObj[0].b_count;
 				status = myObj[0].status;
 				customer_id = myObj[0].user_id;
+				branch_id = myObj[0].branch_id;
 			}
 			if (status === "OTPSuccess") {
 				document.getElementById('otp_dialog').style.display = 'none';
+				if ($.cookie("item_list") !== undefined) {
+					saveCookieData(customer_id,branch_id);
+				}
 				window.location.href = "my-account.php";
 			} 
 		}
