@@ -69,7 +69,7 @@
 													</div>
 													<div class="col-lg-4">
 							                            <div class="input-group" id="button_grp">
-							                                    <input class="quantity form-control" id="qty_in_cart" type="number" disabled min="0" max="10000000">
+							                                    <input class="form-control" id="qty_in_cart" type="number" disabled>
 							                                    <div id="add_sub"></div>
 													    </div>
 							                        </div>
