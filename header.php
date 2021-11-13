@@ -205,7 +205,9 @@
                 xmlhttp.send();
                 xmlhttp.onreadystatechange = function () {
                     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+						var myOnj = this.responseText;
                         document.cookie = "item_list=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+						window.location.href = "my-account.php";
                     }
                 };
             }
