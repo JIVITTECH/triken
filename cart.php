@@ -23,7 +23,8 @@ $branch = $_GET['branch_id'];
 $min_price = 0;
 $additional_price = 0;
 $min_distance = 0;
-
+$user_id = $_SESSION['user_id'];
+$cart_id = $_SESSION['cart_id'];
 $branch_add = "SELECT * from kot_branch_details where branch_id = $branch ";
 $bran_res = mysqli_query($conn, $branch_add);
 $count_branch = mysqli_num_rows($bran_res);
@@ -399,6 +400,10 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 												<td class="product-total text-right discount_amt" id="">₹<span id="discount-id">0.00</span></td>
 											</tr>
 											<tr class="bb-no">
+												<td class="product-name">Parcel Charge</td>
+												<td class="product-total text-right">₹<span id="package-id">0.00</span></td>
+											</tr>
+											<tr class="bb-no">
 												<td class="product-name">Delivery</td>
 												<td class="product-total text-right">₹<span id="delivery_cost">0.00</span></td>
 											</tr>
@@ -654,6 +659,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 						$('#final_cart').append(information);
                         document.getElementById("final_sub_total").innerHTML = "";
 						document.getElementById("final_sub_total").innerHTML = (+grand_sub_total).toFixed(2);
+						document.getElementById('package-id').innerHTML = (+pkg_price).toFixed(2);
                         discount_amt = "<?php echo $disc_amount;?>";
 						var disc_name = "<?php echo $discount_name;?>";
 						if (disc_name !== "") {
@@ -662,7 +668,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
                         delivery_cost = "<?php echo $delivery_charge; ?>";
                         document.getElementById("delivery_cost").innerHTML = (+delivery_cost).toFixed(2);
 						document.getElementById("discount-id").innerHTML = (+discount_amt).toFixed(2);
-                        document.getElementById("grand_total").innerHTML = (+grand_sub_total - +discount_amt + +delivery_cost).toFixed(2);
+                        document.getElementById("grand_total").innerHTML = (+grand_sub_total - +discount_amt + +delivery_cost + +pkg_price).toFixed(2);
                      	} else {
 					}
 				} else

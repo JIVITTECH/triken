@@ -9,7 +9,7 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 include("../database.php");
 
 $userid = $_GET['customer_id'];
-$branch_id = $_GET['branch_id'];
+$branch_id = $_SESSION['branch_id'];
 $items_list = $_COOKIE['item_list'];
 
 $cus_cart_id = 0;
@@ -73,5 +73,10 @@ for ($i = 0; $i < sizeOf($item_list_array); $i++) {
 		$result = mysqli_query($conn, $sql);
 	}
         
+}
+
+if (isset($_COOKIE['item_list'])) {
+    unset($_COOKIE['item_list']);
+    setcookie('item_list', '', time() - 3600, '/'); // empty value and old timestamp
 }
 ?>
