@@ -29,8 +29,10 @@
                             <div class="header-call d-xs-show d-lg-flex align-items-center">
                                         <a href="about.php">About</a>
                             </div>
+							<?php if ($customer_id  === '-1') { ?>    
                             <a href="login.php" id="login" class="login sign-in"> <i class="fa fa-user-circle" aria-hidden="true"></i>
      <span class="htext">Log In/Sign Up</span></a>
+							<?php } ?>
                             <div class="dropdown cart-dropdown mr-0 mr-lg-2">
                                 <div class="cart-overlay"></div>
                                 <a href="#" class="cart-toggle label-down link">
@@ -39,7 +41,7 @@
                                     </i>
                                     <span class="cart-label">Cart</span>
                                 </a>
-                                <div class="dropdown-box">
+								<div class="dropdown-box">
                                     <div class="products" id="cart_items_container" style="height: 100% !important;">
 									  No Items Added
                                     </div>
@@ -57,8 +59,12 @@
 								<input type="hidden" id="contact_no">
                                 <!-- End of Dropdown Box -->
                             </div>
+							<?php if ($customer_id  !== '-1') { ?>    
+                            <a  onclick="logout()" id="logout" class="login sign-in"> <i class="fa fa-user-circle" aria-hidden="true"></i>
+								<span class="htext">Logout</span></a>
+						<?php } ?>
 						 <a href="otp.php" id="otp_btn" class="login sign-in hidden-sm"></a>
-                        </div>
+						 </div>
                     </div>
                 </div>
                 <div class="submenu">
@@ -234,6 +240,19 @@
                 xmlhttp.onreadystatechange = function () {
                     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
                         $.removeCookie("item_list");
+                    }
+                };
+            }
+			
+			function logout() {
+                var arr1 = getAllUrlParams((window.location).toString());
+                var xmlhttp = new XMLHttpRequest();
+                var url = "logout.php";
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                        
                     }
                 };
             }
