@@ -15,8 +15,9 @@
 
 <section class="productcat">
 	<div class="container">
-		<div class="row cols-xl-4 cols-md-3 cols-sm-3" id="all_deals_of_the_day_container">
-            
+		<div class="row cols-xl-4 cols-md-3 cols-sm-3">
+            <div id="all_deals_of_the_day_container">
+            </div>            
         </div>
 	</div>
 </section>
