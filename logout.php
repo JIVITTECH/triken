@@ -8,6 +8,4 @@ unset($_SESSION['contact_no']);
 unset($_SESSION['cart_id']);
 unset($_SESSION['user_loc_longitude']);
 unset($_SESSION['user_loc_latitude']);
-
-header("location:index.php");
 ?>
