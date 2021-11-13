@@ -26,10 +26,6 @@ if (isset($_SESSION['user_id']) != NULL || isset($_SESSION['contact_no']) != NUL
         $customer_id = $_SESSION['user_id'];
     }
 
-    if (isset($_COOKIE['temp_branch'])) {
-        $_SESSION['branch_id'] = $_COOKIE['temp_branch'];
-    }
-
     if (isset($_SESSION['contact_no']) != NULL) {
         $contact_no = $_SESSION['contact_no'];
     }
@@ -43,7 +39,9 @@ if (isset($_SESSION['user_id']) != NULL || isset($_SESSION['contact_no']) != NUL
     }
 } else if (isset($_SESSION['user_id']) == NULL || isset($_SESSION['contact_no']) == NULL) {
     $_SESSION['user_id'] = '-1';
-    $_SESSION['branch_id'] = '-1';
+    if ($_SESSION['branch_id'] == "" || $_SESSION['branch_id'] == NULL) {
+        $_SESSION['branch_id'] = '-1';
+    }
     $_SESSION['contact_no'] = '-1';
     $_SESSION['cart_id'] = '-1';
     $customer_id = $_SESSION['user_id'];

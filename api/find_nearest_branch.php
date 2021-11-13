@@ -7,6 +7,10 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 
 include("../database.php");
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}	
+
 $latitude = $_GET['latitude'];
 $longitude = $_GET['longitude'];
 
