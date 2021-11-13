@@ -116,7 +116,14 @@ function loadTopCategories() {
                     {
                         image_path = 'images/default.jpg';
                     }
-                    information = information + "<div class='category'><figure class='category-media'><a href='#'><img onerror='onImgError(this)' src="+image_path+" alt="+name+"><h4 class='category-name'>"+name+"</h4></a></figure></div>";
+                    information = information + "<div class='category'>" +
+					                                "<figure class='category-media'>" +
+													      "<a href='products.php?category_id=" + myObj[i].id + "'>" +
+														       "<img onerror='onImgError(this)' src=" + image_path + " alt=" + name + ">" +
+														       "<h4 class='category-name'>" + name + "</h4>" +
+														  "</a>" +
+												    "</figure>" + 
+												"</div>";
                 }
                 $('#top_container').empty();
                 $('#top_container').append(information);
