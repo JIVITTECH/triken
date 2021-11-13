@@ -79,7 +79,9 @@
 <section class="explore appear-animate">
 	<div class="container">
 		 <h1 class="title text-center appear-animate"> Explore by Categories </h1>
-		 <div class="row cols-2" id="categories_container">
+		 <div class="row cols-2">
+             <div id="categories_container">
+             </div>
          </div>
 
 <!-- recipes start -->
@@ -101,7 +103,9 @@
                             }
                         }
                     }">
-		      <div class="swiper-wrapper row cols-2" id="recipe_container">
+		      <div class="swiper-wrapper row cols-2">
+                  <div id="recipe_container">
+                  </div>
 			  </div>
 		 </div>
 
