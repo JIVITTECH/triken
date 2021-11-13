@@ -73,7 +73,7 @@ function loadCartData() {
 														"<a href='#' class='product-name'>" + myObj[i].name + "</a>" +
 														"<div class='product-qty-form mb-2 mr-2'>" +
 															"<div class='input-group'>" +
-																"<input class='quantity form-control' value =  " + myObj[i].quantity + " type='number' min='1' max='10000000'>" +
+																"<input class=' form-control' value =  " + myObj[i].quantity + " type='number'>" +
 																"<button onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ",\"" + image_path + "\")'  class='quantity-plus w-icon-plus'></button>" +
 																"<button onclick='redQtyFromCart(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ",0," + myObj[i].quantity + ")'  class='quantity-minus w-icon-minus'></button>" +
 															"</div>" +
@@ -83,7 +83,7 @@ function loadCartData() {
 														"</div>" +
 													"</div>" +
 													"<button class='btn btn-link btn-close' aria-label='button'>" +
-														"<i class='fas fa-times'></i>" +
+															"<i class='fas fa-times' onclick='redQtyFromCart(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ",1," + myObj[i].quantity + ")'   ></i>" +
 													"</button>" +
 												"</div><hr class='product-divider'>";
 							$('#cart_items_container').empty();
@@ -110,8 +110,6 @@ function loadCartDataFromCookie() {
 		var information = "";
 		var grand_sub_total = 0;
 		var arr1 = getAllUrlParams((window.location).toString());
-		var branch_id = 1;
-                setCookie('branch_id',branch_id,1);
 		if ($.cookie("item_list") !== undefined) {
 			var item_list = $.parseJSON($.cookie("item_list"));
 			$.cookie("item_list", JSON.stringify(item_list));
@@ -146,7 +144,7 @@ function loadCartDataFromCookie() {
 											"<a href='#' class='product-name'>" + item_name + "</a>" +
 											"<div class='product-qty-form mb-2 mr-2'>" +
 												"<div class='input-group'>" +
-													"<input class='quantity form-control' value =  " + sel_qty + " type='number' min='1' max='10000000'>" +
+													"<input class=' form-control' value =  " + sel_qty + " type='number'>" +
 													"<button onclick='saveItemDetails(" + menu_id + ", "  + customer_id +  "," + price +  ",\"" + item_name + "\", "  + pkg_charge +  ",\"" + image_path + "\")'  class='quantity-plus w-icon-plus'></button>" +
 													"<button onclick='redQtyFromCart(" + menu_id + ", "  + customer_id +  "," + price +  ",\"" + item_name + "\", "  + pkg_charge +  ",0," + sel_qty + ")'  class='quantity-minus w-icon-minus'></button>" +
 												"</div>" +
@@ -156,7 +154,7 @@ function loadCartDataFromCookie() {
 											"</div>" +
 										"</div>" +
 										"<button class='btn btn-link btn-close' aria-label='button'>" +
-											"<i class='fas fa-times'></i>" +
+											"<i class='fas fa-times' onclick='redQtyFromCart(" + menu_id + ", "  + customer_id +  "," + price +  ",\"" + item_name + "\", "  + pkg_charge +  ",1," + sel_qty + ")' ></i>" +
 										"</button>" +
 									"</div><hr class='product-divider'>";
 				$('#cart_items_container').empty();
