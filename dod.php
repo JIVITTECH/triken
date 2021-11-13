@@ -11,6 +11,7 @@
 ?> 
 
 <?php include('breadcrumb.php'); ?>
+<script src="js/basics.js"></script>
 <script src="js/index.js"></script>
 
 <section class="productcat">

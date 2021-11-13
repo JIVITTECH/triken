@@ -134,6 +134,7 @@
 
 <?php include('footer.php'); ?>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.8.2.js"></script>
+<script src="js/basics.js"></script>
 <script src="js/index.js"></script>
 <script src="js/common.js"></script>
 <script type='text/javascript'>

@@ -191,14 +191,11 @@ function loadLtdDealsOfTheDay() {
 	};
 }
 
-function onImgError(e) {
- e.src = 'images/default.jpg';
-}
-
 function loadAllDealsOfTheDay() {
+        var branchId = getCookie('branch_id');
 	var information = "";
 	var xmlhttp = new XMLHttpRequest();
-	var url = "api/get_deals_of_the_day.php?branch=" + branch_id + "&show_limited_products=N";
+	var url = "api/get_deals_of_the_day.php?branch=" + branchId + "&show_limited_products=N";
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send();
 	xmlhttp.onreadystatechange = function () {
@@ -238,7 +235,7 @@ function loadAllDealsOfTheDay() {
 					information = information + "<div class='product-wrap'>" +
 													"<div class='product text-center'>" +
 														"<figure class='product-media'>" +
-															"<a href='#'><img src=" + image_path + " alt='Product'/> </a>" +
+															"<a href='#'><img onerror='onImgError(this)' src=" + image_path + " alt='Product'/> </a>" +
 															"<div class='product-label-group'>" +
                                 								discount_tag +
 															"</div>" +
