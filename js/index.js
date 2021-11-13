@@ -122,8 +122,9 @@ function loadTopCategories() {
 
 function loadLtdDealsOfTheDay() {
 	var information = "";
+        var branchId = getCookie('branch_id');
 	var xmlhttp = new XMLHttpRequest();
-	var url = "api/get_deals_of_the_day.php?branch=" + branch_id + "&show_limited_products=Y";
+	var url = "api/get_deals_of_the_day.php?branch=" + branchId + "&show_limited_products=Y";
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send();
 	xmlhttp.onreadystatechange = function () {
