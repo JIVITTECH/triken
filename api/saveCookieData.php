@@ -8,8 +8,12 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 
 include("../database.php");
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 $userid = $_GET['customer_id'];
-$branch_id = $_SESSION['branch_id'];
+$branch_id = $_GET['branch_id'];
 $items_list = $_COOKIE['item_list'];
 
 $cus_cart_id = 0;

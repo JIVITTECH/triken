@@ -234,8 +234,9 @@ function verifyOTP() {
 				document.getElementById('otp_dialog').style.display = 'none';
 				if ($.cookie("item_list") !== undefined) {
 					saveCookieData(customer_id,branch_id);
+				}else{
+					window.location.href = "my-account.php";
 				}
-				window.location.href = "my-account.php";
 			} 
 		}
 	};
