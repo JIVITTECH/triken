@@ -392,8 +392,9 @@
 		var gstotal = (+grand_sub_total).toFixed(2);
 		var discount_id = document.getElementById("discount-id").innerHTML;
 		var discount = (+discount_id).toFixed(2);
+		var expected_date = document.getElementById("expected_date").innerHTML;
 		var xmlhttp = new XMLHttpRequest();
-		var url = "api/savePriceDetails.php?cart_id=" + cus_cart_id + "&grand_total=" + total + "&grand_sub_total=" + gstotal + "&branch_id=" + branch_id + "&user_id=" + customer_id + "&discount=" + discount + "&sub_total=" + sub_total;
+		var url = "api/savePriceDetails.php?cart_id=" + cus_cart_id + "&grand_total=" + total + "&grand_sub_total=" + gstotal + "&branch_id=" + branch_id + "&user_id=" + customer_id + "&discount=" + discount + "&sub_total=" + sub_total + "&expected_date=" + expected_date;
 		xmlhttp.open("GET", url, true);
 		xmlhttp.send();
 		xmlhttp.onreadystatechange = function () {
