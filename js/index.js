@@ -56,8 +56,7 @@ function loadAllCategories() {
 		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 			var myObj = JSON.parse(this.responseText);
 			if (myObj.length !== 0) {
-			    information = "<div class='row cols-2'>";
-				for (var i = 0; i < myObj.length; i++) {
+			    for (var i = 0; i < myObj.length; i++) {
 					var cover_photo = myObj[i].image_path;
 					var image_path = "";
 					if (cover_photo !== "")
@@ -82,7 +81,6 @@ function loadAllCategories() {
 									            "</div>";
 									            
 				}
-				information = information + "</div>";
 				$('#categories_container').empty();
 				$('#categories_container').append(information);
             } else {
