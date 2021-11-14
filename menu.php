@@ -12,8 +12,7 @@
                             <a href="index.php" class="logo hidden-sm">
                                 <img src="assets/images/logo.png" alt="logo">
                             </a>
-                            <form method="get" action=""
-                                class="input-wrapper header-search hs-expanded hs-round d-md-flex">
+                            <div class="input-wrapper header-search hs-expanded hs-round d-md-flex">
                                 <div class="select-box">
                                     <a class="button" onclick="$('.lpopup').show();"><i class="fa fa-map-marker" aria-hidden="true"></i>
      VOC Colony, Peelamedu</a>
@@ -23,7 +22,7 @@
                                     <input type="text" class="form-control pt-0 pb-0" name="search" id="search" onblur="this.placeholder = 'Search your delicious product'"
                                     placeholder="Search your delicious product" onfocus="this.placeholder = ''" required />
                                 </button>
-                            </form>
+                            </div>
                         </div>
                         <div class="header-right">
                             <div class="header-call d-xs-show d-lg-flex align-items-center">
