@@ -31,9 +31,20 @@ $(document).ready(function () {
 function loadAllItemDetails() {
 	var information = "";
 	var arr1 = getAllUrlParams((window.location).toString());
-    var category_id = arr1.category_id;
-	var xmlhttp = new XMLHttpRequest();
-	var url = "api/get_list_of_products.php?branch=" + branch_id + "&search_by_category=" + category_id + "&search_by_product=";
+
+	if(typeof arr1.category_id === "undefined") {
+        category_id = '';
+    } else {
+		category_id = arr1.category_id;
+	}
+	if(typeof arr1.search_text === "undefined") {
+        search_text = '';
+    } else { 
+	    search_text = arr1.search_text;
+	}
+
+ 	var xmlhttp = new XMLHttpRequest();
+	var url = "api/get_list_of_products.php?branch=" + branch_id + "&search_by_category=" + category_id + "&search_by_product=" + search_text;
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send();
 	xmlhttp.onreadystatechange = function () {
