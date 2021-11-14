@@ -32,12 +32,12 @@ function loadAllItemDetails() {
 	var information = "";
 	var arr1 = getAllUrlParams((window.location).toString());
 
-	if(typeof arr1.category_id ==="undefined") {
+	if(typeof arr1.category_id === "undefined") {
         category_id = '';
     } else {
 		category_id = arr1.category_id;
 	}
-	if(typeof arr1.search_text ==="undefined") {
+	if(typeof arr1.search_text === "undefined") {
         search_text = '';
     } else { 
 	    search_text = arr1.search_text;

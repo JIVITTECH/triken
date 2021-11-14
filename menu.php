@@ -246,6 +246,8 @@
 
 			function search_products_by_text() {
 			    var search_text = document.getElementById("search").value;
-				window.location.href = "products.php?search_text=" + search_text;
+				if (search_text.trim().length != '0') {
+				   window.location.href = "products.php?search_text=" + search_text;
+				}
 			}
 		</script>
