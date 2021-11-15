@@ -34,7 +34,7 @@
 							<?php } ?>
                             <div class="dropdown cart-dropdown mr-0 mr-lg-2">
                                 <div class="cart-overlay"></div>
-                                <a href="#" class="cart-toggle label-down link">
+                                <a class="cart-toggle label-down link">
                                     <i class="fa fa-shopping-cart" aria-hidden="true">
                                         <span class="cart-count" id="cart_count"></span>
                                     </i>
