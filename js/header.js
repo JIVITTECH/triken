@@ -229,7 +229,12 @@ function verifyOTP() {
 				bcount = myObj[0].b_count;
 				status = myObj[0].status;
 				customer_id = myObj[0].user_id;
-				}
+				document.cookie = "user_id=" +  myObj[0].user_id + "; expires=Wed, 01 Jan 2100 12:00:00 UTC";
+				document.cookie = "mobile_no=" +  myObj[0].mobile_no + "; expires=Wed, 01 Jan 2100 12:00:00 UTC";
+				document.cookie = "email_id=" +  myObj[0].email_id + "; expires=Wed, 01 Jan 2100 12:00:00 UTC";
+				document.cookie = "user_name=" +  myObj[0].user_name + "; expires=Wed, 01 Jan 2100 12:00:00 UTC";
+				document.cookie = "cart_id=" +  myObj[0].cart_id + "; expires=Wed, 01 Jan 2100 12:00:00 UTC";
+			}
 			if (status === "OTPSuccess") {
 				document.getElementById('otp_dialog').style.display = 'none';
 				if ($.cookie("item_list") !== undefined) {
