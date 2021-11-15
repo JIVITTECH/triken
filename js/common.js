@@ -132,10 +132,11 @@ function redQty(menu_id, customer_id,price, name, pkg_charge,flag) {
 					if(item_list_array[i].quantity === 0){
 						item_list_array.pop(item_list_array[i]);
 					}
-				}
-				item_list_array[i].quantity = +total_qty - 1;
-				if(item_list_array[i].quantity === 0){
-					item_list_array.pop(item_list_array[i]);
+				} else {
+					item_list_array[i].quantity = item_list_array[i].quantity - 1;
+					if(item_list_array[i].quantity === 0){
+						item_list_array.pop(item_list_array[i]);
+					}
 				}
 				$.cookie("item_list", JSON.stringify(item_list_array));
 				loadItemsFromCart();
