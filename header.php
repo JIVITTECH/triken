@@ -1,3 +1,6 @@
+<?php
+   include_once './session.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,9 +55,6 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="js/common.js"></script>
 
-		<?php
-			include_once './session.php';
-		?>
 		<script>
 		    
 			// var dirname = "../../app/Catering/"; --- live
