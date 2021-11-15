@@ -97,7 +97,11 @@ function loadItemsDescription() {
 					document.getElementById("product_price").innerHTML = discount_price;
 				}
 				loadItemsFromCart();
-				loadCartData();
+				if (customer_id !== -1) {
+				   loadCartData();
+				} else {
+				   loadCartDataFromCookie();
+				}
 			} else {
 				$('#item_container').append("<center>No Items found</center>");
             }
