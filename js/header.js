@@ -13,8 +13,8 @@ function loadCartData() {
 				if (this.readyState === 4 && this.status === 200)
 				{
 					var myObj = JSON.parse(this.responseText);
+					grand_sub_total = 0;
 					if (myObj.length > 0) {
-							grand_sub_total = 0;
 							pkg_price = 0;
 							var cart_count = myObj.length;
 							document.getElementById("cart_count").innerHTML = cart_count;
@@ -95,6 +95,8 @@ function loadCartData() {
 					{
 						$('#cart_items_container').empty();
 						$('#cart_items_container').append("No Items Added");
+						document.getElementById("subtotal_cart_container").innerHTML = "";
+						document.getElementById("subtotal_cart_container").innerHTML = (+grand_sub_total).toFixed(2);
 					}
 				}
 			};
@@ -114,59 +116,68 @@ function loadCartDataFromCookie() {
 			var item_list = $.parseJSON($.cookie("item_list"));
 			$.cookie("item_list", JSON.stringify(item_list));
 			document.getElementById("cart_count").innerHTML = item_list.length;
-			for (var i = 0; i < item_list.length; i++) {
-				var items = "";
-				var menu_id = item_list[i].menu_id;
-				var sel_qty = item_list[i].quantity;
-				var price = item_list[i].price;
-				var item_name = item_list[i].item_name;
-				var pkg_charge = item_list[i].pkg_charge;
-				var image_path = item_list[i].image_path;
-				items = {
-					'menu_id': menu_id,
-					'price': price,
-					'quantity': sel_qty,
-					'item_name': item_name,
-					'pkg_charge' : pkg_charge,
-					'image_path' : image_path,
-				};
+
+			if (item_list.length > 0) {
+				for (var i = 0; i < item_list.length; i++) {
+					var items = "";
+					var menu_id = item_list[i].menu_id;
+					var sel_qty = item_list[i].quantity;
+					var price = item_list[i].price;
+					var item_name = item_list[i].item_name;
+					var pkg_charge = item_list[i].pkg_charge;
+					var image_path = item_list[i].image_path;
+					items = {
+						'menu_id': menu_id,
+						'price': price,
+						'quantity': sel_qty,
+						'item_name': item_name,
+						'pkg_charge' : pkg_charge,
+						'image_path' : image_path,
+					};
 				
-				var total_price = +sel_qty * +price;
-			    grand_sub_total = grand_sub_total + +total_price;
-				item_list_array.push(items);
-				information = information +  "<div class='product product-cart'>" +
-										"<figure class='product-media'>" +
-											"<a href='#'>" +
-												 "<a href='#'><img src = '" + image_path + "' onerror='imgError(this);' alt='Product'/> </a>" +
-											"</a>" +
-										"</figure>" +
-										"<div class='product-detail'>" +
-											"<a href='#' class='product-name'>" + item_name + "</a>" +
-											"<div class='product-qty-form mb-2 mr-2'>" +
-												"<div class='input-group'>" +
-													"<input class=' form-control' value =  " + sel_qty + " type='number'>" +
-													"<button onclick='saveItemDetails(" + menu_id + ", "  + customer_id +  "," + price +  ",\"" + item_name + "\", "  + pkg_charge +  ",\"" + image_path + "\")'  class='quantity-plus w-icon-plus'></button>" +
-													"<button onclick='redQtyFromCart(" + menu_id + ", "  + customer_id +  "," + price +  ",\"" + item_name + "\", "  + pkg_charge +  ",0," + sel_qty + ")'  class='quantity-minus w-icon-minus'></button>" +
-												"</div>" +
-												"<div class='price-box'>" +
-													"<span class='product-price'><ins class='new-price'>" + total_price + "</ins></span>" +
+					var total_price = +sel_qty * +price;
+					grand_sub_total = grand_sub_total + +total_price;
+					item_list_array.push(items);
+					information = information +  "<div class='product product-cart'>" +
+											"<figure class='product-media'>" +
+												"<a href='#'>" +
+													 "<a href='#'><img src = '" + image_path + "' onerror='imgError(this);' alt='Product'/> </a>" +
+												"</a>" +
+											"</figure>" +
+											"<div class='product-detail'>" +
+												"<a href='#' class='product-name'>" + item_name + "</a>" +
+												"<div class='product-qty-form mb-2 mr-2'>" +
+													"<div class='input-group'>" +
+														"<input class=' form-control' value =  " + sel_qty + " type='number'>" +
+														"<button onclick='saveItemDetails(" + menu_id + ", "  + customer_id +  "," + price +  ",\"" + item_name + "\", "  + pkg_charge +  ",\"" + image_path + "\")'  class='quantity-plus w-icon-plus'></button>" +
+														"<button onclick='redQtyFromCart(" + menu_id + ", "  + customer_id +  "," + price +  ",\"" + item_name + "\", "  + pkg_charge +  ",0," + sel_qty + ")'  class='quantity-minus w-icon-minus'></button>" +
+													"</div>" +
+													"<div class='price-box'>" +
+														"<span class='product-price'><ins class='new-price'>" + total_price + "</ins></span>" +
+													"</div>" +
 												"</div>" +
 											"</div>" +
-										"</div>" +
-										"<button class='btn btn-link btn-close' aria-label='button'>" +
-											"<i class='fas fa-times' onclick='redQtyFromCart(" + menu_id + ", "  + customer_id +  "," + price +  ",\"" + item_name + "\", "  + pkg_charge +  ",1," + sel_qty + ")' ></i>" +
-										"</button>" +
-									"</div><hr class='product-divider'>";
-				$('#cart_items_container').empty();
-				$('#cart_items_container').append(information);
+											"<button class='btn btn-link btn-close' aria-label='button'>" +
+												"<i class='fas fa-times' onclick='redQtyFromCart(" + menu_id + ", "  + customer_id +  "," + price +  ",\"" + item_name + "\", "  + pkg_charge +  ",1," + sel_qty + ")' ></i>" +
+											"</button>" +
+										"</div><hr class='product-divider'>";
+					$('#cart_items_container').empty();
+					$('#cart_items_container').append(information);
+					document.getElementById("subtotal_cart_container").innerHTML = "";
+					document.getElementById("subtotal_cart_container").innerHTML = (+grand_sub_total).toFixed(2);
+				}
+			} else {
+			    $('#cart_items_container').empty();
+				$('#cart_items_container').append("No Items Added");
 				document.getElementById("subtotal_cart_container").innerHTML = "";
 				document.getElementById("subtotal_cart_container").innerHTML = (+grand_sub_total).toFixed(2);
+			}
+		}else {
+			$('#cart_items_container').empty();
+			$('#cart_items_container').append("No Items Added");
+			document.getElementById("subtotal_cart_container").innerHTML = "";
+			document.getElementById("subtotal_cart_container").innerHTML = (+grand_sub_total).toFixed(2);
 		}
-	}else
-	{
-		$('#cart_items_container').empty();
-		$('#cart_items_container').append("No Items Added");
-	}
 }
 
 function loginValid() {
