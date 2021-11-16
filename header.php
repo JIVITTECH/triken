@@ -212,7 +212,14 @@
                 };
             }
 			
-			
+			function ValidateNumber(){
+				var mobileNo = document.getElementById("phone").value;
+				var mbLength = mobileNo.length;
+				if(mbLength === 10){
+					document.getElementById("send_otp").style.pointerEvents  = 'auto';
+				}
+			}
+
 		</script>
 		
 </head>
