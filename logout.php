@@ -13,4 +13,18 @@ if (isset($_COOKIE['item_list'])) {
     unset($_COOKIE['item_list']);
     setcookie('item_list', '', time() - 3600, '/'); // empty value and old timestamp
 }
+
+if (isset($_COOKIE['user_id'])) {
+    setcookie("user_id", "", time()-3600);
+}
+if (isset($_COOKIE['mobile_no'])) {
+    setcookie("mobile_no", "", time()-3600);
+}
+if (isset($_COOKIE['branch_id'])) {
+    setcookie("branch_id", "", time()-3600);
+}
+if (isset($_COOKIE['cart_id'])) {
+    setcookie("cart_id", "", time()-3600);
+}
+
 ?>

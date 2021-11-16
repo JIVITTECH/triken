@@ -21,6 +21,19 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+if (isset($_COOKIE['user_id']) != NULL) {
+    $_SESSION['user_id'] = $_COOKIE['user_id'];
+}
+if (isset($_COOKIE['mobile_no']) != NULL) {
+    $_SESSION['contact_no'] = $_COOKIE['mobile_no'];
+}
+if (isset($_COOKIE['branch_id']) != NULL) {
+    $_SESSION['branch_id'] = $_COOKIE['branch_id'];
+}
+if (isset($_COOKIE['cart_id']) != NULL) {
+    $_SESSION['cart_id'] = $_COOKIE['cart_id'];
+}
+
 if (isset($_SESSION['user_id']) != NULL || isset($_SESSION['contact_no']) != NULL) {
     if (isset($_SESSION['user_id']) != NULL) {
         $customer_id = $_SESSION['user_id'];
