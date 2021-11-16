@@ -193,8 +193,8 @@ function loginValid() {
 		if (this.readyState === 4 && this.status === 200) {
 			
 			if (this.responseText === "success") {
-				document.getElementById('login_dialog').style.display = 'none';
-				document.getElementById('otp_btn').click();
+				document.getElementById('login_popup').style.display = 'none';
+				document.getElementById('otp_popup').style.display = 'block';
 			} else {
 				document.getElementById('login_dialog').style.display = 'none';
 			}
@@ -247,7 +247,7 @@ function verifyOTP() {
 				document.cookie = "cart_id=" +  myObj[0].cart_id + "; expires=Wed, 01 Jan 2100 12:00:00 UTC";
 			}
 			if (status === "OTPSuccess") {
-				document.getElementById('otp_dialog').style.display = 'none';
+				document.getElementById('login_dialog').style.display = 'none';
 				if ($.cookie("item_list") !== undefined) {
 					saveCookieData(customer_id,branch_id);
 				}else{
