@@ -180,6 +180,11 @@ function loadCartDataFromCookie() {
 		}
 }
 
+var timeLeft = 0;
+var elem = "";
+var timerId = 0;
+var mobile = "";
+			
 function loginValid() {
 	var loginNumber = "";
 	loginNumber = document.getElementById('phone').value;
@@ -193,8 +198,12 @@ function loginValid() {
 		if (this.readyState === 4 && this.status === 200) {
 			
 			if (this.responseText === "success") {
-				document.getElementById('login_dialog').style.display = 'none';
-				document.getElementById('otp_btn').click();
+				document.getElementById('login_popup').style.display = 'none';
+				document.getElementById('otp_popup').style.display = 'block';
+				document.getElementById('timer').style.display = 'block';
+				timeLeft = 60;
+				elem = document.getElementById('timer');
+				timerId = setInterval(countdown, 1000);
 			} else {
 				document.getElementById('login_dialog').style.display = 'none';
 			}
@@ -206,6 +215,22 @@ function loginValid() {
 	xhttp.send();
 }
 
+function countdown() {
+	if (timeLeft === 0) {
+		clearTimeout(timerId);
+		doSomething();
+	} else {
+		elem.innerHTML = timeLeft + ' seconds remaining';
+		timeLeft--;
+	}
+}
+
+function doSomething() {
+	elem.innerHTML = "";
+	elem.innerHTML = 'OTP Expired';
+	document.getElementById('resendOTP').style.display = 'block';
+}
+			
 function checkUserSession(){
 	if (customer_id !== -1) {
 		window.location.href = "cart.php?branch_id=" + branch_id;
@@ -247,7 +272,7 @@ function verifyOTP() {
 				document.cookie = "cart_id=" +  myObj[0].cart_id + "; expires=Wed, 01 Jan 2100 12:00:00 UTC";
 			}
 			if (status === "OTPSuccess") {
-				document.getElementById('otp_dialog').style.display = 'none';
+				document.getElementById('login_dialog').style.display = 'none';
 				if ($.cookie("item_list") !== undefined) {
 					saveCookieData(customer_id,branch_id);
 				}else{
@@ -286,7 +311,11 @@ function resendOTP() {
 	xhttp.onreadystatechange = function () {
 		if (this.readyState === 4 && this.status === 200) {
 			if (this.responseText === "success") {
-				
+				timeLeft = 60;
+				document.getElementById('resendOTP').style.display = 'none';
+				document.getElementById('timer').style.display = 'block';
+				elem = document.getElementById('timer');
+				timerId = setInterval(countdown, 1000);
 			}
 		}
 	};
