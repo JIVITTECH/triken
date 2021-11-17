@@ -161,11 +161,13 @@ $(function(){
 });
 
 $(document).ready(function () {
-    loadAllCategories();
-    loadTopCategories();
-    loadLtdDealsOfTheDay();
-    loadLtdBestSellingProducts();
-    loadAllRecipes();
+    if (branch_id != '-1') {
+        loadAllCategories();
+        loadTopCategories();
+        loadLtdDealsOfTheDay();
+        loadLtdBestSellingProducts();
+        loadAllRecipes();
+    }
 });
 
 
