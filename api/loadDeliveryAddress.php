@@ -8,6 +8,10 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 
 include("../database.php");
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 $user_id = $_SESSION['user_id'];
 
 if ($_GET["action"] == "get_all_delivery_address") {
