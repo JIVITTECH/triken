@@ -8,6 +8,10 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 
 include("../database.php");
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 $user_id = $_SESSION['user_id'];
 
 if ($_GET["action"] == "save_new_delivery_address") {
@@ -76,7 +80,7 @@ if ($_GET["action"] == "save_new_delivery_address") {
    }
 
    $query = "INSERT INTO obo_customer_addresses (customer_id, delivery_address, current_address)" .
-            " VALUES (" . $userID . "," . "'" . $deliveryAddress . "'" . "," . "'Y'" .");";  
+            " VALUES (" . "'$user_id'" . "," . "'" . $deliveryAddress . "'" . "," . "'Y'" .");";  
 
    if ($conn->query($query) === TRUE) {
       echo "200";
