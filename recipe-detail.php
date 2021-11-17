@@ -76,7 +76,6 @@ $(document).ready(function () {
 	loadAllRecipesDetail();
 });
 
-var branch_id = 1;
 var recipe_name = "";
 
 function loadAllRecipes() {
