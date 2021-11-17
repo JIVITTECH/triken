@@ -564,7 +564,6 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 		$('#final_cart').empty();
 		var information = "";
 		var arr1 = getAllUrlParams((window.location).toString());
-		var branch_id = 1;
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function () {
 			if (this.readyState === 4 && this.status === 200)
