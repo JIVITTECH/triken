@@ -119,4 +119,82 @@ if ($_GET["action"] == "remove_delivery_address") {
    }  
 }
 
+
+if ($_GET["action"] == "update_delivery_address") {
+
+   $deliveryAddress = "";
+
+   $flatNo = mysqli_real_escape_string($conn,$_GET['addr_flat_no_build_name']);
+   $street = mysqli_real_escape_string($conn,$_GET['addr_street_area']);
+   $area = mysqli_real_escape_string($conn,$_GET['addr_area']);
+   $city = mysqli_real_escape_string($conn,$_GET['addr_city']);
+   $pincode = mysqli_real_escape_string($conn,$_GET['addr_pincode']);
+   $landmark = mysqli_real_escape_string($conn,$_GET['addr_landmark']);
+   $address_id = mysqli_real_escape_string($conn,$_GET['address_id']);
+
+   if (strlen(trim($flatNo)) != '0') {
+     $deliveryAddress = trim($flatNo);
+   }
+
+   if (strlen(trim($street)) != '0') {
+     
+      if (strlen(trim($deliveryAddress)) != '0') { 
+         $deliveryAddress .= ", " . trim($street);
+      }  else {
+         $deliveryAddress = trim($street);
+      }
+
+   }
+
+   if (strlen(trim($area)) != '0') {
+
+      if (strlen(trim($deliveryAddress)) != '0') { 
+         $deliveryAddress .= ",<br>" . trim($area);
+      }  else {
+         $deliveryAddress = trim($area);
+      }
+
+   }
+
+   if (strlen(trim($city)) != '0') {
+
+      if (strlen(trim($deliveryAddress)) != '0') { 
+         $deliveryAddress .= ",<br>" . trim($city);
+      }  else {
+         $deliveryAddress = trim($city);
+      }
+
+   }
+
+   if (strlen(trim($pincode)) != '0') {
+
+      if (strlen(trim($deliveryAddress)) != '0') { 
+         $deliveryAddress .= " - " . trim($pincode);
+      }  else {
+         $deliveryAddress = trim($pincode);
+      }
+
+   }
+
+   if (strlen(trim($landmark)) != '0') {
+
+      if (strlen(trim($deliveryAddress)) != '0') { 
+         $deliveryAddress .= ",<br>" . trim($landmark);
+      }  else {
+         $deliveryAddress = trim($landmark);
+      }
+
+   }
+   
+    $query = "UPDATE obo_customer_addresses set delivery_address = '$deliveryAddress',flatNo = '$flatNo',street = '$street',city = '$city',
+            pincode = '$pincode', landmark = '$landmark' WHERE delivery_add_id = $address_id";
+
+    $res_sql = mysqli_query($conn, $query);
+   if ($conn->query($query) === TRUE) {
+	  echo "200";
+   } else {
+	  echo "Error Creating record: " . $conn->error;
+   }  
+}
+
 ?>
