@@ -22,14 +22,34 @@ function loadItemsDescription() {
 					
 					var related_images = myObj[i].related_images;
 					var related_images_tag = "";
-					for (var j = 0; j < related_images.length; j++) {
-						var full_path = dirname + related_images[j].image_path;
-						related_images_tag = related_images_tag + "<div class='swiper-slide'>" +
-		                                "<figure class='product-image'>" +
-		                                    "<img src='" + full_path + "' data-zoom-image='" + full_path + "' alt=''>" +
-		                                "</figure>" +
-		                            "</div>";
+                    if(related_images.length > 0){
+						for (var j = 0; j < related_images.length; j++) {
+							var full_path = dirname + related_images[j].image_path;
+							related_images_tag = related_images_tag + "<div class='swiper-slide'>" +
+											"<figure class='product-image'>" +
+												"<img onerror='onError(this)' src='" + full_path + "' data-zoom-image='" + full_path + "' alt=''>" +
+											"</figure>" +
+										"</div>";
+						}
+					}else{
+						if( myObj[i].image !== ""){
+							var full_path = dirname + myObj[i].image;
+							related_images_tag = related_images_tag + "<div class='swiper-slide'>" +
+											"<figure class='product-image'>" +
+												"<img onerror='onError(this)' src='" + full_path + "' data-zoom-image='" + full_path + "' alt=''>" +
+											"</figure>" +
+										"</div>";
+						}else{
+							var full_path = "images/default.jpg";
+							related_images_tag = related_images_tag + "<div class='swiper-slide'>" +
+											"<figure class='product-image'>" +
+												"<img onerror='onError(this)' src='" + full_path + "' data-zoom-image='" + full_path + "' alt=''>" +
+											"</figure>" +
+										"</div>";
+						}
 					}
+
+
 					var cover_photo = myObj[i].image;
 					var image_path = "";
 					if (cover_photo !== "")
@@ -152,7 +172,7 @@ function loadAllRelatedItems() {
 					information = information + "<div class='swiper-slide product-widget-wrap'>" +
 													"<div class='product'>" +
 														"<figure class='product-media'>" +
-															"<a href='#'><img src=" + image_path + " alt='Product'/> </a>" +
+															"<a href='#'><img onerror='onError(this)' src=" + image_path + " alt='Product'/> </a>" +
 																"<div class='product-label-group'>" +
 																	bseller_tag +
 															"</div>" +
@@ -181,4 +201,8 @@ function loadAllRelatedItems() {
             }
 		}
 	};
+}
+
+function onError(e) {
+ e.src = 'images/default.jpg';
 }
