@@ -26,5 +26,7 @@ if (isset($_COOKIE['branch_id'])) {
 if (isset($_COOKIE['cart_id'])) {
     setcookie("cart_id", "", time()+(3600*24*30));
 }
-
+if (isset($_COOKIE['locName'])) {
+    setcookie("locName", "", time()+(3600*24*30));
+}
 ?>

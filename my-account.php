@@ -24,7 +24,7 @@ $page ="My Account";
 .address:before	{	content: "";    background: url(assets/images/location_icon.png) no-repeat;    width: 20px;    height: 20px;    position: absolute;    display: inline-block;    left: -30px;	}
 #popup2 .popup {    background-color: #fff;    padding: 3% 3% 3%;    border-radius: 0;	}
 </style>
-<script src="js/loadProfileDetails.js"></script>
+<script src="js/GeoLocationMapping.js"></script>
 <div class="page-content account_sec">
                 <div class="container">
 					<h2 class="title title-center">My Account</h2>
@@ -44,103 +44,15 @@ $page ="My Account";
                         <div class="tab-content mb-6">
                             
 
-                            <div class="tab-pane active in mb-4" id="my-orders">
-
-								<div class="row order_row">
-									<div class="order_sec">
-										<div class="col-md-10 col-xs-9">
-										
-												<div class="order-detail">
-												Order #118471143479<br>
-												Thu, Oct 28, 2021
-												</div>
-											
-										</div>
-										<div class="col-md-2 col-xs-12">
-										<a href="#"  class="btn acc_btn btn-outline btn-default btn-block btn-sm btn-rounded">Reorder</a>
-										</div>
-									</div>
-									<p>Country Chicken x1, Catla slice x1</p>
-								</div>
-								
-								<div class="row order_row">
-									<div class="order_sec">
-										<div class="col-md-10 col-xs-9">
-										
-												<div class="order-detail">
-												Order #118471143479<br>
-												Thu, Oct 28, 2021
-												</div>
-											
-										</div>
-										<div class="col-md-2 col-xs-12">
-										<a href="#"  class="btn acc_btn btn-outline btn-default btn-block btn-sm btn-rounded">Reorder</a>
-										</div>
-									</div>
-									<p>Country Chicken x1, Catla slice x1</p>
-								</div>
-								
-								<div class="row order_row">
-									<div class="order_sec">
-										<div class="col-md-10 col-xs-9">
-										
-												<div class="order-detail">
-												Order #118471143479<br>
-												Thu, Oct 28, 2021
-												</div>
-											
-										</div>
-										<div class="col-md-2 col-xs-12">
-										<a href="#"  class="btn acc_btn btn-outline btn-default btn-block btn-sm btn-rounded">Reorder</a>
-										</div>
-									</div>
-									<p>Country Chicken x1, Catla slice x1</p>
-								</div>
-								
-							
+                            <div class="tab-pane active in mb-4" id="my-orders">	
                             </div>
 
-                            
-
                             <div class="tab-pane" id="address-book">
-                                <div class="row">
+                                <div class="row" id="address-book-row">
 								
-									<div class="ecommerce-address billing-address pr-lg-8">
-										<div class="address">
-										41/2,SRC Sunrise,2nd Floor, Post,<br> Vivekanandha Nagar, Singanallur,<br> Tamil Nadu 641005
-										</div>
-										<a href="#" class="btn btn-link btn-underline btn-icon-right" style="color: #E0522D;text-transform: inherit;">Edit</a>
-										<a href="#" class="btn btn-link btn-underline btn-icon-right pl-5" style="color: #E0522D;text-transform: inherit;">Delete</a>
-									</div>
-									
-									<div class="ecommerce-address billing-address pr-lg-8">
-										<div class="address">
-										41/2,SRC Sunrise,2nd Floor, Post,<br> Vivekanandha Nagar, Singanallur,<br> Tamil Nadu 641005
-										</div>
-										<a href="#" class="btn btn-link btn-underline btn-icon-right" style="color: #E0522D;text-transform: inherit;">Edit</a>
-										<a href="#" class="btn btn-link btn-underline btn-icon-right pl-5" style="color: #E0522D;text-transform: inherit;">Delete</a>
-									</div>
-								
-									<div class="ecommerce-address billing-address pr-lg-8">
-										<div class="address">
-										41/2,SRC Sunrise,2nd Floor, Post,<br> Vivekanandha Nagar, Singanallur,<br> Tamil Nadu 641005
-										</div>
-										<a href="#" class="btn btn-link btn-underline btn-icon-right" style="color: #E0522D;text-transform: inherit;">Edit</a>
-										<a href="#" class="btn btn-link btn-underline btn-icon-right pl-5" style="color: #E0522D;text-transform: inherit;">Delete</a>
-									</div>
-									
-									<div class="ecommerce-address billing-address pr-lg-8">
-										<div class="address">
-										41/2,SRC Sunrise,2nd Floor, Post,<br> Vivekanandha Nagar, Singanallur,<br> Tamil Nadu 641005
-										</div>
-										<a href="#" class="btn btn-link btn-underline btn-icon-right" style="color: #E0522D;text-transform: inherit;">Edit</a>
-										<a href="#" class="btn btn-link btn-underline btn-icon-right pl-5" style="color: #E0522D;text-transform: inherit;">Delete</a>
-									</div>
-									
-
                                 </div>
 								<div class="row">
-									<a href="#popup2" class="button btn acc_btn btn-outline btn-default btn-block btn-sm btn-rounded ml-3 mt-2">Add New Address</a>
+									<a href="#popup2" id="add-new-addr-btn" class="button btn acc_btn btn-outline btn-default btn-block btn-sm btn-rounded ml-3 mt-2">Add New Address</a>
 									</div>
                             </div>
 
@@ -181,50 +93,61 @@ $page ="My Account";
 
 <div id="popup2" class="overlay">
     <div class="popup">
-         <a class="close" href="#">&times;</a>
+         <a id = "close_btn" class="close" href="#">&times;</a>
         <div class="content">
-            <form class="form account-details-form" action="#" method="post">
-             <div class="row"><h1>Add New Address</h1></div>
+            <form class="form account-details-form" action="" method="post">
+             <div class="row"><h1>Add or Edit Address</h1></div>
 		<div class="row">
 			<div class="col-md-12">
 				<div class="form-group">
-					<textarea id="message" name="message" cols="30" rows="5" class="form-control" placeholder="Street Address"required></textarea>
+					     <input type="text" id="building-name" name="building-name" placeholder="Flat no / Building Name" class="form-control form-control-md" >
+               </div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					 <input type="text" id="Street" name="street" placeholder="Street / Area" class="form-control form-control-md" >
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+					<input type="text" id="area" name="area" placeholder="Area" class="form-control form-control-md" >
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group">
-					<input type="text" id="city" name="city" placeholder="City"
-						class="form-control form-control-md" required>
+					 <input type="text" id="city" name="city" placeholder="City"  class="form-control form-control-md" >
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
-					<input type="text" id="state" name="state" placeholder="State"
-						class="form-control form-control-md" required>
-				</div>
+					    <input type="text" id="pincode" name="pincode" placeholder="Pincode" class="form-control form-control-md" >
+             	</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group">
-					<input type="text" id="zipcode" name="zipcode" placeholder="Zipcode"
-						class="form-control form-control-md" required>
+					<input type="text" id="landmark" name="landmark" placeholder="Landmark" class="form-control form-control-md" >
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
-					<input type="email" id="country" name="country" placeholder="Country"
-					class="form-control form-control-md" required>
+				    <input type="hidden" id="hidden_address">
+					<button type="button"  id="saveButton" class="submit_btn btn btn-dark btn-rounded btn-sm mb-4" onclick="saveNewDeliveryAddress(2);">Save Address</button>
+					<button type="button"  id="updateButton" style="display:none;" class="submit_btn btn btn-dark btn-rounded btn-sm mb-4" onclick="updateDelivery(2);">Update Address</button>
 				</div>
 			</div>
 		</div>
-	  
-		<button type="submit" class="submit_btn btn btn-dark btn-rounded btn-sm mb-4">Save Address</button>
 	</form>
         </div>
     </div>
 </div>            
             
 <?php include('footer.php'); ?>
+<script src="js/loadProfileDetails.js"></script>
+<script src="js/myOrders.js"></script>
+<script src="js/saveDeliveryAddress.js"></script>
