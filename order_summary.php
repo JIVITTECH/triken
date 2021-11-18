@@ -129,7 +129,7 @@
 					}
 					
 					var del_slot = cart_details.del_day + " | " + cart_details.del_day + " slot";
-					document.getElementById("generated_cart_id").innerHTML =  cart_details.cart_id;
+					document.getElementById("generated_cart_id").innerHTML =  cart_details.invoice_no;
 					document.getElementById("order_date").innerHTML =  cart_details.ordered_date_time;
 					document.getElementById("grand_total").innerHTML =  cart_details.total_price;
 					document.getElementById("payment_mode").innerHTML =  cart_payment_mode;

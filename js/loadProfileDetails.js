@@ -1,5 +1,6 @@
 $( document ).ready(function() {
     load_profile_details();
+	loadOrders();
 });
 
 

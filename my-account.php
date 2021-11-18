@@ -24,7 +24,6 @@ $page ="My Account";
 .address:before	{	content: "";    background: url(assets/images/location_icon.png) no-repeat;    width: 20px;    height: 20px;    position: absolute;    display: inline-block;    left: -30px;	}
 #popup2 .popup {    background-color: #fff;    padding: 3% 3% 3%;    border-radius: 0;	}
 </style>
-<script src="js/loadProfileDetails.js"></script>
 <div class="page-content account_sec">
                 <div class="container">
 					<h2 class="title title-center">My Account</h2>
@@ -44,63 +43,8 @@ $page ="My Account";
                         <div class="tab-content mb-6">
                             
 
-                            <div class="tab-pane active in mb-4" id="my-orders">
-
-								<div class="row order_row">
-									<div class="order_sec">
-										<div class="col-md-10 col-xs-9">
-										
-												<div class="order-detail">
-												Order #118471143479<br>
-												Thu, Oct 28, 2021
-												</div>
-											
-										</div>
-										<div class="col-md-2 col-xs-12">
-										<a href="#"  class="btn acc_btn btn-outline btn-default btn-block btn-sm btn-rounded">Reorder</a>
-										</div>
-									</div>
-									<p>Country Chicken x1, Catla slice x1</p>
-								</div>
-								
-								<div class="row order_row">
-									<div class="order_sec">
-										<div class="col-md-10 col-xs-9">
-										
-												<div class="order-detail">
-												Order #118471143479<br>
-												Thu, Oct 28, 2021
-												</div>
-											
-										</div>
-										<div class="col-md-2 col-xs-12">
-										<a href="#"  class="btn acc_btn btn-outline btn-default btn-block btn-sm btn-rounded">Reorder</a>
-										</div>
-									</div>
-									<p>Country Chicken x1, Catla slice x1</p>
-								</div>
-								
-								<div class="row order_row">
-									<div class="order_sec">
-										<div class="col-md-10 col-xs-9">
-										
-												<div class="order-detail">
-												Order #118471143479<br>
-												Thu, Oct 28, 2021
-												</div>
-											
-										</div>
-										<div class="col-md-2 col-xs-12">
-										<a href="#"  class="btn acc_btn btn-outline btn-default btn-block btn-sm btn-rounded">Reorder</a>
-										</div>
-									</div>
-									<p>Country Chicken x1, Catla slice x1</p>
-								</div>
-								
-							
+                            <div class="tab-pane active in mb-4" id="my-orders">	
                             </div>
-
-                            
 
                             <div class="tab-pane" id="address-book">
                                 <div class="row">
@@ -228,3 +172,5 @@ $page ="My Account";
 </div>            
             
 <?php include('footer.php'); ?>
+<script src="js/loadProfileDetails.js"></script>
+<script src="js/myOrders.js"></script>
