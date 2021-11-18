@@ -12,35 +12,35 @@
                             <a href="index.php" class="logo hidden-sm">
                                 <img src="assets/images/logo.png" alt="logo">
                             </a>
-                            <form method="get" action="#"
-                                class="input-wrapper header-search hs-expanded hs-round d-md-flex">
+                            <div class="input-wrapper header-search hs-expanded hs-round d-md-flex">
                                 <div class="select-box">
-                                    <a class="button" href="#popup1"><i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    <a class="button" onclick="$('.lpopup').show();"><i class="fa fa-map-marker" aria-hidden="true"></i>
      VOC Colony, Peelamedu</a>
                                 </div>
                                 <button class="btn btn-search productsearch hidden-sm" type="submit">
-                                    <i class="w-icon-search"></i>
+                                    <i class="w-icon-search" onclick="search_products_by_text()"></i>
                                     <input type="text" class="form-control pt-0 pb-0" name="search" id="search" onblur="this.placeholder = 'Search your delicious product'"
                                     placeholder="Search your delicious product" onfocus="this.placeholder = ''" required />
                                 </button>
-                            </form>
+                            </div>
                         </div>
                         <div class="header-right">
                             <div class="header-call d-xs-show d-lg-flex align-items-center">
                                         <a href="about.php">About</a>
                             </div>
+							<?php if ($customer_id  === '-1') { ?>    
                             <a href="login.php" id="login" class="login sign-in"> <i class="fa fa-user-circle" aria-hidden="true"></i>
      <span class="htext">Log In/Sign Up</span></a>
-                            <!--<a href="otp.php" class="login sign-in hidden-sm">OTP</a>-->
+							<?php } ?>
                             <div class="dropdown cart-dropdown mr-0 mr-lg-2">
                                 <div class="cart-overlay"></div>
-                                <a href="#" class="cart-toggle label-down link">
+                                <a class="cart-toggle label-down link">
                                     <i class="fa fa-shopping-cart" aria-hidden="true">
                                         <span class="cart-count" id="cart_count"></span>
                                     </i>
                                     <span class="cart-label">Cart</span>
                                 </a>
-                                <div class="dropdown-box">
+								<div class="dropdown-box">
                                     <div class="products" id="cart_items_container" style="height: 100% !important;">
 									  No Items Added
                                     </div>
@@ -55,9 +55,15 @@
                                         <a onclick ="checkUserSession()" class="btn btn-primary  btn-rounded">Checkout</a>
                                     </div>
                                 </div>
+								<input type="hidden" id="contact_no">
                                 <!-- End of Dropdown Box -->
                             </div>
-                        </div>
+							<?php if ($customer_id  !== '-1') { ?>    
+                            <a  onclick="logout()" id="logout" class="login sign-in"> <i class="fa fa-user-circle" aria-hidden="true"></i>
+								<span class="htext">Logout</span></a>
+						<?php } ?>
+						 <a href="otp.php" id="otp_btn" class="login sign-in hidden-sm"></a>
+						 </div>
                     </div>
                 </div>
                 <div class="submenu">
@@ -224,18 +230,24 @@
 				return obj;
 			}	
 			
-			function saveCookieData() {
+		
+			function logout() {
                 var arr1 = getAllUrlParams((window.location).toString());
-                var branch_id = 1;
-				var customer_id= 1;
                 var xmlhttp = new XMLHttpRequest();
-                var url = "controller/saveCookieData.php?customer_id=" + customer_id + "&branch_id=" + branch_id;
+                var url = "logout.php";
                 xmlhttp.open("GET", url, true);
                 xmlhttp.send();
                 xmlhttp.onreadystatechange = function () {
                     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-                        $.removeCookie("item_list");
+                        window.location.href = "index.php";
                     }
                 };
             }
+
+			function search_products_by_text() {
+			    var search_text = document.getElementById("search").value;
+				if (search_text.trim().length != '0') {
+				   window.location.href = "products.php?search_text=" + search_text;
+				}
+			}
 		</script>

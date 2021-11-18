@@ -1,12 +1,18 @@
 <?php
 
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, DELETE');
-header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, X-Token-Auth, Authorization');
+
+header('Access-Control-Allow-Methods: GET, POST');
+
+header("Access-Control-Allow-Headers: X-Requested-With");
 
 include("../database.php");
 
-$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : "298";
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+$user_id = $_SESSION['user_id'];
 
 if ($_GET["action"] == "get_all_delivery_address") {
 

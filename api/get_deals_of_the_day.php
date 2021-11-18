@@ -1,8 +1,10 @@
 <?php
 
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, DELETE');
-header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, X-Token-Auth, Authorization');
+
+header('Access-Control-Allow-Methods: GET, POST');
+
+header("Access-Control-Allow-Headers: X-Requested-With");
 
 include("../database.php");
 
@@ -50,9 +52,9 @@ $query = 'select db.* ,
               group by pm.predef_menu_id)db
           WHERE db.deals_of_the_day = "Y"';
 
-if($show_limited_products == 'Y') {
+/*if($show_limited_products == 'Y') {
     $query = $query . ' LIMIT 4';
-}
+}*/
 
 $result = mysqli_query($conn, $query);
 

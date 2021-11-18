@@ -1,8 +1,10 @@
 <?php
 
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, DELETE');
-header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, X-Token-Auth, Authorization');
+
+header('Access-Control-Allow-Methods: GET, POST');
+
+header("Access-Control-Allow-Headers: X-Requested-With");
 
 include "../database.php";
 
@@ -13,6 +15,7 @@ $branch_id = $_GET['branch_id'];
 $user_id = $_GET['user_id'];
 $discount = $_GET['discount'];
 $sub_total = $_GET['sub_total'];
+$expected_date = $_GET['expected_date'];
 $delivery_address = "";
 $lat = "";
 $long = "";
@@ -45,7 +48,7 @@ if ($count !== 0) {
     }
 }
 
-$sql = "update obo_cart_details set sub_total ='$sub_total',total_price = $grand_total,del_long='$long',del_lat='$lat',delivery_address = '$delivery_address' where cart_id = $cus_cart_id";
+$sql = "update obo_cart_details set sub_total ='$sub_total',total_price = $grand_total,del_long='$long',del_lat='$lat',delivery_address = '$delivery_address',slot='$expected_date' where cart_id = $cus_cart_id";
 $result = mysqli_query($conn, $sql);
 
 $dis = "update obo_cart_coupon set amount = '$rem_Amount', discount_cost = '$discount'  where cart_id = $cus_cart_id";

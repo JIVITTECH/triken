@@ -1,10 +1,13 @@
+<?php
+   include_once './session.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+        <script src="js/basics.js"></script>
 	<title>
 		<?php echo $title; 
 		$keywords = "";
@@ -50,18 +53,19 @@
 
    		<link rel="stylesheet" type="text/css" href="assets/font/font-awesome/css/font-awesome.min">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		
+		<script src="js/common.js"></script>
+
 		<script>
 		    
-			$(document).ready(function () {
-				var sel_elemt = document.getElementById("button_grp");
-				if(sel_elemt){
-					loadItemsDescription();
-					document.getElementById("qty_in_cart").value = 0;
-				}else{
-					loadCookieData();
-				}
-			});
+			// var dirname = "../../app/Catering/"; --- live
+			var dirname = "../ecaterweb/Catering/";
+			var sel_obo_order_type = 3;
+	        var customer_id = "<?php echo $_SESSION['user_id']; ?>";
+			customer_id = +customer_id;
+            var branch_id = "<?php echo $_SESSION['branch_id']; ?>";
+			branch_id = branch_id;
+            var cus_cart_id = "<?php echo $_SESSION['cart_id']; ?>";
+            cus_cart_id= +cus_cart_id;
 			
 			function imgError(image) {
 				image.onerror = "";
@@ -193,22 +197,29 @@
 				return obj;
 			}	
 			
-			function saveCookieData() {
+			function saveCookieData(customer_id,branch_id) {
                 var arr1 = getAllUrlParams((window.location).toString());
-                var branch_id = 1;
-				var customer_id= 45;
                 var xmlhttp = new XMLHttpRequest();
-                var url = "controller/saveCookieData.php?customer_id=" + customer_id + "&branch_id=" + branch_id;
+                var url = "api/saveCookieData.php?customer_id=" + customer_id + "&branch_id=" + branch_id;
                 xmlhttp.open("GET", url, true);
                 xmlhttp.send();
                 xmlhttp.onreadystatechange = function () {
                     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-                        $.removeCookie("item_list");
+						var myOnj = this.responseText;
+                        document.cookie = "item_list=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+						window.location.href = "my-account.php";
                     }
                 };
             }
 			
-			
+			function ValidateNumber(){
+				var mobileNo = document.getElementById("phone").value;
+				var mbLength = mobileNo.length;
+				if(mbLength === 10){
+					document.getElementById("send_otp").style.pointerEvents  = 'auto';
+				}
+			}
+
 		</script>
 		
 </head>

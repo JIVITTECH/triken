@@ -1,9 +1,16 @@
 <?php
 
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, DELETE');
-header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, X-Token-Auth, Authorization');
+
+header('Access-Control-Allow-Methods: GET, POST');
+
+header("Access-Control-Allow-Headers: X-Requested-With");
+
 include("../database.php");
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 $userid = $_GET['customer_id'];
 $branch_id = $_GET['branch_id'];
@@ -70,5 +77,10 @@ for ($i = 0; $i < sizeOf($item_list_array); $i++) {
 		$result = mysqli_query($conn, $sql);
 	}
         
+}
+
+if (isset($_COOKIE['item_list'])) {
+    unset($_COOKIE['item_list']);
+    setcookie('item_list', '', time() - 3600, '/'); // empty value and old timestamp
 }
 ?>

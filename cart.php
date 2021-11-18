@@ -5,9 +5,9 @@ $pageRobots = 'index,nofollow';
 $image = ' '; 
 $pageCanonical = '';
 $url = ' '; 
-$page ="Personal Details";
 include('header.php');
 include('main.php');
+$page ="View Cart";
 
 include("database.php");
 
@@ -23,7 +23,8 @@ $branch = $_GET['branch_id'];
 $min_price = 0;
 $additional_price = 0;
 $min_distance = 0;
-
+$user_id = $_SESSION['user_id'];
+$cart_id = $_SESSION['cart_id'];
 $branch_add = "SELECT * from kot_branch_details where branch_id = $branch ";
 $bran_res = mysqli_query($conn, $branch_add);
 $count_branch = mysqli_num_rows($bran_res);
@@ -329,7 +330,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
                     </tbody>
                 </table>
 				
-				<button  class="submit_btn btn btn-dark btn-rounded btn-sm mb-4 orange_btn">Proceed to Payment</button>
+				<button  class="submit_btn btn btn-dark btn-rounded btn-sm mb-4 orange_btn" type="button">Proceed to Payment</button>
 				
             </div>
             
@@ -383,7 +384,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 								<div class="coupon-content">
 								<div class="input-wrapper-inline">
 									<input type="text" name="coupon_code" id = "coupon_code" class="coupon_code form-control form-control-md mb-2" placeholder="Gift card or discount code" id="coupon_code">
-									<button  class="apply_coupon btn button btn-rounded btn-coupon mb-2" name="apply_coupon" value="Apply" onclick="saveOffers()">Apply</button>
+									<button  class="apply_coupon btn button btn-rounded btn-coupon mb-2" type="button" name="apply_coupon" value="Apply" onclick="saveOffers()">Apply</button>
 								</div>
 								</div>
 								<hr class="mt-2 mb-2">
@@ -397,6 +398,10 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 											<tr class="bb-no">
 												<td class="product-name">Discount</td>
 												<td class="product-total text-right discount_amt" id="">₹<span id="discount-id">0.00</span></td>
+											</tr>
+											<tr class="bb-no">
+												<td class="product-name">Parcel Charge</td>
+												<td class="product-total text-right">₹<span id="package-id">0.00</span></td>
 											</tr>
 											<tr class="bb-no">
 												<td class="product-name">Delivery</td>
@@ -425,7 +430,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 											<label for="payment2">Cash on Delivery</label>
 										</div> 
                                         
-										<button  id="ebz-checkout-btn"  class="btn btn-dark btn-rounded mb-4 orange_btn">Place Order</button>
+										<button  id="ebz-checkout-btn"  class="btn btn-dark btn-rounded mb-4 orange_btn" type="button">Place Order</button>
 										<script>
 
 											document.getElementById('ebz-checkout-btn').onclick = function (e) {
@@ -559,7 +564,6 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 		$('#final_cart').empty();
 		var information = "";
 		var arr1 = getAllUrlParams((window.location).toString());
-		var branch_id = 1;
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function () {
 			if (this.readyState === 4 && this.status === 200)
@@ -582,7 +586,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 							}
 							if (cover_photo !== "")
 							{
-								image_path = '../ecaterweb/Catering/' + cover_photo;
+								image_path = dirname + cover_photo;
 								;
 							} else
 							{
@@ -654,6 +658,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 						$('#final_cart').append(information);
                         document.getElementById("final_sub_total").innerHTML = "";
 						document.getElementById("final_sub_total").innerHTML = (+grand_sub_total).toFixed(2);
+						document.getElementById('package-id').innerHTML = (+pkg_price).toFixed(2);
                         discount_amt = "<?php echo $disc_amount;?>";
 						var disc_name = "<?php echo $discount_name;?>";
 						if (disc_name !== "") {
@@ -662,7 +667,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
                         delivery_cost = "<?php echo $delivery_charge; ?>";
                         document.getElementById("delivery_cost").innerHTML = (+delivery_cost).toFixed(2);
 						document.getElementById("discount-id").innerHTML = (+discount_amt).toFixed(2);
-                        document.getElementById("grand_total").innerHTML = (+grand_sub_total - +discount_amt + +delivery_cost).toFixed(2);
+                        document.getElementById("grand_total").innerHTML = (+grand_sub_total - +discount_amt + +delivery_cost + +pkg_price).toFixed(2);
                      	} else {
 					}
 				} else

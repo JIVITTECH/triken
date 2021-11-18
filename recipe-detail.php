@@ -76,7 +76,6 @@ $(document).ready(function () {
 	loadAllRecipesDetail();
 });
 
-var branch_id = 1;
 var recipe_name = "";
 
 function loadAllRecipes() {
@@ -94,7 +93,7 @@ function loadAllRecipes() {
 					var image_path = "";
 					if (cover_photo !== "")
 					{
-						image_path = '../ecaterweb/Catering/' + cover_photo;
+						image_path = dirname + cover_photo;
 					} else
 					{
 						image_path = 'images/default.jpg';
@@ -103,7 +102,7 @@ function loadAllRecipes() {
 					information = information + "<div class='swiper-slide post text-center overlay-zoom'>" +
 										"<figure class='post-media'>" +
 											"<a href='recipe-detail.php?recipe_id='" + myObj[i].recipe_id + ">" +
-												"<img src='" + image_path + "' alt='Recipes' />" +
+												"<img onerror='onImgError(this)' src='" + image_path + "' alt='Recipes' />" +
 											"</a>" +
 										"</figure>" +
 										"<div class='post-details'>" +
@@ -140,13 +139,13 @@ function loadAllRecipesDetail() {
 					var procedure = myObj[i].procedure;
 					if (cover_photo !== "")
 					{
-						image_path = '../ecaterweb/Catering/' + cover_photo;
+						image_path = dirname + cover_photo;
 					} else
 					{
 						image_path = 'images/default.jpg';
 					}
 					$('#recipe_banner').empty();
-				    $('#recipe_banner').append('<img src=' + image_path + '>');
+				    $('#recipe_banner').append('<img onerror=onImgError(this) src=' + image_path + '>');
 					recipe_name = myObj[i].recipe_name; 
 					document.getElementById("recipe_name").innerHTML = myObj[i].recipe_name; 
 					document.getElementById("recipe_desc").innerHTML = myObj[i].description;

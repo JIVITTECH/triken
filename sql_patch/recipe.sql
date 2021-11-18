@@ -35,3 +35,5 @@ CREATE TABLE item_related_images
 branch_id INT,
 item_id INT,
 image_path VARCHAR(1000));
+
+alter table obo_recipe add (category_id INT);

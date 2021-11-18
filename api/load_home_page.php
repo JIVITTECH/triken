@@ -1,12 +1,13 @@
 <?php
 
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, DELETE');
-header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, X-Token-Auth, Authorization');
+
+header('Access-Control-Allow-Methods: GET, POST');
+
+header("Access-Control-Allow-Headers: X-Requested-With");
 
 include("../database.php");
-//session_start();
-//error_log($_GET["action"]);
+
 if ($_GET["action"] == "get_list_of_cities") {
 	
 		$res = "";
@@ -41,13 +42,16 @@ if ($_GET["action"] == "get_list_of_cities") {
 }
 
 if ($_GET["action"] == "get_list_of_categories") {
+
+        $branch_id = $_GET["branch_id"];
 	
 		$res = "";
 
 		$events = array();
 		 
 		$sql = "SELECT * FROM predefined_menu_categories 
-		        WHERE withdraw ='N'
+		        WHERE withdraw ='N'and (name <> 'ALL' or name <> 'All')
+				  AND branch_id = $branch_id
 				ORDER BY pre_menu_id";
 
 		$result = mysqli_query($conn, $sql);

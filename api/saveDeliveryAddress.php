@@ -1,10 +1,16 @@
 <?php
 
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, DELETE');
-header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, X-Token-Auth, Authorization');
+
+header('Access-Control-Allow-Methods: GET, POST');
+
+header("Access-Control-Allow-Headers: X-Requested-With");
 
 include("../database.php");
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 $user_id = $_SESSION['user_id'];
 
@@ -74,7 +80,7 @@ if ($_GET["action"] == "save_new_delivery_address") {
    }
 
    $query = "INSERT INTO obo_customer_addresses (customer_id, delivery_address, current_address)" .
-            " VALUES (" . $userID . "," . "'" . $deliveryAddress . "'" . "," . "'Y'" .");";  
+            " VALUES (" . "'$user_id'" . "," . "'" . $deliveryAddress . "'" . "," . "'Y'" .");";  
 
    if ($conn->query($query) === TRUE) {
       echo "200";
@@ -95,6 +101,21 @@ if ($_GET["action"] == "update_current_delivery_address") {
       echo "200";
    } else {
       echo "Error Creating record: " . $conn->error;
+   }  
+}
+
+if ($_GET["action"] == "remove_delivery_address") {
+   
+   $delAddressID = $_GET['del_address_id'];
+
+   $query = "DELETE FROM obo_customer_addresses " .
+            "WHERE customer_id = " . "'" . $user_id . "'" . 
+              "AND delivery_add_id = " . $delAddressID . ";";
+
+   if ($conn->query($query) === TRUE) {
+      echo "200";
+   } else {
+      echo "Error Deleting record: " . $conn->error;
    }  
 }
 

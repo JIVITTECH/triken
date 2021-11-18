@@ -6,17 +6,11 @@
     var discount_amt = 0;
 
 //To be replaced by dynamic values from session
-    var cus_cart_id = 404;
-	var sel_obo_order_type = 3;
-	var branch_id = 1;
-    var customer_id = 1;
-    
-	function loadCustomerSelectedItems() {
+    function loadCustomerSelectedItems() {
 		grand_sub_total = 0;
 		$('#selected_items').empty();
 		var information = "";
 		var arr1 = getAllUrlParams((window.location).toString());
-		var branch_id = 1;
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function () {
 			if (this.readyState === 4 && this.status === 200)
@@ -39,7 +33,7 @@
 							}
 							if (cover_photo !== "")
 							{
-								image_path = '../ecaterweb/Catering/' + cover_photo;
+								image_path = dirname + cover_photo;
 								;
 							} else
 							{
@@ -104,7 +98,7 @@
                                             "</td>" +
                                             "<td class='product-quantity'>" +
                                             "<div class='input-group'>" +
-                                            "<input id = 'qty_" + myObj[i].menu_id  + "' class='quantity form-control' type='number'  value = '" + myObj[i].quantity + "' readonly>"  +
+                                            "<input id = 'qty_" + myObj[i].menu_id  + "' class=' form-control' type='number'  value = '" + myObj[i].quantity + "' readonly>"  +
                                             "<button type='button' class='quantity-plus w-icon-plus' href='#' onclick='IncreaseItemQuantity(" + myObj[i].menu_id + "," + myObj[i].per_unit_price + "," + myObj[i].quantity + "," + myObj[i].cart_item_id + "," + myObj[i].packing_charge + ")' ></button>" +
                                             "<button type='button' class='quantity-minus w-icon-minus' href='#' onclick='redQty(" + myObj[i].menu_id + "," + myObj[i].per_unit_price + "," + myObj[i].quantity + "," + myObj[i].cart_item_id + "," + myObj[i].packing_charge + ")' ></button>" +
                                             "</div>" +
@@ -253,13 +247,40 @@
 
 
 						if (+myObj[i].cart_item_id === cart_item_id) {
-							document.getElementById("qty_" + myObj[i].menu_id + "").value = +myObj[i].quantity;
-			                document.getElementById("price_" + cart_item_id + "").value = +total_price.toFixed(2);
+							$('#div_id_' + myObj[i].cart_item_id  + '').empty();
+							
+							information = information + "<td class='product-thumbnail'>" +
+											"<div class='p-relative'>" +
+											"<a href='#'>" +
+											"<figure>" +
+											"<img src='" + image_path + "' onerror='imgError(this);' alt='product'>" +
+											"</figure>" +
+											"</a>" +
+											"</div>" +
+											"</td>" +
+											"<td class='product-name'>" +
+								  			"<a href='#'>" + myObj[i].name + "</a>" +
+                                            "<div  class='product-price'>" +
+	                                        "<ins id = 'price_" + myObj[i].cart_item_id  + "' class='new-price'>" + total_price.toFixed(2) + "</ins>" +
+								            "<span class='gms'>" + myObj[i].net_weight + " " + myObj[i].measure + "</span>" +
+								            "</div>" +
+                                            "</td>" +
+                                            "<td class='product-quantity'>" +
+                                            "<div class='input-group'>" +
+                                            "<input id = 'qty_" + myObj[i].menu_id  + "' class=' form-control' type='number'  value = '" + myObj[i].quantity + "' readonly>"  +
+                                            "<button type='button' class='quantity-plus w-icon-plus' href='#' onclick='IncreaseItemQuantity(" + myObj[i].menu_id + "," + myObj[i].per_unit_price + "," + myObj[i].quantity + "," + myObj[i].cart_item_id + "," + myObj[i].packing_charge + ")' ></button>" +
+                                            "<button type='button' class='quantity-minus w-icon-minus' href='#' onclick='redQty(" + myObj[i].menu_id + "," + myObj[i].per_unit_price + "," + myObj[i].quantity + "," + myObj[i].cart_item_id + "," + myObj[i].packing_charge + ")' ></button>" +
+                                            "</div>" +
+                                            "<span class='remove' onclick='redQty(" + myObj[i].menu_id + "," + myObj[i].per_unit_price + ",1," + myObj[i].cart_item_id + "," + myObj[i].packing_charge + ")'> <a href=''> Remove </a> </span>" +
+                                            "</td>";
+						    
+							$('#div_id_' + myObj[i].cart_item_id  + '').append(information);
 						}
 					}
 					document.getElementById("sub_total").innerHTML = "";
 					document.getElementById("sub_total").innerHTML = (+grand_sub_total).toFixed(2);
 				} 
+				loadCartData();
 			}
 		};
 		var url = "api/loadCustomerSelectedItems.php?cart_id=" + cus_cart_id + "&branch=" + branch_id + "&order_type=" + sel_obo_order_type;
@@ -371,8 +392,9 @@
 		var gstotal = (+grand_sub_total).toFixed(2);
 		var discount_id = document.getElementById("discount-id").innerHTML;
 		var discount = (+discount_id).toFixed(2);
+		var expected_date = document.getElementById("expected_date").innerHTML;
 		var xmlhttp = new XMLHttpRequest();
-		var url = "api/savePriceDetails.php?cart_id=" + cus_cart_id + "&grand_total=" + total + "&grand_sub_total=" + gstotal + "&branch_id=" + branch_id + "&user_id=" + customer_id + "&discount=" + discount + "&sub_total=" + sub_total;
+		var url = "api/savePriceDetails.php?cart_id=" + cus_cart_id + "&grand_total=" + total + "&grand_sub_total=" + gstotal + "&branch_id=" + branch_id + "&user_id=" + customer_id + "&discount=" + discount + "&sub_total=" + sub_total + "&expected_date=" + expected_date;
 		xmlhttp.open("GET", url, true);
 		xmlhttp.send();
 		xmlhttp.onreadystatechange = function () {
@@ -387,7 +409,7 @@
 						var pm = document.getElementById("payment_method").value;
 						var delivery = document.getElementById("delivery_cost").innerHTML;
 						var package_chg = document.getElementById("package-id").innerHTML;
-						window.location = "../api/ease_buzz_php_controller.php?payment_method=" + pm + "&cart_id=" + cus_cart_id + "&branch=" + branch_id + "&del_cost=" + delivery + "&package_chg=" + package_chg + "&gt_total=" + tmp_gt;
+						window.location = "api/ease_buzz_php_controller.php?payment_method=" + pm + "&cart_id=" + cus_cart_id + "&branch=" + branch_id + "&del_cost=" + delivery + "&package_chg=" + package_chg + "&gt_total=" + tmp_gt;
 					}
 				}
 			}
@@ -403,7 +425,7 @@
 		var pm = document.getElementById("payment_method").value;
 		var delivery = document.getElementById("delivery_cost").innerHTML;
 		var package_chg = document.getElementById("package-id").innerHTML;
-		var del_cost = document.getElementById("del_cost").value;
+		var del_cost = document.getElementById("delivery_cost").innerHTML;
 		var gt = document.getElementById("gt_hidden").value;
 		var xmlhttp = new XMLHttpRequest();
 		var url = "paysuccess.php?pm=" + pm + "&cart_id=" + cus_cart_id + "&branch_id="
@@ -414,7 +436,7 @@
 			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 				var myObj = xmlhttp.responseText;
 				if (myObj !== "") {
-					location.href = 'myorders.php';
+					location.href = 'order_summary.php?cart_id=' + cus_cart_id;
 				}
 			}
 		};

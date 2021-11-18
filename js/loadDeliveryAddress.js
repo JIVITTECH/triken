@@ -15,12 +15,14 @@ function loadAllDeliveryAddress() {
 					                                   "<input type='radio' id='address" + i + "'" + "name='address' value='address" + i + "'" + "onclick = updateCurrentDeliveryAddress(" + myObj[i].delivery_add_id + ") checked>" +
 												       "<label for='address" + i + "'>" + myObj[i].delivery_address + "</label>" +
 													   "<br>"+
+													   "<a onclick='removeDeliveryAddress(" + myObj[i].delivery_add_id + ")' class='btn btn-link btn-underline btn-icon-right' style='color: #E0522D;text-transform: inherit;'>Remove</a>" +
 												   "</div>";
 					} else {
 					   information = information + "<div class='radio-item address'>" +
 					                                   "<input type='radio' id='address" + i + "'" + "name='address' value='address" + i + "'" + "onclick = updateCurrentDeliveryAddress(" + myObj[i].delivery_add_id + ") >" +
 												       "<label for='address" + i + "'>" + myObj[i].delivery_address + "</label>" +
 													   "<br>" +
+													   "<a onclick='removeDeliveryAddress(" + myObj[i].delivery_add_id + ")' class='btn btn-link btn-underline btn-icon-right' style='color: #E0522D;text-transform: inherit;'>Remove</a>" +
 												   "</div>";
 					}		
 				}

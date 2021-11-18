@@ -20,7 +20,7 @@
 
         <div class='lpopup popup'>
                 <?php include('location.php'); ?>
-                <a href='' class='close'>Close</a>
+                <a href='' class='close'>Close</a>               
         </div>  
 
 
@@ -79,7 +79,7 @@
 <section class="explore appear-animate">
 	<div class="container">
 		 <h1 class="title text-center appear-animate"> Explore by Categories </h1>
-		 <div class="row cols-2" id="categories_container">
+		 <div id="categories_container" class="row cols-2">
          </div>
 
 <!-- recipes start -->
@@ -101,8 +101,8 @@
                             }
                         }
                     }">
-		      <div class="swiper-wrapper row cols-2" id="recipe_container">
-			  </div>
+		      <div id="recipe_container" class="swiper-wrapper row cols-2">
+              </div>
 		 </div>
 
          <div class="viewall">
@@ -135,13 +135,18 @@
 <?php include('footer.php'); ?>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.8.2.js"></script>
 <script src="js/index.js"></script>
-<script src="js/common.js"></script>
 <script type='text/javascript'>
 $(function(){
 	var overlay = $('<div id="overlay"></div>');
 	overlay.show();
 	overlay.appendTo(document.body);
-	$('.lpopup').show();
+    var latitude = "<?php echo isset($_SESSION['user_loc_latitude']) ? $_SESSION['user_loc_latitude'] : ""; ?>";  
+    var longitude = "<?php echo isset($_SESSION['user_loc_longitude']) ? $_SESSION['user_loc_longitude'] : ""; ?>";  
+    
+    if (latitude.trim().length == 0 || longitude.trim().length == 0) {
+       	$('.lpopup').show();
+    }
+
 	$('.close').click(function(){
 	$('.lpopup').hide();
 	overlay.appendTo(document.body).remove();
@@ -156,29 +161,28 @@ $(function(){
 });
 
 $(document).ready(function () {
-    loadAllCategories();
-    loadTopCategories('1');
-    loadLtdDealsOfTheDay();
-    loadLtdBestSellingProducts();
-    loadAllRecipes();
+    if (branch_id != '-1') {
+        loadAllCategories();
+        loadTopCategories();
+        loadLtdDealsOfTheDay();
+        loadLtdBestSellingProducts();
+        loadAllRecipes();
+    }
 });
 
-var branch_id = 1;
-var customer_id = -1;
-var cus_cart_id = 404;
-         
+
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
         var loadDynamicData = "";
-        $.get("api/load_home_page?action=get_list_of_cities", function (data, status) {
+        $.get("api/load_home_page.php?action=get_list_of_cities", function (data, status) {
             var jsonStr = JSON.parse(data);
             for (var i = 0; i < jsonStr.length; i++) {
                 if (jsonStr[i].branch_exists === 'Y') {
                     loadDynamicData = loadDynamicData+ "<div><label for='chkYes' class='location'><input type='radio' id='chkYes' class='loc' name='chkPassPort' onclick='ShowHideDiv()'/>" + jsonStr[i].city_name + "</label> <br><span class='soon hide'> Coming Soon!</span></div>";
                 } else {
-                    loadDynamicData = loadDynamicData+"<div><label for='chkNo' class='no location'><input type='radio' id='chkYes' class='loc' name='chkPassPort' onclick='ShowHideDiv()'/> " + jsonStr[i].city_name + "</label> <br><span class='soon'> Coming Soon!</span></div>";
+                    loadDynamicData = loadDynamicData+"<div><label for='chkNo' class='no location'><input type='radio' id='chkNo' class='loc' name='chkPassPort' onclick='ShowHideDiv()'/> " + jsonStr[i].city_name + "</label> <br><span class='soon'> Coming Soon!</span></div>";
                 }
             }
             $('#cities').append(loadDynamicData);
@@ -186,46 +190,6 @@ var cus_cart_id = 404;
 
     });
     
-        function loginValid() {
-        var loginNumber = "";
-        loginNumber = document.getElementById('phone').value;
-        if (loginNumber === "") {
-            loginNumber = document.getElementById('phone').value;
-        }
-
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
-                
-                if (this.responseText === "success") {
-                    document.getElementById('login_dialog').style.display = 'none';
-//                    document.getElementById('otp').focus();
-//                    document.getElementById('phone_number').innerHTML = loginNumber;
-//                    mobile = loginNumber;
-//                    timeLeft = 60;
-//                    document.getElementById('timer').style.display = 'block';
-//                    document.getElementById('resetotp').style.display = 'none';
-//                    elem = document.getElementById('timer');
-//                    timerId = setInterval(countdown, 1000);
-                } else {
-                    console.log(this.responseText);
-                    alert(this.responseText);
-                    document.getElementById('login_dialog').style.display = 'none';
-//                    document.getElementById('idConfigDialog_sign1').style.display = 'none';
-//                    document.getElementById('idConfigDialog_signup').style.display = 'block';
-//                    document.getElementById('phone').value = loginNumber;
-//                    if ($.cookie("item_list") !== undefined) {
-//                        document.getElementById('skip_button_signup').style.display = 'none';
-//                    }
-                }
-            }
-        };
-
-        var url = "controller/SMSLoginVerification.php?action=loginValid1&loginNumber=" + loginNumber;
-        xhttp.open("GET", url, true);
-        xhttp.send();
-    }
-
 
 </script>
 

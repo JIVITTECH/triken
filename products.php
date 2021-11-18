@@ -5,9 +5,9 @@
     $image = ' '; 
     $pageCanonical = '';
     $url = ' '; 
-    $page ="Country Chicken";
     include('header.php');
     include('main.php');
+	$page ="Products";
 ?> 
 
 <?php include('breadcrumb.php'); ?>
@@ -22,21 +22,29 @@
 
 <?php include('footer.php'); ?>
 
-<script src="js/common.js"></script>
 <script type='text/javascript'>
 
 $(document).ready(function () {
 	loadAllItemDetails();
 });
 
-var branch_id = 1;
-
 function loadAllItemDetails() {
 	var information = "";
 	var arr1 = getAllUrlParams((window.location).toString());
-    var category_id = arr1.category_id;
-	var xmlhttp = new XMLHttpRequest();
-	var url = "api/get_list_of_products.php?branch=" + branch_id + "&search_by_category=" + category_id + "&search_by_product=";
+
+	if(typeof arr1.category_id === "undefined") {
+        category_id = '';
+    } else {
+		category_id = arr1.category_id;
+	}
+	if(typeof arr1.search_text === "undefined") {
+        search_text = '';
+    } else { 
+	    search_text = arr1.search_text;
+	}
+
+ 	var xmlhttp = new XMLHttpRequest();
+	var url = "api/get_list_of_products.php?branch=" + branch_id + "&search_by_category=" + category_id + "&search_by_product=" + search_text;
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send();
 	xmlhttp.onreadystatechange = function () {
@@ -48,7 +56,7 @@ function loadAllItemDetails() {
 					var image_path = "";
 					if (cover_photo !== "")
 					{
-						image_path = '../ecaterweb/Catering/' + cover_photo;
+						image_path = dirname + cover_photo;
 					} else
 					{
 						image_path = 'images/default.jpg';
@@ -89,7 +97,7 @@ function loadAllItemDetails() {
 					information = information + "<div class='product-wrap'>" +
 													"<div class='product text-center'>" +
 														"<figure class='product-media'>" +
-															"<a href='items_description.php?item_id=" + myObj[i].menu_id + "'><img src=" + image_path + " alt='Product'/> </a>" +
+															"<a href='items_description.php?item_id=" + myObj[i].menu_id + "'><img onerror='onImgError(this)' src=" + image_path + " alt='Product'/> </a>" +
 															    "<div class='product-label-group'>" +
 																		narrival_tag +
 																		bseller_tag +

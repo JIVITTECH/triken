@@ -6,8 +6,8 @@
     $pageCanonical = '';
     $url = ' '; 
     $category ="Country Chicken";
-    $page ="Country Chicken Curry Cut Small with Skin";
     include('header.php');
+	$page ="Country Chicken Curry Cut Small with Skin";
 ?> 
 
 <?php include('main.php'); ?>
@@ -69,7 +69,7 @@
 													</div>
 													<div class="col-lg-4">
 							                            <div class="input-group" id="button_grp">
-							                                    <input class="quantity form-control" id="qty_in_cart" type="number" disabled min="0" max="10000000">
+							                                    <input class="form-control" id="qty_in_cart" type="number" disabled>
 							                                    <div id="add_sub"></div>
 													    </div>
 							                        </div>
@@ -150,17 +150,12 @@
 
 <?php include('footer.php'); ?>
 
-<script src="js/common.js"></script>
 <script type='text/javascript'>
 
 
 $(document).ready(function () {
 	
 });
-
-var branch_id = 1;
-var customer_id = -1;
-var cus_cart_id = 404;
 
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>

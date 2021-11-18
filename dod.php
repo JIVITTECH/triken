@@ -5,20 +5,19 @@
     $image = ' '; 
     $pageCanonical = '';
     $url = ' '; 
-    $page ="Deal of the Day";
     include('header.php');
     include('main.php');
+    $page ="Deal of the Day";
 ?> 
 
 <?php include('breadcrumb.php'); ?>
 <script src="js/index.js"></script>
 
 <section class="productcat">
-	<div class="container">
-		<div class="row cols-xl-4 cols-md-3 cols-sm-3" id="all_deals_of_the_day_container">
-            
+    <div class="container">
+        <div id="all_deals_of_the_day_container" class="row cols-xl-4 cols-md-3 cols-sm-3">
         </div>
-	</div>
+    </div>    
 </section>
 
 <?php include('footer.php'); ?>

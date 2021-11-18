@@ -1,7 +1,3 @@
-var branch_id = 1;
-var customer_id = 1;
-var cus_cart_id = 404;
-         
 var item_list_array = []; // Global item list array
 var quantity = 0; // Total item quanity selected by the user
 var replace_name = "";// selected replace name
@@ -136,10 +132,11 @@ function redQty(menu_id, customer_id,price, name, pkg_charge,flag) {
 					if(item_list_array[i].quantity === 0){
 						item_list_array.pop(item_list_array[i]);
 					}
-				}
-				item_list_array[i].quantity = +total_qty - 1;
-				if(item_list_array[i].quantity === 0){
-					item_list_array.pop(item_list_array[i]);
+				} else {
+					item_list_array[i].quantity = item_list_array[i].quantity - 1;
+					if(item_list_array[i].quantity === 0){
+						item_list_array.pop(item_list_array[i]);
+					}
 				}
 				$.cookie("item_list", JSON.stringify(item_list_array));
 				loadItemsFromCart();
@@ -184,18 +181,26 @@ function redQtyFromCart(menu_id, customer_id,price, name, pkg_charge,flag,quanit
 			if (item_list_array[i].menu_id === menu_id) {
 				if(flag === 1){
 					item_list_array[i].quantity = 0;
+					var index = item_list_array.indexOf(item_list_array[i]);
+					item_list_array.splice(index,1);
+					$.cookie("item_list", JSON.stringify(item_list_array));
+					loadItemsFromCart();
+					loadCartDataFromCookie();
+					break;
+				}else{
+					item_list_array[i].quantity = +quanity - 1;
+					$.cookie("item_list", JSON.stringify(item_list_array));
+					loadItemsFromCart();
+					loadCartDataFromCookie();
 					if(item_list_array[i].quantity <= 0){
-						item_list_array.pop(item_list_array[i]);
+						var index = item_list_array.indexOf(item_list_array[i]);
+						item_list_array.splice(index,1);
+						$.cookie("item_list", JSON.stringify(item_list_array));
+						loadItemsFromCart();
+						loadCartDataFromCookie();
+						break;
 					}
 				}
-				item_list_array[i].quantity = +quanity - 1;
-				if(item_list_array[i].quantity <= 0){
-					item_list_array.pop(item_list_array[i]);
-				}
-				$.cookie("item_list", JSON.stringify(item_list_array));
-				loadItemsFromCart();
-				loadCartDataFromCookie();
-				break;
 			}
 		}		
 	}

@@ -5,9 +5,9 @@
     $image = ' '; 
     $pageCanonical = '';
     $url = ' '; 
-    $page ="Best Seller";
     include('header.php');
     include('main.php');
+    $page ="Best Seller";
 ?> 
 
 <?php include('breadcrumb.php'); ?>
@@ -15,8 +15,7 @@
 
 <section class="productcat">
 	<div class="container">
-		<div class="row cols-xl-4 cols-md-3 cols-sm-3" id="all_best_selling_products_container">
-            
+		<div id="all_best_selling_products_container" class="row cols-xl-4 cols-md-3 cols-sm-3">
         </div>
 	</div>
 </section>

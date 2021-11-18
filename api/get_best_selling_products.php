@@ -1,7 +1,10 @@
 <?php
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, DELETE');
-header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, X-Token-Auth, Authorization');
+
+header('Access-Control-Allow-Methods: GET, POST');
+
+header("Access-Control-Allow-Headers: X-Requested-With");
+
 include("../database.php");
 
 $limit = $_GET['show_limited_products'];
@@ -9,11 +12,11 @@ $branch = $_GET['branch'];
 
 $number = "";
 
-if($limit == "Y"){
+/*if($limit == "Y"){
 	$number = "limit 4";
 }else{
 	$number = "";
-}
+}*/
 
 $query = 'select db.* , (SELECT COUNT(*) FROM  kot_item_stock_details isd
             WHERE isd.branch_id = "'.$branch.'" AND isd.predef_menu_id = db.predef_menu_id) as stock_chk

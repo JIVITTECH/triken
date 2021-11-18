@@ -1,7 +1,8 @@
-var branch_id = 1;
-    
 function loadAllRecipes() { 
 	var information = "";
+        if(typeof branch_id ==="undefined") {
+           branch_id = '-1';
+        }
 	var xmlhttp = new XMLHttpRequest();
 	var url = "api/get_recipe_details.php?branch=" + branch_id + "&show_limited_recipes=Y";
 	xmlhttp.open("GET", url, true);
@@ -15,7 +16,7 @@ function loadAllRecipes() {
 					var image_path = "";
 					if (cover_photo !== "")
 					{
-						image_path = '../ecaterweb/Catering/' + cover_photo;
+						image_path = dirname + cover_photo;
 					} else
 					{
 						image_path = 'images/default.jpg';
@@ -24,12 +25,12 @@ function loadAllRecipes() {
 					information = information + "<div class='swiper-slide post text-center overlay-zoom'>" +
 										"<figure class='post-media'>" +
 											"<a href='recipe-detail.php?recipe_id=" + myObj[i].recipe_id + "'>" +
-												"<img src='" + image_path + "' alt='Recipes' />" +
+												"<img onerror='onImgError(this)' src='" + image_path + "' alt='Recipes' />" +
 											"</a>" +
 										"</figure>" +
 										"<div class='post-details'>" +
-											"<h4 class='post-title'><a href='#'>" + myObj[i].recipe_name + "</a></h4>" +
-											"<a href='recipe-detail.php?recipe_id='" + myObj[i].recipe_id + " class='btn btn-link btn-dark btn-underline'> View Recipe  <i class='w-icon-long-arrow-right'></i> </a>" +
+											"<h4 class='post-title'><a>" + myObj[i].recipe_name + "</a></h4>" +
+											"<a href='recipe-detail.php?recipe_id=" + myObj[i].recipe_id + "' class='btn btn-link btn-dark btn-underline'> View Recipe  <i class='w-icon-long-arrow-right'></i> </a>" +
 										"</div>" +
 									"</div>";
 				}
@@ -43,22 +44,24 @@ function loadAllRecipes() {
 }
 
 function loadAllCategories() { 
+    if(typeof branch_id ==="undefined") {
+        branch_id = '-1';
+    }
     var information = "";
 	var xmlhttp = new XMLHttpRequest();
-	var url = "api/load_home_page.php?action=get_list_of_categories";
+	var url = "api/load_home_page.php?action=get_list_of_categories&branch_id=" + branch_id;
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send();
 	xmlhttp.onreadystatechange = function () {
 		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 			var myObj = JSON.parse(this.responseText);
 			if (myObj.length !== 0) {
-			    information = "<div class='row cols-2'>";
-				for (var i = 0; i < myObj.length; i++) {
+			    for (var i = 0; i < myObj.length; i++) {
 					var cover_photo = myObj[i].image_path;
 					var image_path = "";
 					if (cover_photo !== "")
 					{
-						image_path = '../ecaterweb/Catering/' + cover_photo;
+						image_path = dirname + cover_photo;
 					} else
 					{
 						image_path = 'images/default.jpg';
@@ -68,7 +71,7 @@ function loadAllCategories() {
 											         "<a href='products.php?category_id=" + myObj[i].id + "'>" +
 												          "<div class='swiper-slide slide-animate' data-animation-options='{'name': 'fadeInDownShorter', 'duration': '.8s', 'delay': '.4s'}' >" +  
 													           "<figure class='category-media'>" +
-													                "<img src='" + image_path + "' alt='Categroy' />" +
+													                "<img onerror='onImgError(this)' src='" + image_path + "' alt='Categroy' />" +
 														       "</figure>" +
 															   "<div class='category-content'>" +
 																   "<h4 class='category-name'> <a href='products.php?category_id=" + myObj[i].id + "'>" + myObj[i].name + "</a> </h4>" +
@@ -78,7 +81,6 @@ function loadAllCategories() {
 									            "</div>";
 									            
 				}
-				information = information + "</div>";
 				$('#categories_container').empty();
 				$('#categories_container').append(information);
             } else {
@@ -88,13 +90,16 @@ function loadAllCategories() {
 	};
 }
 
-function loadTopCategories(branch_id) {
+function loadTopCategories() {
     var name = "";
     var image_path ="";
     var icon ="";
     var information = "";
     var xmlhttp = new XMLHttpRequest();
-    var url = "api/getTopCategories.php?action=get_top_categories&branch_id="+branch_id;
+    if(typeof branch_id ==="undefined") {
+        branch_id = '-1';
+    }
+    var url = "api/getTopCategories.php?action=get_top_categories&branch_id=" + branch_id;
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function () {
@@ -106,12 +111,19 @@ function loadTopCategories(branch_id) {
                     name = myObj[i].name;
                     if (icon !== "")
                     {
-                        image_path = icon;
+                        image_path = dirname + icon;
                     } else
                     {
                         image_path = 'images/default.jpg';
                     }
-                    information = information + "<div class='category'><figure class='category-media'><a href='#'><img src="+image_path+" alt="+name+"><h4 class='category-name'>"+name+"</h4></a></figure></div>";
+                    information = information + "<div class='category'>" +
+					                                "<figure class='category-media'>" +
+													      "<a href='products.php?category_id=" + myObj[i].id + "'>" +
+														       "<img onerror='onImgError(this)' src=" + image_path + " alt=" + name + ">" +
+														       "<h4 class='category-name'>" + name + "</h4>" +
+														  "</a>" +
+												    "</figure>" + 
+												"</div>";
                 }
                 $('#top_container').empty();
                 $('#top_container').append(information);
@@ -123,6 +135,10 @@ function loadTopCategories(branch_id) {
 }
 
 function loadLtdDealsOfTheDay() {
+    if(typeof branch_id ==="undefined") {
+        branch_id = '-1';
+    }
+        $('#ltd_deals_of_the_day_container').empty();
 	var information = "";
 	var xmlhttp = new XMLHttpRequest();
 	var url = "api/get_deals_of_the_day.php?branch=" + branch_id + "&show_limited_products=Y";
@@ -132,12 +148,12 @@ function loadLtdDealsOfTheDay() {
 		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 			var myObj = JSON.parse(this.responseText);
 			if (myObj.length !== 0) {
+                            information = information + "<div class='swiper slider_sec'> <div class='swiper-container swiper-theme nav-top' data-swiper-options={'slidesPerView':1.1,'spaceBetween':10,'breakpoints':{'576':{'slidesPerView':2},'768':{'slidesPerView':3},'992':{'slidesPerView':4}}}> <div class='swiper-wrapper row cols-lg-1 cols-md-3' >";
 				for (var i = 0; i < myObj.length; i++) {
 					var cover_photo = myObj[i].image;
 					var image_path = "";
-					if (cover_photo !== "")
-					{
-						image_path = '../ecaterweb/Catering/' + cover_photo;
+					if (cover_photo !== "") {
+						image_path = dirname + cover_photo;
 					} else
 					{
 						image_path = 'images/default.jpg';
@@ -164,13 +180,15 @@ function loadLtdDealsOfTheDay() {
 					information = information + "<div class='swiper-slide product-widget-wrap'>" +
 													"<div class='product'>" +
 														"<figure class='product-media'>" +
-															"<a href='#'><img src=" + image_path + " alt='Product'/> </a>" +
+															"<a href='items_description.php?item_id=" + myObj[i].menu_id + "'>" +
+															    "<img onerror='onImgError(this)' src=" + image_path + " alt='Product' />" +
+															 "</a>" +
 															"<div class='product-label-group'>" +
                                 								discount_tag +
 															"</div>" +
 														"</figure>" +
 														"<div class='product-details'>" +
-															"<h3 class='product-name'> <a href='#'>" + myObj[i].name  + "</a> </h3>" +
+															"<h3 class='product-name'> <a href='items_description.php?item_id=" + myObj[i].menu_id + "'>" + myObj[i].name  + "</a> </h3>" +
 															"<div class='row prod_quant'>" +
 																"<div class='product-cat col-md-6'>Net wt: " + myObj[i].net_weight + "  " + myObj[i].measure + "</div>" +
 																"<div class='product-cat col-md-6'>Delivery: " + myObj[i].delivery_time + "</div>" +
@@ -185,16 +203,20 @@ function loadLtdDealsOfTheDay() {
 													"</div>" +
 												"</div>";
 				}
-				$('#ltd_deals_of_the_day_container').empty();
+                                information = information + "</div><button class='swiper-button-next'></button><button class='swiper-button-prev'></button></div></div>" ;
+		
 				$('#ltd_deals_of_the_day_container').append(information);
             } else {
-				$('#ltd_deals_of_the_day_container').append("<center>No Items found</center>");
+		$('#ltd_deals_of_the_day_container').append("<center>No Items found</center>");
             }
 		}
 	};
 }
 
 function loadAllDealsOfTheDay() {
+    if(typeof branch_id ==="undefined") {
+        branch_id = '-1';
+    }
 	var information = "";
 	var xmlhttp = new XMLHttpRequest();
 	var url = "api/get_deals_of_the_day.php?branch=" + branch_id + "&show_limited_products=N";
@@ -209,7 +231,7 @@ function loadAllDealsOfTheDay() {
 					var image_path = "";
 					if (cover_photo !== "")
 					{
-						image_path = '../ecaterweb/Catering/' + cover_photo;
+						image_path = dirname + cover_photo;
 					} else
 					{
 						image_path = 'images/default.jpg';
@@ -237,13 +259,15 @@ function loadAllDealsOfTheDay() {
 					information = information + "<div class='product-wrap'>" +
 													"<div class='product text-center'>" +
 														"<figure class='product-media'>" +
-															"<a href='#'><img src=" + image_path + " alt='Product'/> </a>" +
+															"<a href='items_description.php?item_id=" + myObj[i].menu_id + "'>" +
+															    "<img onerror='onImgError(this)' src=" + image_path + " alt='Product'/>" +
+															"</a>" +
 															"<div class='product-label-group'>" +
                                 								discount_tag +
 															"</div>" +
 														"</figure>" +
 														"<div class='product-details'>" +
-															"<h3 class='product-name'> <a href='#'>" + myObj[i].name  + "</a> </h3>" +
+															"<h3 class='product-name'> <a href='items_description.php?item_id=" + myObj[i].menu_id + "'>" + myObj[i].name  + "</a> </h3>" +
 															"<div class='row prod_quant'>" +
 																"<div class='product-cat col-md-6'>Net wt: " + myObj[i].net_weight + "  " + myObj[i].measure + "</div>" +
 																"<div class='product-cat col-md-6'>Delivery: " + myObj[i].delivery_time + "</div>" +
@@ -268,6 +292,10 @@ function loadAllDealsOfTheDay() {
 }
 
 function loadLtdBestSellingProducts() {
+    if(typeof branch_id ==="undefined") {
+        branch_id = '-1';
+    }
+    $('#ltd_best_selling_products_container').empty();
 	var information = "";
 	var xmlhttp = new XMLHttpRequest();
 	var url = "api/get_best_selling_products.php?branch=" + branch_id + "&show_limited_products=Y";
@@ -277,12 +305,13 @@ function loadLtdBestSellingProducts() {
 		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 			var myObj = JSON.parse(this.responseText);
 			if (myObj.length !== 0) {
+                            information = information + "<div class='swiper slider_sec'> <div class='swiper-container swiper-theme nav-top' data-swiper-options={'slidesPerView':1.1,'spaceBetween':10,'breakpoints':{'576':{'slidesPerView':2},'768':{'slidesPerView':3},'992':{'slidesPerView':4}}}> <div class='swiper-wrapper row cols-lg-1 cols-md-3'>";
 				for (var i = 0; i < myObj.length; i++) {
 					var cover_photo = myObj[i].image;
 					var image_path = "";
 					if (cover_photo !== "")
 					{
-						image_path = '../ecaterweb/Catering/' + cover_photo;
+						image_path = dirname + cover_photo;
 					} else
 					{
 						image_path = 'images/default.jpg';
@@ -309,13 +338,15 @@ function loadLtdBestSellingProducts() {
 					information = information + "<div class='swiper-slide product-widget-wrap'>" +
 													"<div class='product'>" +
 														"<figure class='product-media'>" +
-															"<a href='#'><img src=" + image_path + " alt='Product'/> </a>" +
+															"<a href='items_description.php?item_id=" + myObj[i].menu_id + "'>" +
+															    "<img onerror='onImgError(this)' src=" + image_path + " alt='Product'/>" + 
+															"</a>" +
 															"<div class='product-label-group'>" +
 		                                						discount_tag +
 															"</div>" +
 														"</figure>" +
 														"<div class='product-details'>" +
-															"<h3 class='product-name'> <a href='#'>" + myObj[i].name  + "</a> </h3>" +
+															"<h3 class='product-name'> <a href='items_description.php?item_id=" + myObj[i].menu_id + "'>" + myObj[i].name  + "</a> </h3>" +
 															"<div class='row prod_quant'>" +
 																"<div class='product-cat col-md-6'>Net wt: " + myObj[i].net_weight + "  " + myObj[i].measure + "</div>" +
 																"<div class='product-cat col-md-6'>Delivery: " + myObj[i].delivery_time + "</div>" +
@@ -330,7 +361,8 @@ function loadLtdBestSellingProducts() {
 													"</div>" +
 												"</div>";
 				}
-				$('#ltd_best_selling_products_container').empty();
+                                 information = information + "</div><button class='swiper-button-next'></button><button class='swiper-button-prev'></button></div></div>" ;
+				
 				$('#ltd_best_selling_products_container').append(information);
             } else {
 				$('#ltd_best_selling_products_container').append("<center>No Items found</center>");
@@ -340,6 +372,9 @@ function loadLtdBestSellingProducts() {
 }
 
 function loadAllBestSellingProducts() {
+    if(typeof branch_id ==="undefined") {
+        branch_id = '-1';
+    }
 	var information = "";
 	var xmlhttp = new XMLHttpRequest();
 	var url = "api/get_best_selling_products.php?branch=" + branch_id + "&show_limited_products=N";
@@ -354,7 +389,7 @@ function loadAllBestSellingProducts() {
 					var image_path = "";
 					if (cover_photo !== "")
 					{
-						image_path = '../ecaterweb/Catering/' + cover_photo;
+						image_path = dirname + cover_photo;
 					} else
 					{
 						image_path = 'images/default.jpg';
@@ -381,13 +416,15 @@ function loadAllBestSellingProducts() {
 					information = information + "<div class='product-wrap'>" +
 													"<div class='product text-center'>" +
                    										"<figure class='product-media'>" +
-															"<a href='#'><img src=" + image_path + " alt='Product'/> </a>" +
+															"<a href='items_description.php?item_id=" + myObj[i].menu_id + "'>" +
+															    "<img onerror='onImgError(this)' src=" + image_path + " alt='Product'/>" + 
+															"</a>" +
 															"<div class='product-label-group'>" +
 		                                						discount_tag +
 															"</div>" +
 														"</figure>" +
 														"<div class='product-details'>" +
-															"<h3 class='product-name'> <a href='#'>" + myObj[i].name  + "</a> </h3>" +
+															"<h3 class='product-name'> <a href='items_description.php?item_id=" + myObj[i].menu_id + "'>" + myObj[i].name  + "</a> </h3>" +
 															"<div class='row prod_quant'>" +
 																"<div class='product-cat col-md-6'>Net wt: " + myObj[i].net_weight + "  " + myObj[i].measure + "</div>" +
 																"<div class='product-cat col-md-6'>Delivery: " + myObj[i].delivery_time + "</div>" +

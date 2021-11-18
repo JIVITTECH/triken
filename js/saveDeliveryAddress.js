@@ -6,6 +6,12 @@ function saveNewDeliveryAddress() {
     var pincode = document.getElementById("pincode").value;
     var landmark = document.getElementById("landmark").value;
 
+    if (flatNo.trim().length == 0 || street.trim().length == 0 || area.trim().length == 0 || city.trim().length == 0 || pincode.trim().length == 0) {
+        alert('Please enter all address fields');
+        document.getElementById("filled-in-box").checked = false;
+        return;
+    } 
+
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -34,5 +40,17 @@ function updateCurrentDeliveryAddress(del_address_id) {
     };
     xhttp.open("GET", "api/saveDeliveryAddress.php?" + "del_address_id=" + del_address_id + 
                "&action=update_current_delivery_address", true);
+    xhttp.send();
+}
+
+function removeDeliveryAddress(del_address_id) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            loadAllDeliveryAddress();
+        }
+    };
+    xhttp.open("GET", "api/saveDeliveryAddress.php?" + "del_address_id=" + del_address_id + 
+               "&action=remove_delivery_address", true);
     xhttp.send();
 }
