@@ -14,7 +14,7 @@ function loadCartData() {
 				{
 					var myObj = JSON.parse(this.responseText);
 					grand_sub_total = 0;
-					if (myObj.length > 0) {
+					if (myObj.length > 0 && +myObj !== -1) {
 							pkg_price = 0;
 							var cart_count = myObj.length;
 							document.getElementById("cart_count").innerHTML = cart_count;
