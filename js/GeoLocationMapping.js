@@ -58,7 +58,7 @@ function findNearestBranch (latitude, longitude) {
                         branch_id = myObj[i].branch_id;
 						var location = document.getElementById("location").value;
 						document.cookie = "locName=" + location + "; expires=Thu, 31 Dec 2099 23:59:59 GMT";
-                        location.reload();
+                        document.getElementById("loc_name").innerHTML = location;
                     }
                 } 
             loadAllCategories();
