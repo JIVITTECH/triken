@@ -1,6 +1,8 @@
 $( document ).ready(function() {
     load_profile_details();
     load_address_details();
+	loadOrders();
+
 });
 
 
@@ -42,7 +44,7 @@ function load_address_details() {
                     '<div class="address">' +
                     myObj[i].delivery_address +
                     '</div>' +
-                    '<a href="#" onclick="editAddress(' + myObj[i].delivery_add_id + ')" class="btn btn-link btn-underline btn-icon-right" style="color: #E0522D;text-transform: inherit;">Edit</a>' +
+                    '<a href="#" onclick="editAddress(' + myObj[i].delivery_add_id + ',\'' + myObj[i].flatNo + '\',\'' + myObj[i].street + '\',\'' + myObj[i].area + '\',\'' + myObj[i].pincode + '\',\'' + myObj[i].landmark + '\',\'' + myObj[i].city + '\')" class="btn btn-link btn-underline btn-icon-right" style="color: #E0522D;text-transform: inherit;">Edit</a>' +
                     '<a href="#" onclick="deleteAddress(' + myObj[i].delivery_add_id + ')" class="btn btn-link btn-underline btn-icon-right pl-5" style="color: #E0522D;text-transform: inherit;">Delete</a>' +
                     '</div>');
                 }
@@ -52,8 +54,17 @@ function load_address_details() {
     };
 }
 
-function editAddress(val) {
-    
+function editAddress(id,flatNo,street,area,pincode,landmark,city) {
+    document.getElementById("saveButton").style.display = 'none';
+	document.getElementById("updateButton").style.display = 'none';
+	document.getElementById("Street").value = street;
+    document.getElementById("area").value = area;
+    document.getElementById("city").value = city;
+    document.getElementById("pincode").value = pincode;
+    document.getElementById("landmark").value = landmark;
+	document.getElementById("building-name").value = flatNo;
+	document.getElementById("hidden_address").value = id;
+    $('#add-new-addr-btn').click();
 }
 
 function deleteAddress(val) {

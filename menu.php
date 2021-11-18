@@ -15,7 +15,7 @@
                             <div class="input-wrapper header-search hs-expanded hs-round d-md-flex">
                                 <div class="select-box">
                                     <a class="button" onclick="$('.lpopup').show();"><i class="fa fa-map-marker" aria-hidden="true"></i>
-     VOC Colony, Peelamedu</a>
+									<span id="loc_name">VOC Colony, Peelamedu</span></a>
                                 </div>
                                 <button class="btn btn-search productsearch hidden-sm" type="submit">
                                     <i class="w-icon-search" onclick="search_products_by_text()"></i>
@@ -90,6 +90,11 @@
 		    
 			$(document).ready(function () {
 				var sel_elemt = document.getElementById("button_grp");
+				var user_location = readCookie('locName');
+				if(user_location !== undefined){
+					document.getElementById("loc_name").innerHTML = "";
+					document.getElementById("loc_name").innerHTML = user_location;
+				}
 				if(customer_id !== -1){
 					loadCartData();
 				}else{
@@ -103,6 +108,17 @@
 				}
 			});
 
+			function readCookie(name) {
+				var nameEQ = name + "=";
+				var ca = document.cookie.split(';');
+				for(var i=0;i < ca.length;i++) {
+					var c = ca[i];
+					while (c.charAt(0)==' ') c = c.substring(1,c.length);
+					if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+				}
+				return null;
+			}
+		
 		    function loadCookieData(){
 				item_list_array = [];
 				var arr1 = getAllUrlParams((window.location).toString());

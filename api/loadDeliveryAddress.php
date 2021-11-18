@@ -16,9 +16,7 @@ $user_id = $_SESSION['user_id'];
 
 if ($_GET["action"] == "get_all_delivery_address") {
 
-    $query = "SELECT delivery_add_id,
-                     delivery_address,
-                     current_address
+    $query = "SELECT *
               FROM obo_customer_addresses
               WHERE customer_id = '".$user_id."';";
 
@@ -30,7 +28,13 @@ if ($_GET["action"] == "get_all_delivery_address") {
         $events = array(
                 "delivery_add_id" => "$rows[delivery_add_id]",
 		        "delivery_address" => "$rows[delivery_address]",
-		        "current_address" => "$rows[current_address]"
+		        "current_address" => "$rows[current_address]",
+				"flatNo" => "$rows[flatNo]",
+		        "street" => "$rows[street]",
+		        "area" => "$rows[area]",
+				"pincode" => "$rows[pincode]",
+		        "city" => "$rows[city]",
+		        "landmark" => "$rows[landmark]"
                );
 
         $output[] = $events;

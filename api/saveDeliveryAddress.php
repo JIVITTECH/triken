@@ -79,8 +79,8 @@ if ($_GET["action"] == "save_new_delivery_address") {
 
    }
 
-   $query = "INSERT INTO obo_customer_addresses (customer_id, delivery_address, current_address)" .
-            " VALUES (" . "'$user_id'" . "," . "'" . $deliveryAddress . "'" . "," . "'Y'" .");";  
+   $query = "INSERT INTO obo_customer_addresses (customer_id, delivery_address, current_address,flatNo,street,area,city,pincode,landmark)" .
+            " VALUES (" . "'$user_id'" . "," . "'" . $deliveryAddress . "'" . "," . "'Y'" .",'$flatNo','$street','$area','$city','$pincode','$landmark')";  
 
    if ($conn->query($query) === TRUE) {
       echo "200";

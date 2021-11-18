@@ -1,2 +1,21 @@
 ALTER TABLE predefined_menu_categories
 ADD icon varchar(100);
+
+
+ALTER TABLE obo_customer_addresses
+ADD flatNo varchar(300);
+
+ALTER TABLE obo_customer_addresses
+ADD street varchar(300);
+
+ALTER TABLE obo_customer_addresses
+ADD area varchar(300);
+
+ALTER TABLE obo_customer_addresses
+ADD pincode varchar(8);
+
+ALTER TABLE obo_customer_addresses
+ADD city varchar(100);
+
+ALTER TABLE obo_customer_addresses
+ADD landmark varchar(300);
