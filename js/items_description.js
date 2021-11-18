@@ -22,8 +22,13 @@ function loadItemsDescription() {
 					
 					var related_images = myObj[i].related_images;
 					var related_images_tag = "";
+					var image_path = "";
+					
                     if(related_images.length > 0){
 						for (var j = 0; j < related_images.length; j++) {
+							if(j === 0){
+								image_path = dirname + related_images[j].image_path;
+							}
 							var full_path = dirname + related_images[j].image_path;
 							related_images_tag = related_images_tag + "<div class='swiper-slide'>" +
 											"<figure class='product-image'>" +
@@ -34,6 +39,7 @@ function loadItemsDescription() {
 					}else{
 						if( myObj[i].image !== ""){
 							var full_path = dirname + myObj[i].image;
+							image_path = dirname + myObj[i].image;
 							related_images_tag = related_images_tag + "<div class='swiper-slide'>" +
 											"<figure class='product-image'>" +
 												"<img onerror='onError(this)' src='" + full_path + "' data-zoom-image='" + full_path + "' alt=''>" +
@@ -41,6 +47,7 @@ function loadItemsDescription() {
 										"</div>";
 						}else{
 							var full_path = "images/default.jpg";
+							image_path = 'images/default.jpg';
 							related_images_tag = related_images_tag + "<div class='swiper-slide'>" +
 											"<figure class='product-image'>" +
 												"<img onerror='onError(this)' src='" + full_path + "' data-zoom-image='" + full_path + "' alt=''>" +
@@ -49,16 +56,6 @@ function loadItemsDescription() {
 						}
 					}
 
-
-					var cover_photo = myObj[i].image;
-					var image_path = "";
-					if (cover_photo !== "")
-					{
-						image_path = dirname + cover_photo;
-					} else
-					{
-						image_path = 'images/default.jpg';
-					}
 					var specifications = myObj[i].specification;
 					var specifications_length = specifications.length/2;
 					var specifications_div_1 = "";

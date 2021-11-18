@@ -4,7 +4,7 @@ include "../database.php";
 $customer_id = $_GET['obo_cus_id'];
 //$customer_id = "1";
 
-if ($customer_id == null && $customer_id == "") {
+if ($customer_id == null && $customer_id == "" && $customer_id == "-1") {
     echo json_encode([]);
     return;
 }
