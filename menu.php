@@ -12,8 +12,8 @@
                             <a href="index.php" class="logo hidden-sm">
                                 <img src="assets/images/logo.png" alt="logo">
                             </a>
-                            <div class="input-wrapper header-search hs-expanded hs-round d-md-flex">
-                                <div class="select-box" style="width:auto;">
+                            <div class="input-wrapper header-search hs-expanded hs-round d-md-flex" style="max-width:100% !important;">
+                                <div class="select-box" style="width:100%;">
                                     <a class="button" onclick="$('.lpopup').show();"><i class="fa fa-map-marker" aria-hidden="true"></i>
 									<span id="loc_name"></span></a>
                                 </div>
