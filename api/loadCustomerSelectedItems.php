@@ -49,7 +49,7 @@ if ($count_branch !== 0) {
     }
 }
 
-$del_address = "SELECT delivery_address,latitude,longitude   
+/* $del_address = "SELECT delivery_address,latitude,longitude   
                       FROM obo_customer_addresses
                       WHERE customer_id = '$user_id' AND current_address = 'Y'";
 
@@ -74,8 +74,16 @@ if ($count !== 0) {
             $cus_long = $qry2['longitude'];
         }
     }
+}*/
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
 }
 
+
+$delivery_address = $_COOKIE['locName'];
+$cus_lat = $_SESSION['user_loc_latitude'];
+$cus_long = $_SESSION['user_loc_longitude'];
 $delivery_address = convert_br_to_newline($delivery_address);
 
 $distance = 0;
