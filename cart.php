@@ -35,7 +35,7 @@ if ($count_branch !== 0) {
     }
 }
 
-$del_address = "SELECT delivery_address,latitude,longitude   
+/* $del_address = "SELECT delivery_address,latitude,longitude   
                       FROM obo_customer_addresses
                       WHERE customer_id = '$user_id' AND current_address = 'Y'";
 
@@ -62,7 +62,11 @@ if ($count !== 0) {
         }
     }
 }
+*/
 
+$delivery_address = $_COOKIE['locName'];
+$cus_lat = $_SESSION['user_loc_latitude'];
+$cus_long = $_SESSION['user_loc_longitude'];
 
 $del = "SELECT * FROM obo_cart_coupon occ 
         LEFT JOIN discount_types dis 

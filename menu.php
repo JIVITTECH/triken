@@ -13,7 +13,7 @@
                                 <img src="assets/images/logo.png" alt="logo">
                             </a>
                             <div class="input-wrapper header-search hs-expanded hs-round d-md-flex">
-                                <div class="select-box">
+                                <div class="select-box" style="width:auto;">
                                     <a class="button" onclick="$('.lpopup').show();"><i class="fa fa-map-marker" aria-hidden="true"></i>
 									<span id="loc_name"></span></a>
                                 </div>
