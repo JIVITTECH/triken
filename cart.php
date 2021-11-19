@@ -325,7 +325,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
                                             </div>
                                         </div>
                                     </div>
-                                  <input type="checkbox" class="filled-in" id="filled-in-box" name="" onclick="saveNewDeliveryAddress()">
+                                  <input type="checkbox" class="filled-in" id="filled-in-box" name="" onclick="saveNewDeliveryAddress(1)">
 								<label for="filled-in-box">Save Address</label>
                                 </form>
                             </td>
