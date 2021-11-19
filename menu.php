@@ -58,6 +58,14 @@
 								<input type="hidden" id="contact_no">
                                 <!-- End of Dropdown Box -->
                             </div>
+							<?php if ($customer_id  !== '-1') { ?>
+								<a class="cart-toggle label-down link">
+									<i onclick="window.location.href='my-account.php'" class="fa fa-user-circle" style="font-size:24px" aria-hidden="true">
+										<span class="" id=""></span>
+									</i>
+									<span class="cart-label"></span>
+								</a>
+							<?php } ?>
 							<?php if ($customer_id  !== '-1') { ?>    
                             <a  onclick="logout()" id="logout" class="login sign-in"> <i class="fa fa-user-circle" aria-hidden="true"></i>
 								<span class="htext">Logout</span></a>
