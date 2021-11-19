@@ -51,7 +51,7 @@ if ($_GET["action"] == "get_all_delivery_address") {
 if ($_GET["action"] == "get_current_delivery_address") {
 
     $query = "SELECT delivery_add_id,
-                     delivery_address,
+                     delivery_address
               FROM obo_customer_addresses
               WHERE current_address = 'Y'
                 AND customer_id = '".$user_id."';";
