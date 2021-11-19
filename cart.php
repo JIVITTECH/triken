@@ -160,8 +160,8 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
           <div class="col-12 col-lg-8 ml-auto mr-auto mb-4">
             <div class="multisteps-form__progress">
               <button class="multisteps-form__progress-btn js-active" type="button" title="Cart"><span>Cart</span></button>
-              <button class="multisteps-form__progress-btn" type="button" title="Personal Details"><span>Personal Details</span></button>
-              <button class="multisteps-form__progress-btn" type="button" title="Payment Details" onclick="loadFinalizedCart()"><span>Payment Details</span></button>
+              <button id="proceed_to_personal_details" class="multisteps-form__progress-btn" type="button" title="Personal Details"><span>Personal Details</span></button>
+              <button id = "proceed_to_payment" class="multisteps-form__progress-btn" type="button" title="Payment Details" onclick="loadFinalizedCart()"><span>Payment Details</span></button>
             </div>
           </div>
         </div>
@@ -240,7 +240,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
                                         calculated at checkout </p>
                                 </div>
 
-                                <button type="button" class="btn btn-block btn-checkout"> Checkout </button> 
+                                <button  onclick ='$("#proceed_to_personal_details").trigger("click");' type="button" class="btn btn-block btn-checkout"> Checkout </button> 
                             </td>
                         </tr>
                     </tbody>
@@ -334,7 +334,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
                     </tbody>
                 </table>
 				
-				<button  class="submit_btn btn btn-dark btn-rounded btn-sm mb-4 orange_btn" type="button">Proceed to Payment</button>
+				<button  onclick ='$("#proceed_to_payment").trigger("click");' class="submit_btn btn btn-dark btn-rounded btn-sm mb-4 orange_btn" type="button">Proceed to Payment</button>
 				
             </div>
             
