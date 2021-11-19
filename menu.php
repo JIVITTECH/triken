@@ -91,9 +91,10 @@
 			$(document).ready(function () {
 				var sel_elemt = document.getElementById("button_grp");
 				var user_location = readCookie('locName');
-				if(user_location !== undefined){
-					document.getElementById("loc_name").innerHTML = "";
+				if(user_location !== undefined && user_location !== "" && user_location !== null){
 					document.getElementById("loc_name").innerHTML = user_location;
+				} else {
+				    document.getElementById("loc_name").innerHTML = "Please select a location";
 				}
 				if(customer_id !== -1){
 					loadCartData();
