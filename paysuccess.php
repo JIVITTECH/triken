@@ -117,8 +117,7 @@ if ($_POST || $_GET) {
         }
     }
     
-	if ($rows_cnt_sel_pay == 0) {
-        $invoice_insert = "INSERT INTO invoice_details (invoice_date, razor_pay_id, others) values ('$current_zone_time', '" . $razorpay_payment_id . "', '" . $is_cod . "')";
+	    $invoice_insert = "INSERT INTO invoice_details (invoice_date, razor_pay_id, others) values ('$current_zone_time', '" . $razorpay_payment_id . "', '" . $is_cod . "')";
         $res_invoice_insert = mysqli_query($conn, $invoice_insert);
         $invoice_id = mysqli_insert_id($conn);
         $order_id = $invoice_id;
@@ -331,12 +330,8 @@ if ($_POST || $_GET) {
 
          
         sendPlaceOrderRequestToClient($ord, $_SERVER['HTTP_HOST'], $config_url_pos); /* - *** ENABLE THIS IF THEY PURCHASE POS**** */
-    } else {
-        header("location:index.php");
     }
-} else {
-    header("location:index.php");
-}
+
 
 function sendPlaceOrderRequestToClient($js, $hostname,$config_url_pos) {
 
