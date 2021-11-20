@@ -438,8 +438,11 @@ p { line-height: 1.86;  }
 .overlay { position: fixed; top: 0; z-index: 9999; bottom: 0; left: 0;  right: 0; background: rgba(0, 0, 0, 0.7);
   transition: opacity 500ms; visibility: hidden; opacity: 0;}
 .overlay:target { visibility: visible; opacity: 1;}
-.popup .close { position: absolute; top:15%; right: 25%;font-size: 30px;  font-weight: bold;
-  text-decoration: none; color: #de522b;}
+.popup .close { position:relative; font-size: 30px; top: -10px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #de522b;
+  float: right;}
 .popup .close:hover {  color: #828282f;}
 .select-box a{color: #F0F0F0;}
 

@@ -23,7 +23,8 @@ geography is underway.</p>
             </div> 
         </div> -->
         
- <div class="content">      
+ <div class="content">
+    <a href='' class='close'>Close</a>       
     <h2>Select your city</h2>
     <form class="findlocation" id='cities'>
     </form>    

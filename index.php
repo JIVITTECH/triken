@@ -19,8 +19,7 @@
     	<div class="main">
 
         <div class='lpopup popup'>
-                <?php include('location.php'); ?>
-                <a href='' class='close'>Close</a>               
+            <?php include('location.php'); ?>
         </div>  
 
 
