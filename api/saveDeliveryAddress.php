@@ -93,6 +93,15 @@ if ($_GET["action"] == "update_current_delivery_address") {
    
    $delAddressID = $_GET['del_address_id'];
 
+   $query = "UPDATE obo_customer_addresses SET current_address ='N' " .
+            "WHERE customer_id = " . "'" . $user_id . "';";
+
+   if ($conn->query($query) === TRUE) {
+      echo "200";
+   } else {
+      echo "Error Updating record: " . $conn->error;
+   } 
+
    $query = "UPDATE obo_customer_addresses SET current_address ='Y' " .
             "WHERE customer_id = " . "'" . $user_id . "'" . 
               "AND delivery_add_id = " . $delAddressID . ";";
@@ -100,7 +109,7 @@ if ($_GET["action"] == "update_current_delivery_address") {
    if ($conn->query($query) === TRUE) {
       echo "200";
    } else {
-      echo "Error Creating record: " . $conn->error;
+      echo "Error Updating record: " . $conn->error;
    }  
 }
 
