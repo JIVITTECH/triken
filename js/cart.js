@@ -348,7 +348,7 @@
 				} else {
 					discount_amount = (+myObj).toFixed(2);
 					document.getElementById("discount-id").innerHTML = (+myObj).toFixed(2);
-					document.getElementById("grand_total").innerHTML = (+grand_sub_total - +discount_amount + +delivery_cost).toFixed(2);
+					document.getElementById("grand_total").innerHTML = (+grand_sub_total - +discount_amount + +delivery_cost + +pkg_price).toFixed(2);
 					alert("Coupon Applied");
 					document.getElementById("coupon_code").setAttribute("disabled", true);
 				}
