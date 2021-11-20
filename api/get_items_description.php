@@ -31,7 +31,7 @@ pm.measure,
 pma.net_weight,
 pma.gross_weight,
 pma.delivery_time,
-pma.video,
+pma.video_path,
 pm.description
 FROM
 predefined_menu pm
@@ -106,7 +106,7 @@ while ($rows = mysqli_fetch_array($result)) {
 		"best_seller" => "$rows[best_seller]",
 		"disc_per" => "$rows[disc_per]",
 		"deals_of_the_day" => "$rows[deals_of_the_day]",
-		"video_path" => "$rows[video]",
+		"video_path" => "$rows[video_path]",
 		"description" => "$rows[description]",
 		"specification" => $events_spc_arr,
 		"related_images" => $events_img_arr

@@ -7,7 +7,7 @@
     $url = ' '; 
     $category ="Country Chicken";
     include('header.php');
-	$page ="Country Chicken Curry Cut Small with Skin";
+	$page ='<span id="title_name"></span>';
 ?> 
 
 <?php include('main.php'); ?>
