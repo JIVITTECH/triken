@@ -27,6 +27,10 @@ $cart_page_flag = 0;
 $razorpay_payment_id = "";
 $completed_cart_id = 0;
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 if ($_POST || $_GET) {
 
     $pm = paymentMethod($_GET['pm']); // payment method //
@@ -55,6 +59,14 @@ if ($_POST || $_GET) {
     $mod_array = [];
     $tax = "";
     $order_type = "";
+	$_COOKIE['locName'] = $_GET['locName'];
+    $_SESSION['user_loc_latitude'] = $_GET['latitude'];
+	$_SESSION['user_loc_longitude'] = $_GET['longitude'];
+	$_COOKIE['user_id'] = $user_id;
+	$_COOKIE['branch_id'] = $branch_id;
+	$_COOKIE['locName'] = $_GET['locName'];
+	
+
    
     $sql1 = "SELECT kcd.id as user_id,
             kcd.customer_name,
@@ -72,6 +84,7 @@ if ($_POST || $_GET) {
             $_SESSION['user_id'] = $rows['user_id'];
             $_SESSION['branch_id'] = $rows['branch_id'];
             $_SESSION['contact_no'] = $rows['contact_no'];
+			$_COOKIE['mobile_no'] = $rows['contact_no'];
         }
     }
         
@@ -109,8 +122,7 @@ if ($_POST || $_GET) {
         }
     }
     
-	if ($rows_cnt_sel_pay == 0) {
-        $invoice_insert = "INSERT INTO invoice_details (invoice_date, razor_pay_id, others) values ('$current_zone_time', '" . $razorpay_payment_id . "', '" . $is_cod . "')";
+	    $invoice_insert = "INSERT INTO invoice_details (invoice_date, razor_pay_id, others) values ('$current_zone_time', '" . $razorpay_payment_id . "', '" . $is_cod . "')";
         $res_invoice_insert = mysqli_query($conn, $invoice_insert);
         $invoice_id = mysqli_insert_id($conn);
         $order_id = $invoice_id;
@@ -317,25 +329,22 @@ if ($_POST || $_GET) {
             $sql = "insert into obo_cart_details(customer_id,delivery)values($user_id,$order_type)";
             $result = mysqli_query($conn, $sql);
             $cart_id = mysqli_insert_id($conn);
+			$_COOKIE['cart_id'] = $cart_id ;
             $cus_last_cart_id = $cart_id;
         }
         $_SESSION['cart_id'] = $cus_last_cart_id;
 
          
         sendPlaceOrderRequestToClient($ord, $_SERVER['HTTP_HOST'], $config_url_pos); /* - *** ENABLE THIS IF THEY PURCHASE POS**** */
-    } else {
-        header("location:index.php");
     }
-} else {
-    header("location:index.php");
-}
+
 
 function sendPlaceOrderRequestToClient($js, $hostname,$config_url_pos) {
 
     global $branch_id;
-    global $db_name;
-    global $db_pass;
-    global $db_uname;
+    global $username;
+    global $password;
+    global $dbname;
 	global $completed_cart_id;
     $request_headers = array();
     $request_headers[] = "Content-Type:" . "application/json";
@@ -347,7 +356,7 @@ function sendPlaceOrderRequestToClient($js, $hostname,$config_url_pos) {
         $postData = json_encode($js);
 
         //API URL
-        $url = $config_url_pos . "pending_order_update.php?branch_id=" . $branch_id . "&db_name=" . $db_name . "&db_uname=" . $db_uname . "&db_pass=" . $db_pass;
+        $url = $config_url_pos . "pending_order_update.php?branch_id=" . $branch_id . "&db_name=" . $dbname . "&db_uname=" . $username . "&db_pass=" . $password;
 
         // echo $url;
         $ch = curl_init();

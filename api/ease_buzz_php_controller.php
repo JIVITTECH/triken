@@ -18,7 +18,14 @@ $delivery = $_GET['del_cost'];
 $package_chg = $_GET['package_chg'];
 $tt_amount = $_GET['gt_total'];
 $schema = "654402a8f29dd23a";
-$user_id  =  1;
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+$user_id  =  $_SESSION['user_id'];
+$delivery_address = $_COOKIE['locName'];
+$cus_lat = $_SESSION['user_loc_latitude'];
+$cus_long = $_SESSION['user_loc_longitude'];
 
 $customer_id = "";
 $customer_name = "";
@@ -97,7 +104,7 @@ $postData = array(
     "phone" => $contact_no,
     "productinfo" => $product,
     "hash" => $hash,
-    "surl" => "$easebuzz_pay_callback_url/triken/paysuccess.php?pm=$pm&cart_id=$cart_id&branch_id=$branch_id&delivery=$delivery&package_chg=$package_chg&rest_key=$schema&user_id=$user_id",
+    "surl" => "$easebuzz_pay_callback_url/triken/paysuccess.php?pm=$pm&cart_id=$cart_id&branch_id=$branch_id&delivery=$delivery&package_chg=$package_chg&rest_key=$schema&user_id=$user_id&locName=$delivery_address&latitude=$cus_lat&longitude=$cus_long",
     "furl" => "$easebuzz_pay_callback_url/triken/view-cart.php?branch_id=$branch_id",
     "udf1" => $udf1,
     "udf2" => $udf2,
