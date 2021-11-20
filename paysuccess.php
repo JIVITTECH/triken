@@ -84,7 +84,7 @@ if ($_POST || $_GET) {
             $_SESSION['user_id'] = $rows['user_id'];
             $_SESSION['branch_id'] = $rows['branch_id'];
             $_SESSION['contact_no'] = $rows['contact_no'];
-			$_COOKIE['mobile_no'] = $rows['contact_no'];
+			setcookie("mobile_no",$rows['contact_no'] , time()+(3600*24*30));
         }
     }
         
@@ -331,10 +331,8 @@ if ($_POST || $_GET) {
             $cart_id = mysqli_insert_id($conn);
 			$cus_last_cart_id = $cart_id;
         }
-		$_COOKIE['cart_id'] = $cart_id ;
-        $_SESSION['cart_id'] = $cus_last_cart_id;
-
-         
+		setcookie("cart_id",$cus_last_cart_id , time()+(3600*24*30));
+        $_SESSION['cart_id'] = $cus_last_cart_id;         
         sendPlaceOrderRequestToClient($ord, $_SERVER['HTTP_HOST'], $config_url_pos); /* - *** ENABLE THIS IF THEY PURCHASE POS**** */
     }
 

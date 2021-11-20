@@ -102,7 +102,7 @@
 
 	function loadOrderDetails() {
 		var arr1 = getAllUrlParams((window.location).toString());
-        var cus_cart_id = arr1.cart_id;
+        var com_cart_id = arr1.cart_id;
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function () {
 		if (this.readyState === 4 && this.status === 200) {
@@ -161,7 +161,7 @@
 					}
 				}
 			};
-	var url = "api/order_summary.php?cus_cart_id="+cus_cart_id;
+	var url = "api/order_summary.php?cus_cart_id="+com_cart_id;
 	xhttp.open("GET", url, true);
 	xhttp.send();
 	}
