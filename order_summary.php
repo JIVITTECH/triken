@@ -91,7 +91,7 @@
                     </div>
                     <!-- End of Account Address -->
 
-                    <a href="#" class="btn btn-dark "><i class="w-icon-long-arrow-left"></i>Back to Home</a>
+                    <a class="btn btn-dark"><i class="w-icon-long-arrow-left" onclick="gotoHome()"></i>Back to Home</a>
         </div>
     </div>
 </section>

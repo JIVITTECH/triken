@@ -275,4 +275,8 @@
 				   window.location.href = "products.php?search_text=" + search_text;
 				}
 			}
+
+			function gotoHome() {
+	            window.location.href = "index.php";
+	        }
 		</script>
