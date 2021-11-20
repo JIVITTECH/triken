@@ -62,6 +62,10 @@ if ($_POST || $_GET) {
 	$_COOKIE['locName'] = $_GET['locName'];
     $_SESSION['user_loc_latitude'] = $_GET['latitude'];
 	$_SESSION['user_loc_longitude'] = $_GET['longitude'];
+	$_COOKIE['user_id'] = $user_id;
+	$_COOKIE['branch_id'] = $branch_id;
+	$_COOKIE['locName'] = $_GET['locName'];
+	
 
    
     $sql1 = "SELECT kcd.id as user_id,
@@ -80,6 +84,7 @@ if ($_POST || $_GET) {
             $_SESSION['user_id'] = $rows['user_id'];
             $_SESSION['branch_id'] = $rows['branch_id'];
             $_SESSION['contact_no'] = $rows['contact_no'];
+			$_COOKIE['mobile_no'] = $rows['contact_no'];
         }
     }
         
@@ -324,6 +329,7 @@ if ($_POST || $_GET) {
             $sql = "insert into obo_cart_details(customer_id,delivery)values($user_id,$order_type)";
             $result = mysqli_query($conn, $sql);
             $cart_id = mysqli_insert_id($conn);
+			$_COOKIE['cart_id'] = $cart_id ;
             $cus_last_cart_id = $cart_id;
         }
         $_SESSION['cart_id'] = $cus_last_cart_id;
