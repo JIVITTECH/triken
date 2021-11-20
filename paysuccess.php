@@ -27,6 +27,10 @@ $cart_page_flag = 0;
 $razorpay_payment_id = "";
 $completed_cart_id = 0;
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 if ($_POST || $_GET) {
 
     $pm = paymentMethod($_GET['pm']); // payment method //
@@ -55,6 +59,10 @@ if ($_POST || $_GET) {
     $mod_array = [];
     $tax = "";
     $order_type = "";
+	$_COOKIE['locName'] = $_GET['locName'];
+    $_SESSION['user_loc_latitude'] = $_GET['latitude'];
+	$_SESSION['user_loc_longitude'] = $_GET['longitude'];
+
    
     $sql1 = "SELECT kcd.id as user_id,
             kcd.customer_name,
@@ -333,9 +341,9 @@ if ($_POST || $_GET) {
 function sendPlaceOrderRequestToClient($js, $hostname,$config_url_pos) {
 
     global $branch_id;
-    global $db_name;
-    global $db_pass;
-    global $db_uname;
+    global $username;
+    global $password;
+    global $dbname;
 	global $completed_cart_id;
     $request_headers = array();
     $request_headers[] = "Content-Type:" . "application/json";
@@ -347,7 +355,7 @@ function sendPlaceOrderRequestToClient($js, $hostname,$config_url_pos) {
         $postData = json_encode($js);
 
         //API URL
-        $url = $config_url_pos . "pending_order_update.php?branch_id=" . $branch_id . "&db_name=" . $db_name . "&db_uname=" . $db_uname . "&db_pass=" . $db_pass;
+        $url = $config_url_pos . "pending_order_update.php?branch_id=" . $branch_id . "&db_name=" . $dbname . "&db_uname=" . $username . "&db_pass=" . $password;
 
         // echo $url;
         $ch = curl_init();
