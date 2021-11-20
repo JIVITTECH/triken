@@ -94,6 +94,7 @@ function loadItemsDescription() {
 					document.getElementById("images_tag").innerHTML = related_images_tag;
 					//document.getElementById("item_name").innerHTML = myObj[i].name;
 					document.getElementById("sel_name").innerHTML = myObj[i].name;
+					document.getElementById("title_name").innerHTML = myObj[i].name;
 					document.getElementById("gross_weight").innerHTML = myObj[i].gross_weight + " " + myObj[i].measure;
 					document.getElementById("net_weight").innerHTML = myObj[i].net_weight + " " +  myObj[i].measure ;
 					document.getElementById("product_des").innerHTML = myObj[i].description;

@@ -648,7 +648,7 @@ td.product-quantity { display: grid; border-bottom: 0px;}
 margin-top: 2%; font-weight: 400; text-transform: initial; font-size: 15px;}
 #sign-in { padding-top: 3%;}
 .login-popup{width: 480px; border-radius: 10px;}
-#otp{padding-left: 35px;
+#otp{padding-left: 25px;
   letter-spacing: 42px;
   border: 0;
   background-image: linear-gradient(to left, #ACACAC 70%, #fff 0%);

@@ -58,7 +58,7 @@ if ($res_sql_cnt > 0) {
                 "del_charge" => $del_charge,
                 "payment_type" => $payment_type,
 				"del_day" => "01/10/2021",
-                "payment_type" => "7-9 AM"
+                "del_slot" => "7-9 AM"
             )
         );
 
@@ -197,8 +197,16 @@ if ($res_sql_cnt > 0) {
 
             array_push($obo_cart_details, $cart_disc);
         } else {
+            $cart_disc_tmp = array(
+                "cart_id" => $cart_id,
+                "disc_name" => "",
+                "disc_cost" => "0.00"
+            );
+
+            $cart_disc_tmp2[] = $cart_disc_tmp;
+
             $cart_disc = array(
-                "cart_disc" => array()
+                "cart_disc" => $cart_disc_tmp2
             );
 
             array_push($obo_cart_details, $cart_disc);
