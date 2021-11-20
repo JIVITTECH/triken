@@ -162,11 +162,12 @@ $(function(){
 
 $(document).ready(function () {
     if (branch_id != '-1') {
-        loadAllCategories();
-        loadTopCategories();
-        loadLtdDealsOfTheDay();
+		loadLtdDealsOfTheDay();
         loadLtdBestSellingProducts();
         loadAllRecipes();
+        loadAllCategories();
+        loadTopCategories();
+        
     }
 });
 
