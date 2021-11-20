@@ -153,8 +153,8 @@ $page ="My Account";
 <a href="#myModal" id="reOrder" style="visibility:hidden;" class="button btn acc_btn btn-outline btn-default btn-block btn-sm btn-rounded ml-3 mt-2"></a>								
 <div id="myModal" class="overlay">
     <div class="popup">
-         <a id = "close_btn1" class="close" href="#">&times;</a>
         <div class="content">
+            <a id = "close_btn1" class="close" href="#">&times;</a>
             <form class="form account-details-form" action="" method="post">
 				<div class="row" style="text-align:center;"><h1>Information</h1></div>
 					<p> Do you really want to remove the items from the cart and proceed with REORDER? </p>
