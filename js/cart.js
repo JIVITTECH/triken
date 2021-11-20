@@ -102,7 +102,7 @@
                                             "<button type='button' class='quantity-plus w-icon-plus' href='#' onclick='IncreaseItemQuantity(" + myObj[i].menu_id + "," + myObj[i].per_unit_price + "," + myObj[i].quantity + "," + myObj[i].cart_item_id + "," + myObj[i].packing_charge + ")' ></button>" +
                                             "<button type='button' class='quantity-minus w-icon-minus' href='#' onclick='redQty(" + myObj[i].menu_id + "," + myObj[i].per_unit_price + "," + myObj[i].quantity + "," + myObj[i].cart_item_id + "," + myObj[i].packing_charge + ")' ></button>" +
                                             "</div>" +
-                                            "<span class='remove' onclick='redQty(" + myObj[i].menu_id + "," + myObj[i].per_unit_price + ",1," + myObj[i].cart_item_id + "," + myObj[i].packing_charge + ")'> <a href=''> Remove </a> </span>" +
+                                            "<span class='remove' onclick='redQty(" + myObj[i].menu_id + "," + myObj[i].per_unit_price + ",1," + myObj[i].cart_item_id + "," + myObj[i].packing_charge + ")'> <a> Remove </a> </span>" +
                                             "</td>" +
                                             "</tr>";
 						}
@@ -271,7 +271,7 @@
                                             "<button type='button' class='quantity-plus w-icon-plus' href='#' onclick='IncreaseItemQuantity(" + myObj[i].menu_id + "," + myObj[i].per_unit_price + "," + myObj[i].quantity + "," + myObj[i].cart_item_id + "," + myObj[i].packing_charge + ")' ></button>" +
                                             "<button type='button' class='quantity-minus w-icon-minus' href='#' onclick='redQty(" + myObj[i].menu_id + "," + myObj[i].per_unit_price + "," + myObj[i].quantity + "," + myObj[i].cart_item_id + "," + myObj[i].packing_charge + ")' ></button>" +
                                             "</div>" +
-                                            "<span class='remove' onclick='redQty(" + myObj[i].menu_id + "," + myObj[i].per_unit_price + ",1," + myObj[i].cart_item_id + "," + myObj[i].packing_charge + ")'> <a href=''> Remove </a> </span>" +
+                                            "<span class='remove' onclick='redQty(" + myObj[i].menu_id + "," + myObj[i].per_unit_price + ",1," + myObj[i].cart_item_id + "," + myObj[i].packing_charge + ")'> <a> Remove </a> </span>" +
                                             "</td>";
 						    
 							$('#div_id_' + myObj[i].cart_item_id  + '').append(information);
