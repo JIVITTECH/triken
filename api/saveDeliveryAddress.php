@@ -79,6 +79,11 @@ if ($_GET["action"] == "save_new_delivery_address") {
 
    }
 
+   $query = "UPDATE obo_customer_addresses SET current_address ='N' " .
+            "WHERE customer_id = " . "'" . $user_id . "';";
+
+   $conn->query($query);
+
    $query = "INSERT INTO obo_customer_addresses (customer_id, delivery_address, current_address,flatNo,street,area,city,pincode,landmark)" .
             " VALUES (" . "'$user_id'" . "," . "'" . $deliveryAddress . "'" . "," . "'Y'" .",'$flatNo','$street','$area','$city','$pincode','$landmark')";  
 
@@ -96,11 +101,7 @@ if ($_GET["action"] == "update_current_delivery_address") {
    $query = "UPDATE obo_customer_addresses SET current_address ='N' " .
             "WHERE customer_id = " . "'" . $user_id . "';";
 
-   if ($conn->query($query) === TRUE) {
-      echo "200";
-   } else {
-      echo "Error Updating record: " . $conn->error;
-   } 
+   $conn->query($query);
 
    $query = "UPDATE obo_customer_addresses SET current_address ='Y' " .
             "WHERE customer_id = " . "'" . $user_id . "'" . 
