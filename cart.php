@@ -677,7 +677,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 				} else
 				{
 				    document.getElementById("cart_container").style.display = "none";
-					$('#no_data').append("<div class='row' style='height: 100%; text-align: left; border: 1px solid #e6e6e6; padding-left: 0px; padding-right: 0px; border-radius: 10px; margin-bottom: 10px;'><div class='col-lg-12'><p style='padding: 20px; text-align: center;'>Your cart is empty. Add something from the <a onclick='exploreMenu()' style='text-decoration: underline;'> Menu</a></p></div></div>");
+					$('#no_data').append("<div class='row' style='height: 100%; text-align: left; border: 1px solid #e6e6e6; padding-left: 0px; padding-right: 0px; border-radius: 10px; margin-bottom: 10px;'><div class='col-lg-12'><p style='padding: 20px; text-align: center;'>Your cart is empty. Add products from the <a onclick='gotoHome()' style='text-decoration: underline;'> Menu</a></p></div></div>");
                 }
 			}
 		};
