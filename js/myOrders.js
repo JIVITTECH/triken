@@ -39,7 +39,7 @@ function loadOrders() {
 																"<div class='order-detail'>Order # " + cart_details.invoice_no + "<br>" + cart_details.ordered_date_time  + "</div>" +
 															"</div>" +
 															"<div class='col-md-2 col-xs-12'>" +
-																"<a href=''  class='btn acc_btn btn-outline btn-default btn-block btn-sm btn-rounded'>Reorder</a>" +
+																"<button onclick='isCartFilled(" + cart_details.cart_id + ")' class='btn acc_btn btn-outline btn-default btn-block btn-sm btn-rounded'>Reorder</button>" +
 															"</div>" +
 														"</div>" +
 														"<p>" + items_div + "</p>" +
@@ -52,4 +52,89 @@ function loadOrders() {
 	var url = "api/myOrdersController.php?obo_cus_id="+customer_id;
 	xhttp.open("GET", url, true);
 	xhttp.send();
+}
+
+
+function isCartFilled(cartId) {
+
+	var arr1 = getAllUrlParams((window.location).toString());
+	var xmlhttp = new XMLHttpRequest();
+	var url = "api/cartitemVerification.php?cart_id=" + curr_cart_id;
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+			var myObj = xmlhttp.responseText;
+			cart_counts = +myObj;
+			document.getElementById('reorder_cart_id').value = cartId;
+			if (cart_counts === 0) {     
+				sel = 2;
+				removingOrderItems();
+			} else {   
+			    document.getElementById('reOrder').click();
+			}
+		}
+	};
+}
+
+var sel = 0;
+
+function removingOrderItems() {
+	var cart_id = document.getElementById('reorder_cart_id').value;
+	var xmlhttp = new XMLHttpRequest();
+	var url = "api/reorderStockCheck.php?cart_id=" + cart_id + '&type=3' + "&cur_cart_id=" +  curr_cart_id;
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+	xmlhttp.onreadystatechange = function () {
+		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+			var myObj = xmlhttp.responseText;
+			if(sel === 0){
+				document.getElementById('close_btn1').click();
+				stockCheck(cart_id);
+			}else{
+				document.getElementById('close_btn2').click();
+				stockCheck(cart_id);
+			}
+		}
+	};                   
+}
+
+
+function stockCheck(cartId) {                
+	var xmlhttp = new XMLHttpRequest();
+	var name = [];
+	var url = "api/reorderStockCheck.php?cart_id=" + cartId + '&type=1' + "&cur_cart_id=" +  curr_cart_id;
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+			var myObj = JSON.parse(this.responseText);
+			if (myObj.length > 0) {
+				for (var i= 0; i < myObj.length; i++) {
+					name.push(myObj[i].name);
+				}
+				var itmName = name.toString();        
+				document.getElementById('out_stock').click();
+				document.getElementById('infoMsg').innerHTML = "";
+				document.getElementById('infoMsg').innerHTML = itmName + " is/are not in stock. Do you want to continue?";
+			} else {
+				navCartItem(cartId);
+			}
+		}
+	};
+}
+
+function navCartItem() {
+	var cartId = document.getElementById('reorder_cart_id').value;
+    var arr1 = getAllUrlParams((window.location).toString());
+	var xmlhttp = new XMLHttpRequest();
+	var url = "api/reorderStockCheck.php?cart_id=" + cartId + '&type=2' + "&cur_cart_id=" +  curr_cart_id;
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+			var myObj = xmlhttp.responseText;
+			window.location.href = "cart.php?branch_id=" + branch_id ;
+		}
+	};                
 }
