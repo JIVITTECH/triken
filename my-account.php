@@ -23,11 +23,14 @@ $page ="My Account";
 .address {  position: relative;	}
 .address:before	{	content: "";    background: url(assets/images/location_icon.png) no-repeat;    width: 20px;    height: 20px;    position: absolute;    display: inline-block;    left: -30px;	}
 #popup2 .popup {    background-color: #fff;    padding: 3% 3% 3%;    border-radius: 0;	}
+#myModal .popup {    background-color: #fff;    padding: 3% 3% 3%;    border-radius: 0;	}
 </style>
 <script src="js/GeoLocationMapping.js"></script>
 <div class="page-content account_sec">
                 <div class="container">
 					<h2 class="title title-center">My Account</h2>
+					<input type="hidden" id="reorder_cart_id" name="reorder_cart_id" value="" placeholder="" style="font-size: 18px; width: 100%; height: 40px;">
+                    <input type="hidden" id="reorder_branch_id" name="reorder_branch_id" value="" placeholder="" style="font-size: 18px; width: 100%; height: 40px;">
                     <div class="tab tab-vertical row gutter-lg">
                         <ul class="nav nav-tabs mb-6" role="tablist">
                             <li class="nav-item">
@@ -45,7 +48,7 @@ $page ="My Account";
                             
 
                             <div class="tab-pane active in mb-4" id="my-orders">	
-                            </div>
+							</div>
 
                             <div class="tab-pane" id="address-book">
                                 <div class="row" id="address-book-row">
@@ -146,8 +149,50 @@ $page ="My Account";
         </div>
     </div>
 </div>            
+
+<a href="#myModal" id="reOrder" style="visibility:hidden;" class="button btn acc_btn btn-outline btn-default btn-block btn-sm btn-rounded ml-3 mt-2"></a>								
+<div id="myModal" class="overlay">
+    <div class="popup">
+         <a id = "close_btn1" class="close" href="#">&times;</a>
+        <div class="content">
+            <form class="form account-details-form" action="" method="post">
+				<div class="row" style="text-align:center;"><h1>Information</h1></div>
+					<p> Do you really want to remove the items from the cart and proceed with REORDER? </p>
+					<div class="row">
+					<div class="form-group" id="makeDecision" style="margin-top:40px;text-align:center;">
+						<button type="button"  id="" class="submit_btn btn btn-dark btn-rounded btn-sm mb-4" style="background-color:#EF6723;border-color: #EF6723" onclick="removingOrderItems()">YES</button>
+						<button type="button"  id="" class="submit_btn btn btn-dark btn-rounded btn-sm mb-4" style="background-color:#EF6723;border-color: #EF6723" onclick="document.getElementById('close_btn1').click();">NO</button>
+					</div>			
+				</div>
+			</form>
+        </div>
+    </div>
+</div>
+
+<a href="#myModal1" id="out_stock" style="visibility:hidden;" class="button btn acc_btn btn-outline btn-default btn-block btn-sm btn-rounded ml-3 mt-2"></a>								
+<div id="myModal1" class="overlay">
+    <div class="popup">
+         <a id ="close_btn2" class="close" href="#">&times;</a>
+        <div class="content">
+            <form class="form account-details-form" action="" method="post">
+				<div class="row" style="text-align:center;"><h1>Information</h1></div>
+					<div id="infoMsg" style="font-size:16px;line-height: 2.6;"></div>
+					<div class="row">
+					<div class="form-group" style="margin-top:40px;text-align:center;">
+						<button type="button"  id="" class="submit_btn btn btn-dark btn-rounded btn-sm mb-4" style="background-color:#EF6723;border-color: #EF6723" onclick="navCartItem()">YES</button>
+						<button type="button"  id="" class="submit_btn btn btn-dark btn-rounded btn-sm mb-4" style="background-color:#EF6723;border-color: #EF6723" onclick="document.getElementById('close_btn2').click();">NO</button>
+					</div>			
+				</div>
+			</form>
+        </div>
+    </div>
+</div>
             
 <?php include('footer.php'); ?>
+<script>
+	var curr_cart_id = "<?php echo $_SESSION['cart_id']; ?>";
+	curr_cart_id = +curr_cart_id;
+</script>
 <script src="js/loadProfileDetails.js"></script>
 <script src="js/myOrders.js"></script>
 <script src="js/saveDeliveryAddress.js"></script>

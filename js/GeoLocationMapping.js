@@ -68,6 +68,7 @@ function findNearestBranch (latitude, longitude) {
 			}else{
 				document.getElementById("no_branch").style.display = "block";
 			} 
+			window.location.href = window.location.href;
             loadAllCategories();
             loadTopCategories();
             loadLtdDealsOfTheDay();
