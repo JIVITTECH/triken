@@ -41,7 +41,7 @@ and kmz.branch_id = pm.branch
 left join packing_charges pk_chg
 on pk_chg.predef_menu_id = pm.predef_menu_id AND pk_chg.branch_id = pm.branch
 left join predefined_menu_additional pma
-on pma.mapped_id = pm.id
+on pma.predef_menu_id = pm.id
 join zone_details zt
 on zt.branch_id = pm.branch
 WHERE  zt.zone_id = "' . $sel_obo_order_type . '" AND pm.branch = ' . $branch . ' 

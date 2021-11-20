@@ -171,7 +171,7 @@ if ($distance <= $radius) {
        LEFT JOIN predefined_menu pm
        ON pm.predef_menu_id = ocid.predef_menu_id AND pm.branch = $branch_id
        LEFT JOIN predefined_menu_additional pma
-       ON pma.mapped_id = pm.id AND pma.BRANCH_ID = pm.branch
+       ON pma.predef_menu_id = pm.id AND pma.BRANCH_ID = pm.branch
        LEFT JOIN kot_menu_zone kmz
        ON kmz.branch_id = pm.branch and kmz.item_id = pm.PREDEF_MENU_ID and kmz.zone = '$order_type'
        where ocd.cart_id = $cart_id and pm.branch = $branch_id and ocid.quantity <> 0 

@@ -47,7 +47,7 @@ $query = 'select db.* ,
                 on pk_chg.predef_menu_id = pm.predef_menu_id AND pk_chg.branch_id = pm.branch
                and pmc.branch_id = pk_chg.branch_id 
               left join predefined_menu_additional pma
-                on pma.mapped_id = pm.id
+                on pma.predef_menu_id = pm.id
               WHERE zt.zone_id = "' . $sel_obo_order_type . '" AND pm.branch = ' . $branch . ' 
               group by pm.predef_menu_id)db
           WHERE db.deals_of_the_day = "Y"';
