@@ -57,8 +57,6 @@
 
 		<script>
 		    
-			// var dirname = "../../app/Catering/"; --- live
-			var dirname = "../ecaterweb/Catering/";
 			var sel_obo_order_type = 3;
 	        var customer_id = "<?php echo $_SESSION['user_id']; ?>";
 			customer_id = +customer_id;
@@ -213,15 +211,7 @@
                 };
             }
 			
-			function ValidateNumber(){
-				var mobileNo = document.getElementById("phone").value;
-				var mbLength = mobileNo.length;
-				if(mbLength === 10){
-					document.getElementById("send_otp").style.pointerEvents  = 'auto';
-				}
-			}
-
-		</script>
+	</script>
 		
 </head>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
