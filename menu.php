@@ -279,4 +279,15 @@
 			function gotoHome() {
 	            window.location.href = "index.php";
 	        }
+			
+			// var dirname = "../../app/Catering/"; --- live
+			var dirname = "../ecaterweb/Catering/";
+			
+			function ValidateNumber(){
+				var mobileNo = document.getElementById("phone").value;
+				var mbLength = mobileNo.length;
+				if(mbLength === 10){
+					document.getElementById("send_otp").style.pointerEvents  = 'auto';
+				}
+			}
 		</script>
