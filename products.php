@@ -86,7 +86,7 @@ function loadAllItemDetails() {
 					var discount_price = 0;
 					var act_price = 0;
 					if(myObj[i].disc_per !== ""){
-						var reduced_price = +myObj[i].price - (+myObj[i].disc_per / +myObj[i].price) * 100; 
+						var reduced_price = +myObj[i].price - (+myObj[i].disc_per / 100) * (+myObj[i].price); 
 						discount_price = "<ins class='new-price'>" + reduced_price.toFixed(2) + "</ins><del class='old-price'>" + myObj[i].price + "</del>";
 						act_price = reduced_price.toFixed(2);
 					}else{
