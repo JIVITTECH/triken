@@ -329,9 +329,9 @@ if ($_POST || $_GET) {
             $sql = "insert into obo_cart_details(customer_id,delivery)values($user_id,$order_type)";
             $result = mysqli_query($conn, $sql);
             $cart_id = mysqli_insert_id($conn);
-			$_COOKIE['cart_id'] = $cart_id ;
-            $cus_last_cart_id = $cart_id;
+			$cus_last_cart_id = $cart_id;
         }
+		$_COOKIE['cart_id'] = $cart_id ;
         $_SESSION['cart_id'] = $cus_last_cart_id;
 
          
