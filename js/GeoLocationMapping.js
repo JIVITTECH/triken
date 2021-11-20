@@ -53,20 +53,22 @@ function findNearestBranch (latitude, longitude) {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var myObj = JSON.parse(this.responseText);
-		if (myObj.length !== 0) {
-		    for (var i = 0; i < myObj.length; i++) {
-                        branch_id = myObj[i].branch_id;
+			if (myObj.length !== 0) {
+				for (var i = 0; i < myObj.length; i++) {
+							branch_id = myObj[i].branch_id;
 						var location = document.getElementById("location").value;
 						document.cookie = "locName=" + location + "; expires=Thu, 31 Dec 2099 23:59:59 GMT";
-                        document.getElementById("loc_name").innerHTML = location;
-                    }
-                } 
+						document.getElementById("loc_name").innerHTML = location;
+					}
+				$('.lpopup').hide();
+			}else{
+				document.getElementById("no_branch").style.display = "block";
+			} 
             loadAllCategories();
             loadTopCategories();
             loadLtdDealsOfTheDay();
             loadLtdBestSellingProducts();
             loadAllRecipes();
-            $('.lpopup').hide();
         }
     };
     xhttp.open("GET", "api/find_nearest_branch.php?" + "latitude=" + latitude + 
