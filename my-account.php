@@ -26,6 +26,7 @@ $page ="My Account";
 #myModal .popup {    background-color: #fff;    padding: 3% 3% 3%;    border-radius: 0;	}
 </style>
 <script src="js/GeoLocationMapping.js"></script>
+<script src="js/updateProfileDetails.js"></script>
 <div class="page-content account_sec">
                 <div class="container">
 					<h2 class="title title-center">My Account</h2>
@@ -60,7 +61,7 @@ $page ="My Account";
                             </div>
 
                             <div class="tab-pane" id="profile">
-                                <form class="form account-details-form" action="api/update_profile_details.php" method="post">
+                                <form class="form account-details-form" action="" method="post">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -86,7 +87,7 @@ $page ="My Account";
                                             class="form-control form-control-md" required>
                                     </div>
                                   
-                                    <button type="submit" class="submit_btn btn btn-dark btn-rounded btn-sm mb-4">Update</button>
+                                    <button type="submit" onclick="updateProfileDetails()" class="submit_btn btn btn-dark btn-rounded btn-sm mb-4">Update</button>
                                 </form>
                             </div>
                         </div>
