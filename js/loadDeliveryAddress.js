@@ -30,6 +30,7 @@ function loadAllDeliveryAddress() {
 				$('#loadalldeliveryaddress').append(information);
 
             } else {
+			    $('#loadalldeliveryaddress').empty();
 				$('#loadalldeliveryaddress').append("<center>No address found<\center>");
             }
 		}

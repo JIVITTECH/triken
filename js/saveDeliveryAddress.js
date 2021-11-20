@@ -27,6 +27,7 @@ function saveNewDeliveryAddress(flag) {
 			if(flag === 1){
 				document.getElementById("filled-in-box").checked = false;
 				loadAllDeliveryAddress();
+                getCurrentDeliveryAddress();
 			}else{
 				document.getElementById("close_btn").click();
 				load_address_details();
@@ -56,6 +57,7 @@ function removeDeliveryAddress(del_address_id) {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             loadAllDeliveryAddress();
+            getCurrentDeliveryAddress();
         }
     };
     xhttp.open("GET", "api/saveDeliveryAddress.php?" + "del_address_id=" + del_address_id + 
