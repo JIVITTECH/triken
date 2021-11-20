@@ -82,7 +82,7 @@ function loadItemsDescription() {
 					var act_price = 0;
 					
 					if(myObj[i].disc_per !== ""){
-						var reduced_price = +myObj[i].price - (+myObj[i].disc_per / +myObj[i].price) * 100; 
+						var reduced_price = +myObj[i].price - (+myObj[i].disc_per / 100) * (+myObj[i].price); 
 						discount_price = "<ins class='new-price'>" + reduced_price.toFixed(2) + "</ins><del class='old-price'>" + myObj[i].price + "</del>";
 						act_price = reduced_price.toFixed(2);
 					}else{
@@ -105,7 +105,7 @@ function loadItemsDescription() {
 					$('#add_to_cart').append("<button id='remove_button' onclick='redQty(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ",1)' class='btn btn-primary btn-cart'> <span>Remove</span> </button>");
 					var discount_price = "";
 					if(myObj[i].disc_per !== ""){
-						var reduced_price = +myObj[i].price - (+myObj[i].disc_per / +myObj[i].price) * 100; 
+						var reduced_price = +myObj[i].price - (+myObj[i].disc_per / 100) * (+myObj[i].price); 
 						discount_price = "<ins class='new-price'>" + reduced_price.toFixed(2) + "</ins><del class='old-price'>" + myObj[i].price + "</del>" + "<ins class='offer'>" + myObj[i].disc_per + " % OFF</ins>";
 					}else{
 						discount_price = "<ins class='new-price'>" + myObj[i].price + "</ins>";
@@ -159,7 +159,7 @@ function loadAllRelatedItems() {
 					var discount_price = 0;
 					var act_price = 0;
 					if(myObj[i].disc_per !== ""){
-						var reduced_price = +myObj[i].price - (+myObj[i].disc_per / +myObj[i].price) * 100; 
+						var reduced_price = +myObj[i].price - (+myObj[i].disc_per / 100) * (+myObj[i].price); 
 						discount_price = reduced_price;
 						act_price = reduced_price.toFixed(2);
 					}else{
