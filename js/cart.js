@@ -441,7 +441,3 @@
 			}
 		};
 	}
-
-	function gotoHome() {
-	    window.location.href = "index.php";
-	}
