@@ -35,15 +35,19 @@ pma.video_path,
 pm.description
 FROM
 predefined_menu pm
+join kot_branch_details kbd
+on kbd.branch_id = pm.branch
+join zone_details zt
+on zt.branch_id = pm.branch
 left join kot_menu_zone kmz
 on find_in_set(kmz.item_id, pm.predef_menu_id)
+and kmz.branch_id = zt.branch_id
+and kmz.zone = zt.zone_id 
 and kmz.branch_id = pm.branch
 left join packing_charges pk_chg
 on pk_chg.predef_menu_id = pm.predef_menu_id AND pk_chg.branch_id = pm.branch
 left join predefined_menu_additional pma
 on pma.predef_menu_id = pm.id
-join zone_details zt
-on zt.branch_id = pm.branch
 WHERE  zt.zone_id = "' . $sel_obo_order_type . '" AND pm.branch = ' . $branch . ' 
 AND pm.predef_menu_id = "' . $item_id . '"
 group by pm.predef_menu_id)db';
