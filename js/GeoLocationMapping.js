@@ -55,8 +55,12 @@ function findNearestBranch (latitude, longitude) {
             var myObj = JSON.parse(this.responseText);
 			if (myObj.length !== 0) {
 				for (var i = 0; i < myObj.length; i++) {
-							branch_id = myObj[i].branch_id;
+						branch_id = myObj[i].branch_id;
 						var location = document.getElementById("location").value;
+						location =  location.substr(0, location.indexOf(',')); 
+						if(location.length > 24){
+							location = location.substring(0,24) + "...";
+						} 
 						document.cookie = "locName=" + location + "; expires=Thu, 31 Dec 2099 23:59:59 GMT";
 						document.getElementById("loc_name").innerHTML = location;
 					}
