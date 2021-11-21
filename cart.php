@@ -640,7 +640,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
                             information = information + "<tr id = 'div_id_" + myObj[i].cart_item_id  + "'>" +
 											"<td class='product-thumbnail  col-xs-2>" +
 											"<div class='p-relative'>" +
-											"<a href='#'>" +
+											"<a>" +
 											"<figure>" +
 											"<img src='" + image_path + "' onerror='imgError(this);' alt='product'>" +
 											"</figure>" +
@@ -648,7 +648,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 											"</div>" +
 											"</td>" +
 											"<td class='product-name'>" +
-								  			"<a href='#'>" + myObj[i].name + "</a>" +
+								  			"<a>" + myObj[i].name + "</a>" +
 											"<span class='cross'>x" + myObj[i].quantity + "</span>" +
 											"<div  class='product-price'>" +
 	                                        "<ins class='new-price'>" + total_price.toFixed(2) + "</ins>" +

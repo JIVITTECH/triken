@@ -82,7 +82,7 @@
 						    information = information + "<tr id = 'div_id_" + myObj[i].cart_item_id  + "'>" +
 											"<td class='product-thumbnail'>" +
 											"<div class='p-relative'>" +
-											"<a href='#'>" +
+											"<a>" +
 											"<figure>" +
 											"<img src='" + image_path + "' onerror='imgError(this);' alt='product'>" +
 											"</figure>" +
@@ -90,7 +90,7 @@
 											"</div>" +
 											"</td>" +
 											"<td class='product-name'>" +
-								  			"<a href='#'>" + myObj[i].name + "</a>" +
+								  			"<a>" + myObj[i].name + "</a>" +
                                             "<div  class='product-price'>" +
 	                                        "<ins id = 'price_" + myObj[i].cart_item_id  + "' class='new-price'>" + total_price.toFixed(2) + "</ins>" +
 								            "<span class='gms'>" + myObj[i].net_weight + " " + myObj[i].measure + "</span>" +
@@ -251,7 +251,7 @@
 							
 							information = information + "<td class='product-thumbnail'>" +
 											"<div class='p-relative'>" +
-											"<a href='#'>" +
+											"<a>" +
 											"<figure>" +
 											"<img src='" + image_path + "' onerror='imgError(this);' alt='product'>" +
 											"</figure>" +
@@ -259,7 +259,7 @@
 											"</div>" +
 											"</td>" +
 											"<td class='product-name'>" +
-								  			"<a href='#'>" + myObj[i].name + "</a>" +
+								  			"<a>" + myObj[i].name + "</a>" +
                                             "<div  class='product-price'>" +
 	                                        "<ins id = 'price_" + myObj[i].cart_item_id  + "' class='new-price'>" + total_price.toFixed(2) + "</ins>" +
 								            "<span class='gms'>" + myObj[i].net_weight + " " + myObj[i].measure + "</span>" +
