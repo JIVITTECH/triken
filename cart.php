@@ -638,7 +638,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 							}
 		
                             information = information + "<tr id = 'div_id_" + myObj[i].cart_item_id  + "'>" +
-											"<td class='product-thumbnail  col-xs-2 text-right'>" +
+											"<td class='product-thumbnail  col-xs-2>" +
 											"<div class='p-relative'>" +
 											"<a href='#'>" +
 											"<figure>" +
