@@ -621,7 +621,7 @@ label.ls-25 {color: #333333; font-family: 'CerebriSansPro-Medium'; font-size: 18
 .btn-continue {border: transparent; text-transform: initial; font-weight: 400; font-size: 15px; color: #EF6723;float: left;margin-top:15px;}
 .checkout_contact h3 {  font-weight: 400; letter-spacing: 0px;}
 .checkout_sec .cart-price{font-weight: 600;}
-.cart-table .product-quantity .form-control { border: 1px solid #eee;}
+.cart-table .product-quantity .form-control { border: 1px solid #eee; padding-left:35px; padding-right:2px}
 input[type="date"]::-webkit-calendar-picker-indicator {
     color: rgba(0, 0, 0, 0);
     opacity: 1;
