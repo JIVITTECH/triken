@@ -388,9 +388,10 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 								<div class="coupon-content">
 								<div class="input-wrapper-inline">
 									<input type="text" name="coupon_code" id = "coupon_code" class="coupon_code form-control form-control-md mb-2" placeholder="Gift card or discount code" id="coupon_code">
-									<button  class="apply_coupon btn button btn-rounded btn-coupon mb-2" type="button" name="apply_coupon" value="Apply" onclick="saveOffers()">Apply</button>
+									<button id="cancel_coupon" class="apply_coupon button btn-rounded btn-coupon mb-2" type="button" name="cancel_coupon" value="X" onclick="removeOffers()">X</button>
+									<button class="apply_coupon btn button btn-rounded btn-coupon mb-2" type="button" name="apply_coupon" value="Apply" onclick="saveOffers()">Apply</button>
 								</div>
-								</div>
+								</div>	
 								<hr class="mt-2 mb-2">
 								<div class="order-summary">
 									<table class="order-table">
@@ -667,6 +668,9 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 						var disc_name = "<?php echo $discount_name;?>";
 						if (disc_name !== "") {
 							document.getElementById("coupon_code").value = disc_name;
+							document.getElementById("coupon_code").setAttribute("disabled", true);
+						} else {
+							document.getElementById("coupon_code").removeAttribute("disabled", false);
 						}
                         delivery_cost = "<?php echo $delivery_charge; ?>";
                         document.getElementById("delivery_cost").innerHTML = (+delivery_cost).toFixed(2);

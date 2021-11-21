@@ -351,6 +351,7 @@
 					document.getElementById("grand_total").innerHTML = (+grand_sub_total - +discount_amount + +delivery_cost + +pkg_price).toFixed(2);
 					alert("Coupon Applied");
 					document.getElementById("coupon_code").setAttribute("disabled", true);
+					document.getElementById("cancel_coupon").style.display = "block";
 				}
 			}
 		};
@@ -360,17 +361,18 @@
 	function removeOffers() {
 		var arr1 = getAllUrlParams((window.location).toString());
 		var xmlhttp = new XMLHttpRequest();
-		var url = "controller/delete_offer.php?cart_id=" + cus_cart_id;
+		var url = "api/delete_offer.php?cart_id=" + cus_cart_id;
 		xmlhttp.open("GET", url, true);
 		xmlhttp.send();
 		xmlhttp.onreadystatechange = function () {
 			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 				var myObj = xmlhttp.responseText;
 				document.getElementById("discount-id").innerHTML = "0.00";
-				document.getElementById("grand_total").innerHTML = (+grand_sub_total + +delivery_cost).toFixed(2);
+				document.getElementById("grand_total").innerHTML = (+grand_sub_total + +delivery_cost + +pkg_price).toFixed(2);
 				discount_amount = 0;
 				document.getElementById("coupon_code").value = "";
 				document.getElementById("coupon_code").removeAttribute("disabled", true);
+				document.getElementById("cancel_coupon").style.display = "none";
 			}
 		};
 
