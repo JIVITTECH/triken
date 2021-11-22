@@ -59,14 +59,12 @@ if ($_POST || $_GET) {
     $mod_array = [];
     $tax = "";
     $order_type = "";
-	$_COOKIE['locName'] = $_GET['locName'];
-    /*$_SESSION['user_loc_latitude'] = $_GET['latitude'];
+	/*$_COOKIE['locName'] = $_GET['locName'];
+    $_SESSION['user_loc_latitude'] = $_GET['latitude'];
 	$_SESSION['user_loc_longitude'] = $_GET['longitude'];*/
 	$_COOKIE['user_id'] = $user_id;
 	$_COOKIE['branch_id'] = $branch_id;
-	/*$_COOKIE['locName'] = $_GET['locName'];*/
 	
-
    
     $sql1 = "SELECT kcd.id as user_id,
             kcd.customer_name,
