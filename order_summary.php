@@ -128,7 +128,12 @@
 						cart_payment_mode = "Cash on Delivery";
 					}
 					
-					var del_slot = getCookie("selected_date") + " | " + getCookie("del_type") + " slot";
+					if (getCookie("del_type") !== undefined && getCookie("del_type") !== null && getCookie("del_type") !=="") {
+					   var del_slot = getCookie("selected_date") + " | " + getCookie("del_type") + " slot";
+					} else {
+					   var del_slot = getCookie("selected_date");
+					}
+
 					document.getElementById("generated_cart_id").innerHTML =  cart_details.invoice_no;
 					document.getElementById("order_date").innerHTML =  cart_details.ordered_date_time;
 					document.getElementById("grand_total").innerHTML =  cart_details.total_price;
