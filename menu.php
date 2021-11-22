@@ -40,7 +40,7 @@
                                     </i>
                                     <span class="cart-label">Cart</span>
                                 </a>
-								<div class="dropdown-box">
+								<div class="dropdown-box" style="max-height:600px;overflow-y: scroll;">
                                     <div class="products" id="cart_items_container" style="height: 100% !important;">
 									  No Items Added
                                     </div>
