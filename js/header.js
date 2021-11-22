@@ -276,7 +276,7 @@ function verifyOTP() {
 				if ($.cookie("item_list") !== undefined) {
 					saveCookieData(customer_id,branch_id);
 				}else{
-					window.location.href = "my-account.php";
+					window.location.href = "cart.php?branch_id=" + branch_id;
 				}
 			} 
 		}

@@ -19,8 +19,7 @@
     	<div class="main">
 
         <div class='lpopup popup'>
-                <?php include('location.php'); ?>
-                <a href='' class='close'>Close</a>               
+            <?php include('location.php'); ?>
         </div>  
 
 
@@ -143,11 +142,11 @@ $(function(){
     var latitude = "<?php echo isset($_SESSION['user_loc_latitude']) ? $_SESSION['user_loc_latitude'] : ""; ?>";  
     var longitude = "<?php echo isset($_SESSION['user_loc_longitude']) ? $_SESSION['user_loc_longitude'] : ""; ?>";  
     
-    if (latitude.trim().length == 0 || longitude.trim().length == 0) {
+    if (latitude.trim().length == 0 || longitude.trim().length == 0 || branch_id == '-1') {
        	$('.lpopup').show();
     }
 
-	$('.close').click(function(){
+	/*$('.close').click(function(){
 	$('.lpopup').hide();
 	overlay.appendTo(document.body).remove();
 	return false;
@@ -157,7 +156,7 @@ $(function(){
 	$('.lpopup').hide();
 	overlay.appendTo(document.body).remove();
 	return false;
-	});
+	});*/
 });
 
 $(document).ready(function () {
