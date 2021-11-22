@@ -86,11 +86,10 @@
         <!-- End of Header -->
 
 <main class="main">
-</main>
+</main>	
 <div id="popup1" class="overlay">
     <div class="popup">
-         <a class="close" href="#">&times;</a>
-             <?php include('location.php'); ?>
+        <?php include('location.php'); ?>
     </div>
 </div>
 

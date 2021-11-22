@@ -204,7 +204,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
                                                 </div>
                                                 <div class="card">
                                                     <div class="card-header">
-                                                        <a href="#cash-on-delivery" id="date_time" class="">Pickup Date & Time</a>
+                                                        <a href="#cash-on-delivery" id="date_time" class="">Deliver Date & Time</a>
                                                     </div>
                                                     <div id="cash-on-delivery" class="card-body collapsed">
                                                         <form>

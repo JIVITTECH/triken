@@ -206,7 +206,7 @@
 						var myOnj = this.responseText;
                         var name = "item_list";
 						document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-						window.location.href = "my-account.php";
+						window.location.href = "cart.php?branch_id=" + branch_id;
                     }
                 };
             }
