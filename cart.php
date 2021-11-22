@@ -669,8 +669,10 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 						if (disc_name !== "") {
 							document.getElementById("coupon_code").value = disc_name;
 							document.getElementById("coupon_code").setAttribute("disabled", true);
+							document.getElementById("cancel_coupon").style.display = "block";
 						} else {
 							document.getElementById("coupon_code").removeAttribute("disabled", false);
+							document.getElementById("cancel_coupon").style.display = "none";
 						}
                         delivery_cost = "<?php echo $delivery_charge; ?>";
                         document.getElementById("delivery_cost").innerHTML = (+delivery_cost).toFixed(2);
