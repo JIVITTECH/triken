@@ -19,8 +19,7 @@
     	<div class="main">
 
         <div class='lpopup popup'>
-                <?php include('location.php'); ?>
-                <a href='' class='close'>Close</a>               
+            <?php include('location.php'); ?>
         </div>  
 
 
@@ -147,7 +146,7 @@ $(function(){
        	$('.lpopup').show();
     }
 
-	$('.close').click(function(){
+	/*$('.close').click(function(){
 	$('.lpopup').hide();
 	overlay.appendTo(document.body).remove();
 	return false;
@@ -157,7 +156,7 @@ $(function(){
 	$('.lpopup').hide();
 	overlay.appendTo(document.body).remove();
 	return false;
-	});
+	});*/
 });
 
 $(document).ready(function () {
