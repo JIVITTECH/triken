@@ -64,7 +64,7 @@ if ($_POST || $_GET) {
 	$_SESSION['user_loc_longitude'] = $_GET['longitude'];*/
 	$_COOKIE['user_id'] = $user_id;
 	$_COOKIE['branch_id'] = $branch_id;
-	$_COOKIE['locName'] = $_GET['locName'];
+	/*$_COOKIE['locName'] = $_GET['locName'];*/
 	
 
    
