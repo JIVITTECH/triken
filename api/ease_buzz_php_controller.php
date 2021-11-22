@@ -105,7 +105,7 @@ $postData = array(
     "productinfo" => $product,
     "hash" => $hash,
     "surl" => "$easebuzz_pay_callback_url/triken/paysuccess.php?pm=$pm&cart_id=$cart_id&branch_id=$branch_id&delivery=$delivery&package_chg=$package_chg&rest_key=$schema&user_id=$user_id&locName=$delivery_address&latitude=$cus_lat&longitude=$cus_long",
-    "furl" => "$easebuzz_pay_callback_url/triken/view-cart.php?branch_id=$branch_id",
+    "furl" => "$easebuzz_pay_callback_url/triken/cart.php?branch_id=$branch_id",
     "udf1" => $udf1,
     "udf2" => $udf2,
     "udf3" => $udf3,
