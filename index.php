@@ -142,7 +142,7 @@ $(function(){
     var latitude = "<?php echo isset($_SESSION['user_loc_latitude']) ? $_SESSION['user_loc_latitude'] : ""; ?>";  
     var longitude = "<?php echo isset($_SESSION['user_loc_longitude']) ? $_SESSION['user_loc_longitude'] : ""; ?>";  
     
-    if (latitude.trim().length == 0 || longitude.trim().length == 0) {
+    if (latitude.trim().length == 0 || longitude.trim().length == 0 || branch_id == '-1') {
        	$('.lpopup').show();
     }
 
