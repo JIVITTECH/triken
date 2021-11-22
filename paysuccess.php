@@ -470,7 +470,7 @@ ob_end_flush();
             $(document).ready(function () {
 
                 var arr1 = getAllUrlParams((window.location).toString());
-                var customer_id = "1";
+                var customer_id = "<?php echo $customer_id; ?>">;
                 loadCustomerSelectedItems();
 
             });
