@@ -25,26 +25,10 @@ if ($_GET["action"] == "get_list_of_all_items_for_cats") {
 	      $res = $res . "<h6 class='category-name'>" . "$rows[name]" . "</h6>" .
 		                "<div class='category-box'>";
 
-          $sql2 = 'select db.* , (SELECT COUNT(*) FROM  kot_item_stock_details isd
-	  	 		                 WHERE isd.predef_menu_id = db.predef_menu_id)as stock_chk
+          $sql2 = 'select db.*
 			  	   from (
 					select pm.predef_menu_id, 
-					pm.name as item_name,
-					pm.preqty, 
-					IFNULL(kmz.price, pm.price) AS price, 
-					pm.tax, 
-					pm.image,
-					pm.veg_non,
-					IF(pk_chg.price IS NULL,0,pk_chg.price) AS packing_charge,
-					pm.item_notes,
-					pm.deals_of_the_day,
-					pm.disc_per,
-					pm.best_seller,
-					pm.measure,
-					pma.net_weight,
-					pma.gross_weight,
-					pma.delivery_time,
-					pm.new_arrival
+					pm.name as item_name
 					from predefined_menu pm
 					join predefined_menu_categories pmc 
 					on find_in_set(pmc.pre_menu_id, pm.menu_id)
@@ -56,11 +40,6 @@ if ($_GET["action"] == "get_list_of_all_items_for_cats") {
 					on find_in_set(kmz.item_id, pm.predef_menu_id)
 					and kmz.branch_id = zt.branch_id
 					and kmz.zone = zt.zone_id 
-					left join packing_charges pk_chg
-					on pk_chg.predef_menu_id = pm.predef_menu_id AND pk_chg.branch_id = pm.branch
-					and pmc.branch_id = pk_chg.branch_id 
-					left join predefined_menu_additional pma
-					on pma.predef_menu_id = pm.id
 					WHERE zt.zone_id = "' . $sel_obo_order_type . '" AND pm.branch = ' . $branch_id . 
 					 ' AND find_in_set("'. "$rows[pre_menu_id]" . '", pm.menu_id)' . '
 					group by pm.predef_menu_id)db'; 
