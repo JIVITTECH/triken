@@ -35,7 +35,7 @@ function loadOrders() {
 						
 						orders_div =  "<div class='row order_row'>" +
 														"<div class='order_sec'>" +
-															"<div class='col-md-10 col-xs-9'>" +
+															"<div class='col-md-10 col-xs-9' onclick='goToOrderSummary(" + cart_details.cart_id + ")'>" +
 																"<div class='order-detail'>Order # " + cart_details.invoice_no + "<br>" + cart_details.ordered_date_time  + "</div>" +
 															"</div>" +
 															"<div class='col-md-2 col-xs-12'>" +
@@ -137,4 +137,9 @@ function navCartItem() {
 			window.location.href = "cart.php?branch_id=" + branch_id ;
 		}
 	};                
+}
+
+function goToOrderSummary(card_id) {
+    window.location.href = 'order_summary.php?cart_id=' + card_id +"&view_order_history=Y";  
+	document.getElementById('summary_title').innerHTML = "";
 }

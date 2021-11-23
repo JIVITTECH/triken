@@ -14,7 +14,7 @@
 <section class="thankyou">
     <div class="container">
         <div class="order-success ttext">
-            <ul>
+            <ul id="summary_title">
                 <li><img src="assets/images/tick.svg">  </li>
                 <li><h3> Thank you for your order! :)</h3>
             <p>We’ve received your order.</p></li>
@@ -79,9 +79,9 @@
                                                     <td>
 													<address id="del_address"></address></td>
                                                 </tr>
-                                                <tr>
+                                                <tr id="del_slot_hdr">
                                                     <td><span class="dslot">Delivery Slot </span>
-                                                    <span class="slotdt"id="del_slot"></span></td>
+                                                    <span class="slotdt" id="del_slot"></span></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -103,6 +103,14 @@
 	function loadOrderDetails() {
 		var arr1 = getAllUrlParams((window.location).toString());
         var com_cart_id = arr1.cart_id;
+		var view_order_history = arr1.view_order_history;
+		if (view_order_history == 'Y' || view_order_history == 'y') {
+		    document.getElementById('summary_title').style.display = "none"; 
+			document.getElementById('del_slot_hdr').style.display = "none"; 
+		} else {
+		    document.getElementById('summary_title').style.display = "block"; 
+			document.getElementById('del_slot_hdr').style.display = "block"; 
+		}
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function () {
 		if (this.readyState === 4 && this.status === 200) {
