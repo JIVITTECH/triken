@@ -141,5 +141,4 @@ function navCartItem() {
 
 function goToOrderSummary(card_id) {
     window.location.href = 'order_summary.php?cart_id=' + card_id +"&view_order_history=Y";  
-	document.getElementById('summary_title').innerHTML = "";
 }
