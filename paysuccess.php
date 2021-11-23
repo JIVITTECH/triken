@@ -131,7 +131,8 @@ if ($_POST || $_GET) {
 
         }
         $update_cart = mysqli_query($conn, $upd_cus_pkgs);
-
+		
+        $address = "";
         $sql_brnch = "select * from obo_cart_details  where cart_id  = $cart_id";
         $res_brnch = mysqli_query($conn, $sql_brnch);
         while ($rows = mysqli_fetch_array($res_brnch)) {
@@ -140,6 +141,7 @@ if ($_POST || $_GET) {
             $customer_id = round($rows['customer_id'], 0);
             $tax = $rows['tax'];
             $order_type = $rows['delivery'];
+			$address = $rows['delivery_address'];
         }
 
         $sql_tax = "select * from tax_name where find_in_set($order_type,zone) and branchId = $branch_id and tax_flag = 1 group by id order by tax_name";
@@ -175,7 +177,6 @@ if ($_POST || $_GET) {
 
         $customer_name = "";
         $contact_no = "";
-        $address = "";
         $email_addr = "";
         $discount_amount = 0;
 
@@ -185,7 +186,6 @@ if ($_POST || $_GET) {
         while ($rows_cus = mysqli_fetch_array($res_cus_details)) {
             $customer_name = $rows_cus['customer_name'];
             $contact_no = $rows_cus['contact_no'];
-            $address = $rows_cus['address'];
             $email_addr = $rows['email_addr'];
         }
 
