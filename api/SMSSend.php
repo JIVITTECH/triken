@@ -29,7 +29,7 @@ function getOtp($conn, $code, $mobile, $sender_id, $branch_id, $customer_id, $se
 
 function triggerSMSToCustomer($conn, $content, $mobile, $sender_id, $branch_id, $customer_id, $code, $section, $orderId, $otp) {
 //Your authentication key
-    $authKey = "305993AwQ7NF7vgF6S5ddf648d";
+    $authKey = "305993ADfnY0JTD6il6188c1d9P1";
 
 //Multiple mobiles numbers separated by comma
 //$mobileNumber = "9629170581";
@@ -83,7 +83,7 @@ function triggerSMSToCustomer($conn, $content, $mobile, $sender_id, $branch_id, 
     if ($err) {
         echo 'error:' . curl_error($ch);
     } else {
-//echo $response;
+error_log($response);
         logSMSDetails($conn, $branch_id, $customer_id, $sender_id, $code, $section, $mobile, $content, $response, $orderId, $otp);
     }
 }
