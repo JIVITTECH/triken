@@ -14,20 +14,10 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-lg-2 col-sm-6">
-                            <div class="widget">
-                                <h4 class="widget-title">Categories</h4>
-                                <ul class="widget-body">
-                                    <li><a href="#">Country Chicken</a></li>
-                                    <li><a href="#">Chicken</a></li>
-                                    <li><a href="#">Mutton</a></li>
-                                    <li><a href="#">Fish/Sea Food</a></li>
-                                    <li><a href="#">Eggs</a></li>
-                                    <li><a href="#">Combos</a></li>
-                                    <li><a href="#">Party Packs</a></li>
-                                </ul>
-                            </div>
+
+                        <div class='col-lg-2 col-sm-6' id="load_footer_cats_container">
                         </div>
+
                         <div class="col-lg-4 col-sm-12">
                             <div class="widget">
                                 <h4 class="widget-title">For Feedback</h4>
@@ -60,56 +50,7 @@
                     </div>
                 </div>
                 <div class="footer-middle">
-                    <div class="widget widget-category">
-                        <h6 class="category-name">Chicken</h6>
-                        <div class="category-box">
-                            <a href="#">Chicken Breast (Boneless)</a>
-                            <a href="#">Chicken (Skinless) - Curry Cut (Large)</a>
-                            <a href="#">Chicken Mince/Keema</a>
-                            <a href="#">Chicken Lollipop - 10 Pieces</a>
-                            <a href="#">Chicken - Whole with Skin</a>
-                            <a href="#">Chicken Curry Cut (Small - 13 to 16 Pieces)</a>
-                            <a href="#">Tender Spring Chicken Curry Cut</a>
-                        </div>
-                        
-                        <h6 class="category-name">Eggs</h6>
-                        <div class="category-box">
-                            <a href="#">Eggs</a>
-                            <a href="#">Classic Eggs - Pack Of 3</a>
-                        </div>
-                        
-                        <h6 class="category-name">Mutton</h6>
-                        <div class="category-box">
-                        <a href="#">Goat Mince/Keema</a></li>
-                        <a href="#">Rich Goat Curry Cut (Small - 16 to 20 pieces)</a>
-                        <a href="#">Lean Goat Curry Cut (Small - 16 to 20 pieces)</a>
-                        <a href="#">Lean Lamb Curry Cut (Small - 16 to 20 pieces)</a>
-                        <a href="#">Rich Lamb Curry Cut (Small - 16 to 20 pieces)</a>
-                        <a href="#">Lamb Ribs and Chops</a>
-                        </div>
-                        
-                        <h6 class="category-name">Fish</h6>
-                        <div class="category-box">
-                        <a href="#">Sardine /Mathi</a>
-                        <a href="#">Anchovy  / Nethili, Kozhuva (indian Anchovy)</a>
-                        <a href="#">Rohu (Carpo Fish ) / Kannadi Kendai</a>
-                        <a href="#">Catla / Kelluthi</a>
-                        <a href="#">Roopchand / Yeri Vaval</a>
-                        <a href="#">White Pomfet / Vavval</a>
-                        <a href="#">Black Pomfert / Vavaal</a>
-                        <a href="#">Seer Fish/ vajram</a>
-                        <a href="#">Trevally /Paarai</a>
-                        <a href="#">Crab  blue</a>
-                        <a href="#">Prawns FW</a>
-                        <a href="#">Prawns SW</a>
-                        <a href="#">Sole Fish / Tongue sole / Mathal / Naaku Meen</a>
-                        <a href="#">Baasa Fish</a>
-                        <a href="#">Mackkerel , Ayilai , Kanangeluthi</a>
-                        <a href="#">Indian Shad (Hilsa) / Oolum, Ooli</a>
-                        <a href="#">Red snapper / Sankara</a>
-                        <a href="#">Emperor / vela meen</a>
-                        <a href="#">Tilapia / Kari meen</a>
-                        </div>
+                    <div class="widget widget-category" id="load_footer_items_for_cats_container">
                     </div>
                 </div>
                 <div class="footer-bottom">
@@ -145,5 +86,13 @@
 
     <!-- Main Js -->
     <script src="assets/js/main.min.js"></script>
+    <script src="js/loadFooterDetails.js"></script>
+    <script>
+        $(document).ready(function () {
+            loadFooterCategories();
+            loadFooterItemsForCategories();
+        });
+    </script>
+
 </body>
 </html>
