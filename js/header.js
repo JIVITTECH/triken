@@ -197,7 +197,7 @@ function loginValid() {
 	xhttp.onreadystatechange = function () {
 		if (this.readyState === 4 && this.status === 200) {
 			
-			if (this.responseText === "success") {
+			if (+this.responseText === 1) {
 				document.getElementById('login_popup').style.display = 'none';
 				document.getElementById('otp_popup').style.display = 'block';
 				document.getElementById('timer').style.display = 'block';
@@ -310,7 +310,7 @@ function resendOTP() {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function () {
 		if (this.readyState === 4 && this.status === 200) {
-			if (this.responseText === "success") {
+			if (+this.responseText === 1) {
 				timeLeft = 60;
 				document.getElementById('resendOTP').style.display = 'none';
 				document.getElementById('timer').style.display = 'block';
