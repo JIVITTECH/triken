@@ -61,9 +61,9 @@ function loginVerifyOTP1($conn) {
         mysqli_query($conn, $sql2);
        // loginVerifyOTP2($conn , $loginNumber);
         mysqli_close($conn);
-        echo "success";
+        echo "1";
     } else {
-        echo "failed";
+        echo "2";
     }
 }
 
