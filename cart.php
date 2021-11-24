@@ -334,7 +334,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
                     </tbody>
                 </table>
 				
-				<button  onclick ='$("#proceed_to_payment").trigger("click");' class="submit_btn btn btn-dark btn-rounded btn-sm mb-4 orange_btn" type="button">Proceed to Payment</button>
+				<button  onclick ='proceedToPayment()' class="submit_btn btn btn-dark btn-rounded btn-sm mb-4 orange_btn" type="button">Proceed to Payment</button>
 				
             </div>
             
@@ -731,6 +731,29 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 			document.cookie = cookie_name + "=" + selected_date + "; " + expires + "; path=/";
 			document.cookie = "del_type" + "=" + sel_text + "; " + expires + "; path=/";
 			
+	}
+
+	function proceedToPayment() {
+		var information = "";
+		var xmlhttp = new XMLHttpRequest();
+		var url = "api/loadDeliveryAddress.php?action=get_current_delivery_address";
+		xmlhttp.open("GET", url, true);
+		xmlhttp.send();
+		xmlhttp.onreadystatechange = function () {
+			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+				var myObj = JSON.parse(this.responseText);
+				if (myObj.length !== 0) {
+			 		for (var i = 0; i < myObj.length; i++) {
+						information = myObj[i].delivery_address; 	
+					}
+				}
+				if (information.trim().length == 0) { 
+				    alert("Delivery address must be entered");
+				} else { 
+				    $("#proceed_to_payment").trigger("click");
+				}
+			}
+		};
 	}
 
 </script>
