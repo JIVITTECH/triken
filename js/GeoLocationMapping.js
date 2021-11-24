@@ -41,7 +41,7 @@ function getCurrentAddress(location, lat, long) {
             document.getElementById("location").value=results[0].formatted_address;
             document.getElementById('latitude').value = lat;
             document.getElementById('longitude').value = long;
-            findNearestBranch(long, long);
+            findNearestBranch(lat, long);
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
         }
