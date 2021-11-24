@@ -27,13 +27,11 @@ function getLocation() {
 }
 
 function showPosition(position) {
-//  x.innerHTML = "Latitude: " + position.coords.latitude + 
-//  "<br>Longitude: " + position.coords.longitude;
   var myLatlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-  getCurrentAddress(myLatlng);
+  getCurrentAddress(myLatlng, position.coords.latitude, position.coords.longitude);
 }
-//Get current address
-function getCurrentAddress(location) {
+
+function getCurrentAddress(location, lat, long) {
    currgeocoder = new google.maps.Geocoder();
     currgeocoder.geocode({
         'location': location
@@ -41,7 +39,9 @@ function getCurrentAddress(location) {
         if (status == google.maps.GeocoderStatus.OK) {
             console.log(results[0]);
             document.getElementById("location").value=results[0].formatted_address;
-//            $("#address").html();
+            document.getElementById('latitude').value = lat;
+            document.getElementById('longitude').value = long;
+            findNearestBranch(long, long);
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
         }
