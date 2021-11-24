@@ -58,7 +58,7 @@ function loadItemsDescription() {
 					}
 
 					var specifications = myObj[i].specification;
-					var specifications_length = specifications.length/2;
+					var specifications_length = Math.ceil(specifications.length/2);
 					var specifications_div_1 = "";
 					var specifications_tag_1 = "";
 					var start_index_1 = 0;
