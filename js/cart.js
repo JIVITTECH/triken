@@ -31,12 +31,9 @@
 								stock_chk = "<p style='color:red;'>(Not Available)</p>";
 								stock_chk_array.push(myObj[i].menu_id);
 							}
-							if (cover_photo !== "")
-							{
+							if (cover_photo !== "")	{
 								image_path = dirname + cover_photo;
-								;
-							} else
-							{
+							} else {
 								image_path = 'images/default.jpg';
 							}
 							var total_price = "";
@@ -197,14 +194,13 @@
 							stock_chk = "<p style='color:red;'>(Not Available)</p>";
 							stock_chk_array.push(myObj[i].menu_id);
 						}
-						if (cover_photo !== "")
-						{
-							image_path = '../' + cover_photo;
-							;
-						} else
-						{
+						
+						if (cover_photo !== "")	{
+						    image_path = dirname + cover_photo;
+						} else {
 							image_path = 'images/default.jpg';
 						}
+
 						var total_price = "";
 						var tax_tag = "";
 						if (+myObj[i].tax !== 0) {
