@@ -74,8 +74,8 @@ function loadCartData() {
 														"<div class='product-qty-form mb-2 mr-2'>" +
 															"<div class='input-group'>" +
 																"<input class=' form-control' value =  " + myObj[i].quantity + " type='number'>" +
-																"<button onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ",\"" + image_path + "\")'  class='quantity-plus w-icon-plus'></button>" +
-																"<button onclick='redQtyFromCart(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ",0," + myObj[i].quantity + ")'  class='quantity-minus w-icon-minus'></button>" +
+																"<button onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + encodeURIComponent(myObj[i].name) + "\", "  + myObj[i].packing_charge +  ",\"" + encodeURIComponent(image_path) + "\")'  class='quantity-plus w-icon-plus'></button>" +
+																"<button onclick='redQtyFromCart(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + encodeURIComponent(myObj[i].name) + "\", "  + myObj[i].packing_charge +  ",0," + myObj[i].quantity + ")'  class='quantity-minus w-icon-minus'></button>" +
 															"</div>" +
 															"<div class='price-box'>" +
 																"<span class='product-price'><ins class='new-price'>" + total_price + "</ins></span>" +
@@ -149,8 +149,8 @@ function loadCartDataFromCookie() {
 												"<div class='product-qty-form mb-2 mr-2'>" +
 													"<div class='input-group'>" +
 														"<input class=' form-control' value =  " + sel_qty + " type='number'>" +
-														"<button onclick='saveItemDetails(" + menu_id + ", "  + customer_id +  "," + price +  ",\"" + item_name + "\", "  + pkg_charge +  ",\"" + image_path + "\")'  class='quantity-plus w-icon-plus'></button>" +
-														"<button onclick='redQtyFromCart(" + menu_id + ", "  + customer_id +  "," + price +  ",\"" + item_name + "\", "  + pkg_charge +  ",0," + sel_qty + ")'  class='quantity-minus w-icon-minus'></button>" +
+														"<button onclick='saveItemDetails(" + menu_id + ", "  + customer_id +  "," + price +  ",\"" + encodeURIComponent(item_name) + "\", "  + pkg_charge +  ",\"" + encodeURIComponent(image_path) + "\")'  class='quantity-plus w-icon-plus'></button>" +
+														"<button onclick='redQtyFromCart(" + menu_id + ", "  + customer_id +  "," + price +  ",\"" + encodeURIComponent(item_name) + "\", "  + pkg_charge +  ",0," + sel_qty + ")'  class='quantity-minus w-icon-minus'></button>" +
 													"</div>" +
 													"<div class='price-box'>" +
 														"<span class='product-price'><ins class='new-price'>" + total_price + "</ins></span>" +

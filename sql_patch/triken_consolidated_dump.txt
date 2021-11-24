@@ -1,0 +1,453 @@
+ALTER TABLE kot_order_tax ADD COLUMN bill_no int(11) DEFAULT 0;
+ALTER TABLE kot_order_commissions ADD COLUMN bill_no int(11) DEFAULT 0;
+ALTER TABLE kot_order_item_tax ADD COLUMN bill_no int(11) DEFAULT 0;
+ALTER TABLE kot_bill_sms_log ADD COLUMN bill_no int(11) DEFAULT 0;
+ALTER TABLE kot_advance_details ADD COLUMN bill_no int(11) DEFAULT 0;
+ALTER TABLE kot_customer_order_details ADD COLUMN bill_no int(11) DEFAULT 0;
+ALTER TABLE kot_counter_sales ADD COLUMN bill_no int(11) DEFAULT 0;
+ALTER TABLE kot_modifier_logs  ADD COLUMN print_bill_no int(11) DEFAULT 0;
+ALTER TABLE zomato_gold_coupon_logs ADD COLUMN print_bill_no int(11) DEFAULT 0;
+
+
+CREATE TABLE delivery_person_distance_cost (
+	order_id INT(55) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	delivery_charge VARCHAR(255) NOT NULL,
+	distance VARCHAR(255) NOT null
+);
+
+INSERT INTO access_controls VALUES(251, 'Allow access to Edit Delivery Agent', 'POS27', '5');
+
+CREATE TABLE obo_city_config(
+    ID int NOT NULL,
+    city_name varchar(255) NOT NULL,
+    PRIMARY KEY (ID)
+);
+
+CREATE TABLE obo_map_city_branch(
+    ID int NOT NULL,
+    branch_id int(55) NOT NULL,
+    city_id int(55) NOT NULL,
+    PRIMARY KEY (ID)
+);
+
+CREATE TABLE `obo_banner_images` (`banner_id` int(6) unsigned NOT NULL AUTO_INCREMENT,`
+         branch_id` int(45) DEFAULT NULL,
+		 image varchar(255),PRIMARY KEY (`banner_id`))
+		 ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+insert into access_controls (access_id, description, access_code, group_id) values (222, 'Allow access to approve purchase order and delete GRN', 'IV01', 7);
+
+alter table stock_entry add column to_store INT(5) default NULL;
+
+alter table kot_stock_details add column to_store INT(5) default NULL;
+
+INSERT INTO `payment_mode` (`id`, `name`) VALUES ('4', 'Online');
+
+CREATE INDEX bill_no
+ON kot_cash_payment (bill_no);
+
+CREATE INDEX card_bill_no
+ON kot_card_payment (bill_no);
+
+CREATE INDEX order_id
+ON save_redeemed_amount (order_id);
+
+CREATE TABLE home_page_configuration (
+    ID int NOT NULL,
+    brand_name varchar(255) NOT NULL,
+    contact_number varchar(255),
+	facebook varchar(255),
+	twitter varchar(255),
+	youtube varchar(255),
+	group_id varchar(255),
+	instagram varchar(255),
+    brand_logo varchar(255),
+    address varchar(255),
+    PRIMARY KEY (ID)
+);
+
+alter table goods_receive_details_payment_ref_log add column vendor_id decimal(6,0);
+
+CREATE TABLE `del_person_availability` (
+  `emp_id` int(25) DEFAULT NULL,
+  `status` int(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+alter table grn_ing_details add column (image VARCHAR(100));
+
+CREATE TABLE predefined_menu_additional  (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+predef_menu_id decimal(10,0) NOT NULL,
+branch_id int(11) NOT NULL,
+net_weight decimal(22,2),
+gross_weight decimal(22,2),
+delivery_time int(11),
+video_path varchar(255)
+);
+
+alter table predefined_menu_additional add column (video VARCHAR(300));
+
+CREATE TABLE obo_item_description (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+predef_menu_id decimal(10,0) NOT NULL,
+branch_id int(11) NOT NULL,
+specification varchar(10000)
+);
+
+alter table obo_city_config add column branch_exists varchar(1) DEFAULT 'N';
+ 
+alter table predefined_menu_categories add column icon varchar(255) DEFAULT NULL;
+
+alter table predefined_menu add (deals_of_the_day VARCHAR(1), disc_per DECIMAL(20,2));
+
+alter table predefined_menu add (best_seller VARCHAR(1));
+
+alter table predefined_menu add (new_arrival VARCHAR(1));
+
+alter table kot_customer_details add (last_name VARCHAR(255) default NULL);
+
+CREATE TABLE obo_recipe
+(id INT, 
+branch_id INT,
+recipe_name VARCHAR(200),
+image VARCHAR(200), 
+description VARCHAR(10000));
+
+CREATE TABLE obo_recipe_ingredients
+(id INT, 
+branch_id INT,
+recipe_id INT,
+ingredient_name VARCHAR(200), 
+serving_count INT);
+
+CREATE TABLE obo_recipe_procedure
+(id INT, 
+branch_id INT,
+recipe_id INT,
+instruction_id INT, 
+recipe_notes  VARCHAR(10000),
+detail_steps VARCHAR(10000));
+
+CREATE TABLE obo_item_desciption
+(id INT, 
+branch_id INT,
+item_id INT,
+specification VARCHAR(1000));
+
+alter table predefined_menu add (description VARCHAR(10000));
+
+CREATE TABLE item_related_images
+(id INT, 
+branch_id INT,
+item_id INT,
+image_path VARCHAR(1000));
+
+ALTER TABLE obo_recipe ADD UNIQUE UNQ_RECIPE_ID(`id`);
+
+ALTER TABLE obo_recipe MODIFY id INT NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `obo_recipe_ingredients` ADD INDEX(`id`);
+
+ALTER TABLE obo_recipe_ingredients MODIFY id INT NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `obo_recipe_procedure` ADD INDEX(`id`);
+
+ALTER TABLE `obo_recipe_procedure` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+
+alter  table home_page_configuration add column (google_play_store VARCHAR(255), apple_store VARCHAR(255));
+
+update home_page_configuration set google_play_store = 'https://play.google.com/store';
+
+update home_page_configuration set apple_store = 'https://www.apple.com/app-store/';
+
+update home_page_configuration set twitter = 'https://www.twitter.com';
+
+
+CREATE TABLE `obo_offers` (
+  `Branch_ID` bigint(20) NOT NULL,
+  `Promo_Code` varchar(25) NOT NULL,
+  `Image` longblob,
+  `Title` varchar(50) NOT NULL,
+  `Description` varchar(250) DEFAULT NULL,
+  `Discount_Percentage` decimal(10,2) DEFAULT NULL,
+  `Discount_Amount` decimal(10,2) DEFAULT NULL,
+  `Expiry_Date` date DEFAULT NULL,
+  `Max_Discount_Amt` decimal(10,2) DEFAULT NULL,
+  `Above_Bill_Amt` decimal(10,2) DEFAULT NULL,
+  `Applied_to_First_Order` varchar(1) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE `obo_order_tax` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cart_id` int(55) DEFAULT NULL,
+  `tax_name` varchar(255) DEFAULT NULL,
+  `tax_per` varchar(255) DEFAULT NULL,
+  `tax_cost` decimal(20,2) DEFAULT '0.00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=523 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `obo_cart_details` (
+  `cart_id` int(10) NOT NULL AUTO_INCREMENT,
+  `customer_id` int(10) NOT NULL,
+  `ordered_date_time` datetime DEFAULT NULL,
+  `delivery_address` varchar(500) DEFAULT '',
+  `tax` decimal(20,2) DEFAULT '0.00',
+  `total_price` decimal(20,2) DEFAULT '0.00',
+  `invoice_no` varchar(20) DEFAULT '',
+  `order_placed` varchar(5) DEFAULT 'N',
+  `delivery` varchar(1) DEFAULT '3',
+  `branch_id` varchar(10) DEFAULT NULL,
+  `temp_order_id` varchar(10) DEFAULT NULL,
+  `pos_order_id` varchar(10) DEFAULT NULL,
+  `branch_address` varchar(155) DEFAULT NULL,
+  `del_long` varchar(155) DEFAULT NULL,
+  `del_lat` varchar(155) DEFAULT NULL,
+  `del_charge` varchar(155) DEFAULT NULL,
+  `sub_total` varchar(155) DEFAULT NULL,
+  `rider_del_time` varchar(155) DEFAULT NULL,
+  `cat_id` int(155) DEFAULT NULL,
+  `packing_charge` decimal(20,2) DEFAULT NULL,
+  PRIMARY KEY (`cart_id`),
+  KEY `obo_cart_details_cus_id_fk` (`customer_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=284 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `obo_cart_item_details` (
+  `cart_item_id` int(10) NOT NULL AUTO_INCREMENT,
+  `cart_id` int(10) NOT NULL,
+  `predef_menu_id` decimal(10,0) NOT NULL,
+  `price` decimal(10,2) DEFAULT '0.00',
+  `quantity` int(10) DEFAULT '1',
+  `branch_id` varchar(10) DEFAULT NULL,
+  `cat_id` int(155) DEFAULT NULL,
+  `replace_name` varchar(155) DEFAULT NULL,
+  `packing_charge` decimal(20,2) DEFAULT '0.00',
+  PRIMARY KEY (`cart_item_id`),
+  KEY `obo_cart_item_details_cart_id_fk` (`cart_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1840 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `obo_cart_coupon` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cart_id` int(55) DEFAULT NULL,
+  `type` int(55) DEFAULT NULL,
+  `amount` varchar(55) DEFAULT NULL,
+  `discount_name` varchar(100) DEFAULT NULL,
+  `discount_cost` decimal(20,2) DEFAULT '0.00',
+  `discount_id` varchar(155) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `obo_cart_item_modifiers` (
+  `cart_item_id` int(10) NOT NULL,
+  `modifier_id` int(10) NOT NULL,
+  `mod_sub_id` int(10) NOT NULL,
+  `mod_price` decimal(10,2) DEFAULT '0.00',
+  `cart_id` int(55) DEFAULT NULL,
+  KEY `obo_cart_item_id_fk` (`cart_item_id`),
+  CONSTRAINT `obo_cart_item_id_fk` FOREIGN KEY (`cart_item_id`) REFERENCES `obo_cart_item_details` (`cart_item_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `obo_customer_addresses` (
+  `customer_id` int(10) NOT NULL,
+  `delivery_add_id` int(11) NOT NULL AUTO_INCREMENT,
+  `delivery_address` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT '',
+  `current_address` varchar(1) COLLATE utf8mb4_unicode_ci DEFAULT 'N',
+  `longitude` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `latitude` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`delivery_add_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+CREATE TABLE `obo_customization_details` (
+  `id` bigint(20) NOT NULL,
+  `component` varchar(100) DEFAULT NULL,
+  `color` varchar(10) DEFAULT NULL,
+  `default_color` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `packing_charges` (
+  `pkg_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `predef_menu_id` int(11) NOT NULL,
+  `branch_id` int(11) NOT NULL,
+  `price` decimal(20,2) DEFAULT '0.00',
+  PRIMARY KEY (`pkg_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `delivery_person_distance_cost` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `order_id` int(10) DEFAULT NULL,
+  `distance` varchar(55) DEFAULT NULL,
+  `delivery_charge` varchar(55) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `delivery_charge` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `min_price` varchar(100) DEFAULT NULL,
+  `min_distance` varchar(100) DEFAULT NULL,
+  `additional_price` varchar(100) DEFAULT NULL,
+  `branch_id` varchar(155) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `kot_otp_log_validation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) DEFAULT NULL,
+  `otp` varchar(6) DEFAULT NULL,
+  `status` int(1) DEFAULT NULL,
+  `datetime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=584 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `kot_otp_validation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) DEFAULT NULL,
+  `otp` varchar(6) DEFAULT NULL,
+  `status` int(1) DEFAULT NULL,
+  `datetime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE OBO_CONTACT_DETAILS  
+(NAME VARCHAR(40) ,
+EMAIL VARCHAR(50) , 
+MOBILE VARCHAR(25) ,       
+ADDRESS VARCHAR(250) ,      
+MESSAGE VARCHAR(1000) );
+
+
+CREATE TABLE invoice_details(invoice_id int NOT NULL AUTO_INCREMENT,
+invoice_date datetime,
+razor_pay_id varchar(255),
+PRIMARY KEY (invoice_id));	
+
+ALTER TABLE obo_customer_addresses
+ADD flatNo varchar(300);
+
+ALTER TABLE obo_customer_addresses
+ADD street varchar(300);
+
+ALTER TABLE obo_customer_addresses
+ADD area varchar(300);
+
+ALTER TABLE obo_customer_addresses
+ADD pincode varchar(8);
+
+ALTER TABLE obo_customer_addresses
+ADD city varchar(100);
+
+ALTER TABLE obo_customer_addresses
+ADD landmark varchar(300);
+
+
+ALTER TABLE invoice_details ADD COLUMN others VARCHAR(100);
+
+ALTER TABLE kot_customer_details
+    ADD COLUMN geo_location varchar(255),
+    ADD COLUMN latitude varchar(255),
+    ADD COLUMN longitude varchar(255);
+
+
+ALTER TABLE kot_feedback_questions 
+    ADD withdrawn INT,
+    ADD branch_id INT;
+
+
+CREATE TABLE kot_feedback_ordertype_qns (id INT(10) AUTO_INCREMENT,
+                                         order_type_id INT(10) NOT NULL,
+                                         order_type_description VARCHAR(255),
+                                         question_id INT(10),
+                                         branch_id INT(10),
+                                         CONSTRAINT PK_ID PRIMARY KEY (id));
+
+
+CREATE TABLE kot_feedbacks_logs ( kfd_id INT(10) AUTO_INCREMENT, 
+                                  cart_or_order_id INT(10), 
+                                  customer_id INT(10), 
+                                  branch_id INT(10), 
+                                  order_type INT(2), 
+                                  ord_ratings INT(1),  
+                                  ord_comments VARCHAR(1000), 
+                                  del_ratings INT(1),  
+                                  del_comments VARCHAR(1000), 
+                                  ord_fav_items VARCHAR(1000),
+                                  rider_name VARCHAR(255), 
+                                  feedback_date DATETIME,
+                                  CONSTRAINT PK_ID PRIMARY KEY (kfd_id));
+
+
+CREATE TABLE kot_feedback_qn_and_ratings (id INT(10) AUTO_INCREMENT,
+                                          kd_id INT(10),
+                                          question_id INT(10), 
+                                          ratings INT(1),
+                                          CONSTRAINT PK_ID PRIMARY KEY (id));
+
+CREATE TABLE kot_del_otp_log_validation SELECT * FROM kot_otp_log_validation WHERE 1=0;
+
+SELECT LEFT(MD5(RAND()), 16);
+
+ALTER TABLE kot_branch_details
+ADD online_order_flag int(1);
+
+ALTER TABLE predefined_menu_categories
+ADD online_cat_flag int(1);
+
+ALTER TABLE predefined_menu_categories
+ADD ordering int(10);
+										  
+ALTER TABLE packing_charges ALTER COLUMN price SET DEFAULT 0;
+
+CREATE TABLE `obo_store_settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `branch` int(11) NOT NULL,
+  `distance_coverage` int(11) DEFAULT '0',
+  `open_time` varchar(255) DEFAULT NULL,
+  `close_time` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `obo_outer_radius_access_details` (
+  `id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `cart_id` int(11) NOT NULL,
+  `accessed_branch` int(11) DEFAULT '0',
+  `latitude` varchar(255) DEFAULT NULL,
+  `longitude` varchar(255) DEFAULT NULL,
+  `customer_address` varchar(1000) DEFAULT NULL,
+  `date` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `eass_buzz_credentails` (
+  `id` int(11) NOT NULL,
+  `eass_buzz_key` varchar(55) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `eass_buzz_salt` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(55) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+INSERT INTO `eass_buzz_credentails` (`id`, `eass_buzz_key`, `eass_buzz_salt`, `status`) VALUES
+(1, '2PBP7IABZ2', 'DAH88E3UWQ', 'live');
+
+ALTER TABLE wera_placed_orders add column `branch_id` int(55) DEFAULT NULL;
+
+INSERT into obo_map_city_branch(id,branch_id,city_id)values(1,1,1);
+
+INSERT into obo_map_city_branch(id,branch_id,city_id)values(2,2,1);
+
+INSERT into obo_map_city_branch(id,branch_id,city_id)values(3,3,1);
+
+INSERT into obo_map_city_branch(id,branch_id,city_id)values(4,4,1);
+
+
