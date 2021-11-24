@@ -108,35 +108,7 @@
 		
 		<?php include('whytodays.php'); ?>
 		
-		<section class="best_seller related appear-animate bg-white">
-			<div class="container">
-		        <div class="widget-body br-sm h-100">
-		       		<h1 class="title text-left appear-animate"> Related Products</h1> 
-		                <div class="swiper slider_sec">
-		                    <div class="swiper-container swiper-theme nav-top" data-swiper-options="{
-		                                        'slidesPerView': 1.1,
-		                                        'spaceBetween': 10,
-		                                        'breakpoints': {
-		                                            '576': {
-		                                                'slidesPerView': 2
-		                                            },
-		                                            '768': {
-		                                                'slidesPerView': 3
-		                                            },
-		                                            '992': {
-		                                                'slidesPerView': 4
-		                                            }
-		                                        }
-		                                    }">
-			                    <div class="swiper-wrapper row cols-lg-1 cols-md-3" id="related_products">
-			                                            
-			                    </div>
-			                    <button class="swiper-button-next"></button>
-			                    <button class="swiper-button-prev"></button>
-		                    </div>
-		                </div>
-		        </div>
-		    </div>
+		<section class="best_seller related appear-animate bg-white" id="related_products">
 		</section>
 
 		<?php include('faq.php'); ?>
