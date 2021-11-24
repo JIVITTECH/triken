@@ -59,6 +59,7 @@ $query = 'select db.* , (SELECT COUNT(*) FROM  kot_item_stock_details isd
             left join predefined_menu_additional pma
               on pma.predef_menu_id = pm.id
             WHERE pm.branch = "'.$branch.'" AND zt.zone_id = "' . $sel_obo_order_type .'"
+              AND pm.best_seller = "Y"
             group by pm.predef_menu_id)db
 			GROUP BY predef_menu_id ORDER BY total_qty_sold DESC '. $number .'';
 
