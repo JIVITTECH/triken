@@ -80,9 +80,10 @@
 		 <h1 class="title text-center appear-animate"> Explore by Categories </h1>
 		 <div id="categories_container" class="row cols-2">
          </div>
+    </div>
 
 <!-- recipes start -->
-    <div class="recipe">
+    <div class="recipe container">
 	     <h1 class="title text-center appear-animate mb-6">Recipes for dishes</h1>
 	     <div class="swiper-container swiper-theme post-wrapper appear-animate" data-swiper-options="{
                         'slidesPerView': 1.1,
