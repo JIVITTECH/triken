@@ -161,7 +161,7 @@ $(function(){
 });
 
 $(document).ready(function () {
-    if (branch_id != '-1') {
+    if (branch_id != '-1' && branch_id != "") {
 		loadLtdDealsOfTheDay();
         loadLtdBestSellingProducts();
         loadAllRecipes();
