@@ -159,7 +159,7 @@ function loadLtdDealsOfTheDay() {
 												 '</div>' +
 											'<div class="swiper slider_sec">';
 			if (myObj.length !== 0) {
-			    information = information + "<div class=" + '"swiper-container swiper-theme nav-top"' + ' data-swiper-options="{' +
+			    information = information + "<div class=" + '"swiper-container  swiper-theme nav-top"' + ' data-swiper-options="{' +
 				                                            "'slidesPerView': 1.1," + 
 															"'spaceBetween': 10," +
 															"'breakpoints': {" +
@@ -174,7 +174,7 @@ function loadLtdDealsOfTheDay() {
                                                                 "}" +
 															"}" +
 														'}">' +
-											"<div class='swiper-wrapper row cols-lg-1 cols-md-3'>";
+											"<div class='swiper-wrapper container row cols-lg-1 cols-md-3'>";
                 for (var i = 0; i < myObj.length; i++) {
 					var cover_photo = myObj[i].image;
 					var image_path = "";
@@ -345,7 +345,7 @@ function loadLtdBestSellingProducts() {
 												 '</div>' +
 											'<div class="swiper slider_sec">';
 			if (myObj.length !== 0) {
-			    information = information + "<div class=" + '"swiper-container swiper-theme nav-top"' + ' data-swiper-options="{' +
+			    information = information + "<div class=" + '"swiper-container  swiper-theme nav-top"' + ' data-swiper-options="{' +
 				                                            "'slidesPerView': 1.1," + 
 															"'spaceBetween': 10," +
 															"'breakpoints': {" +
@@ -360,7 +360,7 @@ function loadLtdBestSellingProducts() {
                                                                 "}" +
 															"}" +
 														'}">' +
-											"<div class='swiper-wrapper row cols-lg-1 cols-md-3'>";
+											"<div class='swiper-wrapper container row cols-lg-1 cols-md-3'>";
              	for (var i = 0; i < myObj.length; i++) {
 					var cover_photo = myObj[i].image;
 					var image_path = "";
