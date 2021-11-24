@@ -1,5 +1,6 @@
 function loadItemsDescription() {
 	var information = "";
+	$('#item_container').empty();
 	var arr1 = getAllUrlParams((window.location).toString());
     var item_id = arr1.item_id;
 	var xmlhttp = new XMLHttpRequest();
@@ -131,6 +132,7 @@ var selected_item_name = "";
 
 function loadAllRelatedItems() {
 	var information = "";
+	$('#related_products').empty();
 	var xmlhttp = new XMLHttpRequest();
 	var url = "api/get_list_of_related_products.php?branch=" + branch_id + "&item_name="+ selected_item_name;
 	xmlhttp.open("GET", url, true);
@@ -138,7 +140,27 @@ function loadAllRelatedItems() {
 	xmlhttp.onreadystatechange = function () {
 		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 			var myObj = JSON.parse(this.responseText);
+			information = information + '<div class="container">' +
+			                                '<div class="widget-body br-sm h-100">' +
+											     '<h1 class="title text-left appear-animate"> Related Products</h1>' +
+     											 '<div class="swiper slider_sec">';
 			if (myObj.length !== 0) {
+			    information = information + "<div class=" + '"swiper-container swiper-theme nav-top"' + ' data-swiper-options="{' +
+				                                            "'slidesPerView': 1.1," + 
+															"'spaceBetween': 10," +
+															"'breakpoints': {" +
+															    "'576': {" + 
+																   "'slidesPerView': 2" + 
+																"}," + 
+																"'768': {" + 
+																   "'slidesPerView': 3" + 
+                                                                "}," +
+																"'992': {" +
+																   "'slidesPerView': 4" + 
+                                                                "}" +
+															"}" +
+														'}">' +
+											"<div class='swiper-wrapper row cols-lg-1 cols-md-3'>";
 				for (var i = 0; i < myObj.length; i++) {
 					var cover_photo = myObj[i].image;
 					var image_path = "";
@@ -192,11 +214,15 @@ function loadAllRelatedItems() {
 												"</div>"  ;
 												
 				}
-				$('#related_products').empty();
-				$('#related_products').append(information);
-            } else {
+				information = information + "</div>" + 
+				                            "<button class='swiper-button-next'></button>" +
+											"<button class='swiper-button-prev'></button>" +
+											"</div>";
+		    } else {
 				$('#related_products').append("<center>No Related Items found</center>");
             }
+			information = information + '</div>' + '</div>' + '</div>';
+			$('#related_products').append(information);
 		}
 	};
 }
