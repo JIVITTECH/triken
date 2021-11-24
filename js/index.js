@@ -107,7 +107,7 @@ function loadTopCategories() {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             var myObj = JSON.parse(this.responseText);
             if (myObj.length !== 0) {
-                for (var i = 0; i < myObj.length; i++) {
+                for (var i = 0; i < 7; i++) {
                     icon = myObj[i].icon;
                     name = myObj[i].name;
                     if (icon !== "")
