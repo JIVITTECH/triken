@@ -278,6 +278,8 @@ function verifyOTP() {
 				}else{
 					window.location.href = "cart.php?branch_id=" + branch_id;
 				}
+			}else{
+				document.getElementById('invalid_otp').style.display = 'block';
 			} 
 		}
 	};
@@ -306,6 +308,7 @@ function OTPVerification() {
       
 function resendOTP() {
 	document.getElementById('otp').value = '';
+	document.getElementById('invalid_otp').style.display = 'block';
 	var mobile = document.getElementById('contact_no').value;
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function () {
