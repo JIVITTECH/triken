@@ -107,7 +107,7 @@ function loadTopCategories() {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             var myObj = JSON.parse(this.responseText);
             if (myObj.length !== 0) {
-                for (var i = 0; i < myObj.length; i++) {
+                for (var i = 0; i < 7; i++) {
                     icon = myObj[i].icon;
                     name = myObj[i].name;
                     if (icon !== "")
@@ -223,7 +223,7 @@ function loadLtdDealsOfTheDay() {
 																"<div class='col-md-8 product-price'>" +
 																	discount_price +
 																"</div>" +
-																"<div class='col-md-4'><a href='#' onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ",\"" + image_path + "\")' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
+																"<div class='col-md-4'><a href='#' onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + encodeURIComponent(myObj[i].name) + "\", "  + myObj[i].packing_charge +  ",\"" + encodeURIComponent(image_path) + "\")' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
 															"</div>" +
 														"</div>" +
 													"</div>" +
@@ -306,7 +306,7 @@ function loadAllDealsOfTheDay() {
 																"<div class='col-md-8 product-price'>" +
 																	discount_price +
 																"</div>" +
-																"<div class='col-md-4'><a href='#' onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ",\"" + image_path + "\")' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
+																"<div class='col-md-4'><a href='#' onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + encodeURIComponent(myObj[i].name) + "\", "  + myObj[i].packing_charge +  ",\"" + encodeURIComponent(image_path) + "\")' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
 															"</div>" +
 														"</div>" +
 													"</div>" +
@@ -410,7 +410,7 @@ function loadLtdBestSellingProducts() {
 																"<div class='col-md-8 product-price'>" +
 																	discount_price +
 																"</div>" +
-																"<div class='col-md-4'><a href='#' onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ",\"" + image_path + "\")' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
+																"<div class='col-md-4'><a href='#' onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + encodeURIComponent(myObj[i].name) + "\", "  + myObj[i].packing_charge +  ",\"" + encodeURIComponent(image_path) + "\")' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
 															"</div>" +
 														"</div>" +
 													"</div>" +
@@ -492,7 +492,7 @@ function loadAllBestSellingProducts() {
 																"<div class='col-md-8 product-price'>" +
 																	discount_price +
 																"</div>" +
-																"<div class='col-md-4'><a href='#' onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ",\"" + image_path + "\")' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
+																"<div class='col-md-4'><a href='#' onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + encodeURIComponent(myObj[i].name) + "\", "  + myObj[i].packing_charge +  ",\"" + encodeURIComponent(image_path) + "\")' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
 															"</div>" +
 														"</div>" +
 													"</div>" +
