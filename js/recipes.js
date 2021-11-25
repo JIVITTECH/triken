@@ -1,4 +1,5 @@
 function loadSelectedCategory() {
+	$('#category_container').empty();
     var name = "";
     var information = "";
     var xmlhttp = new XMLHttpRequest();
@@ -37,6 +38,7 @@ function setCategory(cat_id){
 }
 
 function loadAllRecipes() { 
+    $('#recipe_container').empty();
 	var information = "";
 	var recipe_name = document.getElementById("recipe_name").value;
 	var xmlhttp = new XMLHttpRequest();

@@ -65,16 +65,16 @@ function findNearestBranch (latitude, longitude) {
 						document.getElementById("loc_name").innerHTML = location;
 					}
 				$('.lpopup').hide();
+				window.location.href = window.location.href;
+				loadAllCategories();
+				loadTopCategories();
+				loadLtdDealsOfTheDay();
+				loadLtdBestSellingProducts();
+				loadAllRecipes();
 			}else{
 				document.getElementById("no_branch").style.display = "block";
 			} 
-			window.location.href = window.location.href;
-            loadAllCategories();
-            loadTopCategories();
-            loadLtdDealsOfTheDay();
-            loadLtdBestSellingProducts();
-            loadAllRecipes();
-        }
+		}
     };
     xhttp.open("GET", "api/find_nearest_branch.php?" + "latitude=" + latitude + 
                "&longitude=" + longitude, true);

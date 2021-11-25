@@ -20,6 +20,7 @@
 			<!--<form action="" method="post">-->
 				<div class="form-group">
 					<input type="text" class="form-control" id="otp" name="otp"   maxlength="4">
+					<p class="text-left" id="invalid_otp" style="display:none;color:red"><span id="invalid">Invalid OTP</span>  <a onclick="resendOTP()"> Click here </a> </span> to generate new OTP.</p></p>
 					<p class="text-left" id="resendOTP" style="display:none;"><span class="resend"> <a onclick="resendOTP()"> Click here </a> </span> to generate new OTP.</p>
 				</div>
 				<button class="btn btn-primary" onclick="verifyOTP()"> <span> Confirm </span> </button>
