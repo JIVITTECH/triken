@@ -61,9 +61,9 @@ while ($rows = mysqli_fetch_array($result)) {
    $events_spc_arr = [];
     
 	$items_spc = 'SELECT * 
-	        FROM obo_item_desciption
+	        FROM obo_item_description
 			WHERE branch_id = ' . $branch . ' 
-			AND item_id = "' . $item_id . '"
+			AND predef_menu_id = "' . $item_id . '"
 			group by id order by id desc';
 
 	$result_spc = mysqli_query($conn, $items_spc);
