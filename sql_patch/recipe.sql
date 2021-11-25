@@ -20,10 +20,10 @@ instruction_id INT,
 recipe_notes  VARCHAR(10000),
 detail_steps VARCHAR(10000));
 
-CREATE TABLE obo_item_desciption
+CREATE TABLE obo_item_description
 (id INT, 
 branch_id INT,
-item_id INT,
+predef_menu_id INT,
 specification VARCHAR(1000));
 
 alter table predefined_menu_additional add (video VARCHAR(10000));
@@ -37,3 +37,5 @@ item_id INT,
 image_path VARCHAR(1000));
 
 alter table obo_recipe add (category_id INT);
+
+
