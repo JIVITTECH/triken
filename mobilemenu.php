@@ -7,13 +7,11 @@
         <!-- End of .mobile-menu-close -->
 
         <div class="mobile-menu-container scrollable">
-            <form action="#" method="get" class="input-wrapper">
-                <input type="text" class="form-control" name="search" autocomplete="off" placeholder="Search your delicious product"
+                <input type="text" class="form-control" id="search_mobile"  name="search" autocomplete="off" placeholder="Search your delicious product"
                     required />
                 <button class="btn btn-search" type="submit">
-                    <i class="w-icon-search"></i>
+                    <i class="w-icon-search" onclick="search_products_by_text_mobile()"></i>
                 </button>
-            </form>
             <!-- End of Search Form -->
             <div class="tab">
                 <ul class="nav nav-tabs" role="tablist">
@@ -38,4 +36,12 @@
     </div>
     <!-- End of Mobile Menu -->
 
+<script>
+function search_products_by_text_mobile() {
+	var search_text = document.getElementById("search_mobile").value;
+		if (search_text.trim().length != '0') {
+		   window.location.href = "products.php?search_text=" + search_text;
+		}
+	}
+</script>
  
