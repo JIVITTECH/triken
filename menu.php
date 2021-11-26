@@ -29,10 +29,14 @@
                                         <a href="about.php">About</a>
                             </div>
 							<?php if ($customer_id  === '-1') { ?>    
-                            <a href="login.php" id="login" class="login sign-in"> <i class="fa fa-user-circle" aria-hidden="true"></i>
-     <span class="htext">Log In/Sign Up</span></a>
+								<a href="login.php" id="login" class="login sign-in"> <i class="fa fa-user-circle" aria-hidden="true"></i>
+								<span class="htext">Log In/Sign Up</span></a>
 							<?php } ?>
-                            <div class="dropdown cart-dropdown mr-0 mr-lg-2">
+                            <?php if ($customer_id  !== '-1') { ?>    
+                            <a  onclick="logout()" id="logout" class="login sign-in"> <i class="fa fa-user-circle" aria-hidden="true"></i>
+								<span class="htext">Logout</span></a>
+							<?php } ?>
+							<div class="dropdown cart-dropdown mr-0 mr-lg-2">
                                 <div class="cart-overlay"></div>
                                 <a class="cart-toggle label-down link">
                                     <i class="fa fa-shopping-cart" aria-hidden="true">
@@ -66,10 +70,6 @@
 									<span class="cart-label"></span>
 								</a>
 							<?php } ?>
-							<?php if ($customer_id  !== '-1') { ?>    
-                            <a  onclick="logout()" id="logout" class="login sign-in"> <i class="fa fa-user-circle" aria-hidden="true"></i>
-								<span class="htext">Logout</span></a>
-						<?php } ?>
 						 <a href="otp.php" id="otp_btn" class="login sign-in hidden-sm"></a>
 						 </div>
                     </div>
