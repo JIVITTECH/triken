@@ -116,6 +116,50 @@
 				}
 			});
 
+            function loadTopCategories() {
+				var name = "";
+				var image_path ="";
+				var icon ="";
+				var information = "";
+				$('#top_container').empty();
+				var xmlhttp = new XMLHttpRequest();
+				if(typeof branch_id ==="undefined") {
+					branch_id = '-1';
+				}
+				var url = "api/getTopCategories.php?action=get_top_categories&branch_id=" + branch_id;
+				xmlhttp.open("GET", url, true);
+				xmlhttp.send();
+				xmlhttp.onreadystatechange = function () {
+					if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+						var myObj = JSON.parse(this.responseText);
+						if (myObj.length !== 0) {
+							for (var i = 0; i < 7; i++) {
+								icon = myObj[i].icon;
+								name = myObj[i].name;
+								if (icon !== "")
+								{
+									image_path = dirname +  icon.replace("../", "");
+								} else
+								{
+									image_path = 'images/default.jpg';
+								}
+								information = information + "<div class='category'>" +
+																"<figure class='category-media'>" +
+																	  "<a href='products.php?category_id=" + myObj[i].id + "'>" +
+																		   "<img onerror='onImgError(this)' src=" + image_path + " alt=" + name + ">" +
+																		   "<h4 class='category-name'>" + name + "</h4>" +
+																	  "</a>" +
+																"</figure>" + 
+															"</div>";
+							}
+							$('#top_container').append(information);
+						} else {
+							$('#top_container').append("<center>No Categories found<\center>");
+						}
+					}
+				};
+			}
+
 			function readCookie(name) {
 				var nameEQ = name + "=";
 				var ca = document.cookie.split(';');
@@ -279,7 +323,7 @@
 	            window.location.href = "index.php";
 	        }
 			
-			// var dirname = "../../app/Catering/"; --- live
+			// var dirname = "../../app/triken/Catering/"; --- live
 			var dirname = "../ecaterweb/Catering/";
 			
 			function ValidateNumber(){
