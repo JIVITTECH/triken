@@ -1,4 +1,9 @@
 $( document ).ready(function() {
+	var arr1 = getAllUrlParams((window.location).toString());
+    var view_type = arr1.view;
+	if(view_type === undefined){
+		document.getElementById("my_account").style.display = 'none';
+	}
     load_profile_details();
     load_address_details();
 	loadOrders();
