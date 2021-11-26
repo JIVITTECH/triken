@@ -165,9 +165,7 @@ $(document).ready(function () {
 		loadLtdDealsOfTheDay();
         loadLtdBestSellingProducts();
         loadAllRecipes();
-        loadAllCategories();
-        loadTopCategories();
-        
+        loadAllCategories(); 
     }
 });
 

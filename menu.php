@@ -103,6 +103,7 @@
 				} else {
 				    document.getElementById("loc_name").innerHTML = "Please select a location";
 				}
+				loadTopCategories();
 				if(customer_id !== -1){
 					loadCartData();
 				}else{
