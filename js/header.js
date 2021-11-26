@@ -127,7 +127,7 @@ function loadCartData() {
 														"</div>" +
 													"</div>" +
 													"<button class='btn btn-link btn-close' aria-label='button'>" +
-															"<i class='fas fa-times' onclick='redQtyFromCart(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + myObj[i].name + "\", "  + myObj[i].packing_charge +  ",1," + myObj[i].quantity + ")'   ></i>" +
+															"<i class='fas fa-times' onclick='redQtyFromCart(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + encodeURIComponent(myObj[i].name) + "\", "  + myObj[i].packing_charge +  ",1," + myObj[i].quantity + ")'   ></i>" +
 													"</button>" +
 												"</div><hr class='product-divider'>";
 							$('#cart_items_container').empty();
@@ -202,7 +202,7 @@ function loadCartDataFromCookie() {
 												"</div>" +
 											"</div>" +
 											"<button class='btn btn-link btn-close' aria-label='button'>" +
-												"<i class='fas fa-times' onclick='redQtyFromCart(" + menu_id + ", "  + customer_id +  "," + price +  ",\"" + item_name + "\", "  + pkg_charge +  ",1," + sel_qty + ")' ></i>" +
+												"<i class='fas fa-times' onclick='redQtyFromCart(" + menu_id + ", "  + customer_id +  "," + price +  ",\"" + encodeURIComponent(item_name) + "\", "  + pkg_charge +  ",1," + sel_qty + ")' ></i>" +
 											"</button>" +
 										"</div><hr class='product-divider'>";
 					$('#cart_items_container').empty();
