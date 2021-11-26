@@ -60,7 +60,7 @@
                             </div>
 							<?php if ($customer_id  !== '-1') { ?>
 								<a class="cart-toggle label-down link">
-									<i onclick="window.location.href='my-account.php'" class="fa fa-user-circle" style="font-size:24px" aria-hidden="true">
+									<i id="my_account"  onclick="window.location.href='my-account.php?view=1'" class="fa fa-user-circle" style="font-size:24px" aria-hidden="true">
 										<span class="" id=""></span>
 									</i>
 									<span class="cart-label"></span>
@@ -92,7 +92,6 @@
         <?php include('location.php'); ?>
     </div>
 </div>
-
 <script>
 		    
 			$(document).ready(function () {
