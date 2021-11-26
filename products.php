@@ -56,7 +56,7 @@ function loadAllItemDetails() {
 					var image_path = "";
 					if (cover_photo !== "")
 					{
-						image_path = dirname + cover_photo;
+						image_path = dirname + cover_photo.replace("../", "");
 					} else
 					{
 						image_path = 'images/default.jpg';

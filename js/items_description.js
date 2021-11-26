@@ -28,9 +28,9 @@ function loadItemsDescription() {
                     if(related_images.length > 0){
 						for (var j = 0; j < related_images.length; j++) {
 							if(j === 0){
-								image_path = dirname + related_images[j].image_path;
+								image_path =   dirname +  related_images[j].image_path.replace("../", ""); 
 							}
-							var full_path = dirname + related_images[j].image_path;
+							var full_path = dirname +  related_images[j].image_path.replace("../", ""); 
 							related_images_tag = related_images_tag + "<div class='swiper-slide'>" +
 											"<figure class='product-image'>" +
 												"<img onerror='onError(this)' src='" + full_path + "' data-zoom-image='" + full_path + "' alt=''>" +
@@ -39,8 +39,8 @@ function loadItemsDescription() {
 						}
 					}else{
 						if( myObj[i].image !== ""){
-							var full_path = dirname + myObj[i].image;
-							image_path = dirname + myObj[i].image;
+							var full_path = dirname +  myObj[i].image.replace("../", ""); 
+							image_path = dirname +  myObj[i].image.replace("../", "");
 							related_images_tag = related_images_tag + "<div class='swiper-slide'>" +
 											"<figure class='product-image'>" +
 												"<img onerror='onError(this)' src='" + full_path + "' data-zoom-image='" + full_path + "' alt=''>" +
@@ -166,7 +166,7 @@ function loadAllRelatedItems() {
 					var image_path = "";
 					if (cover_photo !== "")
 					{
-						image_path = dirname + cover_photo;
+						image_path = dirname + cover_photo.replace("../", "");
 					} else
 					{
 						image_path = 'images/default.jpg';

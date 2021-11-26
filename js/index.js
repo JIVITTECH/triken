@@ -17,7 +17,7 @@ function loadAllRecipes() {
 					var image_path = "";
 					if (cover_photo !== "")
 					{
-						image_path = dirname + cover_photo;
+						image_path = dirname + cover_photo.replace("../", "");
 					} else
 					{
 						image_path = 'images/default.jpg';
@@ -62,7 +62,7 @@ function loadAllCategories() {
 					var image_path = "";
 					if (cover_photo !== "")
 					{
-						image_path = dirname + cover_photo;
+						image_path = dirname + cover_photo.replace("../", "");
 					} else
 					{
 						image_path = 'images/default.jpg';
@@ -112,7 +112,7 @@ function loadTopCategories() {
                     name = myObj[i].name;
                     if (icon !== "")
                     {
-                        image_path = dirname + icon;
+                        image_path = dirname +  icon.replace("../", "");
                     } else
                     {
                         image_path = 'images/default.jpg';
@@ -179,7 +179,7 @@ function loadLtdDealsOfTheDay() {
 					var cover_photo = myObj[i].image;
 					var image_path = "";
 					if (cover_photo !== "") {
-						image_path = dirname + cover_photo;
+						image_path = dirname + cover_photo.replace("../", "");
 					} else
 					{
 						image_path = 'images/default.jpg';
@@ -261,7 +261,7 @@ function loadAllDealsOfTheDay() {
 					var image_path = "";
 					if (cover_photo !== "")
 					{
-						image_path = dirname + cover_photo;
+						image_path = dirname + cover_photo.replace("../", "");
 					} else
 					{
 						image_path = 'images/default.jpg';
@@ -366,7 +366,7 @@ function loadLtdBestSellingProducts() {
 					var image_path = "";
 					if (cover_photo !== "")
 					{
-						image_path = dirname + cover_photo;
+						image_path = dirname + cover_photo.replace("../", "");
 					} else
 					{
 						image_path = 'images/default.jpg';
@@ -448,7 +448,7 @@ function loadAllBestSellingProducts() {
 					var image_path = "";
 					if (cover_photo !== "")
 					{
-						image_path = dirname + cover_photo;
+						image_path = dirname + cover_photo.replace("../", "");
 					} else
 					{
 						image_path = 'images/default.jpg';
