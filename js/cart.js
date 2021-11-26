@@ -32,7 +32,7 @@
 								stock_chk_array.push(myObj[i].menu_id);
 							}
 							if (cover_photo !== "")	{
-								image_path = dirname + cover_photo;
+								image_path = dirname + cover_photo.replace("../", "");
 							} else {
 								image_path = 'images/default.jpg';
 							}
@@ -196,7 +196,7 @@
 						}
 						
 						if (cover_photo !== "")	{
-						    image_path = dirname + cover_photo;
+						    image_path = dirname + cover_photo.replace("../", "");
 						} else {
 							image_path = 'images/default.jpg';
 						}

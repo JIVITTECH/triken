@@ -25,7 +25,7 @@ function loadCartData() {
 								var stock_chk = "";
 								if (cover_photo !== "")
 								{
-									image_path = dirname + cover_photo;
+									image_path = dirname + cover_photo.replace("../", "");
 									;
 								} else
 								{

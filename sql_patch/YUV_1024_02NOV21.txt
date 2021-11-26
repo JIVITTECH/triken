@@ -19,3 +19,5 @@ ADD city varchar(100);
 
 ALTER TABLE obo_customer_addresses
 ADD landmark varchar(300);
+
+alter table  OBO_RECIPE add column serving_count int;
