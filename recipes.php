@@ -9,7 +9,6 @@ include('header.php');
 include('main.php');
 $page ="Recipes & Tips";
 ?>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="js/recipes.js"></script>
 <?php include('breadcrumb.php'); ?>
 			
@@ -52,3 +51,4 @@ $(document).ready(function () {
 
 
 <?php include('footer.php'); ?>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
