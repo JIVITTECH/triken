@@ -1,3 +1,6 @@
+@media only screen and (max-width: 767px) {
+	#my_account{	display:none;	}			
+}
 @media only screen and (max-width: 767px)
 {
 .page-header {    height: 25rem;    background-position: center;	}
