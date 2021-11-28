@@ -1,5 +1,5 @@
 <?php
-    $title = 'Country Chicken - Triken ';
+    $title = 'Products - Triken ';
     $description = 'The only thing we stock is the packages we use to deliver the meat.';
     $pageRobots = 'index,nofollow';
     $image = ' '; 
@@ -7,7 +7,7 @@
     $url = ' '; 
     include('header.php');
     include('main.php');
-	$page ="Products";
+	$page ='<span id="heading_of_product_page"></span>';
 ?> 
 
 <?php include('breadcrumb.php'); ?>
@@ -52,6 +52,11 @@ function loadAllItemDetails() {
 			var myObj = JSON.parse(this.responseText);
 			if (myObj.length !== 0) {
 				for (var i = 0; i < myObj.length; i++) {
+				    if (category_id != '') {
+						document.getElementById("heading_of_product_page").innerHTML = myObj[i].category_name;
+					} else {
+					    document.getElementById("heading_of_product_page").innerHTML = 'Products';
+					}
 					var cover_photo = myObj[i].image;
 					var image_path = "";
 					if (cover_photo !== "")
@@ -123,6 +128,7 @@ function loadAllItemDetails() {
 				$('#item_container').empty();
 				$('#item_container').append(information);
             } else {
+			    document.getElementById("heading_of_product_page").innerHTML = 'Products'; 
 				$('#item_container').append("<center>No Items found</center>");
             }
 		}

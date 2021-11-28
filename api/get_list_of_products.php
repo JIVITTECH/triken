@@ -18,6 +18,12 @@ $condition = "";
 
 if($category != ""){
 	$condition = 'AND find_in_set("'. $category . '", pm.menu_id)';
+
+    $cat_sql = 'SELECT name FROM predefined_menu_categories WHERE pre_menu_id = ' . $category;
+    $cat_result = mysqli_query($conn, $cat_sql);
+    while ($rows = mysqli_fetch_array($cat_result)) {
+        $cat_name = $rows['name'];
+    }
 }
 
 if($item_name != ""){
@@ -94,7 +100,8 @@ while ($rows = mysqli_fetch_array($result)) {
 			"best_seller" => "$rows[best_seller]",
 			"disc_per" => "$rows[disc_per]",
 			"deals_of_the_day" => "$rows[deals_of_the_day]",
-			"new_arrival" => "$rows[new_arrival]"
+			"new_arrival" => "$rows[new_arrival]",
+            "category_name" => $cat_name
            );
     }
     $output[] = $events;
