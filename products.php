@@ -137,14 +137,5 @@ function loadAllItemDetails() {
 		}
 	};
 }
-
-function camelCase(str) {
-    var string = str.split(' ');
-	var stringCamelCase = '';
-	for (i=0 ; i< string.length ; i++) {
-	   stringCamelCase = stringCamelCase +  string[i].charAt(0).toUpperCase() + string[i].slice(1).toLowerCase() + ' ';
-	}
-    return stringCamelCase;
-}
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
