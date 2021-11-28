@@ -7,7 +7,7 @@
     $url = ' '; 
     include('header.php');
     include('main.php');
-	$page ='<span id="heading_of_product_page"></span>';
+	$page ='<span id="load_heading_of_product_page"></span>';
 ?> 
 
 <?php include('breadcrumb.php'); ?>
@@ -53,9 +53,11 @@ function loadAllItemDetails() {
 			if (myObj.length !== 0) {
 				for (var i = 0; i < myObj.length; i++) {
 				    if (category_id != '') {
-						document.getElementById("heading_of_product_page").innerHTML = myObj[i].category_name;
+						document.getElementById("load_heading_of_product_page").innerHTML = myObj[i].category_name;
+						document.getElementById("load_heading_of_breadcrumb").innerHTML = camelCase(myObj[i].category_name);
 					} else {
-					    document.getElementById("heading_of_product_page").innerHTML = 'Products';
+					    document.getElementById("load_heading_of_product_page").innerHTML = 'Products';
+						document.getElementById("load_heading_of_breadcrumb").innerHTML = 'Products';
 					}
 					var cover_photo = myObj[i].image;
 					var image_path = "";
@@ -128,11 +130,21 @@ function loadAllItemDetails() {
 				$('#item_container').empty();
 				$('#item_container').append(information);
             } else {
-			    document.getElementById("heading_of_product_page").innerHTML = 'Products'; 
+			    document.getElementById("load_heading_of_product_page").innerHTML = 'Products';
+			    document.getElementById("load_heading_of_breadcrumb").innerHTML = 'Products';
 				$('#item_container').append("<center>No Items found</center>");
             }
 		}
 	};
+}
+
+function camelCase(str) {
+    var string = str.split(' ');
+	var stringCamelCase = '';
+	for (i=0 ; i< string.length ; i++) {
+	   stringCamelCase = stringCamelCase +  string[i].charAt(0).toUpperCase() + string[i].slice(1).toLowerCase() + ' ';
+	}
+    return stringCamelCase;
 }
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>

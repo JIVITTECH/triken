@@ -11,6 +11,7 @@ include("../database.php");
 $branch = $_GET['branch'];
 $category = $_GET['search_by_category'];
 $item_name = $_GET['search_by_product'];
+$cat_name = '';
 
 $item_arr = explode(" ", $item_name);
 
