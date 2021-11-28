@@ -14,6 +14,8 @@ function loadItemsDescription() {
 				for (var i = 0; i < myObj.length; i++) {
 					
 					var bseller_tag = "";
+					document.getElementById("load_heading_of_desc_page").innerHTML = myObj[i].name;
+					document.getElementById("load_heading_of_breadcrumb").innerHTML = camelCase(myObj[i].name);
 					selected_item_name =  myObj[i].name;
 					if(myObj[i].best_seller !== "1"){
 						document.getElementById("best_seller_tag").style.display = 'none';
@@ -95,7 +97,6 @@ function loadItemsDescription() {
 					document.getElementById("images_tag").innerHTML = related_images_tag;
 					//document.getElementById("item_name").innerHTML = myObj[i].name;
 					document.getElementById("sel_name").innerHTML = myObj[i].name;
-					document.getElementById("title_name").innerHTML = myObj[i].name;
 					document.getElementById("gross_weight").innerHTML = myObj[i].gross_weight + " " + myObj[i].measure;
 					document.getElementById("net_weight").innerHTML = myObj[i].net_weight + " " +  myObj[i].measure ;
 					document.getElementById("product_des").innerHTML = myObj[i].description;

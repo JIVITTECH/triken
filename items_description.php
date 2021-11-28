@@ -1,5 +1,5 @@
 <?php
-    $title = 'Country Chicken - Triken ';
+    $title = 'Products - Triken ';
     $description = 'The only thing we stock is the packages we use to deliver the meat.';
     $pageRobots = 'index,nofollow';
     $image = ' '; 
@@ -7,7 +7,7 @@
     $url = ' '; 
     $category ="Country Chicken";
     include('header.php');
-	$page ='<span id="title_name"></span>';
+	$page ='<span id="load_heading_of_desc_page"></span>';
 ?> 
 
 <?php include('main.php'); ?>
