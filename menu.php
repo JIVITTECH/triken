@@ -102,7 +102,9 @@
 				} else {
 				    document.getElementById("loc_name").innerHTML = "Please select a location";
 				}
-				loadTopCategories();
+				if (branch_id != '-1' && branch_id != "") {
+				    loadTopCategories();
+				}
 				if(customer_id !== -1){
 					loadCartData();
 				}else{
