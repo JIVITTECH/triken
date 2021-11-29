@@ -40,15 +40,15 @@ $sql_dis = "SELECT db.* FROM (SELECT branch_id,name,description,
 
 $result_dis = mysqli_query($conn, $sql_dis);
 
+$cnt = 0;
+   
 while ($rows_dis = mysqli_fetch_array($result_dis)) {
-	
- 	 $cnt = 0;
-       
+	    
 	 $distance = $rows_dis['distance'];
 	
 	 if($cnt == 0){
 		
-	  	  if($distance <= $radius){
+		  if($distance <= $radius){
 
 			  $_SESSION['branch_id'] = $rows_dis['branch_id'];
 			  setcookie("branch_id", $rows_dis['branch_id'], time()+(3600*24*30), "/");
@@ -58,11 +58,11 @@ while ($rows_dis = mysqli_fetch_array($result_dis)) {
 					"name" => "$rows_dis[name]",
 			  );
 				
-		      $output[] = $events;
+			  $output[] = $events;
 
-		      $res = json_encode($output);
+			  $res = json_encode($output);
 			
-		      $cnt = $cnt + 1;
+			  $cnt = $cnt + 1;
 		 }
 	}
 }
