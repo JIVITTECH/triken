@@ -275,9 +275,9 @@ function verifyOTP() {
 					document.cookie = "cart_id=" +  myObj[0].cart_id + "; expires=Wed, 01 Jan 2100 12:00:00 UTC";
 					document.getElementById('login_dialog').style.display = 'none';
 					if ($.cookie("item_list") !== undefined) {
-						saveCookieData(customer_id,branch_id);
+						saveCookieData(customer_id,myObj[0].branch_id);
 					}else{
-						window.location.href = "cart.php?branch_id=" + branch_id;
+						window.location.href = "cart.php?branch_id=" + myObj[0].branch_id;
 					}
 				}else{
 					document.getElementById('invalid_otp').style.display = 'block';
