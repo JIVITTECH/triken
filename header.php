@@ -211,21 +211,6 @@
                 };
             }
 			
-			$(document).ready(function () {
-				var loadDynamicData = "";
-				$.get("api/load_home_page.php?action=get_list_of_cities", function (data, status) {
-					var jsonStr = JSON.parse(data);
-					for (var i = 0; i < jsonStr.length; i++) {
-						if (jsonStr[i].branch_exists === 'Y') {
-							loadDynamicData = loadDynamicData+ "<div><label for='chkYes' class='location'><input type='radio' id='chkYes' class='loc' name='chkPassPort' onclick='ShowHideDiv()'/>" + jsonStr[i].city_name + "</label> <br><span class='soon hide'> Coming Soon!</span></div>";
-						} else {
-							loadDynamicData = loadDynamicData+"<div><label for='chkNo' class='no location'><input type='radio' id='chkNo' class='loc' name='chkPassPort' onclick='ShowHideDiv()'/> " + jsonStr[i].city_name + "</label> <br><span class='soon'> Coming Soon!</span></div>";
-						}
-					}
-					$('#cities').append(loadDynamicData);
-				});
-
-			});
 	</script>
 		
 </head>
