@@ -635,8 +635,21 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 								tot_pkg_price = parseFloat(myObj[i].packing_charge) * parseInt(myObj[i].quantity);
 								pkg_price = +pkg_price + +tot_pkg_price;
 							}
-		
-                            information = information + "<tr id = 'div_id_" + myObj[i].cart_item_id  + "'>" +
+		                    
+							var indString = myObj[i].net_weight;
+							var substring = "-";
+							var net_weight = "";
+
+							if(indString.includes(substring)){ // true
+								var index = indString.indexOf("-");  // Gets the first index where a space occours
+								var first_part = indString.substr(0, index); // Gets the first part
+								var sec_part = indString.substr(index + 1);  
+								net_weight = (+first_part * +myObj[i].quantity) + "-" + (+sec_part * +myObj[i].quantity);
+                            }else{
+								net_weight = +myObj[i].net_weight * +myObj[i].quantity;
+							}
+							
+							information = information + "<tr id = 'div_id_" + myObj[i].cart_item_id  + "'>" +
 											"<td class='product-thumbnail  col-xs-2>" +
 											"<div class='p-relative'>" +
 											"<a>" +
@@ -651,7 +664,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 											"<span class='cross'>x" + myObj[i].quantity + "</span>" +
 											"<div  class='product-price'>" +
 	                                        "<ins class='new-price'>" + total_price.toFixed(2) + "</ins>" +
-											"<span class='gms'>" + myObj[i].net_weight + " " + myObj[i].measure + "</span>" +
+											"<span class='gms'>" + net_weight + " " + myObj[i].measure + "</span>" +
 											"</div>" +
                                             "</td>" +
                                             "</tr>";
