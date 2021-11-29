@@ -747,7 +747,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 					}
 				}
 				if (information.trim().length == 0) { 
-				    alert("Delivery address must be entered");
+				    document.getElementById('out_stock').click();
 				} else { 
 				    $("#proceed_to_payment").trigger("click");
 				}
@@ -757,4 +757,20 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 
 </script>
 <script  src="assets/js/script.js"></script>
+<a href="#myModal1" id="out_stock" style="visibility:hidden;" class="button btn acc_btn btn-outline btn-default btn-block btn-sm btn-rounded ml-3 mt-2"></a>								
+<div id="myModal1" class="overlay">
+    <div class="popup">
+         <a id ="close_btn2" style="display:none;" class="close" href="#">&times;</a>
+        <div class="content">
+            <form class="form account-details-form" action="" method="post">
+				<div class="row" style="text-align:center;"><h3>Please select delivery address</h3></div>
+					<div class="row">
+					<div class="form-group" style="margin-top:40px;text-align:center;">
+						<button type="button"  id="" class="submit_btn btn btn-dark btn-rounded btn-sm mb-4" style="background-color:#EF6723;border-color: #EF6723" onclick="document.getElementById('close_btn2').click();">OK</button>
+					</div>			
+				</div>
+			</form>
+        </div>
+    </div>
+</div>
 <?php include('footer.php'); ?>
