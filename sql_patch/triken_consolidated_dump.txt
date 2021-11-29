@@ -212,6 +212,7 @@ CREATE TABLE `obo_cart_details` (
   `rider_del_time` varchar(155) DEFAULT NULL,
   `cat_id` int(155) DEFAULT NULL,
   `packing_charge` decimal(20,2) DEFAULT NULL,
+  `slot` varchar(2000) DEFAULT NULL,
   PRIMARY KEY (`cart_id`),
   KEY `obo_cart_details_cus_id_fk` (`customer_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=284 DEFAULT CHARSET=utf8;
