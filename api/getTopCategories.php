@@ -15,6 +15,7 @@ if ($_GET["action"] == "get_top_categories") {
 
     $sql = 'SELECT * FROM predefined_menu_categories 
 	    WHERE withdraw ="N" AND branch_id="'.$branch_id.'"
+          AND lower(name) NOT LIKE "%all%"
 	    ORDER BY pre_menu_id';
     $result = mysqli_query($conn, $sql);
     $count = mysqli_num_rows($result);
