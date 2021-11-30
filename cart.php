@@ -184,7 +184,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
                     </tbody>
                 </table>
                 <div class="btn-continue">
-                    <a href="#" class="btn btn-block "> <i class="w-icon-long-arrow-left"></i> Continue Shipping </a>
+                    <a href="#" onclick='gotoHome()' class="btn btn-block "> <i class="w-icon-long-arrow-left"></i> Continue Shipping </a>
                 </div>
             </div>
             <div class="col-lg-4 delivery">
