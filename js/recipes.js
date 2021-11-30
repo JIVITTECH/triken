@@ -49,6 +49,8 @@ function loadAllRecipes() {
 		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 			var myObj = JSON.parse(this.responseText);
 			if (myObj.length !== 0) {
+				var container_length = +myObj.length/3;
+				document.getElementById("recipe_container").style.height = +container_length * 426.2;
 				for (var i = 0; i < myObj.length; i++) {
 					var cover_photo = myObj[i].image;
 					var image_path = "";
