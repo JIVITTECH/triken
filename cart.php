@@ -208,7 +208,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
                                                     </div>
                                                     <div id="cash-on-delivery" class="card-body collapsed">
                                                         <form>
-                                 <input placeholder="Select your delivery date" class="form-control" type="date"  id="date" >
+                                                    <input placeholder="Select your delivery date" class="form-control" type="date"  id="date" min="<?= date('Y-m-d'); ?>" >
                                 
                                 
                                 <div class="form-group">
