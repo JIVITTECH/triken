@@ -51,7 +51,6 @@ while ($rows_dis = mysqli_fetch_array($result_dis)) {
 		  if($distance <= $radius){
 
 			  $_SESSION['branch_id'] = $rows_dis['branch_id'];
-			  setcookie("branch_id", $rows_dis['branch_id'], time()+(3600*24*30), "/");
 			  
 			  $events = array(
 					"branch_id" => "$rows_dis[branch_id]",
