@@ -211,6 +211,28 @@
                 };
             }
 			
+			function clearCart(){
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function () {
+					if (this.readyState === 4 && this.status === 200) {
+						var myOnj = this.responseText;
+						var name = "item_list";
+						document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+						branch_id = document.getElementById('hidden_branch').value;
+						$.cookie("branch_id", JSON.stringify(+branch_id));
+						$('.lpopup').hide();
+						window.location.href = window.location.href;
+						loadAllCategories();
+						loadTopCategories();
+						loadLtdDealsOfTheDay();
+						loadLtdBestSellingProducts();
+						loadAllRecipes();
+					}
+				};
+				xhttp.open("GET", "api/deleteCartItems.php?cart_id=" + cus_cart_id + "&sel_ord_type=3", true);
+				xhttp.send();
+			}
+			
 	</script>
 		
 </head>
