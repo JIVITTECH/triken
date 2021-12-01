@@ -148,6 +148,20 @@ function loadLtdDealsOfTheDay() {
 					}else{
 						discount_tag = "";
 					}
+
+					var bseller_tag = "";
+					if(myObj[i].best_seller === "Y"){
+						bseller_tag = "<label class='product-label label-discount best'>Best Seller</label>";
+					}else{
+						bseller_tag = "";
+					}
+					
+					var narrival_tag = "";
+					if(myObj[i].new_arrival === "Y"){
+						narrival_tag = "<label class='product-label newarrival'>New Arrival</label>";
+					}else{
+						narrival_tag = "";
+					}
 					
 					var discount_price = 0;
 					var act_price = 0;
@@ -167,7 +181,9 @@ function loadLtdDealsOfTheDay() {
 															    "<img onerror='onImgError(this)' src=" + image_path + " alt='Product' />" +
 															 "</a>" +
 															"<div class='product-label-group'>" +
-                                								discount_tag +
+                                								 narrival_tag +
+																 bseller_tag +
+																 discount_tag +
 															"</div>" +
 														"</figure>" +
 														"<div class='product-details'>" +
@@ -231,6 +247,20 @@ function loadAllDealsOfTheDay() {
 					}else{
 						discount_tag = "";
 					}
+
+					var bseller_tag = "";
+					if(myObj[i].best_seller === "Y"){
+						bseller_tag = "<label class='product-label label-discount best'>Best Seller</label>";
+					}else{
+						bseller_tag = "";
+					}
+					
+					var narrival_tag = "";
+					if(myObj[i].new_arrival === "Y"){
+						narrival_tag = "<label class='product-label newarrival'>New Arrival</label>";
+					}else{
+						narrival_tag = "";
+					}
 					
 					var discount_price = 0;
 					var act_price = 0;
@@ -251,7 +281,9 @@ function loadAllDealsOfTheDay() {
 															    "<img onerror='onImgError(this)' src=" + image_path + " alt='Product'/>" +
 															"</a>" +
 															"<div class='product-label-group'>" +
-                                								discount_tag +
+                                								 narrival_tag +
+																 bseller_tag +
+																 discount_tag +
 															"</div>" +
 														"</figure>" +
 														"<div class='product-details'>" +
@@ -336,7 +368,20 @@ function loadLtdBestSellingProducts() {
 					}else{
 						discount_tag = "";
 					}
-					discount_tag = discount_tag + "<label class='product-label label-discount bestseller best'>Best Seller </label>";
+
+					var bseller_tag = "";
+					if(myObj[i].best_seller === "Y"){
+						bseller_tag = "<label class='product-label label-discount best'>Best Seller</label>";
+					}else{
+						bseller_tag = "";
+					}
+					
+					var narrival_tag = "";
+					if(myObj[i].new_arrival === "Y"){
+						narrival_tag = "<label class='product-label newarrival'>New Arrival</label>";
+					}else{
+						narrival_tag = "";
+					}
 					
 					var discount_price = 0;
 					var act_price = 0;
@@ -356,7 +401,9 @@ function loadLtdBestSellingProducts() {
 															    "<img onerror='onImgError(this)' src=" + image_path + " alt='Product'/>" + 
 															"</a>" +
 															"<div class='product-label-group'>" +
-		                                						discount_tag +
+		                                						 narrival_tag +
+																 bseller_tag +
+																 discount_tag +
 															"</div>" +
 														"</figure>" +
 														"<div class='product-details'>" +
@@ -420,7 +467,20 @@ function loadAllBestSellingProducts() {
 					}else{
 						discount_tag = "";
 					}
-					discount_tag = discount_tag + "<label class='product-label label-discount bestseller best'>Best Seller </label>";
+					
+					var bseller_tag = "";
+					if(myObj[i].best_seller === "Y"){
+						bseller_tag = "<label class='product-label label-discount best'>Best Seller</label>";
+					}else{
+						bseller_tag = "";
+					}
+					
+					var narrival_tag = "";
+					if(myObj[i].new_arrival === "Y"){
+						narrival_tag = "<label class='product-label newarrival'>New Arrival</label>";
+					}else{
+						narrival_tag = "";
+					}
 					
 					var discount_price = 0;
 					var act_price = 0;
@@ -440,7 +500,9 @@ function loadAllBestSellingProducts() {
 															    "<img onerror='onImgError(this)' src=" + image_path + " alt='Product'/>" + 
 															"</a>" +
 															"<div class='product-label-group'>" +
-		                                						discount_tag +
+		                                					 	 narrival_tag +
+																 bseller_tag +
+																 discount_tag +
 															"</div>" +
 														"</figure>" +
 														"<div class='product-details'>" +
