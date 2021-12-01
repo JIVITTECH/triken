@@ -334,7 +334,7 @@ function loadLtdBestSellingProducts() {
 					if(myObj[i].disc_per !== ""){
 						discount_tag = "<label class='product-label label-discount'>" + myObj[i].disc_per + " % Off</label>";
 					}else{
-						discount_tag = "";
+						discount_tag = "<label class='product-label label-discount bestseller bestseller'>Best Seller </label>";
 					}
 					
 					var discount_price = 0;
@@ -417,7 +417,7 @@ function loadAllBestSellingProducts() {
 					if(myObj[i].disc_per !== ""){
 						discount_tag = "<label class='product-label label-discount'>" + myObj[i].disc_per + " % Off</label>";
 					}else{
-						discount_tag = "";
+						discount_tag = "<label class='product-label label-discount bestseller bestseller'>Best Seller </label>";
 					}
 					
 					var discount_price = 0;
