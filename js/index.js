@@ -205,6 +205,7 @@ function loadAllDealsOfTheDay() {
     }
 	var information = "";
 	$('#all_deals_of_the_day_container').empty();
+	document.getElementById("load_heading_of_breadcrumb").innerHTML = 'Deal of the Day';
 	var xmlhttp = new XMLHttpRequest();
 	var url = "api/get_deals_of_the_day.php?branch=" + branch_id + "&show_limited_products=N";
 	xmlhttp.open("GET", url, true);
@@ -392,6 +393,7 @@ function loadAllBestSellingProducts() {
     }
 	var information = "";
 	$('#all_best_selling_products_container').empty();
+	document.getElementById("load_heading_of_breadcrumb").innerHTML = 'Best Seller';
 	var xmlhttp = new XMLHttpRequest();
 	var url = "api/get_best_selling_products.php?branch=" + branch_id + "&show_limited_products=N";
 	xmlhttp.open("GET", url, true);
