@@ -17,7 +17,7 @@ function loadItemsDescription() {
 					document.getElementById("load_heading_of_desc_page").innerHTML = myObj[i].name;
 					document.getElementById("load_heading_of_breadcrumb").innerHTML = camelCase(myObj[i].name);
 					selected_item_name =  myObj[i].name;
-					if(myObj[i].best_seller !== "1"){
+					if(myObj[i].best_seller !== "Y"){
 						document.getElementById("best_seller_tag").style.display = 'none';
 					}
 				    loadAllRelatedItems();
