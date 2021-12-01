@@ -163,7 +163,7 @@ if ($distance <= $radius) {
        pma.gross_weight,
        pma.delivery_time,
        pm.measure,
-       pm.disc_per
+       FLOOR(pm.disc_per) AS disc_per
        FROM 
        obo_cart_details ocd
        LEFT JOIN obo_cart_item_details ocid
