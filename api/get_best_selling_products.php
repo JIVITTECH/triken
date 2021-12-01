@@ -31,7 +31,7 @@ $query = 'select db.* , (SELECT COUNT(*) FROM  kot_item_stock_details isd
                 IF(pk_chg.price IS NULL,0,pk_chg.price) AS packing_charge,
 			    pm.item_notes,
                 pm.deals_of_the_day,
-                pm.disc_per,
+                FLOOR(pm.disc_per) AS disc_per,
                 pm.best_seller,
 				pm.measure,
                 pma.net_weight,
