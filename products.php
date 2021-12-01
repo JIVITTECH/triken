@@ -79,14 +79,14 @@ function loadAllItemDetails() {
 					}
 					
 					var bseller_tag = "";
-					if(myObj[i].best_seller === "1"){
+					if(myObj[i].best_seller === "Y"){
 						bseller_tag = "<label class='product-label label-discount best'>Best Seller</label>";
 					}else{
 						bseller_tag = "";
 					}
 					
 					var narrival_tag = "";
-					if(myObj[i].new_arrival === "1"){
+					if(myObj[i].new_arrival === "Y"){
 						narrival_tag = "<label class='product-label newarrival'>New Arrival</label>";
 					}else{
 						narrival_tag = "";
