@@ -330,7 +330,7 @@
 			function search_products_by_text() {
 			    var search_text = document.getElementById("search").value;
 				if (search_text.trim().length != '0') {
-				   window.location.href = "products.php?search_text=" + search_text;
+				   window.location.href = "search.php?search_text=" + search_text;
 				}
 			}
 

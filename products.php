@@ -43,6 +43,8 @@ function loadAllItemDetails() {
 	    search_text = arr1.search_text;
 	}
 
+	$('#item_container').empty();
+
  	var xmlhttp = new XMLHttpRequest();
 	var url = "api/get_list_of_products.php?branch=" + branch_id + "&search_by_category=" + category_id + "&search_by_product=" + search_text;
 	xmlhttp.open("GET", url, true);
@@ -127,7 +129,6 @@ function loadAllItemDetails() {
 														"</div>" +
 													"</div>";
 				}
-				$('#item_container').empty();
 				$('#item_container').append(information);
             } else {
 			    document.getElementById("load_heading_of_product_page").innerHTML = 'Products';
