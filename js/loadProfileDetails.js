@@ -67,6 +67,17 @@ function editAddress(id,flatNo,street,area,pincode,landmark,city) {
     $('#add-new-addr-btn').click();
 }
 
+function closeAddressDialog () {
+    document.getElementById("saveButton").style.display = 'block';
+	document.getElementById("updateButton").style.display = 'none';
+    document.getElementById("building-name").value = "";
+    document.getElementById("Street").value = "";
+    document.getElementById("area").value = "";
+    document.getElementById("city").value = "";
+    document.getElementById("pincode").value = "";
+    document.getElementById("landmark").value = "";
+}
+
 function deleteAddress(val) {
     var xmlhttp = new XMLHttpRequest();
     var url = "api/loadDeliveryAddress.php?action=delete_delivery_address&delivery_add_id=" + val;
