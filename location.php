@@ -4,7 +4,7 @@
     </form>    
 
             <div id="detect" style="display: none">
-			    <h4 id="no_branch" style="display:none;color:red;">Sorry we currently don’t offer delivery to your location please select a different location</h4>
+			    <h4 id="no_branch" style="display:none;color:red;">Sorry, we currently don’t deliver to your location. Please select a different location</h4>
                 <form action="#" method="get" class="input-wrapper input-wrapper-inline input-wrapper-round">
              
                 <input type="text" name="location" id="location" onclick="getLatAndLong();" class="form-control" placeholder="Enter your area" required="">
