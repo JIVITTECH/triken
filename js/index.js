@@ -1,5 +1,5 @@
 function loadAllRecipes() { 
-	var information = "";
+	var information_1 = "";
     if(typeof branch_id ==="undefined") {
         branch_id = '-1';
     }
@@ -23,7 +23,7 @@ function loadAllRecipes() {
 						image_path = 'images/default.jpg';
 					}
 							
-					information = information + "<div class='swiper-slide post text-center overlay-zoom'>" +
+					information_1 = information_1 + "<div class='swiper-slide post text-center overlay-zoom'>" +
 										"<figure class='post-media'>" +
 											"<a href='recipe-detail.php?recipe_id=" + myObj[i].recipe_id + "'>" +
 												"<img onerror='onImgError(this)' src='" + image_path + "' alt='Recipes' />" +
@@ -35,7 +35,7 @@ function loadAllRecipes() {
 										"</div>" +
 									"</div>";
 				}
-				$('#recipe_container').append(information);
+				$('#recipe_container').append(information_1);
             } else {
 				$('#recipe_container').append("<center>No recipe found<\center>");
             }
@@ -47,7 +47,7 @@ function loadAllCategories() {
     if(typeof branch_id ==="undefined") {
         branch_id = '-1';
     }
-    var information = "";
+    var information_2 = "";
 	$('#categories_container').empty();
 	var xmlhttp = new XMLHttpRequest();
 	var url = "api/load_home_page.php?action=get_list_of_categories&branch_id=" + branch_id;
@@ -68,7 +68,7 @@ function loadAllCategories() {
 						image_path = 'images/default.jpg';
 					}
 							
-					information = information + "<div class='col-lg-3 col-sm-6'>" +
+					information_2 = information_2 + "<div class='col-lg-3 col-sm-6'>" +
 											         "<a href='products.php?category_id=" + myObj[i].id + "'>" +
 												          "<div class='swiper-slide slide-animate' data-animation-options='{'name': 'fadeInDownShorter', 'duration': '.8s', 'delay': '.4s'}' >" +  
 													           "<figure class='category-media'>" +
@@ -82,7 +82,7 @@ function loadAllCategories() {
 									            "</div>";
 									            
 				}
-				$('#categories_container').append(information);
+				$('#categories_container').append(information_2);
             } else {
 				$('#categories_container').append("<center>No Categories found<\center>");
             }
@@ -96,7 +96,7 @@ function loadLtdDealsOfTheDay() {
         branch_id = '-1';
     }
     $('#ltd_deals_of_the_day_container').empty();
-	var information = "";
+	var information_3 = "";
 	var xmlhttp = new XMLHttpRequest();
 	var url = "api/get_deals_of_the_day.php?branch=" + branch_id + "&show_limited_products=Y";
 	xmlhttp.open("GET", url, true);
@@ -104,7 +104,7 @@ function loadLtdDealsOfTheDay() {
 	xmlhttp.onreadystatechange = function () {
 		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 			var myObj = JSON.parse(this.responseText);
-			information = information + '<div class="container mb-4">' +
+			information_3 = information_3 + '<div class="container mb-4">' +
 			                                '<div class="widget-body br-sm h-100">' +
 											     '<div class="row">' + 
 												      '<div class="col-lg-8 col-sm-12"> <h1 class="title text-left appear-animate"> <img src="assets/images/certificate.svg"> Deal of the Day  </h1> </div>' +
@@ -116,7 +116,7 @@ function loadLtdDealsOfTheDay() {
 												 '</div>' +
 											'<div class="swiper slider_sec">';
 			if (myObj.length !== 0) {
-			    information = information + "<div class=" + '"swiper-container  swiper-theme nav-top"' + ' data-swiper-options="{' +
+			    information_3 = information_3 + "<div class=" + '"swiper-container  swiper-theme nav-top"' + ' data-swiper-options="{' +
 				                                            "'slidesPerView': 1.1," + 
 															"'spaceBetween': 10," +
 															"'breakpoints': {" +
@@ -131,7 +131,7 @@ function loadLtdDealsOfTheDay() {
                                                                 "}" +
 															"}" +
 														'}">' +
-											"<div class='swiper-wrapper container row cols-lg-1 cols-md-3'>";
+											"<div class='swiper-wrapper row cols-lg-1 cols-md-3'>";
                 for (var i = 0; i < myObj.length; i++) {
 					var cover_photo = myObj[i].image;
 					var image_path = "";
@@ -160,7 +160,7 @@ function loadLtdDealsOfTheDay() {
 						act_price = +myObj[i].price;
 					}
 					
-					information = information + "<div class='swiper-slide product-widget-wrap'>" +
+					information_3 = information_3 + "<div class='swiper-slide product-widget-wrap'>" +
 													"<div class='product'>" +
 														"<figure class='product-media'>" +
 															"<a href='items_description.php?item_id=" + myObj[i].menu_id + "'>" +
@@ -186,15 +186,15 @@ function loadLtdDealsOfTheDay() {
 													"</div>" +
 												"</div>";
 				}
-				information = information + "</div>" + 
+				information_3 = information_3 + "</div>" + 
 				                            "<button class='swiper-button-next'></button>" +
 											"<button class='swiper-button-prev'></button>" +
 											"</div>";
             } else {
-			    information = information + "<center>No Items found</center>";
+			    information_3 = information_3 + "<center>No Items found</center>";
 	        }
-			information = information + '</div>' + '</div>' + '</div>';
-			 $('#ltd_deals_of_the_day_container').append(information);
+			information_3 = information_3 + '</div>' + '</div>' + '</div>';
+			 $('#ltd_deals_of_the_day_container').append(information_3);
 		}
 	};
 }
@@ -203,7 +203,7 @@ function loadAllDealsOfTheDay() {
     if(typeof branch_id ==="undefined") {
         branch_id = '-1';
     }
-	var information = "";
+	var information_4 = "";
 	$('#all_deals_of_the_day_container').empty();
 	document.getElementById("load_heading_of_breadcrumb").innerHTML = 'Deal of the Day';
 	var xmlhttp = new XMLHttpRequest();
@@ -244,7 +244,7 @@ function loadAllDealsOfTheDay() {
 						act_price = +myObj[i].price;
 					}
 					
-					information = information + "<div class='product-wrap'>" +
+					information_4 = information_4 + "<div class='product-wrap'>" +
 													"<div class='product text-center'>" +
 														"<figure class='product-media'>" +
 															"<a href='items_description.php?item_id=" + myObj[i].menu_id + "'>" +
@@ -270,7 +270,7 @@ function loadAllDealsOfTheDay() {
 													"</div>" +
 												"</div>";
 				}
-				$('#all_deals_of_the_day_container').append(information);
+				$('#all_deals_of_the_day_container').append(information_4);
             } else {
 				$('#all_deals_of_the_day_container').append("<center>No Items found</center>");
             }
@@ -283,7 +283,7 @@ function loadLtdBestSellingProducts() {
         branch_id = '-1';
     }
     $('#ltd_best_selling_products_container').empty();
-	var information = "";
+	var information_5 = "";
 	var xmlhttp = new XMLHttpRequest();
 	var url = "api/get_best_selling_products.php?branch=" + branch_id + "&show_limited_products=Y";
 	xmlhttp.open("GET", url, true);
@@ -291,7 +291,7 @@ function loadLtdBestSellingProducts() {
 	xmlhttp.onreadystatechange = function () {
 		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 			var myObj = JSON.parse(this.responseText);
-			information = information + '<div class="container mb-4">' +
+			information_5 = information_5 + '<div class="container mb-4">' +
 			                                '<div class="widget-body br-sm h-100">' +
 											     '<div class="row">' + 
 												      '<div class="col-lg-8 col-sm-12"> <h1 class="title text-left appear-animate"> <img src="assets/images/certificate.svg"> Best Selling Products  </h1> </div>' +
@@ -303,7 +303,7 @@ function loadLtdBestSellingProducts() {
 												 '</div>' +
 											'<div class="swiper slider_sec">';
 			if (myObj.length !== 0) {
-			    information = information + "<div class=" + '"swiper-container  swiper-theme nav-top"' + ' data-swiper-options="{' +
+			    information_5 = information_5 + "<div class=" + '"swiper-container  swiper-theme nav-top"' + ' data-swiper-options="{' +
 				                                            "'slidesPerView': 1.1," + 
 															"'spaceBetween': 10," +
 															"'breakpoints': {" +
@@ -318,7 +318,7 @@ function loadLtdBestSellingProducts() {
                                                                 "}" +
 															"}" +
 														'}">' +
-											"<div class='swiper-wrapper container row cols-lg-1 cols-md-3'>";
+											"<div class='swiper-wrapper row cols-lg-1 cols-md-3'>";
              	for (var i = 0; i < myObj.length; i++) {
 					var cover_photo = myObj[i].image;
 					var image_path = "";
@@ -348,7 +348,7 @@ function loadLtdBestSellingProducts() {
 						act_price = +myObj[i].price;
 					}
 					
-					information = information + "<div class='swiper-slide product-widget-wrap'>" +
+					information_5 = information_5 + "<div class='swiper-slide product-widget-wrap'>" +
 													"<div class='product'>" +
 														"<figure class='product-media'>" +
 															"<a href='items_description.php?item_id=" + myObj[i].menu_id + "'>" +
@@ -374,15 +374,15 @@ function loadLtdBestSellingProducts() {
 													"</div>" +
 												"</div>";
 				}
-                information = information + "</div>" + 
+                information_5 = information_5 + "</div>" + 
 				                            "<button class='swiper-button-next'></button>" +
 											"<button class='swiper-button-prev'></button>" +
 											"</div>";
             } else {
-				information = information + "<center>No Items found</center>";
+				information_5 = information_5 + "<center>No Items found</center>";
 	        }
-			information = information + '</div>' + '</div>' + '</div>';
-		    $('#ltd_best_selling_products_container').append(information);
+			information_5 = information_5 + '</div>' + '</div>' + '</div>';
+		    $('#ltd_best_selling_products_container').append(information_5);
 		}
 	};
 }
@@ -391,7 +391,7 @@ function loadAllBestSellingProducts() {
     if(typeof branch_id ==="undefined") {
         branch_id = '-1';
     }
-	var information = "";
+	var information_6 = "";
 	$('#all_best_selling_products_container').empty();
 	document.getElementById("load_heading_of_breadcrumb").innerHTML = 'Best Seller';
 	var xmlhttp = new XMLHttpRequest();
@@ -431,7 +431,7 @@ function loadAllBestSellingProducts() {
 						act_price = +myObj[i].price;
 					}
 					
-					information = information + "<div class='product-wrap'>" +
+					information_6 = information_6 + "<div class='product-wrap'>" +
 													"<div class='product text-center'>" +
                    										"<figure class='product-media'>" +
 															"<a href='items_description.php?item_id=" + myObj[i].menu_id + "'>" +
@@ -457,7 +457,7 @@ function loadAllBestSellingProducts() {
 													"</div>" +
 												"</div>";
 				}
-				$('#all_best_selling_products_container').append(information);
+				$('#all_best_selling_products_container').append(information_6);
             } else {
 				$('#all_best_selling_products_container').append("<center>No Items found</center>");
             }
