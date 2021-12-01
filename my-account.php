@@ -97,7 +97,7 @@ $page ="My Account";
 
 <div id="popup2" class="overlay">
     <div class="popup">
-         <a id = "close_btn" class="close" href="#">&times;</a>
+         <a id = "close_btn" class="close" href="#" onclick='closeAddressDialog()'>&times;</a>
         <div class="content">
             <form class="form account-details-form" action="" method="post">
              <div class="row"><h1>Add or Edit Address</h1></div>
