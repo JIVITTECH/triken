@@ -44,6 +44,10 @@ if ($count !== 0) {
     }
 }
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 $lat = $_SESSION['user_loc_latitude'];
 $long = $_SESSION['user_loc_longitude'];
 
