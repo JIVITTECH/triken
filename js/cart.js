@@ -88,6 +88,13 @@
                             }else{
 								net_weight = +myObj[i].net_weight * +myObj[i].quantity;
 							}
+							
+							var stock_chk = "";
+							if(myObj[i].stock_chk !== "0"){
+								stock_chk = "<span style='color:#E0522D;'>&nbsp;&nbsp;&nbsp;(Out of Stock)</span>";
+							}else{
+								stock_chk = "";
+							}
 		
 						    information = information + "<tr id = 'div_id_" + myObj[i].cart_item_id  + "'>" +
 											"<td class='product-thumbnail'>" +
@@ -100,7 +107,7 @@
 											"</div>" +
 											"</td>" +
 											"<td class='product-name'>" +
-								  			"<a>" + myObj[i].name + "</a>" +
+								  			"<a>" + myObj[i].name +  stock_chk +"</a>" +
                                             "<div  class='product-price'>" +
 	                                        "<ins id = 'price_" + myObj[i].cart_item_id  + "' class='new-price'>" + total_price.toFixed(2) + "</ins>" +
 								            "<span class='gms'>" + net_weight + " " + myObj[i].measure + "</span>" +
@@ -266,6 +273,13 @@
 						}else{
 							net_weight = +myObj[i].net_weight * +myObj[i].quantity;
 						}
+						
+						var stock_chk = "";
+						if(myObj[i].stock_chk !== "0"){
+							stock_chk = "<span style='color:#E0522D;'>&nbsp;&nbsp;&nbsp;(Out of Stock)</span>";
+						}else{
+							stock_chk = "";
+						}
 		
 						if (+myObj[i].cart_item_id === cart_item_id) {
 							$('#div_id_' + myObj[i].cart_item_id  + '').empty();
@@ -280,7 +294,7 @@
 											"</div>" +
 											"</td>" +
 											"<td class='product-name'>" +
-								  			"<a>" + myObj[i].name + "</a>" +
+								  			"<a>" + myObj[i].name + stock_chk +"</a>" +
                                             "<div  class='product-price'>" +
 	                                        "<ins id = 'price_" + myObj[i].cart_item_id  + "' class='new-price'>" + total_price.toFixed(2) + "</ins>" +
 								            "<span class='gms'>" + net_weight + " " + myObj[i].measure + "</span>" +
