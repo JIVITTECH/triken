@@ -338,6 +338,15 @@
 				   window.location.href = "search.php?search_text=" + search_text;
 				}
 			}
+			
+			$("#search").keyup(function(event) {
+				var search_text = document.getElementById("search").value;
+				if (event.keyCode === 13) {
+					if (search_text.trim().length != '0') {
+						window.location.href = "search.php?search_text=" + search_text;
+					}
+				}
+			});
 
 			function gotoHome() {
 	            window.location.href = "index.php";
