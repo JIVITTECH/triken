@@ -33,11 +33,11 @@
                         }
                 }">
         <div class="swiper-wrapper row cols-1 gutter-no">
-            <div class="swiper-slide banner " style="background: url(assets/images/home_banner.jpg);">
+            <div class="swiper-slide banner " style="background: url(assets/images/banner1.png);">
             </div>
-            <div class="swiper-slide banner " style="background: url(assets/images/home_banner.jpg);">
+            <div class="swiper-slide banner " style="background: url(assets/images/banner2.png);">
             </div>
-            <div class="swiper-slide banner " style="background: url(assets/images/home_banner.jpg);">
+            <div class="swiper-slide banner " style="background: url(assets/images/banner3.png);">
             </div>
         </div>
         <button class="swiper-button-next"></button>
