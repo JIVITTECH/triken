@@ -124,6 +124,18 @@ if ($_POST || $_GET) {
         $res_invoice_insert = mysqli_query($conn, $invoice_insert);
         $invoice_id = mysqli_insert_id($conn);
         $order_id = $invoice_id;
+		
+		$payment_type = "";
+		$sel_pay_type = "SELECT * FROM invoice_details where invoice_id = $invoice_id";
+		$res_pay_type = mysqli_query($conn, $sel_pay_type);
+        while ($rows_type = mysqli_fetch_array($res_pay_type)) {
+            if($rows_type['razor_pay_id'] != "" & $rows_type['razor_pay_id'] != null){
+				$payment_type = "Ease Buzz";
+			}else{
+				$payment_type = "COD";
+			}
+		}
+		
         $upd_cus_pkgs = "update obo_cart_details set
                     invoice_no = '$invoice_id' , del_charge = '$delivery',order_placed = 'Y',ordered_date_time = '$current_zone_time',temp_order_id = '$order_id',branch_address ='$branch_address',packing_charge = '$package_chg',del_lat = '$latitude',del_long = '$longitude'  
                     where cart_id = $cart_id";
@@ -306,7 +318,7 @@ if ($_POST || $_GET) {
             $order_type_temp = "TAKE AWAY";
         }
         $response = '{"code":1,"msg":"","error":"",
-"details":{"count":"1","orders":[{"order_id":"' . $order_id . '","restaurant_id":"' . $pos_merchant_id . '","restaurant_address":"' . $branch_name . '","restaurant_number":"","external_order_id":"' . $order_id . '","status":"Pending","order_from":"'.$order_type_temp.'","restaurant_name":"' . $branch_name . '","order_date_time":"' . $ord_time . '","enable_delivery":0,"is_pop_order":false,"order_otp":"","net_amount":"' . $sub_total . '","gross_amount":"' . $total_price . '","payment_mode":"Ease Buzz","order_type":"DELIVERY","order_instructions":"","discount_reason":"","is_edit":false,"is_kot_printed":false,"is_bill_printed":false,"foodready":0,"expected_delivery_time":"1970-01-01 05:30:00","taxes":[],"packaging":"' . $package_chg. '","order_packaging":0,"packaging_cgst_percent":0,"packaging_sgst_percent":0,"packaging_cgst":0,"packaging_sgst":0,"gst":"' . $tax . '","cgst":0,"sgst":0,"delivery_charge":"' . $delivery . '","discount":"' . $discount_amount . '",
+"details":{"count":"1","orders":[{"order_id":"' . $order_id . '","restaurant_id":"' . $pos_merchant_id . '","restaurant_address":"' . $branch_name . '","restaurant_number":"","external_order_id":"' . $order_id . '","status":"Pending","order_from":"'.$order_type_temp.'","restaurant_name":"' . $branch_name . '","order_date_time":"' . $ord_time . '","enable_delivery":0,"is_pop_order":false,"order_otp":"","net_amount":"' . $sub_total . '","gross_amount":"' . $total_price . '","payment_mode":"' . $payment_type . '","order_type":"DELIVERY","order_instructions":"","discount_reason":"","is_edit":false,"is_kot_printed":false,"is_bill_printed":false,"foodready":0,"expected_delivery_time":"1970-01-01 05:30:00","taxes":[],"packaging":"' . $package_chg. '","order_packaging":0,"packaging_cgst_percent":0,"packaging_sgst_percent":0,"packaging_cgst":0,"packaging_sgst":0,"gst":"' . $tax . '","cgst":0,"sgst":0,"delivery_charge":"' . $delivery . '","discount":"' . $discount_amount . '",
 "customer_details":{"name":"' . $customer_name . '","phone_number":"' . $contact_no . '","email":"' . $email_addr . '","address":"' . $address . '","delivery_area":"' . $address . '","address_instructions":"' . $address . '"},
 "rider":{"is_rider_available":false,"arrival_time":"rider status should be confirm"},
 "order_items":' . $item_array_list . '}]}}';
