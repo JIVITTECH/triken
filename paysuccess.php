@@ -59,9 +59,9 @@ if ($_POST || $_GET) {
     $mod_array = [];
     $tax = "";
     $order_type = "";
-	/*$_COOKIE['locName'] = $_GET['locName'];
-    $_SESSION['user_loc_latitude'] = $_GET['latitude'];
-	$_SESSION['user_loc_longitude'] = $_GET['longitude'];*/
+	/*$_COOKIE['locName'] = $_GET['locName'];*/
+    $latitude = $_GET['latitude'];
+	$longitude = $_GET['longitude'];
 	$_COOKIE['user_id'] = $user_id;
 	$_COOKIE['branch_id'] = $branch_id;
 	
@@ -125,7 +125,7 @@ if ($_POST || $_GET) {
         $invoice_id = mysqli_insert_id($conn);
         $order_id = $invoice_id;
         $upd_cus_pkgs = "update obo_cart_details set
-                    invoice_no = '$invoice_id' , del_charge = '$delivery',order_placed = 'Y',ordered_date_time = '$current_zone_time',temp_order_id = '$order_id',branch_address ='$branch_address',packing_charge = '$package_chg' 
+                    invoice_no = '$invoice_id' , del_charge = '$delivery',order_placed = 'Y',ordered_date_time = '$current_zone_time',temp_order_id = '$order_id',branch_address ='$branch_address',packing_charge = '$package_chg',del_lat = '$latitude',del_long = '$longitude'  
                     where cart_id = $cart_id";
         if ($upd_cus_pkgs) {
 
