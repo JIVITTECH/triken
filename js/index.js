@@ -174,6 +174,12 @@ function loadLtdDealsOfTheDay() {
 						act_price = +myObj[i].price;
 					}
 					
+					var stock_chk = "";
+					if(myObj[i].stock_chk === "0"){
+						stock_chk = "<div class='col-md-4'><a href='#' onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + encodeURIComponent(myObj[i].name) + "\", "  + myObj[i].packing_charge +  ",\"" + encodeURIComponent(image_path) + "\")' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a>";
+					}else{
+					    stock_chk = "<div style='color:#E0522D;' class='product-cat col-md-4'>Out of Stock";
+					}
 					information_3 = information_3 + "<div class='swiper-slide product-widget-wrap'>" +
 													"<div class='product'>" +
 														"<figure class='product-media'>" +
@@ -196,7 +202,7 @@ function loadLtdDealsOfTheDay() {
 																"<div class='col-md-8 product-price'>" +
 																	discount_price +
 																"</div>" +
-																"<div class='col-md-4'><a href='#' onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + encodeURIComponent(myObj[i].name) + "\", "  + myObj[i].packing_charge +  ",\"" + encodeURIComponent(image_path) + "\")' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
+																stock_chk + "</div>" +
 															"</div>" +
 														"</div>" +
 													"</div>" +
@@ -274,6 +280,13 @@ function loadAllDealsOfTheDay() {
 						act_price = +myObj[i].price;
 					}
 					
+					var stock_chk = "";
+					if(myObj[i].stock_chk === "0"){
+						stock_chk = "<div class='col-md-4'><a href='#' onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + encodeURIComponent(myObj[i].name) + "\", "  + myObj[i].packing_charge +  ",\"" + encodeURIComponent(image_path) + "\")' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a>";
+					}else{
+					    stock_chk = "<div style='color:#E0522D;' class='product-cat col-md-4'>Out of Stock";
+					}
+					
 					information_4 = information_4 + "<div class='product-wrap'>" +
 													"<div class='product text-center'>" +
 														"<figure class='product-media'>" +
@@ -296,8 +309,8 @@ function loadAllDealsOfTheDay() {
 																"<div class='col-md-8 product-price'>" +
 																	discount_price +
 																"</div>" +
-																"<div class='col-md-4'><a href='#' onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + encodeURIComponent(myObj[i].name) + "\", "  + myObj[i].packing_charge +  ",\"" + encodeURIComponent(image_path) + "\")' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
-															"</div>" +
+																stock_chk + "</div>" +
+																"</div>" +
 														"</div>" +
 													"</div>" +
 												"</div>";
@@ -394,6 +407,13 @@ function loadLtdBestSellingProducts() {
 						act_price = +myObj[i].price;
 					}
 					
+					var stock_chk = "";
+					if(myObj[i].stock_chk === "0"){
+						stock_chk = "<div class='col-md-4'><a href='#' onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + encodeURIComponent(myObj[i].name) + "\", "  + myObj[i].packing_charge +  ",\"" + encodeURIComponent(image_path) + "\")' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a>";
+					}else{
+					    stock_chk = "<div style='color:#E0522D;' class='product-cat col-md-4'>Out of Stock";
+					}
+					
 					information_5 = information_5 + "<div class='swiper-slide product-widget-wrap'>" +
 													"<div class='product'>" +
 														"<figure class='product-media'>" +
@@ -416,8 +436,8 @@ function loadLtdBestSellingProducts() {
 																"<div class='col-md-8 product-price'>" +
 																	discount_price +
 																"</div>" +
-																"<div class='col-md-4'><a href='#' onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + encodeURIComponent(myObj[i].name) + "\", "  + myObj[i].packing_charge +  ",\"" + encodeURIComponent(image_path) + "\")' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
-															"</div>" +
+																stock_chk + "</div>" + 
+																"</div>" +
 														"</div>" +
 													"</div>" +
 												"</div>";
@@ -493,6 +513,12 @@ function loadAllBestSellingProducts() {
 						act_price = +myObj[i].price;
 					}
 					
+					var stock_chk = "";
+					if(myObj[i].stock_chk === "0"){
+						stock_chk = "<div class='col-md-4'><a href='#' onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + encodeURIComponent(myObj[i].name) + "\", "  + myObj[i].packing_charge +  ",\"" + encodeURIComponent(image_path) + "\")' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a>";
+					}else{
+					    stock_chk = "<div style='color:#E0522D;' class='product-cat col-md-4'>Out of Stock";
+					}
 					information_6 = information_6 + "<div class='product-wrap'>" +
 													"<div class='product text-center'>" +
                    										"<figure class='product-media'>" +
@@ -515,7 +541,7 @@ function loadAllBestSellingProducts() {
 																"<div class='col-md-8 product-price'>" +
 																	discount_price +
 																"</div>" +
-																"<div class='col-md-4'><a href='#' onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + encodeURIComponent(myObj[i].name) + "\", "  + myObj[i].packing_charge +  ",\"" + encodeURIComponent(image_path) + "\")' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
+																stock_chk + "</div>" +
 															"</div>" +
 														"</div>" +
 													"</div>" +

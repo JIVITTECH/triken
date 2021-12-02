@@ -449,7 +449,9 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 															setTimeout(saveDeliveryDetails, 1000);
 														}
 													}
-												} 
+												}else{
+													document.getElementById('no_stock').click();
+												}
 											};
 
 										</script>
@@ -564,7 +566,10 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 		}
     });
        
+	var stock_chk_array = [];
+	
     function loadFinalizedCart() {
+		stock_chk_array = [];
 		grand_sub_total = 0;
 		$('#final_cart').empty();
 		var information = "";
@@ -649,6 +654,12 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 								net_weight = +myObj[i].net_weight * +myObj[i].quantity;
 							}
 							
+							var stock_chk = "";
+							if(myObj[i].stock_chk !== "0"){
+								stock_chk = "<span style='color:#E0522D;'>&nbsp;&nbsp;&nbsp;(Out of Stock)</span>";
+							}else{
+								stock_chk = "";
+							}
 							information = information + "<tr id = 'div_id_" + myObj[i].cart_item_id  + "'>" +
 											"<td class='product-thumbnail  col-xs-2>" +
 											"<div class='p-relative'>" +
@@ -661,7 +672,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 											"</td>" +
 											"<td class='product-name'>" +
 								  			"<a>" + myObj[i].name + "</a>" +
-											"<span class='cross'>x" + myObj[i].quantity + "</span>" +
+											"<span class='cross'>x" + myObj[i].quantity +  stock_chk  + "</span>" +
 											"<div  class='product-price'>" +
 	                                        "<ins class='new-price'>" + total_price.toFixed(2) + "</ins>" +
 											"<span class='gms'>" + net_weight + " " + myObj[i].measure + "</span>" +
@@ -780,6 +791,23 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 					<div class="row">
 					<div class="form-group" style="margin-top:40px;text-align:center;">
 						<button type="button"  id="" class="submit_btn btn btn-dark btn-rounded btn-sm mb-4" style="background-color:#EF6723;border-color: #EF6723" onclick="document.getElementById('close_btn2').click();">OK</button>
+					</div>			
+				</div>
+			</form>
+        </div>
+    </div>
+</div>
+
+<a href="#myModal2" id="no_stock" style="visibility:hidden;" class="button btn acc_btn btn-outline btn-default btn-block btn-sm btn-rounded ml-3 mt-2"></a>								
+<div id="myModal2" class="overlay">
+    <div class="popup">
+         <a id ="close_btn3" style="display:none;" class="close" href="#">&times;</a>
+        <div class="content">
+            <form class="form account-details-form" action="" method="post">
+				<div class="row" style="text-align:center;"><h3>Sorry !! Few items are out of stock Please remove them from the cart .</h3></div>
+					<div class="row">
+					<div class="form-group" style="margin-top:40px;text-align:center;">
+						<button type="button"  id="" class="submit_btn btn btn-dark btn-rounded btn-sm mb-4" style="background-color:#EF6723;border-color: #EF6723" onclick="document.getElementById('close_btn3').click();">OK</button>
 					</div>			
 				</div>
 			</form>

@@ -103,6 +103,12 @@ function loadAllItemDetails() {
 						act_price = +myObj[i].price;
 					}
 					
+					var stock_chk = "";
+					if(myObj[i].stock_chk === "0"){
+						stock_chk = "<div class='col-md-4'><a href='#' onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + encodeURIComponent(myObj[i].name) + "\", "  + myObj[i].packing_charge +  ",\"" + encodeURIComponent(image_path) + "\")' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a>";
+					}else{
+					    stock_chk = "<div style='color:#E0522D;' class='product-cat col-md-4'>Out of Stock";
+					}
 					information = information + "<div class='product-wrap'>" +
 													"<div class='product text-center'>" +
 														"<figure class='product-media'>" +
@@ -123,7 +129,7 @@ function loadAllItemDetails() {
 																	"<div class='col-md-8 product-price'>" +
 																		discount_price +  
 																	"</div>" + 
-																	"<div class='col-md-4'><a onclick='saveItemDetails(" + myObj[i].menu_id + ", "  + customer_id +  "," + act_price +  ",\"" + encodeURIComponent(myObj[i].name) + "\", "  + myObj[i].packing_charge +  ",\"" + encodeURIComponent(image_path) + "\")' class='add_cart btn-cart' title='Add to Cart'><i class='w-icon-plus'></i> Add</a></div>" +
+																	stock_chk + "</div>" +
 																"</div>" +
 															"</div>" +
 														"</div>" +
