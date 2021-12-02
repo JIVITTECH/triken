@@ -20,7 +20,7 @@ $delivery_address = "";
 $lat = "";
 $long = "";
 $rem_Amount = $grand_sub_total - $discount;
-$del_address = "SELECT delivery_address,latitude,longitude   
+$del_address = "SELECT delivery_address   
                       FROM obo_customer_addresses
                       WHERE customer_id = '$user_id' AND current_address = 'Y'";
 
@@ -29,11 +29,9 @@ $count = mysqli_num_rows($res_del);
 if ($count !== 0) {
     while ($qry1 = mysqli_fetch_array($res_del)) {
         $delivery_address = $qry1['delivery_address'];
-        $lat = $qry1['latitude'];
-        $long = $qry1['longitude'];
     }
 } else {
-    $cus_address = "SELECT address  ,latitude,longitude    
+    $cus_address = "SELECT address
                       FROM kot_customer_details
                       WHERE id = '$user_id'";
 //echo $cus_address;
@@ -42,11 +40,12 @@ if ($count !== 0) {
     if ($cus_res !== 0) {
         while ($qry2 = mysqli_fetch_array($cus_res)) {
             $delivery_address = $qry2['address'];
-            $lat = $qry2['latitude'];
-            $long = $qry2['longitude'];
         }
     }
 }
+
+$lat = $_SESSION['user_loc_latitude'];
+$long = $_SESSION['user_loc_longitude'];
 
 $sql = "update obo_cart_details set sub_total ='$sub_total',total_price = $grand_total,del_long='$long',del_lat='$lat',delivery_address = '$delivery_address',slot='$expected_date' where cart_id = $cus_cart_id";
 $result = mysqli_query($conn, $sql);
