@@ -33,10 +33,18 @@ function loadOrders() {
 							}
 						}
 						
+						var status = cart_arr[6].order_status;
+						var order_status = "";
+						if (+status === 5) {
+							order_status = "block";
+						}else{
+							order_status = "none";
+						}
 						orders_div =  "<div class='row order_row'>" +
 														"<div class='order_sec'>" +
 															"<div class='col-md-10 col-xs-9' onclick='goToOrderSummary(" + cart_details.cart_id + ")'>" +
-																"<div class='order-detail'>Order # " + cart_details.invoice_no + "<br>" + cart_details.ordered_date_time  + "</div>" +
+																"<div class='order-detail'>Order # " + cart_details.invoice_no + "<br>" + cart_details.ordered_date_time  + " </div>" +
+																"<div class='order-detail' id='cancel_flag' style='display:" + order_status + ";color:#E0522D !important;'>Your Order is rejected by Triken Todays Cuts, Kindly try in future !! </div>" +
 															"</div>" +
 															"<div class='col-md-2 col-xs-12'>" +
 																"<button onclick='isCartFilled(" + cart_details.cart_id + ")' class='btn acc_btn btn-outline btn-default btn-block btn-sm btn-rounded'>Reorder</button>" +

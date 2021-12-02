@@ -351,8 +351,8 @@
 			function gotoHome() {
 	            window.location.href = "index.php";
 	        }
-			
-			// var dirname = "../../app/triken/Catering/"; --- live
+		
+       		//var dirname = "app/Catering/"; 
 			var dirname = "../ecaterweb/Catering/";
 			
 			function ValidateNumber(){

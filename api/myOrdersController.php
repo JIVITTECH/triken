@@ -245,68 +245,19 @@ if ($res_sql_cnt > 0) {
 }
 
 function getOrderStatus($conn, $order_no) {
-
-    $nconfirmed = "select * from wera_placed_orders
-                where (TRIM('$order_no') = '' OR order_id LIKE '%$order_no%' OR external_order_id LIKE '%$order_no%')
-                AND approve_status = 'N' AND food_ready = 'N' AND reject_id IS NULL AND cancel_order IS NULL order by id desc";
-    $res_nconfirmed = mysqli_query($conn, $nconfirmed);
-    $count_nconfirmed = mysqli_num_rows($res_nconfirmed);
-    if ($count_nconfirmed != 0) {
-        $status = 0;
-        return $status;
-    }
-
-    $rejected = "select * from wera_placed_orders
-                where (TRIM('$order_no') = '' OR order_id LIKE '%$order_no%' OR external_order_id LIKE '%$order_no%')
-                AND approve_status = 'N' AND food_ready = 'N' AND reject_id IS NOT NULL AND cancel_order IS NULL order by id desc";
-    $res_rejected = mysqli_query($conn, $rejected);
-    $count_rejected = mysqli_num_rows($res_rejected);
-    if ($count_rejected != 0) {
-        $status = -1;
-        return $status;
-    }
-
-    $confirmed = "select * from wera_placed_orders
-                where (TRIM('$order_no') = '' OR order_id LIKE '%$order_no%' OR external_order_id LIKE '%$order_no%')
-                AND approve_status = 'Y' AND food_ready = 'N' AND reject_id IS NULL AND cancel_order IS NULL order by id desc";
-    $res_confirmed = mysqli_query($conn, $confirmed);
-    $count_confirmed = mysqli_num_rows($res_confirmed);
-    if ($count_confirmed != 0) {
-        $status = 2;
-        return $status;
-    }
-
-    $preparing = "select * from wera_placed_orders
-                where (TRIM('$order_no') = '' OR order_id LIKE '%$order_no%' OR external_order_id LIKE '%$order_no%') AND 
-                approve_status = 'Y' AND food_ready = 'N' AND reject_id IS NULL AND cancel_order IS NULL order by id desc";
-    $res_prepared = mysqli_query($conn, $preparing);
-    $count_prepared = mysqli_num_rows($res_prepared);
-    if ($count_prepared != 0) {
-        $status = 2;
-        return $status;
-    }
-
-    $ready = "select * from wera_placed_orders
-                where (TRIM('$order_no') = '' OR order_id LIKE '%$order_no%' OR external_order_id LIKE '%$order_no%') AND 
-                approve_status = 'Y' AND food_ready = 'Y' AND reject_id IS NULL AND cancel_order IS NULL AND del_status = 'N' order by id desc";
-    $res_ready = mysqli_query($conn, $ready);
-    $count_ready = mysqli_num_rows($res_ready);
-    if ($count_ready != 0) {
-        $status = 3;
-        return $status;
-    }
-
-    $ready = "select * from wera_placed_orders
+	$ready = "select * from wera_placed_orders
             LEFT JOIN obo_cart_details 
             on obo_cart_details.temp_order_id = wera_placed_orders.order_id
             where (TRIM('$order_no') = '' OR order_id LIKE '%$order_no%' OR external_order_id LIKE '%$order_no%') AND 
-            approve_status = 'Y' AND food_ready = 'Y' AND reject_id IS NULL AND cancel_order IS NULL AND del_status = 'Y' order by id desc";
+            approve_status = 'N' AND reject_id IS NOT NULL order by id desc";
     $res_ready = mysqli_query($conn, $ready);
     $count_ready = mysqli_num_rows($res_ready);
     if ($count_ready != 0) {
-        $status = 4;
+        $status = 5;
         return $status;
-    }
+    }else{
+		return 0;
+	}
 }
 
 ?>
