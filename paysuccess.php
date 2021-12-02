@@ -132,7 +132,7 @@ if ($_POST || $_GET) {
             if($rows_type['razor_pay_id'] != "" & $rows_type['razor_pay_id'] != null){
 				$payment_type = "Ease Buzz";
 			}else{
-				$payment_type = "COD";
+				$payment_type = "Cash On Delivery";
 			}
 		}
 		
