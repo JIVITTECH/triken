@@ -42,7 +42,7 @@
 function search_products_by_text_mobile() {
 	var search_text = document.getElementById("search_mobile").value;
 	if (search_text.trim().length != '0') {
-	   window.location.href = "products.php?search_text=" + search_text;
+	   window.location.href = "search.php?search_text=" + search_text;
 	}
 }
 
@@ -50,7 +50,7 @@ $("#search_mobile").keyup(function(event) {
 	var search_text = document.getElementById("search_mobile").value;
 	if (event.keyCode === 13) {
         if (search_text.trim().length != '0') {
-		   window.location.href = "products.php?search_text=" + search_text;
+		   window.location.href = "search.php?search_text=" + search_text;
 		}
     }
 });
