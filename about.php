@@ -154,7 +154,7 @@ $page ="About Todays’ Cut";
                             </div>
                             <div class="col-md-5 pr-lg-8">
                                 <h2 class="title text-left">Hygienic practices and <br>ethical standards </h2>
-								<p class="mb-0">                                                Our modern processing plant is powered by high-end equipment and systems that are capable to handle various types of meat and seafood. Each kind of meat that you get from us is hygienically cut and cleaned before it goes through rigorous quality checks. With an output capacity of 250 tons per day, we are not only able to meet the demand of our customer base, but also keep up the hygiene that we promise to you.
+								<p class="mb-0">                                                Our modern processing plant is powered by high-end equipment and systems that are capable to handle various types of meat and seafood. Each kind of meat that you get from us is hygienically cut and cleaned before it goes through rigorous quality checks. With an output capacity of 1.5 tons per day, we are not only able to meet the demand of our customer base, but also keep up the hygiene that we promise to you.
                                 </p>
                             </div>
                         </div>
