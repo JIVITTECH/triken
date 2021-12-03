@@ -21,7 +21,7 @@
                         <div class="col-lg-4 col-sm-12">
                             <div class="widget">
                                 <h4 class="widget-title">For Feedback</h4>
-                                <p class="ps-footer__work">Call:  <a href="tel:87457 47510">87457 47510</a> </p>
+                                <p class="ps-footer__work">Call:  <a href="tel:86867 54754">8686 754 754</a> </p>
                                 <p class="ps-footer__work"> Mail:  <a href="mailto:care@todayscut.com">care@todayscut.com</a></p>
                                 <h5 class="widget-title address">Office Address</h5>
                                <address> 21, AKG Nagar, PSG Govindasamy Nagar, 
