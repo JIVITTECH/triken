@@ -113,7 +113,7 @@
 
 		<?php include('faq.php'); ?>
 
-		<?php include('review.php'); ?>
+		<!-- <?php include('review.php'); ?> -->
 
    </div>
 </div>
