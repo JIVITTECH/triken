@@ -49,10 +49,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="footer-middle">
+                <!--<div class="footer-middle">
                     <div class="widget widget-category" id="load_footer_items_for_cats_container">
                     </div>
-                </div>
+                </div>-->
                 <div class="footer-bottom">
                     <div class="footer-left">
                         <p class="copyright">© 2021. Triken Todays’ Cuts. All Rights Reserved.</p>
@@ -90,7 +90,7 @@
     <script>
         $(document).ready(function () {
             loadFooterCategories();
-            loadFooterItemsForCategories();
+            //loadFooterItemsForCategories();
         });
     </script>
 
