@@ -15,9 +15,9 @@ function loadSelectedCategory() {
 					
 					if(i === 0){
 						selected_category = myObj[i].id;
-						information = information + " <li><a href='#' onclick='setCategory(" + myObj[i].id + ")' class='nav-filter active' data-filter=" + name + ">" + name + "</a></li>";
+						information = information + " <li><a href='#'  id='cat_" + myObj[i].id + "' onclick='setCategory(" + myObj[i].id + ")' class='nav-filter' data-filter=" + name + ">" + name + "</a></li>";
 					}else{
-						information = information + " <li><a href='#' onclick='setCategory(" + myObj[i].id + ")' class='nav-filter' data-filter=" + name + ">" + name + "</a></li>";
+						information = information + " <li><a href='#' id='cat_" + myObj[i].id + "' onclick='setCategory(" + myObj[i].id + ")' class='nav-filter' data-filter=" + name + ">" + name + "</a></li>";
 					}
 				}
                 $('#category_container').empty();
@@ -39,6 +39,8 @@ function setCategory(cat_id){
 
 function loadAllRecipes() { 
     $('#recipe_container').empty();
+	$('.nav-filter').removeClass('active');
+	$('#cat_' + selected_category + '').addClass('active');
 	var information = "";
 	var recipe_name = document.getElementById("recipe_name").value;
 	var xmlhttp = new XMLHttpRequest();
@@ -49,8 +51,15 @@ function loadAllRecipes() {
 		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 			var myObj = JSON.parse(this.responseText);
 			if (myObj.length !== 0) {
-				var container_length = +myObj.length/3;
-				document.getElementById("recipe_container").style.height = +container_length * 426.2;
+				var container_length = 0;
+				if(+myObj.length > 3){
+						container_length =  Math.ceil(+myObj.length/3) * 475;
+				}else{
+					container_length = '475';
+				}
+				
+				information = information + "<div class='row grid cols-lg-3 cols-md-2 mb-2'  data-grid-options='{'layoutMode': 'fitRows'}' style='position: relative;height:" + container_length + "px'>";
+				
 				for (var i = 0; i < myObj.length; i++) {
 					var cover_photo = myObj[i].image;
 					var image_path = "";
@@ -77,6 +86,7 @@ function loadAllRecipes() {
 												"</article>";
 				}
 				$('#recipe_container').empty();
+				
 				$('#recipe_container').append(information);
             } else {
 				$('#recipe_container').append("<center>No recipe found</center>");
