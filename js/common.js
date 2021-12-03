@@ -5,6 +5,7 @@ var replace_name = "";// selected replace name
 
 function saveItemDetails(menu_id, customer_id, amount, item_name, pkg_charge,image_path) {
 	var item_name = decodeURIComponent(item_name);
+	var image_path = decodeURIComponent(image_path);
     if (customer_id !== -1) {
 		addToCart(menu_id, customer_id, amount, item_name, pkg_charge);
 	} else {

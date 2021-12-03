@@ -29,9 +29,9 @@ $page ="Recipes & Tips";
 					
 					<hr>
 					
-                    <div class="row grid cols-lg-3 cols-md-2 mb-2"  id="recipe_container" data-grid-options="{
-                        'layoutMode': 'fitRows'
-                    }" style="position: relative;">
+					<div id="recipe_container" >
+					</div>
+                    
                       
                     </div>
 						
