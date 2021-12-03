@@ -104,35 +104,8 @@ function loadLtdDealsOfTheDay() {
 	xmlhttp.onreadystatechange = function () {
 		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 			var myObj = JSON.parse(this.responseText);
-			information_3 = information_3 + '<div class="container mb-4">' +
-			                                '<div class="widget-body br-sm h-100">' +
-											     '<div class="row">' + 
-												      '<div class="col-lg-8 col-sm-12"> <h1 class="title text-left appear-animate"> <img src="assets/images/certificate.svg"> Deal of the Day  </h1> </div>' +
-													  '<div class="col-lg-4 col-sm-12">' +
-													      '<div class="viewall">' +
-														       '<a href="dod.php" class="btn btn-dark"> View All </a>' +
-														  '</div>' +
-													  '</div>' +
-												 '</div>' +
-											'<div class="swiper slider_sec">';
 			if (myObj.length !== 0) {
-			    information_3 = information_3 + "<div class=" + '"swiper-container  swiper-theme nav-top"' + ' data-swiper-options="{' +
-				                                            "'slidesPerView': 1.1," + 
-															"'spaceBetween': 10," +
-															"'breakpoints': {" +
-															    "'576': {" + 
-																   "'slidesPerView': 2" + 
-																"}," + 
-																"'768': {" + 
-																   "'slidesPerView': 3" + 
-                                                                "}," +
-																"'992': {" +
-																   "'slidesPerView': 4" + 
-                                                                "}" +
-															"}" +
-														'}">' +
-											"<div class='swiper-wrapper row cols-lg-1 cols-md-3'>";
-                for (var i = 0; i < myObj.length; i++) {
+			    for (var i = 0; i < myObj.length; i++) {
 					var cover_photo = myObj[i].image;
 					var image_path = "";
 					if (cover_photo !== "") {
@@ -208,14 +181,9 @@ function loadLtdDealsOfTheDay() {
 													"</div>" +
 												"</div>";
 				}
-				information_3 = information_3 + "</div>" + 
-				                            "<button class='swiper-button-next'></button>" +
-											"<button class='swiper-button-prev'></button>" +
-											"</div>";
-            } else {
+			} else {
 			    information_3 = information_3 + "<center>No Items found</center>";
 	        }
-			information_3 = information_3 + '</div>' + '</div>' + '</div>';
 			 $('#ltd_deals_of_the_day_container').append(information_3);
 		}
 	};
@@ -336,35 +304,8 @@ function loadLtdBestSellingProducts() {
 	xmlhttp.onreadystatechange = function () {
 		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 			var myObj = JSON.parse(this.responseText);
-			information_5 = information_5 + '<div class="container mb-4">' +
-			                                '<div class="widget-body br-sm h-100">' +
-											     '<div class="row">' + 
-												      '<div class="col-lg-8 col-sm-12"> <h1 class="title text-left appear-animate"> <img src="assets/images/certificate.svg"> Best Selling Products  </h1> </div>' +
-													  '<div class="col-lg-4 col-sm-12">' +
-													      '<div class="viewall">' +
-														       '<a href="bestselling.php" class="btn btn-dark"> View All </a>' +
-														  '</div>' +
-													  '</div>' +
-												 '</div>' +
-											'<div class="swiper slider_sec">';
 			if (myObj.length !== 0) {
-			    information_5 = information_5 + "<div class=" + '"swiper-container  swiper-theme nav-top"' + ' data-swiper-options="{' +
-				                                            "'slidesPerView': 1.1," + 
-															"'spaceBetween': 10," +
-															"'breakpoints': {" +
-															    "'576': {" + 
-																   "'slidesPerView': 2" + 
-																"}," + 
-																"'768': {" + 
-																   "'slidesPerView': 3" + 
-                                                                "}," +
-																"'992': {" +
-																   "'slidesPerView': 4" + 
-                                                                "}" +
-															"}" +
-														'}">' +
-											"<div class='swiper-wrapper row cols-lg-1 cols-md-3'>";
-             	for (var i = 0; i < myObj.length; i++) {
+			 	for (var i = 0; i < myObj.length; i++) {
 					var cover_photo = myObj[i].image;
 					var image_path = "";
 					if (cover_photo !== "")
@@ -442,15 +383,10 @@ function loadLtdBestSellingProducts() {
 													"</div>" +
 												"</div>";
 				}
-                information_5 = information_5 + "</div>" + 
-				                            "<button class='swiper-button-next'></button>" +
-											"<button class='swiper-button-prev'></button>" +
-											"</div>";
             } else {
 				information_5 = information_5 + "<center>No Items found</center>";
 	        }
-			information_5 = information_5 + '</div>' + '</div>' + '</div>';
-		    $('#ltd_best_selling_products_container').append(information_5);
+			$('#ltd_best_selling_products_container').append(information_5);
 		}
 	};
 }
