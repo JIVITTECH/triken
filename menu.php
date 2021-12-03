@@ -42,7 +42,7 @@
                                     <i class="fa fa-shopping-cart" aria-hidden="true">
                                         <span class="cart-count" id="cart_count"></span>
                                     </i>
-                                    <span class="cart-label">Cart</span>
+                                    <span class="cart-label">Cart&nbsp;&nbsp;&nbsp;</span>
                                 </a>
 								<div class="dropdown-box" style="max-height:600px;overflow-y: scroll;">
                                     <div class="products" id="cart_items_container" style="height: 100% !important;">
