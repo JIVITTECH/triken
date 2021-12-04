@@ -107,7 +107,7 @@
     </div>
 </section>
 
- <!-- <?php include('review.php'); ?> -->
+ <?php include('review.php'); ?>
 
 <section class="featured">
 	<div class="container">
