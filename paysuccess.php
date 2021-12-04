@@ -26,6 +26,7 @@ $item_load_flag = 0;
 $cart_page_flag = 0;
 $razorpay_payment_id = "";
 $completed_cart_id = 0;
+$invoice_id = "";
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -397,6 +398,93 @@ function sendPlaceOrderRequestToClient($js, $hostname,$config_url_pos) {
 
     header("location:order_summary.php?cart_id=".$completed_cart_id);
 }
+
+$sel_cus = "select * from kot_customer_details where id = $customer_id";
+$res_sel_qry = mysqli_query($conn, $sel_cus);
+while ($rows_cnt = mysqli_fetch_array($res_sel_qry)) {
+	$mobile = $rows_cnt['contact_no'];
+	$res_name = "Triken Todays Cuts"
+	if ($mobile !== null) {
+		//sendOrderPlacedRequest($conn, $branch_id, $mobile, $invoice_id, $user_id,$date,$res_name); Activate one SMS content approved
+	}
+}
+
+function sendOrderPlacedRequest($conn, $branch_id, $mobile, $invoice_id, $customer_id,$date,$res_name) {
+
+    $content = "Your order ". $invoice_id . " has been placed and it will arrive soon!! Thank you for choosing " . $res_name . " . Your support means a lot to us ";
+    $senderId = "ECAPIN";
+    $code = "OBOOTP";
+    $section = "OBO";
+    $authKey = "305993ADfnY0JTD6il6188c1d9P1";
+    $mobileNumber = $mobile;
+    $message = $content;
+    $route = "4";   
+	$orderId = $invoice_id;
+	
+    $postData = array(
+        'authkey' => $authKey,
+        'mobiles' => $mobileNumber,
+        'message' => $message,
+        'sender' => $senderId,
+        'route' => $route,
+		'DLT_TE_ID' => ''
+    );
+
+    $url = "http://api.msg91.com/api/sendhttp.php?";
+
+    $ch = curl_init();
+    curl_setopt_array($ch, array(
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => $postData
+     ));
+
+
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+
+    $response = curl_exec($ch);
+    $err = curl_errno($ch);
+
+    curl_close($ch);
+
+    if ($err) {
+        echo 'error:' . curl_error($ch);
+    } else {
+        logSMSDetailsDebitSMS($conn, $branch_id, $customer_id, $senderId, $code, $section, $mobileNumber, $content, $response, $orderId);
+    }
+}
+
+function logSMSDetailsDebitSMS($conn, $branch_id, $customer_id, $sender_id, $code, $section, $mobile, $content, $response, $orderId) {
+    global $current_zone_time;
+    $sqlCount = "INSERT INTO kot_sms_log (order_id,branch_id,customer_id,mobile,sent_date,sender_id,type_code,sms_section,sms_content, sms_cost, del_status) "
+            . "VALUES ($orderId,$branch_id,$customer_id,'$mobile','$current_zone_time','$sender_id','$code','$section','$content', " . getSmsCredits($content) . ", '$response')";
+    $result = mysqli_query($conn, $sqlCount);
+    //echo $sqlCount;
+    if ($result) {
+        echo "1"; // success
+    } else {
+        echo $sqlCount; // failure
+    }
+}
+
+function getSmsCredits($content) {
+    $no_of_credits_utilized = 0;
+
+    $no_of_chars = strlen($content);
+
+    if ($no_of_chars <= 160) {
+        $no_of_credits_utilized = 1;
+    } else {
+        $no_of_credits_utilized = ceil($no_of_chars / 153);
+    }
+
+    return $no_of_credits_utilized;
+}
+
+
 ob_end_flush();
 ?>
 <html>
