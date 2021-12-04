@@ -42,7 +42,7 @@
                                     <i class="fa fa-shopping-cart" aria-hidden="true">
                                         <span class="cart-count" id="cart_count"></span>
                                     </i>
-                                    <span class="cart-label">Cart</span>
+                                    <span class="cart-label">Cart&nbsp;&nbsp;&nbsp;</span>
                                 </a>
 								<div class="dropdown-box" style="max-height:600px;overflow-y: scroll;">
                                     <div class="products" id="cart_items_container" style="height: 100% !important;">
@@ -141,6 +141,7 @@
 				var image_path ="";
 				var icon ="";
 				var information = "";
+				var no_of_cats_to_load = 7;
 				$('#top_container').empty();
 				var xmlhttp = new XMLHttpRequest();
 				if(typeof branch_id ==="undefined") {
@@ -152,8 +153,11 @@
 				xmlhttp.onreadystatechange = function () {
 					if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 						var myObj = JSON.parse(this.responseText);
+						if (myObj.length < 7) {
+						   no_of_cats_to_load = myObj.length;
+						}
 						if (myObj.length !== 0) {
-							for (var i = 0; i < 7; i++) {
+							for (var i = 0; i < no_of_cats_to_load; i++) {
 								icon = myObj[i].icon;
 								name = myObj[i].name;
 								if (icon !== "")

@@ -67,8 +67,8 @@ function findNearestBranch (latitude, longitude) {
 								window.location.href = window.location.href;
 								loadAllCategories();
 								loadTopCategories();
-								loadLtdDealsOfTheDay();
-								loadLtdBestSellingProducts();
+								//loadLtdDealsOfTheDay();
+								//loadLtdBestSellingProducts();
 								loadAllRecipes();
 							}
 						}else{
@@ -78,8 +78,8 @@ function findNearestBranch (latitude, longitude) {
 							window.location.href = window.location.href;
 							loadAllCategories();
 							loadTopCategories();
-							loadLtdDealsOfTheDay();
-							loadLtdBestSellingProducts();
+							//loadLtdDealsOfTheDay();
+							//loadLtdBestSellingProducts();
 							loadAllRecipes();
 						}
 						var location = document.getElementById("location").value;

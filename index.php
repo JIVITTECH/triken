@@ -107,7 +107,7 @@
     </div>
 </section>
 
- <?php include('review.php'); ?>
+ <!-- <?php include('review.php'); ?> -->
 
 <section class="featured">
 	<div class="container">
@@ -157,9 +157,7 @@ $(function(){
 
 $(document).ready(function () {
     if (branch_id != '-1' && branch_id != "") {
-		loadLtdDealsOfTheDay();
-        loadLtdBestSellingProducts();
-        loadAllRecipes();
+		loadAllRecipes();
         loadAllCategories(); 
     }
 });
