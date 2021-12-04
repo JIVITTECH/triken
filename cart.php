@@ -208,7 +208,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
                                                     </div>
                                                     <div id="cash-on-delivery" class="card-body collapsed">
                                                         <form>
-                                                    <input placeholder="Select your delivery date" class="form-control" type="date"  id="date" min="<?= date('Y-m-d'); ?>" >
+                                                    <input placeholder="Select your delivery date" value="" onchange ="setCookie('del_slot',365,2)" class="form-control" type="date"  id="date" min="<?= date('Y-m-d'); ?>" >
                                 
                                 
                                 <div class="form-group">
@@ -565,6 +565,9 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 			$("#default").removeClass("expand");
 			$("#date_time").addClass("collapse");
 			document.getElementById("date").value = getCookie("selected_date");
+			if(document.getElementById("date").value === ""){
+				selected_date = "Today";
+			}
 			document.getElementById("delivery_time").value = getCookie("del_slot");
 			document.getElementById("expected_date").innerHTML = getCookie("selected_date") + "<br>" + sel_text + " slot";
 		}
@@ -749,6 +752,9 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 			    selected_slot = document.getElementById("delivery_time").value;
 				selected_date = document.getElementById("date").value;
 				sel_text = $("#delivery_time option:selected").text();
+				if(selected_date === ""){
+					selected_date = "Today";
+				}
 				document.getElementById("expected_date").innerHTML = selected_date + "<br>" + sel_text + " slot";
 			}
 			cookie_name = "selected_date";
@@ -780,6 +786,27 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 				} else { 
 				    $("#proceed_to_payment").trigger("click");
 				}
+			}
+		};
+	}
+	
+	function checkAddress() {
+		var curr_Address = "";
+		var xmlhttp = new XMLHttpRequest();
+		var url = "api/loadDeliveryAddress.php?action=get_current_delivery_address";
+		xmlhttp.open("GET", url, true);
+		xmlhttp.send();
+		xmlhttp.onreadystatechange = function () {
+			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+				var myObj = JSON.parse(this.responseText);
+				if (myObj.length !== 0) {
+			 		for (var i = 0; i < myObj.length; i++) {
+						curr_Address = myObj[i].delivery_address; 	
+					}
+				}
+				if (curr_Address.trim().length == 0) { 
+				    document.getElementById('out_stock').click();
+				} 
 			}
 		};
 	}
