@@ -440,13 +440,17 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 
 											document.getElementById('ebz-checkout-btn').onclick = function (e) {
 												if (stock_chk_array.length === 0) {
-													if (payementMethod !== "") {
-														document.getElementById('id02').style.display = 'block';
-														if (+payementMethod === 1) {
-															saveDetails();
-														} else {
-															saveDetails();
-															setTimeout(saveDeliveryDetails, 1000);
+													if (current_address_flag.trim().length == 0) { 
+														document.getElementById('out_stock').click();
+													}else{
+														if (payementMethod !== "") {
+															document.getElementById('id02').style.display = 'block';
+															if (+payementMethod === 1) {
+																saveDetails();
+															} else {
+																saveDetails();
+																setTimeout(saveDeliveryDetails, 1000);
+															}
 														}
 													}
 												}else{
@@ -756,8 +760,9 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 			
 	}
 
+    var current_address_flag = "";
+		
 	function proceedToPayment() {
-		var information = "";
 		var xmlhttp = new XMLHttpRequest();
 		var url = "api/loadDeliveryAddress.php?action=get_current_delivery_address";
 		xmlhttp.open("GET", url, true);
@@ -767,10 +772,10 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 				var myObj = JSON.parse(this.responseText);
 				if (myObj.length !== 0) {
 			 		for (var i = 0; i < myObj.length; i++) {
-						information = myObj[i].delivery_address; 	
+						current_address_flag = myObj[i].delivery_address; 	
 					}
 				}
-				if (information.trim().length == 0) { 
+				if (current_address_flag.trim().length == 0) { 
 				    document.getElementById('out_stock').click();
 				} else { 
 				    $("#proceed_to_payment").trigger("click");
@@ -815,3 +820,4 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
     </div>
 </div>
 <?php include('footer.php'); ?>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
