@@ -89,8 +89,8 @@
 		                    <div class="banner-video product-video br-xs">
 		                    	<div class="row">
 		                    		<div class="col-lg-6 col-sm-6">
-		                    			<figure class="media">
-		                                	<a class="btn-play-video btn-iframe" href="#"> <span id="video_link"></span>See our hygienic process </a>
+		                    			<figure  id= "hygienic_link" class="media">
+		                                	<a  class="btn-play-video btn-iframe" href="#"> <span id="video_link"></span>See our hygienic process </a>
 		                        		</figure>
 		                    		</div>
 		                    		<div class="col-lg-6 col-sm-6">

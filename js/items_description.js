@@ -111,7 +111,11 @@ function loadItemsDescription() {
 					document.getElementById("net_weight").innerHTML = myObj[i].net_weight + " " +  myObj[i].measure ;
 					document.getElementById("product_des").innerHTML = myObj[i].description;
 					document.getElementById("delivery_time").innerHTML = myObj[i].delivery_time;
-                    $('#video_link').append("<img src=" + myObj[i].video_path + ">");	
+					if(myObj[i].video_path !== "" && myObj[i].video_path !== null){
+						$('#video_link').append("<img src=" + myObj[i].video_path + ">");	
+					}else{
+						document.getElementById("hygienic_link").style.display = 'none';
+					}
 					var discount_price = "";
 					if(myObj[i].disc_per !== ""){
 						var reduced_price = +myObj[i].price - (+myObj[i].disc_per / 100) * (+myObj[i].price); 
