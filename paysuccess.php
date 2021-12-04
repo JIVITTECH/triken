@@ -427,7 +427,7 @@ function sendOrderPlacedRequest($conn, $branch_id, $mobile, $invoice_id, $custom
         'message' => $message,
         'sender' => $senderId,
         'route' => $route,
-		'DLT_TE_ID' => ''
+		'DLT_TE_ID' => '1207163861649249821'
     );
 
     $url = "http://api.msg91.com/api/sendhttp.php?";
