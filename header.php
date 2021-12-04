@@ -222,7 +222,14 @@
 						branch_id = document.getElementById('hidden_branch').value;
 						$.cookie("branch_id", JSON.stringify(+branch_id));
 						$('.lpopup').hide();
-						window.location.href = window.location.href;
+						var location = document.getElementById("location").value;
+						location =  location.substr(0, location.indexOf(',')); 
+						if(location.length > 24){
+							location = location.substring(0,24) + "...";
+						} 
+						document.cookie = "locName=" + location + "; expires=Thu, 31 Dec 2099 23:59:59 GMT";
+						document.getElementById("loc_name").innerHTML = location;
+						window.location.href = "index.php";
 						loadAllCategories();
 						loadTopCategories();
 						loadLtdDealsOfTheDay();

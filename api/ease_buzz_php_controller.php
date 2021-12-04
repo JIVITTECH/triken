@@ -56,15 +56,18 @@ $cus_details = "select * from kot_customer_details where id = $customer_id";
 $res_cus_details = mysqli_query($conn, $cus_details);
 
 while ($rows_cus = mysqli_fetch_array($res_cus_details)) {
-    $customer_name = $rows_cus['customer_name'];
+	if( $rows_cus['customer_name'] !== "" &&  $rows_cus['customer_name'] !== null){
+		$customer_name = $rows_cus['customer_name'];
+	}else{
+		$customer_name = "Triken Todays Cuts";
+	}
     $contact_no = $rows_cus['contact_no'];
     $address = $rows_cus['address'];
-    $email_addr =  'electronic.cater@gmail.com';
+    $email_addr =  'tech@jivittech.com';
 }
 
 //Need to comment once signin process is ready
-$customer_name = "Sara Ruth John";
-$contact_no = "8610530271";
+
 $address = "";
 	
 include_once('easebuzz-lib/easebuzz_payment_gateway.php');
@@ -104,8 +107,8 @@ $postData = array(
     "phone" => $contact_no,
     "productinfo" => $product,
     "hash" => $hash,
-    "surl" => "$easebuzz_pay_callback_url/triken/paysuccess.php?pm=$pm&cart_id=$cart_id&branch_id=$branch_id&delivery=$delivery&package_chg=$package_chg&rest_key=$schema&user_id=$user_id&locName=$delivery_address&latitude=$cus_lat&longitude=$cus_long",
-    "furl" => "$easebuzz_pay_callback_url/triken/cart.php?branch_id=$branch_id",
+    "surl" => "$easebuzz_pay_callback_url/paysuccess.php?pm=$pm&cart_id=$cart_id&branch_id=$branch_id&delivery=$delivery&package_chg=$package_chg&rest_key=$schema&user_id=$user_id&locName=$delivery_address&latitude=$cus_lat&longitude=$cus_long",
+    "furl" => "$easebuzz_pay_callback_url/cart.php?branch_id=$branch_id",
     "udf1" => $udf1,
     "udf2" => $udf2,
     "udf3" => $udf3,
