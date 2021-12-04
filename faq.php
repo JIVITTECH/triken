@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-3 hidden-sm"> </div>
             <div class="col-lg-6 col-sm-12"> 
-                <h2 class="title text-center">FAQ’s</h2>
+                <h2 class="title text-center">FAQ’s1</h2>
                      <div class="accordion accordion-icon accordion-simple show-code-action">
                                     <div class="card">
                                         <div class="card-header">

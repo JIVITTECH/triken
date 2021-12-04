@@ -11,8 +11,10 @@ daily-cut meat to be delivered at their doorstep. </h1>
 </section>
 <script type='text/javascript'>
     $(document).ready(function () {
+        var url_attribute = getAllUrlParams((window.location).toString());
+        var cat_id = url_attribute.category_id;
         if (branch_id !== '-1' && branch_id !== "") {
-            loadAllCustomerReviews(branch_id, '', '');
+            loadAllCustomerReviews(branch_id, cat_id, '');
         }
     });
     

@@ -80,10 +80,15 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-
-$delivery_address = $_COOKIE['locName'];
-$cus_lat = $_SESSION['user_loc_latitude'];
-$cus_long = $_SESSION['user_loc_longitude'];
+if (isset($_COOKIE['locName'])) {
+    $delivery_address = $_COOKIE['locName'];
+}
+if (isset($_SESSION['user_loc_latitude'])) {
+    $cus_lat = $_SESSION['user_loc_latitude'];
+}
+if (isset($_SESSION['user_loc_longitude'])) {
+    $cus_long = $_SESSION['user_loc_longitude'];
+}
 $delivery_address = convert_br_to_newline($delivery_address);
 
 $distance = 0;
