@@ -403,7 +403,7 @@ $sel_cus = "select * from kot_customer_details where id = $customer_id";
 $res_sel_qry = mysqli_query($conn, $sel_cus);
 while ($rows_cnt = mysqli_fetch_array($res_sel_qry)) {
 	$mobile = $rows_cnt['contact_no'];
-	$res_name = "Triken Todays Cuts"
+	$res_name = "Triken Todays Cuts";
 	if ($mobile !== null) {
 		//sendOrderPlacedRequest($conn, $branch_id, $mobile, $invoice_id, $user_id,$date,$res_name); Activate one SMS content approved
 	}
