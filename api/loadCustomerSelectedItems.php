@@ -130,7 +130,7 @@ while ($rows_rad = mysqli_fetch_array($results)) {
 if ($distance <= $radius) {
     $sql = "SELECT db.* ,
        (SELECT COUNT(*) FROM  kot_item_stock_details isd
-        WHERE isd.branch_id = $branch_id AND isd.predef_menu_id = db.menu_id)as stock_chk,
+        WHERE isd.branch_id = $branch_id AND isd.predef_menu_id = db.menu_id AND branch_id = $branch_id)as stock_chk,
        (SELECT if(sum(sm.price)is null,0,sum(sm.price)) FROM sub_modifiers sm
        LEFT JOIN obo_cart_item_modifiers  ocm
        ON ocm.mod_sub_id = sm.mod_sub_id 
