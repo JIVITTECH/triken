@@ -31,7 +31,7 @@ if(sizeof($item_arr) > 0) {
 //echo $qry;
 
 $query = 'select db.* , (SELECT COUNT(*) FROM  kot_item_stock_details isd
-WHERE isd.predef_menu_id = db.predef_menu_id  AND branch_id = $branch)as stock_chk
+WHERE isd.predef_menu_id = db.predef_menu_id  AND branch_id = ' . $branch . ')as stock_chk
 from (
 select pm.predef_menu_id, pm.name as item_name
 ,pm.preqty, IFNULL(kmz.price, pm.price) AS price, pm.tax, pm.image,
