@@ -19,7 +19,7 @@ $number = "";
 }*/
 
 $query = 'select db.* , (SELECT COUNT(*) FROM  kot_item_stock_details isd
-            WHERE isd.branch_id = "'.$branch.'" AND isd.predef_menu_id = db.predef_menu_id AND branch_id = $branch) as stock_chk
+            WHERE isd.branch_id = "'.$branch.'" AND isd.predef_menu_id = db.predef_menu_id) as stock_chk
             from (
             SELECT
      			pm.predef_menu_id, 
