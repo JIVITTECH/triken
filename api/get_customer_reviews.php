@@ -24,8 +24,8 @@ $query = 'SELECT crh.id,
 				 crd.ratings,
 				 crd.feedback,
 				 crd.image
-		    FROM obo_customer_reviews_hdr crh
-			JOIN obo_cust_reviews_hdr_data crd
+		    FROM OBO_CUSTOMER_REVIEWS_HDR crh
+			JOIN OBO_CUST_REVIEWS_HDR_DATA crd
 			  ON crh.id = crd.review_id            
 		   WHERE crh.branch_id = "'.$branch.'"';
 		   

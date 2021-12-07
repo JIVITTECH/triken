@@ -33,15 +33,21 @@ daily-cut meat to be delivered at their doorstep. </h1>
 			if (myObj.length !== 0) {
 				var final_div = '';
 				for (var i = 0; i < myObj.length; i++) {
+					
 					var img = myObj[i].image;
 					var image_path = "";
 					if (img !== "")
 					{
-						image_path = '<img src="' + img + '" class="img-responsive" alt="reviews">';
+						image_path = dirname + img.replace("../", "");
+					} else
+					{
+						image_path = 'images/default.jpg';
 					}
+					
+					var file_path = '<img src="' + image_path + '" class="img-responsive" alt="reviews">';
 
 					var rev_div = '<div class="col-lg-3 col-sm-6"> <div class="doorstep">' +
-					image_path +
+					file_path +
 					'<div class="review">' +
 					'<h4>' + myObj[i].customer_name + '</h4>' + 
 					'<span class="star">';
