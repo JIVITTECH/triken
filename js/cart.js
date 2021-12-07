@@ -447,34 +447,12 @@
 						var delivery = document.getElementById("delivery_cost").innerHTML;
 						var package_chg = document.getElementById("package-id").innerHTML;
 						window.location = "api/ease_buzz_php_controller.php?payment_method=" + pm + "&cart_id=" + cus_cart_id + "&branch=" + branch_id + "&del_cost=" + delivery + "&package_chg=" + package_chg + "&gt_total=" + tmp_gt;
+					}else{
+						setTimeout(saveDeliveryDetails, 1000);
 					}
 				}
 			}
 		};
 	}
 	
-	function saveDeliveryDetails() {
-                    
-		var tmp_gt = document.getElementById("grand_total").innerHTML;
-		var tot_Amt = (+tmp_gt) * 100;
-		var amount = Math.round(tot_Amt);
-		document.getElementById("gt_hidden").value = amount;
-		var pm = document.getElementById("payment_method").value;
-		var delivery = document.getElementById("delivery_cost").innerHTML;
-		var package_chg = document.getElementById("package-id").innerHTML;
-		var del_cost = document.getElementById("delivery_cost").innerHTML;
-		var gt = document.getElementById("gt_hidden").value;
-		var xmlhttp = new XMLHttpRequest();
-		var url = "paysuccess.php?pm=" + pm + "&cart_id=" + cus_cart_id + "&branch_id="
-				+ branch_id + "&user_id=" + customer_id + "&delivery=" + delivery + "&mode=" + 2 + "&package_chg=" + package_chg;
-		xmlhttp.open("GET", url, true);
-		xmlhttp.send();
-		xmlhttp.onreadystatechange = function () {
-			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-				var myObj = xmlhttp.responseText;
-				if (myObj !== "") {
-					location.href = 'order_summary.php?cart_id=' + cus_cart_id;
-				}
-			}
-		};
-	}
+	
