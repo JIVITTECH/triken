@@ -12,7 +12,7 @@ $config_url_pos = "http://localhost/ecaterweb/Catering/POS/";
 
 
 
-$easebuzz_pay_callback_url = "http://localhost/"; // test
+$easebuzz_pay_callback_url = "http://localhost/triken/"; // test
 
 //$easebuzz_pay_callback_url = "https://www.trikentodayscuts.com/"; // live
 
@@ -20,7 +20,7 @@ function paymentMethod($val) {
 
     switch ($val) {
 
-        case 1: return 'Razor Pay';
+        case 1: return 'Razor Pay';
 
         default: return 'Razor Pay';
 
