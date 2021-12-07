@@ -102,7 +102,6 @@ src="https://www.facebook.com/tr?id=477077333803952&ev=PageView
 	        var customer_id = "<?php echo $_SESSION['user_id']; ?>";
 			customer_id = +customer_id;
             var branch_id = "<?php echo $_SESSION['branch_id']; ?>";
-			branch_id = branch_id;
             var cus_cart_id = "<?php echo $_SESSION['cart_id']; ?>";
             cus_cart_id= +cus_cart_id;
 			

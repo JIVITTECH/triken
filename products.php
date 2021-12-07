@@ -33,9 +33,9 @@ function loadAllItemDetails() {
 	var arr1 = getAllUrlParams((window.location).toString());
 
 	if(typeof arr1.category_id === "undefined") {
-        category_id = '';
-    } else {
-		category_id = arr1.category_id;
+            category_id = '';
+        } else {
+	    category_id = arr1.category_id;
 	}
 	if(typeof arr1.search_text === "undefined") {
         search_text = '';
@@ -112,7 +112,7 @@ function loadAllItemDetails() {
 					information = information + "<div class='product-wrap'>" +
 													"<div class='product text-center'>" +
 														"<figure class='product-media'>" +
-															"<a href='items_description.php?item_id=" + myObj[i].menu_id + "'><img onerror='onImgError(this)' src=" + image_path + " alt='Product'/> </a>" +
+															"<a href='items_description.php?category_id=" + category_id+ "&item_id=" + myObj[i].menu_id + "'><img onerror='onImgError(this)' src=" + image_path + " alt='Product'/> </a>" +
 															    "<div class='product-label-group'>" +
 																		narrival_tag +
 																		bseller_tag +
