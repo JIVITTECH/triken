@@ -1,6 +1,9 @@
 function loadItemsDescription() {
 	var information = "";
 	$('#item_container').empty();
+	$('#add_sub').empty();
+	$('#add_to_cart').empty();
+	$('#video_link').empty();
 	var arr1 = getAllUrlParams((window.location).toString());
     var item_id = arr1.item_id;
 	var xmlhttp = new XMLHttpRequest();
@@ -20,9 +23,7 @@ function loadItemsDescription() {
 					if(myObj[i].best_seller !== "Y"){
 						document.getElementById("best_seller_tag").style.display = 'none';
 					}
-				    loadAllRelatedItems();
-
-					
+				    
 					var related_images = myObj[i].related_images;
 					var related_images_tag = "";
 					var image_path = "";
@@ -145,7 +146,9 @@ function loadAllRelatedItems() {
 	var information = "";
 	$('#related_products').empty();
 	var xmlhttp = new XMLHttpRequest();
-	var url = "api/get_list_of_related_products.php?branch=" + branch_id + "&item_name="+ selected_item_name;
+	var arr1 = getAllUrlParams((window.location).toString());
+    var item_id = arr1.item_id;
+	var url = "api/get_list_of_related_products.php?branch=" + branch_id + "&item_id="+ item_id;
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send();
 	xmlhttp.onreadystatechange = function () {
