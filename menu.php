@@ -129,7 +129,6 @@
 					loadCartDataFromCookie();
 				}
 				if(sel_elemt){
-					loadItemsDescription();
 					document.getElementById("qty_in_cart").value = 0;
 				}else{
 					loadCookieData();

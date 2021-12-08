@@ -126,7 +126,8 @@
 
 
 $(document).ready(function () {
-	
+	loadItemsDescription();
+	loadAllRelatedItems();
 });
 
 </script>

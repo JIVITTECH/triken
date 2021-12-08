@@ -1,6 +1,9 @@
 function loadItemsDescription() {
 	var information = "";
 	$('#item_container').empty();
+	$('#add_sub').empty();
+	$('#add_to_cart').empty();
+	$('#video_link').empty();
 	var arr1 = getAllUrlParams((window.location).toString());
     var item_id = arr1.item_id;
 	var xmlhttp = new XMLHttpRequest();
@@ -20,9 +23,7 @@ function loadItemsDescription() {
 					if(myObj[i].best_seller !== "Y"){
 						document.getElementById("best_seller_tag").style.display = 'none';
 					}
-				    loadAllRelatedItems();
-
-					
+				    
 					var related_images = myObj[i].related_images;
 					var related_images_tag = "";
 					var image_path = "";
