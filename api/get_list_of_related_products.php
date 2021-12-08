@@ -9,26 +9,19 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 include("../database.php");
 
 $branch = $_GET['branch'];
-$item_name = $_GET['item_name'];
+$item_id = $_GET['item_id'];
 
-$item_arr = explode(" ", $item_name);
-$qry = "";
-if(sizeof($item_arr) > 0) {
-    for($i = 0; $i < sizeof($item_arr); $i++) {
-        if($i == 0) {
-            $qry = $qry . " AND (";
-        }
-        $qry = $qry . "pm.name LIKE '%$item_arr[$i]%'";
-        if($i != sizeof($item_arr)-1) {
-            $qry = $qry . " OR ";
-        }
-        if($i == sizeof($item_arr)-1) {
-            $qry = $qry . ")";
-        }
-    }
+$category_id = ''; 
+
+$cat_query = 'select menu_id
+              from predefined_menu
+              where predef_menu_id =' . $item_id;
+
+$cat_result = mysqli_query($conn, $cat_query);
+
+while ($rows = mysqli_fetch_array($cat_result)) {
+    $category_id = $rows['menu_id'];
 }
-
-//echo $qry;
 
 $query = 'select db.* , (SELECT COUNT(*) FROM  kot_item_stock_details isd
 WHERE isd.predef_menu_id = db.predef_menu_id)as stock_chk
@@ -63,8 +56,8 @@ and pmc.branch_id = pk_chg.branch_id
 left join predefined_menu_additional pma
 on pma.predef_menu_id = pm.id
 WHERE zt.zone_id = "' . $sel_obo_order_type . '" AND pm.branch = ' . $branch . '
-' . $qry . '
-group by pm.predef_menu_id)db WHERE db.item_name <> "' . $item_name . '"';
+   and pmc.pre_menu_id = "' . $category_id . '"
+group by pm.predef_menu_id)db';
 
 $result = mysqli_query($conn, $query);
 

@@ -142,7 +142,9 @@ function loadAllRelatedItems() {
 	var information = "";
 	$('#related_products').empty();
 	var xmlhttp = new XMLHttpRequest();
-	var url = "api/get_list_of_related_products.php?branch=" + branch_id + "&item_name="+ selected_item_name;
+	var arr1 = getAllUrlParams((window.location).toString());
+    var item_id = arr1.item_id;
+	var url = "api/get_list_of_related_products.php?branch=" + branch_id + "&item_id="+ item_id;
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send();
 	xmlhttp.onreadystatechange = function () {
