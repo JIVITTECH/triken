@@ -214,8 +214,10 @@ function loadAllRelatedItems() {
 					information = information + "<div class='swiper-slide product-widget-wrap'>" +
 													"<div class='product'>" +
 														"<figure class='product-media'>" +
-															"<a href='#'><img onerror='onError(this)' src=" + image_path + " alt='Product'/> </a>" +
-																"<div class='product-label-group'>" +
+														    "<a href='items_description.php?item_id=" + myObj[i].menu_id + "'>" +
+															    "<img onerror='onError(this)' src=" + image_path + " alt='Product'/>" + 
+															"</a>" +
+															"<div class='product-label-group'>" +
 																	bseller_tag +
 															"</div>" +
 														"</figure>" +
