@@ -405,13 +405,13 @@ while ($rows_cnt = mysqli_fetch_array($res_sel_qry)) {
 	$mobile = $rows_cnt['contact_no'];
 	$res_name = "Triken Todays Cuts";
 	if ($mobile !== null) {
-		//sendOrderPlacedRequest($conn, $branch_id, $mobile, $invoice_id, $user_id,$date,$res_name); Activate one SMS content approved
+		sendOrderPlacedRequest($conn, $branch_id, $mobile, $invoice_id, $user_id,$res_name);
 	}
 }
 
-function sendOrderPlacedRequest($conn, $branch_id, $mobile, $invoice_id, $customer_id,$date,$res_name) {
+function sendOrderPlacedRequest($conn, $branch_id, $mobile, $invoice_id, $customer_id,$res_name) {
 
-    $content = "Your order ". $invoice_id . " has been placed and it will arrive soon!! Thank you for choosing " . $res_name . " . Your support means a lot to us ";
+    $content = "Your order ". $invoice_id . " has been placed and it will arrive soon!! Thank you for choosing " . $res_name . " . Your support means a lot to us - Triken Todays Cuts ";
     $senderId = "ECAPIN";
     $code = "OBOOTP";
     $section = "OBO";
