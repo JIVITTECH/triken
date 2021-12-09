@@ -13,7 +13,7 @@ $sel_obo_order_type = "3";
 $category_id = $_GET['category_id'];
 
 $query = 'select db.* , (SELECT COUNT(*) FROM  kot_item_stock_details isd
-		WHERE isd.predef_menu_id = db.predef_menu_id AND branch_id = db.branch)as stock_chk
+		WHERE isd.predef_menu_id = db.predef_menu_id AND branch_id = db.branch AND isd.zone_id = $sel_obo_order_type)as stock_chk
 		from (
 		select pm.predef_menu_id, pm.name as item_name
 		,pm.preqty, IFNULL(kmz.price, pm.price) AS price, pm.tax, pm.image,

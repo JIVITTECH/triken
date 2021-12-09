@@ -20,7 +20,7 @@ if ($type == 1) {
                         AND ocid.cart_id = $cart_id
                         JOIN kot_item_stock_details kisd
                         ON kisd.branch_id = ocid.branch_id
-                        AND kisd.predef_menu_id = ocid.predef_menu_id";
+                        AND kisd.predef_menu_id = ocid.predef_menu_id WHERE AND kisd.zone_id = $sel_obo_order_type";
 //echo $sql;
         $result = mysqli_query($conn, $query);
     }

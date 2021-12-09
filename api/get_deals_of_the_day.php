@@ -13,7 +13,7 @@ $branch = $_GET['branch'];
 
 $query = 'select db.* ,
                 (SELECT COUNT(*) FROM  kot_item_stock_details isd
-                 WHERE isd.predef_menu_id = db.predef_menu_id AND isd.branch_id = ' . $branch . ' )as stock_chk
+                 WHERE isd.predef_menu_id = db.predef_menu_id AND isd.branch_id = ' . $branch . ' AND isd.zone_id = ' . $sel_obo_order_type . ')as stock_chk
           from (
               select pm.predef_menu_id, 
                      pm.name as item_name,
