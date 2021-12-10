@@ -74,6 +74,16 @@
 						 </div>
                     </div>
                 </div>
+				<div class="msearch hidden-md">
+                    <form  onsubmit="return false"
+                                class="input-wrapper header-search hs-expanded hs-round d-md-flex">
+                    <button class="btn btn-search productsearch ">
+						<i class="w-icon-search" onclick="search_products_by_text_mobile()"></i>
+						<input type="text" class="form-control pt-0 pb-0" name="search" id="search_mobile" onblur="this.placeholder = 'Search your delicious product'"
+						placeholder="Search your delicious product" onfocus="this.placeholder = ''" required />
+					</button>
+                    </form>
+                </div>
                 <div class="submenu">
                     <div class="container">
                 <div class="category-wrapper row cols-12" id="top_container">
@@ -93,6 +103,21 @@
     </div>
 </div>
 <script>
+			function search_products_by_text_mobile() {
+				var search_text = document.getElementById("search_mobile").value;
+				if (search_text.trim().length != '0') {
+				   window.location.href = "search.php?search_text=" + search_text;
+				}
+			}
+
+			$("#search_mobile").keyup(function(event) {
+				var search_text = document.getElementById("search_mobile").value;
+				if (event.keyCode === 13) {
+					if (search_text.trim().length != '0') {
+					   window.location.href = "search.php?search_text=" + search_text;
+					}
+				}
+			});
 		    
 			$(document).ready(function () {
 				var loadDynamicData = "";

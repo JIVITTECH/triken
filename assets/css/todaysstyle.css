@@ -621,7 +621,7 @@ label.ls-25 {color: #333333; font-family: 'CerebriSansPro-Medium'; font-size: 18
 .btn-continue {border: transparent; text-transform: initial; font-weight: 400; font-size: 15px; color: #EF6723;float: left;margin-top:15px;}
 .checkout_contact h3 {  font-weight: 400; letter-spacing: 0px;}
 .checkout_sec .cart-price{font-weight: 600;}
-.cart-table .product-quantity .form-control { border: 1px solid #eee; padding-left:35px; padding-right:2px}
+.cart-table .product-quantity .form-control { border: 1px solid #eee;}
 input[type="date"]::-webkit-calendar-picker-indicator {
     color: rgba(0, 0, 0, 0);
     opacity: 1;
@@ -648,7 +648,7 @@ td.product-quantity { display: grid; border-bottom: 0px;}
 margin-top: 2%; font-weight: 400; text-transform: initial; font-size: 15px;}
 #sign-in { padding-top: 3%;}
 .login-popup{width: 480px; border-radius: 10px;}
-#otp{padding-left: 25px;
+#otp{padding-left: 35px;
   letter-spacing: 42px;
   border: 0;
   background-image: linear-gradient(to left, #ACACAC 70%, #fff 0%);
@@ -936,8 +936,8 @@ text-decoration: none;
     width: 100%;
     margin: 0 auto;
     display: none;
-    position: absolute;
-    z-index: 1000;
+    position: fixed;
+    z-index: 99999;
     height: 100vh;  
     background-color: #00000057;
     max-width: 100%; text-align:center;}
@@ -1025,4 +1025,8 @@ span.dslot {color: #828282; font-size: 16px;display: block; padding-bottom: 5px;
 }
 
 
-    
+/** mobile search **/
+.msearch .productsearch { width: 100%; padding:0; background-color: #D44823;}
+.msearch .header-search.hs-round .btn-search{margin-left:0px;border-radius: 0px;
+    padding: 0 15px;margin: 15px 0;}
+.msearch .header-search.hs-expanded{ background: #e0522d;}
