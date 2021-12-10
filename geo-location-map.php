@@ -168,7 +168,15 @@
 <style>
     .pac-container:after{
         content:none !important;
-        z-index: 99999;
+        z-index: 200000;
+    }
+	
+	.pac-container {
+         z-index: 9999999999 !important;
+    }
+    
+    .pac-logo{
+        z-index: 9999999999 !important;
     }
 </style>
 
