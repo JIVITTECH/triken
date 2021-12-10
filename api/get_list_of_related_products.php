@@ -15,7 +15,8 @@ $category_id = '';
 
 $cat_query = 'select menu_id
               from predefined_menu
-              where predef_menu_id =' . $item_id;
+              where predef_menu_id =' . $item_id . '
+                 and branch =' . $branch;
 
 $cat_result = mysqli_query($conn, $cat_query);
 
