@@ -55,7 +55,7 @@
                 </div>-->
                 <div class="footer-bottom">
                     <div class="footer-left">
-                        <p class="copyright">© 2021. Triken Todays’ Cuts. All Rights Reserved.</p>
+                        <p class="copyright">© 2021. K2Farms. All Rights Reserved.</p>
                     </div>
                     <div class="footer-right">
                         <figure class="payment">
