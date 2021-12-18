@@ -294,7 +294,7 @@
 											"</a>" +
 											"</div>" +
 											"</td>" +
-											"<td class='product-name'>" +
+											"<td class='product-name'  style='white-space: normal !important;'>" +
 								  			"<a>" + myObj[i].name + stock_chk +"</a>" +
                                             "<div  class='product-price'>" +
 	                                        "<ins id = 'price_" + myObj[i].cart_item_id  + "' class='new-price'>" + total_price.toFixed(2) + "</ins>" +
