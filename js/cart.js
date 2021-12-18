@@ -110,7 +110,7 @@
 								  			"<a>" + myObj[i].name +  stock_chk +"</a>" +
                                             "<div  class='product-price'>" +
 	                                        "<ins id = 'price_" + myObj[i].cart_item_id  + "' class='new-price'>" + total_price.toFixed(2) + "</ins>" +
-								            "<span class='gms'>" + net_weight + " " + myObj[i].measure + "</span>" +
+								            "<span class='gms'>" + (+net_weight).toFixed(1) + " " + myObj[i].measure + "</span>" +
 								            "</div>" +
                                             "</td>" +
                                             "<td class='product-quantity'>" +
