@@ -705,7 +705,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 											"<span class='cross'>x" + myObj[i].quantity +  stock_chk  + "</span>" +
 											"<div  class='product-price'>" +
 	                                        "<ins class='new-price'>" + total_price.toFixed(2) + "</ins>" +
-											"<span class='gms'>" + net_weight + " " + myObj[i].measure + "</span>" +
+											"<span class='gms'>" + (+net_weight).toFixed(1) + " " + myObj[i].measure + "</span>" +
 											"</div>" +
                                             "</td>" +
                                             "</tr>";
