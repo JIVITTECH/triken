@@ -178,7 +178,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
     <div class="container">
         <div class="row gutter-lg">
             <div class="col-lg-8 pr-lg-4 mb-6">
-                <table class="shop-table cart-table">
+                <table style="table-layout: fixed;" class="shop-table cart-table">
                     <thead> <tr> <th colspan="3" class="product-name"><span>Products</span></th> </tr> </thead>
                     <tbody id = "selected_items">
                     </tbody>
@@ -359,7 +359,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 	
         <div class="row gutter-lg">
             <div class="col-lg-8 pr-lg-4 mb-6">
-                <table class="shop-table cart-table">
+                <table style="table-layout: fixed;" class="shop-table cart-table">
                     <thead> <tr> <th colspan="3" class="product-name"><span>Your Order</span></th> </tr> </thead>
                     <tbody id = "final_cart">
                       
@@ -700,7 +700,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 											"</a>" +
 											"</div>" +
 											"</td>" +
-											"<td class='product-name'>" +
+											"<td class='product-name' style='white-space: normal !important;'>" +
 								  			"<a>" + myObj[i].name + "</a>" +
 											"<span class='cross'>x" + myObj[i].quantity +  stock_chk  + "</span>" +
 											"<div  class='product-price'>" +
