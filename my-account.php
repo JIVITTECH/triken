@@ -1,5 +1,5 @@
 <?php
-$title = 'Country Chicken - Triken ';
+$title = 'My Account';
 $description = 'The only thing we stock is the packages we use to deliver the meat.';
 $pageRobots = 'index,nofollow';
 $image = ' ';
