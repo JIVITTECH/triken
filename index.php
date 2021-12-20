@@ -83,6 +83,8 @@
 	     <div class="swiper-container swiper-theme post-wrapper appear-animate" data-swiper-options="{
                         'slidesPerView': 1.1,
                         'spaceBetween': 20,
+                        'observer': true,
+                        'observeParents': true,
                         'breakpoints': {
                             '576': {
                                 'slidesPerView': 1

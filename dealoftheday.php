@@ -10,9 +10,11 @@
         		</div>
         	</div>
             <div class="swiper slider_sec">
-                <div class="swiper-container swiper-theme nav-top" data-swiper-options="{
+                <div class="swiper-container swiper-theme nav-top" style="max-height: 100%;box-sizing: border-box;"data-swiper-options="{
                                         'slidesPerView': 1.1,
                                         'spaceBetween': 10,
+                                        'observer': true,
+                                        'observeParents': true,
                                         'breakpoints': {
                                             '576': {
                                                 'slidesPerView': 2
