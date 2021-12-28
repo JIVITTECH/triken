@@ -220,6 +220,8 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
                                                         <option value="2">9-11 AM</option>
                                                         <option value="3">11-01 PM</option>
                                                         <option value="4">1-3 PM</option>
+														<option value="5">3-5 PM</option>
+														<option value="6">5-7 PM</option>
                                                     </select>
                                                 </div>
                                             </div>
