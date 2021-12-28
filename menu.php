@@ -33,7 +33,7 @@
 								<span class="htext">Log In/Sign Up</span></a>
 							<?php } ?>
                             <?php if ($customer_id  !== '-1') { ?>    
-                            <a  onclick="logout()" id="logout" class="login sign-in"> <i class="fa fa-user-circle" aria-hidden="true"></i>
+                            <a href="logout.php" id="logout"> <i class="fa fa-user-circle" aria-hidden="true"></i>
 								<span class="htext">Logout</span></a>
 							<?php } ?>
 							<div class="dropdown cart-dropdown mr-0 mr-lg-2">
