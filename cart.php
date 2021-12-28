@@ -208,7 +208,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
                                                     </div>
                                                     <div id="cash-on-delivery" class="card-body collapsed">
                                                         <form>
-                                                    <input placeholder="Select your delivery date" value="" onchange ="setCookie('del_slot',365,2)" class="form-control" type="date"  id="date" min="<?= date('Y-m-d'); ?>" >
+                                                    <input placeholder="Select your delivery date" value="" onchange ="setCookie('del_slot',365,2)" class="form-control" type="date"  id="date" min="<?= date('Y-m-d'); ?>" max="<?= date('Y-m-d', strtotime('+2 days')); ?>" >
                                 
                                 
                                 <div class="form-group">
