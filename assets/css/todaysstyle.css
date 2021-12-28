@@ -1030,3 +1030,6 @@ span.dslot {color: #828282; font-size: 16px;display: block; padding-bottom: 5px;
 .msearch .header-search.hs-round .btn-search{margin-left:0px;border-radius: 0px;
     padding: 0 15px;margin: 15px 0;}
 .msearch .header-search.hs-expanded{ background: #e0522d;}
+.mfp-wrap.mfp-close-btn-in.mfp-auto-cursor.mfp-login-popup.mfp-fade.mfp-ready{ pointer-events: none;}
+#sign-in, .mfp-close {cursor: initial; pointer-events: initial;}
+.mfp-bg.mfp-ready.mfp-fade{pointer-events:none;}
