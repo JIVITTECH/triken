@@ -28,5 +28,6 @@ if (isset($_COOKIE['cart_id'])) {
 }
 /*if (isset($_COOKIE['locName'])) {
     setcookie("locName", "", time()+(3600*24*30));
-}
-?>*/
+}*/
+header("location:index.php");
+?>
