@@ -125,7 +125,6 @@
 						}
 						$('#selected_items').empty();
 						$('#selected_items').append(information);
-						document.getElementsByClassName("product-name").style.whiteSpace = "normal !important";
 						document.getElementById("sub_total").innerHTML = "";
 						document.getElementById("sub_total").innerHTML = (+grand_sub_total).toFixed(2);
 						} else {
