@@ -137,7 +137,7 @@
 					}
 					
 					if (getCookie("del_type") !== undefined && getCookie("del_type") !== null && getCookie("del_type") !=="") {
-					   var del_slot = getCookie("selected_date") + " | " + getCookie("del_type") + " slot";
+					   var del_slot = getCookie("selected_date") + " | " + cart_details.del_slot;
 					} else {
 					   var del_slot = getCookie("selected_date");
 					}
