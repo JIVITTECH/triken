@@ -12,7 +12,8 @@ $cart_id = $_GET['cus_cart_id']; // 1 - live order, 2 - Past Orders
     $sql = "select
         cd.*,cd.customer_id as cus_id ,
 		DATE_FORMAT(cd.ordered_date_time, '%d %b %Y, %r') AS ordered_date_time_formatted,
-        id.razor_pay_id   
+        id.razor_pay_id,
+        IF(INSTR(slot, '<br>') = 0, CONCAT(slot, ' slot'), SUBSTRING(slot, INSTR(slot,'<br>') + LENGTH('<br>'), LENGTH(slot))) AS slot
         from obo_cart_details cd
         left join invoice_details id
 	    on id.invoice_id = cd.invoice_no                
@@ -43,6 +44,7 @@ if ($res_sql_cnt > 0) {
         $del_charge = $rw['del_charge'];
         $pkg_charge = $rw['packing_charge'];
         $payment_type = $rw['razor_pay_id'];
+        $slot = $rw['slot'];
         $cart_detail_tmp = array(
 				"cart_details" => array(
                 "cart_id" => $cart_id,
@@ -58,7 +60,7 @@ if ($res_sql_cnt > 0) {
                 "del_charge" => $del_charge,
                 "payment_type" => $payment_type,
 				"del_day" => "01/10/2021",
-                "del_slot" => "7-9 AM"
+                "del_slot" => $slot
             )
         );
 
