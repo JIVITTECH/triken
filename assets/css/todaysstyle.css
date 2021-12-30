@@ -649,9 +649,10 @@ margin-top: 2%; font-weight: 400; text-transform: initial; font-size: 15px;}
 #sign-in { padding-top: 3%;}
 .login-popup{width: 480px; border-radius: 10px;}
 #otp{padding-left: 15px;
+  margin-left: 5px;
   letter-spacing: 38px;
   border: 0;
-  background-image: linear-gradient(to left, #ACACAC 70%, #fff 0%);
+  background-image: linear-gradient(to left, #ACACAC 75%, #fff 0%);
   background-position: bottom;
   background-size: 50px 1px;
   background-repeat: repeat-x;
