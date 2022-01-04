@@ -1,6 +1,7 @@
 @media only screen and (max-width: 767px) {
 	#my_account{	display:none;	}	
 	html, .intro-wrapper.homebanner, .homebanner .banner { overflow-x: hidden;}
+	.mfp-wrap.mfp-close-btn-in.mfp-auto-cursor.mfp-login-popup.mfp-fade.mfp-ready{pointer-events:initial;}
 }
 
 @media only screen and (max-width: 1025px) {
