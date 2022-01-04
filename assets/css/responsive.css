@@ -1,5 +1,6 @@
 @media only screen and (max-width: 767px) {
-	#my_account{	display:none;	}			
+	#my_account{	display:none;	}	
+	html, .intro-wrapper.homebanner, .homebanner .banner { overflow-x: hidden;}
 }
 
 @media only screen and (max-width: 1025px) {
