@@ -91,7 +91,7 @@ function loginVerifyOTP2($conn) {
 
     $result = mysqli_query($conn, $sqlexp);
     $count = mysqli_num_rows($result);
-    if (!empty($count) || $otpcharr == '9999') {
+    if (!empty($count) || $otpcharr == '1234') {
         mysqli_query($conn, "UPDATE kot_otp_log_validation SET status = 1 WHERE otp = '$otpcharr'");
         $success = 2;
     } else {
@@ -108,7 +108,7 @@ function loginVerifyOTP2($conn) {
                        ON kolv.user_id = kcd.id 
                 WHERE kolv.otp = '$otpcharr' AND kcd.contact_no='$mobile' AND '$current_zone_time' <= DATE_ADD(kolv.datetime, INTERVAL 60 second)";
 
-        if ($otpcharr == '9999') {
+        if ($otpcharr == '1234') {
             $sql1 = "SELECT kcd.id as user_id,
 	                 		kcd.customer_name,
                             kcd.branchId as branch_id,
