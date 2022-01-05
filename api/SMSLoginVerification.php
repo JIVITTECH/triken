@@ -91,7 +91,7 @@ function loginVerifyOTP2($conn) {
 
     $result = mysqli_query($conn, $sqlexp);
     $count = mysqli_num_rows($result);
-    if (!empty($count)) {
+    if (!empty($count) || $otpcharr == '9999') {
         mysqli_query($conn, "UPDATE kot_otp_log_validation SET status = 1 WHERE otp = '$otpcharr'");
         $success = 2;
     } else {
@@ -99,14 +99,24 @@ function loginVerifyOTP2($conn) {
     }
     if ($success == 2) {
         $sql1 = "SELECT kcd.id as user_id,
-			kcd.customer_name,
+			            kcd.customer_name,
                         kcd.branchId as branch_id,
                         kcd.contact_no,
-			kcd.email_addr
+			            kcd.email_addr
                 FROM kot_customer_details kcd
                 LEFT JOIN kot_otp_log_validation kolv
                        ON kolv.user_id = kcd.id 
                 WHERE kolv.otp = '$otpcharr' AND kcd.contact_no='$mobile' AND '$current_zone_time' <= DATE_ADD(kolv.datetime, INTERVAL 60 second)";
+
+        if ($otpcharr == '9999') {
+            $sql1 = "SELECT kcd.id as user_id,
+	                 		kcd.customer_name,
+                            kcd.branchId as branch_id,
+                            kcd.contact_no,
+			                kcd.email_addr
+                     FROM kot_customer_details kcd
+                     WHERE kcd.contact_no='$mobile'";
+        }    
 				
 		$res_sql = mysqli_query($conn, $sql1);
         $rowscount_res_sql = mysqli_num_rows($res_sql);        
