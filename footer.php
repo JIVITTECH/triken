@@ -10,7 +10,7 @@
                                     <li><a href="about.php">About</a></li>
                                     <li><a href="recipes.php">Recipes & Tips</a></li>
                                     <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Terms &amp; Conditions</a></li>
+                                    <li><a href="tc.php">Terms &amp; Conditions</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -22,7 +22,7 @@
                             <div class="widget">
                                 <h4 class="widget-title">For Feedback</h4>
                                 <p class="ps-footer__work">Call:  <a href="tel:86867 54754">8686 754 754</a> </p>
-                                <p class="ps-footer__work"> Mail:  <a href="mailto:care@triken.in">care@triken.in</a></p>
+                                <p class="ps-footer__work"> Mail:  <a href="mailto:care@todayscut.com">care@todayscut.com</a></p>
                                 <h5 class="widget-title address">Office Address</h5>
                                <address> 21, AKG Nagar, PSG Govindasamy Nagar, 
                                     Opp. Kasthuribai Hospital, Kamarajar 
