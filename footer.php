@@ -10,7 +10,7 @@
                                     <li><a href="about.php">About</a></li>
                                     <li><a href="recipes.php">Recipes & Tips</a></li>
                                     <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Terms &amp; Conditions</a></li>
+                                    <li><a href="tc.php">Terms &amp; Conditions</a></li>
                                 </ul>
                             </div>
                         </div>
