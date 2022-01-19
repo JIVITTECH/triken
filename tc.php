@@ -27,16 +27,16 @@ $page ="Terms & Conditions";
 parent or guardian.
                                                                 </p>
 <h3 class="title title-center">USER CONDUCT</h3>    
-                                                                <p class="mx-auto text-center">You agree that you will not violate, or encourage others to violate, any law,
+                                                                <p class="mx-auto">You agree that you will not violate, or encourage others to violate, any law,
 contract, intellectual property or other third party right, or commit a tort, and that
 you are solely responsible for your conduct, while accessing or using the Sites.
 You agree that you will abide by these Terms and will not: </p>
 
- <p class="mx-auto text-center">i) Engage in any harassing, threatening, intimidating, predatory or stalking
+ <p class="mx-auto">i) Engage in any harassing, threatening, intimidating, predatory or stalking
 conduct; </p>
- <p class="mx-auto text-center">ii) Use or attempt to use another user’s Account without authorization from such
+ <p class="mx-auto">ii) Use or attempt to use another user’s Account without authorization from such
 user; </p>
- <p class="mx-auto text-center">iii) Use the Sites in any manner that could interfere with, disrupt, negatively affect
+ <p class="mx-auto">iii) Use the Sites in any manner that could interfere with, disrupt, negatively affect
 or inhibit other users from fully enjoying the Sites or that could damage, disable,
 overburden or impair the functioning of the Sites in any manner, including by (a)
 uploading or otherwise disseminating any virus, adware, spyware, worm, or other
@@ -45,18 +45,18 @@ of the Sites, (c) collecting personal information about another user or third pa
 without consent, or (d) interfering with or disrupting any network, equipment, or
 server connected to or used to provide the Sites;
  </p>
-  <p class="mx-auto text-center">iv) Reverse engineer any aspect of the Sites or do anything that might discover
+  <p class="mx-auto">iv) Reverse engineer any aspect of the Sites or do anything that might discover
 source code or bypass or circumvent measures employed to prevent or limit
 access to any Content, area or code of the Sites; </p>
- <p class="mx-auto text-center">v) Attempt to circumvent any content-filtering techniques we employ or attempt
+ <p class="mx-auto">v) Attempt to circumvent any content-filtering techniques we employ or attempt
 to access any feature or area of the Sites that you are not authorized to access; </p>
- <p class="mx-auto text-center">vi) Develop any third-party applications that interact with User Content or the
+ <p class="mx-auto">vi) Develop any third-party applications that interact with User Content or the
 Sites without our prior written consent; </p>
- <p class="mx-auto text-center">vii) Use any robot, spider, crawler, scraper, script, browser extension, offline
+ <p class="mx-auto">vii) Use any robot, spider, crawler, scraper, script, browser extension, offline
 reader or other automated means or interface not authorized by us to access the
 Sites, extract data or otherwise interfere with or modify the rendering of Site
 pages or functionality; </p>
- <p class="mx-auto text-center">vii) Use the Sites for any illegal or unauthorized purpose, or engage in, encourage
+ <p class="mx-auto">vii) Use the Sites for any illegal or unauthorized purpose, or engage in, encourage
 or promote any activity that violates these Terms. </p>
  
  <h3  class="title title-center" >NO RESALE</h3>
@@ -82,7 +82,7 @@ or content thereof) without notice at any time.</p>
 change, suspension or discontinuance of the Service.</p>
 
 <h3  class="title title-center" >ACCURACY OF BILLING AND ACCOUNT INFORMATION</h3>
-<p class="mx-auto text-center">We reserve the right to refuse any order you place with us. We may, in our sole
+<p class="mx-auto text-justify">We reserve the right to refuse any order you place with us. We may, in our sole
 discretion, limit or cancel quantities purchased per person, per household or per
 order. These restrictions may include orders placed by or under the same
 customer account, the same credit card, and/or orders that use the same billing
@@ -91,7 +91,7 @@ we may attempt to notify you by contacting the e-mail and/or billing
 address/phone number provided at the time the order was made. We reserve the
 right to limit or prohibit orders that, in our sole judgment, appear to be placed by
 dealers, resellers or distributors.</p>
-<p class="mx-auto text-center">You agree to provide current, complete and accurate purchase and account
+<p class="mx-auto text-justify">You agree to provide current, complete and accurate purchase and account
 information for all purchases made at our website. You agree to promptly update
 your account and other information, including your email address and credit card
 numbers and expiration dates, so that we can complete your transactions and
@@ -109,7 +109,7 @@ to these Terms of Service constitutes acceptance of those changes.</p>
 <h3  class="title title-center" >DISPUTES AND ARBITRATION</h3>
 <p class="mx-auto text-center">We hope to make you a happy and satisfied customer, but if there is a dispute that
 needs to be resolved, outlines what is expected of both of us.</p>
-<p class="mx-auto text-center">Before you may pursue or participate in a dispute (or raise such dispute as a
+<p class="mx-auto text-justify">Before you may pursue or participate in a dispute (or raise such dispute as a
 defense) in any court or arbitration against Triken’s or its Associates for any
 claims, including claims related in any way to Triken’s products, these Terms,
 billing, privacy, advertising, or Triken’s or its Associates' communications with
@@ -125,16 +125,10 @@ Triken’s receives your written notice of claim, you may pursue your claim in
 arbitration or, solely to the extent specifically provided below, in court.</p>
                                                                 
                                                                 </div>
-						</div>
-						
-						<ul class="nav-filters" id="category_container">
-                        
-						</ul>
-					
+						</div>					
 					<hr>
 					
-					<div id="recipe_container" >
-					</div>
+					
                     
                       
                     </div>
@@ -147,12 +141,6 @@ arbitration or, solely to the extent specifically provided below, in court.</p>
 			</div>
 			
 		</main>
-<script>
-$(document).ready(function () {
-	loadSelectedCategory();
-});
-</script>
-
 
 <?php include('footer.php'); ?>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
