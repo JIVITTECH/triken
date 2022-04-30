@@ -1,4 +1,50 @@
-        <header class="header">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 99999; /* Sit on top */
+  padding-top: 15%; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #f2f2f2;
+  margin: auto;
+  padding: 50px;
+  border: 1px solid #888;
+  width: 100%;
+  font-size: 18px;
+  color: white;
+  border-radius: 25px;
+  
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
+<header class="header">
             <div class="mlogo">
                         <a href="index.php" class="logo">
                             <img src="assets/images/logo.png" alt="logo">
@@ -96,7 +142,16 @@
         <!-- End of Header -->
 
 <main class="main">
-</main>	
+</main>
+        <!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+      <center><h2 id="msg" style="color:red"></h2></center>
+  </div>
+
+</div>
 <div id="popup1" class="overlay">
     <div class="popup">
         <?php include('location.php'); ?>
@@ -118,10 +173,32 @@
 					}
 				}
 			});
+                        
+                        function shopCloseStatus(){
+                             // Get the modal
+                                var modal = document.getElementById("myModal");
+
+                                // Get the button that opens the modal
+                                var btn = document.getElementById("myBtn");
+
+                                // Get the <span> element that closes the modal
+                                var span = document.getElementsByClassName("close")[0];
+                                $.get("api/getBranchHolidayStatus.php?action=getStatus", function (data, status) {
+					var jsonStr = JSON.parse(data);
+                                       if(jsonStr[0].message!==''){
+                                           modal.style.display = "block";
+                                           document.getElementById("msg").innerHTML =jsonStr[0].message;
+                                           return;
+                                       }
+					
+				});
+                        }
+                            
 		    
 			$(document).ready(function () {
 				var loadDynamicData = "";
 				var no_of_active_branches = 0;
+                                shopCloseStatus();
 				$.get("api/load_home_page.php?action=get_list_of_cities", function (data, status) {
 					var jsonStr = JSON.parse(data);
 					for (var i = 0; i < jsonStr.length; i++) {
