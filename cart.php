@@ -599,8 +599,28 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
     });
        
 	var stock_chk_array = [];
+	var membership_del_cost = 0;
+	var membership_id = 0;
 	
     function loadFinalizedCart() {
+		let date = new Date();
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth()+1; 
+		var yyyy = today.getFullYear();
+		if(dd < 10) 
+		{
+			dd = '0' + dd;
+		} 
+		if(mm < 10) 
+		{
+			mm = '0' + mm;
+		} 
+		var selected_date = yyyy + '-' + mm + '-' + dd;
+		var date_sel = document.getElementById("date").value;
+		if(date_sel == ""){
+			document.getElementById("date").value = date_sel;
+		}
 		stock_chk_array = [];
 		grand_sub_total = 0;
 		$('#final_cart').empty();
@@ -620,6 +640,8 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 							var cover_photo = myObj[i].image;
 							var image_path = "";
 							var stock_chk = "";
+							membership_id = myObj[i].membership_id;
+							membership_del_cost = myObj[i].membership_cost;
 							if (myObj[i].stock_chk === "0") {
 								stock_chk = "";
 							} else {
@@ -730,6 +752,11 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 							document.getElementById("cancel_coupon").style.display = "none";
 						}
                         delivery_cost = "<?php echo $delivery_charge; ?>";
+						if(delivery_cost < membership_del_cost){
+							delivery_cost = 0;
+						}else{
+							delivery_cost = +delivery_cost - +membership_del_cost;
+						}
                         document.getElementById("delivery_cost").innerHTML = (+delivery_cost).toFixed(2);
 						document.getElementById("discount-id").innerHTML = (+discount_amt).toFixed(2);
                         document.getElementById("grand_total").innerHTML = (+grand_sub_total - +discount_amt + +delivery_cost + +pkg_price).toFixed(2);
@@ -742,7 +769,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
                 }
 			}
 		};
-        var url = "api/loadCustomerSelectedItems.php?cart_id=" + cus_cart_id + "&branch=" + branch_id + "&order_type=" + sel_obo_order_type;
+        var url = "api/loadCustomerSelectedItems.php?cart_id=" + cus_cart_id + "&branch=" + branch_id + "&order_type=" + sel_obo_order_type + "&date_sel=" + date_sel;
 		xhttp.open("GET", url, true);
 		xhttp.send();
 	}
