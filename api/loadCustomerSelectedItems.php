@@ -112,7 +112,7 @@ if ($distance <= $radius) {
         $date_Sel = $_GET['date_sel'];
 		$sql_membership = "SELECT 
 								MAX(max_amount) as max_amount,
-								membership_id
+								mcd.membership_id
 								FROM membership_header mh
 								LEFT JOIN membership_zone_details mzd 
 								ON mzd.membership_id = mh.id
@@ -120,16 +120,17 @@ if ($distance <= $radius) {
 								ON mcd.membership_id = mzd.membership_id  
 								WHERE customer_id = '$user_id' AND zone_id = $order_type
 								AND mh.branch_id = $branch_id AND remaining_free_deliveries > 0
-								AND ((TRIM('$date_Sel') = '' OR DATE_FORMAT(mh.valid_from, '%Y-%m-%d') >= '$date_Sel') AND
-								(TRIM('$date_Sel') = '' OR DATE_FORMAT(mh.valid_to, '%Y-%m-%d') <= '$date_Sel'))";
-								
+								AND '$date_Sel' BETWEEN mh.valid_from AND mh.valid_to
+								ORDER BY mcd.id DESC LIMIT 1";
 		$sql_membership_res = mysqli_query($conn, $sql_membership);
-		while ($qry_mem = mysqli_fetch_array($sql_membership_res)) {
-			$max_amount = $qry_mem['max_amount'];
-			$membership_id = $qry_mem['membership_id'];
-		}							
+		$cnt_mem = mysqli_num_rows($sql_membership_res);
+		if ($cnt_mem !== 0) {
+			while ($qry_mem = mysqli_fetch_array($sql_membership_res)) {
+				$max_amount = $qry_mem['max_amount'];
+				$membership_id = $qry_mem['membership_id'];
+			}							
+		}
 	}
-	
     $sql = "SELECT db.* ,
        (SELECT COUNT(*) FROM  kot_item_stock_details isd
         WHERE isd.branch_id = $branch_id AND isd.predef_menu_id = db.menu_id AND isd.zone_id = $order_type)as stock_chk,

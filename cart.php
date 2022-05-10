@@ -447,7 +447,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 													}else{
 														if (payementMethod !== "") {
 															document.getElementById('id02').style.display = 'block';
-																saveDetails();
+															saveDetails();
 														}
 													}
 												}else{
@@ -471,7 +471,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 												var xmlhttp = new XMLHttpRequest();
 												var url = "paysuccess.php?pm=" + pm + "&cart_id=" + cus_cart_id + "&branch_id="
 														+ branch_id + "&user_id=" + customer_id + "&delivery=" + delivery + "&mode=" + 2 + "&package_chg=" + package_chg + "&latitude=" + latitude 
-														+ "&longitude=" + longitude;
+														+ "&longitude=" + longitude + "&membership_id=" + membership_id;
 												xmlhttp.open("GET", url, true);
 												xmlhttp.send();
 												xmlhttp.onreadystatechange = function () {
