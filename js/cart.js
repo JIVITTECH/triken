@@ -446,7 +446,7 @@
 						var pm = document.getElementById("payment_method").value;
 						var delivery = document.getElementById("delivery_cost").innerHTML;
 						var package_chg = document.getElementById("package-id").innerHTML;
-						window.location = "api/ease_buzz_php_controller.php?payment_method=" + pm + "&cart_id=" + cus_cart_id + "&branch=" + branch_id + "&del_cost=" + delivery + "&package_chg=" + package_chg + "&gt_total=" + tmp_gt;
+						window.location = "api/ease_buzz_php_controller.php?payment_method=" + pm + "&cart_id=" + cus_cart_id + "&branch=" + branch_id + "&del_cost=" + delivery + "&package_chg=" + package_chg + "&gt_total=" + tmp_gt + "&membership_id=" + membership_id;
 					}else{
 						setTimeout(saveDeliveryDetails, 1000);
 					}
