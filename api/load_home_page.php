@@ -49,10 +49,12 @@ if ($_GET["action"] == "get_list_of_categories") {
 
 		$events = array();
 		 
-		$sql = "SELECT * FROM predefined_menu_categories 
-		        WHERE withdraw ='N'and (name <> 'ALL' or name <> 'All')
+		$sql = "SELECT * 
+		        FROM predefined_menu_categories 
+		        WHERE withdraw ='N'
+				  AND (name <> 'ALL' or name <> 'All')
 				  AND branch_id = $branch_id
-				ORDER BY pre_menu_id";
+				ORDER BY ordering ASC, pre_menu_id ASC";
 
 		$result = mysqli_query($conn, $sql);
 		
