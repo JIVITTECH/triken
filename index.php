@@ -39,6 +39,10 @@
             </div>
             <div class="swiper-slide banner " style="background: url(assets/images/Banner3.png);">
             </div>
+			<div class="swiper-slide banner " style="background: url(assets/images/Banner4.jpg);">
+            </div>
+            <div class="swiper-slide banner " style="background: url(assets/images/Banner5.jpg);">
+            </div>
         </div>
         <button class="swiper-button-next"></button>
         <button class="swiper-button-prev"></button>
