@@ -752,7 +752,7 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 							document.getElementById("cancel_coupon").style.display = "none";
 						}
                         delivery_cost = "<?php echo $delivery_charge; ?>";
-						if(delivery_cost < membership_del_cost){
+						if(+delivery_cost < +membership_del_cost){
 							delivery_cost = 0;
 						}else{
 							delivery_cost = +delivery_cost - +membership_del_cost;
