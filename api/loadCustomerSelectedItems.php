@@ -11,7 +11,7 @@ include("../database.php");
 $cart_id = $_GET['cart_id'];
 $branch_id = $_GET['branch'];
 $order_type = $sel_obo_order_type;
-	
+
 $user_id = 0;
 $latitude = 0;
 $longitude = 0;
@@ -48,33 +48,6 @@ if ($count_branch !== 0) {
         $brc_name = $qry3['name'];
     }
 }
-
-/* $del_address = "SELECT delivery_address,latitude,longitude   
-                      FROM obo_customer_addresses
-                      WHERE customer_id = '$user_id' AND current_address = 'Y'";
-
-$res_del = mysqli_query($conn, $del_address);
-$count = mysqli_num_rows($res_del);
-if ($count !== 0) {
-    while ($qry1 = mysqli_fetch_array($res_del)) {
-        $delivery_address = $qry1['delivery_address'];
-        $cus_lat = $qry1['latitude'];
-        $cus_long = $qry1['longitude'];
-    }
-} else {
-    $cus_address = "SELECT address  ,latitude,longitude    
-                      FROM kot_customer_details
-                      WHERE id = '$user_id'";
-    $cus_res = mysqli_query($conn, $cus_address);
-    $count_res = mysqli_num_rows($cus_res);
-    if ($cus_res !== 0) {
-        while ($qry2 = mysqli_fetch_array($cus_res)) {
-            $delivery_address = $qry2['address'];
-            $cus_lat = $qry2['latitude'];
-            $cus_long = $qry2['longitude'];
-        }
-    }
-}*/
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -133,6 +106,31 @@ while ($rows_rad = mysqli_fetch_array($results)) {
 }
 
 if ($distance <= $radius) {
+	$max_amount = 0;
+	$membership_id = 0;
+	if(isset($_GET['date_sel'])){
+        $date_Sel = $_GET['date_sel'];
+		$sql_membership = "SELECT 
+								MAX(max_amount) as max_amount,
+								mcd.membership_id
+								FROM membership_header mh
+								LEFT JOIN membership_zone_details mzd 
+								ON mzd.membership_id = mh.id
+								LEFT JOIN membership_customer_details mcd 
+								ON mcd.membership_id = mzd.membership_id  
+								WHERE customer_id = '$user_id' AND zone_id = $order_type
+								AND mh.branch_id = $branch_id AND remaining_free_deliveries > 0
+								AND '$date_Sel' BETWEEN mh.valid_from AND mh.valid_to
+								ORDER BY mcd.id DESC LIMIT 1";
+		$sql_membership_res = mysqli_query($conn, $sql_membership);
+		$cnt_mem = mysqli_num_rows($sql_membership_res);
+		if ($cnt_mem !== 0) {
+			while ($qry_mem = mysqli_fetch_array($sql_membership_res)) {
+				$max_amount = $qry_mem['max_amount'];
+				$membership_id = $qry_mem['membership_id'];
+			}							
+		}
+	}
     $sql = "SELECT db.* ,
        (SELECT COUNT(*) FROM  kot_item_stock_details isd
         WHERE isd.branch_id = $branch_id AND isd.predef_menu_id = db.menu_id AND isd.zone_id = $order_type)as stock_chk,
@@ -209,8 +207,10 @@ if ($distance <= $radius) {
             "delivery_time" => "$rows[delivery_time]",
             "gross_weight" => "$rows[gross_weight]",
             "net_weight" => "$rows[net_weight]",
-	    "measure" => "$rows[measure]",
-            "disc_per" => "$rows[disc_per]"
+			"measure" => "$rows[measure]",
+            "disc_per" => "$rows[disc_per]",
+			"membership_cost" => $max_amount,
+			"membership_id" => $membership_id
         );
         $output[] = $events;
 

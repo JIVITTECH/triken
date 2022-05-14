@@ -51,6 +51,7 @@ if ($_POST || $_GET) {
     $delivery = $_GET['delivery'];
     $package_chg = $_GET['package_chg'];
     $user_id = $_GET['user_id'];
+	$membership_id = $_GET['membership_id'];
     $branch_name = "";
     $total_price = "";
     $customer_id = "";
@@ -144,6 +145,11 @@ if ($_POST || $_GET) {
 
         }
         $update_cart = mysqli_query($conn, $upd_cus_pkgs);
+		
+		$upd_mem = "update membership_customer_details set
+                    remaining_free_deliveries = remaining_free_deliveries - 1 
+					where membership_id = $membership_id AND customer_id = $user_id";
+        $sql_mem = mysqli_query($conn, $upd_mem);
 		
         $address = "";
         $sql_brnch = "select * from obo_cart_details  where cart_id  = $cart_id";

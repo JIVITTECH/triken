@@ -17,6 +17,7 @@ $branch_id = $_GET['branch'];
 $delivery = $_GET['del_cost'];
 $package_chg = $_GET['package_chg'];
 $tt_amount = $_GET['gt_total'];
+$membership_id = $_GET['membership_id'];
 $schema = "654402a8f29dd23a";
 
 if (session_status() == PHP_SESSION_NONE) {
@@ -107,7 +108,7 @@ $postData = array(
     "phone" => $contact_no,
     "productinfo" => $product,
     "hash" => $hash,
-    "surl" => "$easebuzz_pay_callback_url/paysuccess.php?pm=$pm&cart_id=$cart_id&branch_id=$branch_id&delivery=$delivery&package_chg=$package_chg&rest_key=$schema&user_id=$user_id&locName=$delivery_address&latitude=$cus_lat&longitude=$cus_long",
+    "surl" => "$easebuzz_pay_callback_url/paysuccess.php?pm=$pm&cart_id=$cart_id&branch_id=$branch_id&delivery=$delivery&package_chg=$package_chg&rest_key=$schema&user_id=$user_id&locName=$delivery_address&latitude=$cus_lat&longitude=$cus_long&membership_id=$membership_id",
     "furl" => "$easebuzz_pay_callback_url/cart.php?branch_id=$branch_id",
     "udf1" => $udf1,
     "udf2" => $udf2,
