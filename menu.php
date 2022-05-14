@@ -180,10 +180,12 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
                                 // Get the button that opens the modal
                                 var btn = document.getElementById("myBtn");
-
+                                if(typeof branch_id ==="undefined") {
+					branch_id = '-1';
+				}
                                 // Get the <span> element that closes the modal
                                 var span = document.getElementsByClassName("close")[0];
-                                $.get("api/getBranchHolidayStatus.php?action=getStatus", function (data, status) {
+                                $.get("api/getBranchHolidayStatus.php?action=getStatus&branch_id="+branch_id, function (data, status) {
 					var jsonStr = JSON.parse(data);
                                        if(jsonStr[0].message!==''){
                                            modal.style.display = "block";
