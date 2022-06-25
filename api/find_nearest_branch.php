@@ -26,16 +26,20 @@ $sql_dis = "SELECT db.* FROM (SELECT branch_id,name,description,
 					acos(
 						sin(( $latitude * pi() / 180))
 						*
-						sin(( `latitude` * pi() / 180)) + cos(($latitude * pi() /180 ))
+						sin(( kbd.latitude * pi() / 180)) + cos(($latitude * pi() /180 ))
 						*
-						cos(( `latitude` * pi() / 180)) * cos((($longitude - `longitude`) * pi()/180)))
+						cos(( kbd.latitude * pi() / 180)) * cos((($longitude - kbd.longitude) * pi()/180)))
 				) * 180/pi()
 			) * 60 * 1.1515 * 1.609344
 		)
-	   as distance FROM kot_branch_details 
+	   as distance FROM kot_branch_details kbd
+	   JOIN obo_store_settings b
+	     ON kbd.branch_id = b.branch
 	   WHERE withdraw_branch = '0'
-	   GROUP BY branch_id
-	   ORDER BY distance ASC )db";
+             AND TIME_FORMAT(CURRENT_TIME,'%H:%i') > b.open_time
+             AND TIME_FORMAT(CURRENT_TIME,'%H:%i') < b.close_time
+        GROUP BY branch_id
+	ORDER BY distance ASC )db";
 
 
 $result_dis = mysqli_query($conn, $sql_dis);
