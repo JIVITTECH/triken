@@ -619,7 +619,8 @@ function getDeliveryCharge($distance, $min_price, $additional_price, $min_distan
 		var selected_date = yyyy + '-' + mm + '-' + dd;
 		var date_sel = document.getElementById("date").value;
 		if(date_sel == ""){
-			document.getElementById("date").value = date_sel;
+			document.getElementById("date").value = selected_date;
+			date_sel = selected_date;
 		}
 		stock_chk_array = [];
 		grand_sub_total = 0;
