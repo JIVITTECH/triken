@@ -2,7 +2,7 @@
 include_once '../database.php';
 
 function getOtp($conn, $code, $mobile, $sender_id, $branch_id, $customer_id, $section, $orderId) {
-    $n = 6;
+    $n = 4;
 
     $generator = "1357902468";
 
@@ -21,7 +21,7 @@ function getOtp($conn, $code, $mobile, $sender_id, $branch_id, $customer_id, $se
 
 // Return result 
     $otp = $result;
-    $content = "Your One Time Password is: $otp ";
+    $content = "Your One Time Password is: $otp - eCap Team";
     triggerSMSToCustomer($conn, $content, $mobile, $sender_id, $branch_id, $customer_id, $code, $section, $orderId, $otp);
 
     return $otp;
@@ -29,7 +29,7 @@ function getOtp($conn, $code, $mobile, $sender_id, $branch_id, $customer_id, $se
 
 function triggerSMSToCustomer($conn, $content, $mobile, $sender_id, $branch_id, $customer_id, $code, $section, $orderId, $otp) {
 //Your authentication key
-    $authKey = "305993ADfnY0JTD6il6188c1d9P1";
+    $authKey = "305993A1rTUahd61c294bdP1";
 
 //Multiple mobiles numbers separated by comma
 //$mobileNumber = "9629170581";
@@ -42,6 +42,7 @@ function triggerSMSToCustomer($conn, $content, $mobile, $sender_id, $branch_id, 
 //Your message to send, Add URL encoding here.
 //$message = urlencode("Hi, Welcome to eCap");
     $message = $content;
+	$template_id  = "1207164710230169478";
 
 //Define route 
     $route = "4";   // route = 1 for promotional & route = 4 for transactional
@@ -51,7 +52,8 @@ function triggerSMSToCustomer($conn, $content, $mobile, $sender_id, $branch_id, 
         'mobiles' => $mobileNumber,
         'message' => $message,
         'sender' => $senderId,
-        'route' => $route
+        'route' => $route,
+		'DLT_TE_ID' =>  $template_id 
     );
 
 //API URL
