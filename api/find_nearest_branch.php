@@ -49,7 +49,7 @@ $sql_dis = "SELECT db.*
 				     ( SELECT message,
 					          branch
 				   	   FROM obo_store_settings 
-					   WHERE NOW() BETWEEN (TIMESTAMP(closed_from, TIME(start_time)) >= NOW()) 
+					   WHERE NOW() BETWEEN (TIMESTAMP(closed_from, TIME(start_time))) 
 					     AND (TIMESTAMP(closed_till, TIME(end_time)))  ) oss
 				  ON oss.branch = kbd.branch_id
 				WHERE kbd.withdraw_branch = '0' ) db

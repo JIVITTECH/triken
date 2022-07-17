@@ -16,7 +16,7 @@ if ($_GET["action"] == "getStatus") {
 		 
 	$sql = "SELECT message 
             FROM obo_store_settings 
-            WHERE NOW() BETWEEN (TIMESTAMP(closed_from, TIME(start_time)) >= NOW()) 
+            WHERE NOW() BETWEEN (TIMESTAMP(closed_from, TIME(start_time))) 
 			  AND (TIMESTAMP(closed_till, TIME(end_time)))
 			  AND branch = '$branch_id'";
     
