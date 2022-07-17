@@ -19,24 +19,43 @@ $_SESSION['user_loc_longitude'] = $longitude;
 
 $res = "";
 
-$sql_dis = "SELECT db.* FROM (SELECT branch_id,name,description,
-	   (
-			(
-				(
-					acos(
-						sin(( $latitude * pi() / 180))
-						*
-						sin(( `latitude` * pi() / 180)) + cos(($latitude * pi() /180 ))
-						*
-						cos(( `latitude` * pi() / 180)) * cos((($longitude - `longitude`) * pi()/180)))
-				) * 180/pi()
-			) * 60 * 1.1515 * 1.609344
-		)
-	   as distance FROM kot_branch_details 
-	   WHERE withdraw_branch = '0'
-	   GROUP BY branch_id
-	   ORDER BY distance ASC )db";
+$sql_dis = "SELECT db.* 
+            FROM 
+			    (SELECT kbd.branch_id,
+				        kbd.name,
+						kbd.description,
+					   (
+							(
+								(
+									acos(
+										sin(( $latitude * pi() / 180))
+										*
+										sin(( `latitude` * pi() / 180)) + cos(($latitude * pi() /180 ))
+										*
+										cos(( `latitude` * pi() / 180)) * cos((($longitude - `longitude`) * pi()/180)))
+								) * 180/pi()
+							) * 60 * 1.1515 * 1.609344
+						)
+					   as distance,
+					   oss.message,
+					   CASE 
+					     WHEN trim(oss.message) IS NOT NULL AND ASCII(oss.message) != '0' THEN 
+						    '1'       
+						 ELSE
+						    '0' 
+                       END AS msg_ind 
+			    FROM kot_branch_details kbd
+				LEFT JOIN 
+				     ( SELECT message,
+					          branch
+				   	   FROM obo_store_settings 
+					   WHERE NOW() BETWEEN (TIMESTAMP(closed_from, TIME(start_time)) >= NOW()) 
+					     AND (TIMESTAMP(closed_till, TIME(end_time)))  ) oss
+				  ON oss.branch = kbd.branch_id
+				WHERE kbd.withdraw_branch = '0' ) db
+			ORDER BY db.msg_ind ASC, db.distance ASC";
 
+error_log($sql_dis);
 
 $result_dis = mysqli_query($conn, $sql_dis);
 
@@ -55,6 +74,7 @@ while ($rows_dis = mysqli_fetch_array($result_dis)) {
 			  $events = array(
 					"branch_id" => "$rows_dis[branch_id]",
 					"name" => "$rows_dis[name]",
+					"message" => "$rows_dis[message]",
 			  );
 				
 			  $output[] = $events;

@@ -55,14 +55,14 @@ function findNearestBranch (latitude, longitude) {
             var myObj = JSON.parse(this.responseText);
 			if (myObj.length !== 0) {
 				for (var i = 0; i < myObj.length; i++) {
-						if ($.cookie("branch_id") !== undefined) {
-							if ($.cookie("branch_id") !== myObj[i].branch_id) {
-								var cart_count = document.getElementById('cart_count').innerHTML;
-								if(+cart_count !== 0){
+				     if ($.cookie("branch_id") !== undefined) {
+					      if ($.cookie("branch_id") !== myObj[i].branch_id) {
+							   var cart_count = document.getElementById('cart_count').innerHTML;
+							   if(+cart_count !== 0){
 									document.getElementById('clear_cart').style.display = 'block';
 									document.getElementById('branch_dialog').style.display = 'none';
 									document.getElementById('hidden_branch').value = myObj[i].branch_id;
-								}else{
+							   } else {
 									branch_id = +myObj[i].branch_id;
 									$.cookie("branch_id", JSON.stringify(branch_id));
 									$('.lpopup').hide();
@@ -77,8 +77,12 @@ function findNearestBranch (latitude, longitude) {
 									loadAllCategories();
 									loadTopCategories();
 									loadAllRecipes();
+									if (myObj[i].message != "") {
+									   document.getElementById("myModal").style.display = "block";
+									   document.getElementById("msg").innerHTML = myObj[i].message;
+									}
 								}
-							}else{
+					      } else {
 								branch_id = +myObj[i].branch_id;
 								$.cookie("branch_id", JSON.stringify(branch_id));
 								$('.lpopup').hide();
@@ -93,25 +97,33 @@ function findNearestBranch (latitude, longitude) {
 								loadAllCategories();
 								loadTopCategories();
 								loadAllRecipes();
-							}
-						}else{
-							branch_id = +myObj[i].branch_id;
-							$.cookie("branch_id", JSON.stringify(branch_id));
-							$('.lpopup').hide();
-							var location = document.getElementById("location").value;
-							location =  location.substr(0, location.indexOf(',')); 
-							if(location.length > 24){
-								location = location.substring(0,24) + "...";
-							} 
-							document.cookie = "locName=" + location + "; expires=Thu, 31 Dec 2099 23:59:59 GMT";
-							document.getElementById("loc_name").innerHTML = location;
-							window.location.href = window.location.href;
-							loadAllCategories();
-							loadTopCategories();
-							loadAllRecipes();
-						}
-					}
-			}else{
+								if (myObj[i].message != "") {
+							 	    document.getElementById("myModal").style.display = "block";
+								    document.getElementById("msg").innerHTML = myObj[i].message;
+								}
+						  }
+					 } else {
+						  branch_id = +myObj[i].branch_id;
+						  $.cookie("branch_id", JSON.stringify(branch_id));
+						  $('.lpopup').hide();
+					      var location = document.getElementById("location").value;
+						  location =  location.substr(0, location.indexOf(',')); 
+						  if(location.length > 24){
+							  location = location.substring(0,24) + "...";
+						  } 
+						  document.cookie = "locName=" + location + "; expires=Thu, 31 Dec 2099 23:59:59 GMT";
+						  document.getElementById("loc_name").innerHTML = location;
+						  window.location.href = window.location.href;
+						  loadAllCategories();
+						  loadTopCategories();
+						  loadAllRecipes();
+						  if (myObj[i].message != "" && myObj[i].message != null) {
+							  document.getElementById("myModal").style.display = "block";
+							  document.getElementById("msg").innerHTML = myObj[i].message;
+						  }
+					 }
+				}
+			} else {
 				document.getElementById("no_branch").style.display = "block";
 			} 
 		}
