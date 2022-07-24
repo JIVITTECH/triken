@@ -15,7 +15,7 @@ $query = 'select db.* ,
 (SELECT COUNT(*) FROM  kot_item_stock_details isd
 WHERE isd.predef_menu_id = db.predef_menu_id AND branch_id = ' . $branch . ' AND isd.zone_id = ' . $sel_obo_order_type . ' )as stock_chk,
 (SELECT group_concat(mi.img_path) 
-FROM menus_images mi WHERE mi.predef_menu_id=db.predef_menu_id AND mi.branch_id = ' . $branch . ') as images_path 
+FROM predefined_menu_images mi WHERE mi.predef_menu_id=db.predef_menu_id AND mi.branch_id = ' . $branch . ') as images_path 
 from (SELECT
 pm.predef_menu_id, 
 pm.name as item_name,
