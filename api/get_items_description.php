@@ -13,7 +13,9 @@ $item_id = $_GET['item_id'];
 
 $query = 'select db.* , 
 (SELECT COUNT(*) FROM  kot_item_stock_details isd
-WHERE isd.predef_menu_id = db.predef_menu_id AND branch_id = ' . $branch . ' AND isd.zone_id = ' . $sel_obo_order_type . ' )as stock_chk
+WHERE isd.predef_menu_id = db.predef_menu_id AND branch_id = ' . $branch . ' AND isd.zone_id = ' . $sel_obo_order_type . ' )as stock_chk,
+(SELECT group_concat(mi.img_path) 
+FROM predefined_menu_images mi WHERE mi.predef_menu_id=db.predef_menu_id AND mi.branch_id = ' . $branch . ') as images_path 
 from (SELECT
 pm.predef_menu_id, 
 pm.name as item_name,
@@ -113,7 +115,8 @@ while ($rows = mysqli_fetch_array($result)) {
 		"video_path" => "$rows[video_path]",
 		"description" => "$rows[description]",
 		"specification" => $events_spc_arr,
-		"related_images" => $events_img_arr
+		"related_images" => $events_img_arr,
+                "images_path" => "$rows[images_path]"
 	   );
     
     $output[] = $events;
